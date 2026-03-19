@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — SEO & AEO Readiness Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-l:#E2C46E;--gold-p:#F5EDD4;--gold-d:#7A5C10;
+  --ink:#0E0B06;--ink2:#1C1810;--ink3:#272318;--cream:#FAF6EE;--cream2:#EFE8D5;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-t:#7F1D1D;
+  --orange:#EA580C;--orange-bg:#FFF7ED;--orange-t:#7C2D12;
+  --yellow:#CA8A04;--yellow-bg:#FEFCE8;--yellow-t:#713F12;
+  --green:#16A34A;--green-bg:#F0FDF4;--green-t:#14532D;
+  --dev:#7C3AED;--dev-bg:#F5F3FF;--dev-t:#3B0764;
+  --seo:#0891B2;--seo-bg:#ECFEFF;--seo-t:#164E63;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:14px}
+
+.cover{background:var(--ink);min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 80% 50%,rgba(201,168,76,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(201,168,76,.05) 0%,transparent 55%);pointer-events:none}
+.cover-top{padding:32px 56px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,168,76,.12)}
+.cover-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:.14em;color:var(--cream);text-transform:uppercase}
+.cover-brand span{color:var(--gold);font-style:italic}
+.cover-tag{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.45)}
+.cover-body{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 56px 60px}
+.cover-eyebrow{font-size:10px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,72px);font-weight:300;color:var(--cream);line-height:1.05;letter-spacing:.03em;margin-bottom:8px}
+.cover-title em{color:var(--gold-l);font-style:italic}
+.cover-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,28px);font-weight:300;color:rgba(245,237,212,.4);letter-spacing:.06em;margin-bottom:48px}
+.cover-meta{display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(201,168,76,.15);padding-top:32px}
+.cmi{display:flex;flex-direction:column;gap:4px}
+.cml{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.4)}
+.cmv{font-size:13px;color:rgba(245,237,212,.7)}
+.cover-bottom{padding:24px 56px;border-top:1px solid rgba(201,168,76,.1);display:flex;justify-content:space-between;align-items:center}
+.cover-conf{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,168,76,.25)}
+.rleg-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.rleg{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:2px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.rleg.cr{background:rgba(220,38,38,.15);color:#FCA5A5}
+.rleg.hi{background:rgba(234,88,12,.15);color:#FDC8A8}
+.rleg.me{background:rgba(202,138,4,.15);color:#FDE68A}
+.rleg.lo{background:rgba(22,163,74,.15);color:#86EFAC}
+.rleg.ok{background:rgba(37,99,235,.15);color:#93C5FD}
+
+.page-section{padding:72px 56px;position:relative}
+.page-section+.page-section{border-top:1px solid var(--cream2)}
+.section-eyebrow{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-d);margin-bottom:10px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--ink);line-height:1.1;margin-bottom:8px}
+.section-title em{font-style:italic;color:var(--gold-d)}
+.section-intro{font-size:14px;color:rgba(14,11,6,.55);max-width:680px;line-height:1.7;margin-bottom:48px}
+
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:56px}
+.score-card{background:white;border:1px solid rgba(0,0,0,.07);border-radius:4px;padding:24px 20px;text-align:center;position:relative;overflow:hidden}
+.score-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.score-card.cr::before{background:var(--red)}
+.score-card.hi::before{background:var(--orange)}
+.score-card.me::before{background:var(--yellow)}
+.score-card.ok::before{background:var(--green)}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1;margin-bottom:6px}
+.score-card.cr .score-num{color:var(--red)}
+.score-card.hi .score-num{color:var(--orange)}
+.score-card.me .score-num{color:var(--yellow)}
+.score-card.ok .score-num{color:var(--green)}
+.score-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(14,11,6,.4)}
+
+.wins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.win-card{background:white;border:1px solid rgba(22,163,74,.2);border-left:3px solid var(--green);border-radius:2px;padding:20px}
+.win-icon{font-size:18px;margin-bottom:8px}
+.win-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.win-body{font-size:12px;color:rgba(14,11,6,.55);line-height:1.6}
+
+.issues-list{display:flex;flex-direction:column;gap:16px}
+.issue-card{background:white;border:1px solid rgba(0,0,0,.07);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto}
+.issue-num{background:var(--ink2);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;width:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-right:1px solid rgba(255,255,255,.04)}
+.issue-body{padding:16px 20px}
+.issue-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.issue-title{font-size:13px;font-weight:600;color:var(--ink);flex:1;line-height:1.35}
+.risk-badge{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+.rb-cr{background:var(--red-bg);color:var(--red-t)}
+.rb-hi{background:var(--orange-bg);color:var(--orange-t)}
+.rb-me{background:var(--yellow-bg);color:var(--yellow-t)}
+.rb-lo{background:var(--green-bg);color:var(--green-t)}
+.issue-explain{font-size:12px;color:rgba(14,11,6,.55);line-height:1.65;margin-bottom:10px}
+.issue-impact{font-size:11.5px;color:rgba(14,11,6,.7);line-height:1.6;padding:8px 12px;background:#FFFBF5;border-left:2px solid var(--gold);margin-bottom:0}
+.issue-impact strong{color:var(--gold-d);font-weight:600}
+.issue-fix{padding:14px 20px;background:#F8F9FA;border-left:1px solid rgba(0,0,0,.06);min-width:240px;max-width:280px}
+.fix-header{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(14,11,6,.35);margin-bottom:8px}
+.fix-body{font-size:11px;line-height:1.65;color:rgba(14,11,6,.6)}
+.owner-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-bottom:8px}
+.ob-dev{background:var(--dev-bg);color:var(--dev-t)}
+.ob-seo{background:var(--seo-bg);color:var(--seo-t)}
+.ob-both{background:#FFF7ED;color:#7C2D12}
+
+.split-section{background:var(--ink);padding:72px 56px}
+.split-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:8px;text-align:center}
+.split-title em{font-style:italic;color:var(--gold-l)}
+.split-intro{text-align:center;font-size:13px;color:rgba(245,237,212,.4);margin-bottom:48px;letter-spacing:.05em}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto}
+.split-col{border-radius:4px;overflow:hidden}
+.split-col-head{padding:16px 24px;display:flex;align-items:center;gap:10px}
+.split-col.dev .split-col-head{background:rgba(124,58,237,.15);border-bottom:2px solid var(--dev)}
+.split-col.seo .split-col-head{background:rgba(8,145,178,.15);border-bottom:2px solid var(--seo)}
+.split-col-title{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.split-col.dev .split-col-title{color:#C4B5FD}
+.split-col.seo .split-col-title{color:#67E8F9}
+.split-col-body{padding:20px 24px;background:rgba(255,255,255,.03)}
+.split-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px}
+.split-item:last-child{border-bottom:none}
+.split-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.split-col.dev .split-dot{background:var(--dev)}
+.split-col.seo .split-dot{background:var(--seo)}
+.split-item-text{color:rgba(245,237,212,.6);line-height:1.5}
+.split-item-text strong{color:rgba(245,237,212,.85);font-weight:500}
+.split-badge-row{margin-top:4px;display:flex;gap:6px;flex-wrap:wrap}
+.sb{font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+.sb-cr{background:rgba(220,38,38,.2);color:#FCA5A5}
+.sb-hi{background:rgba(234,88,12,.2);color:#FDC8A8}
+.sb-me{background:rgba(202,138,4,.2);color:#FDE68A}
+
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.phase-card{background:white;border:1px solid rgba(0,0,0,.07);border-radius:4px;overflow:hidden}
+.phase-head{padding:14px 18px;display:flex;align-items:center;gap:10px}
+.phase-head.p1{background:#1C0A0A}.phase-head.p2{background:#1C120A}.phase-head.p3{background:#0A0A1C}.phase-head.p4{background:#0A1C0F}
+.phase-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:rgba(255,255,255,.2);line-height:1}
+.phase-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.phase-head.p1 .phase-label{color:#FCA5A5}.phase-head.p2 .phase-label{color:#FDC8A8}.phase-head.p3 .phase-label{color:#C4B5FD}.phase-head.p4 .phase-label{color:#86EFAC}
+.phase-timeline{font-size:10px;color:rgba(255,255,255,.25);margin-top:2px;letter-spacing:.05em}
+.phase-body{padding:16px 18px 20px}
+.phase-task{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:11.5px;color:rgba(14,11,6,.6);line-height:1.45}
+.phase-task:last-child{border-bottom:none}
+.pt-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.phase-owners{display:flex;gap:5px;margin-top:12px}
+.po{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+.po.dev{background:var(--dev-bg);color:var(--dev-t)}.po.seo{background:var(--seo-bg);color:var(--seo-t)}
+
+.extras-table{width:100%;border-collapse:collapse}
+.extras-table thead th{background:var(--ink2);color:rgba(201,168,76,.6);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;text-align:left}
+.extras-table tbody tr{border-bottom:1px solid rgba(0,0,0,.06)}
+.extras-table tbody tr:hover{background:rgba(201,168,76,.03)}
+.extras-table td{padding:10px 16px;font-size:12px;vertical-align:top}
+.extras-table td:first-child{font-weight:600;color:var(--ink);width:32px;text-align:center}
+.et-issue{color:var(--ink);font-weight:500}.et-impact{color:rgba(14,11,6,.5);font-size:11px;line-height:1.5;margin-top:2px}
+.et-rec{color:rgba(14,11,6,.65);font-size:11px;line-height:1.5}
+
+.report-footer{background:var(--ink);padding:24px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.rf-left{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.25)}
+.rf-right{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;letter-spacing:.08em;color:rgba(245,237,212,.2)}
+.rf-right span{color:var(--gold);font-style:italic}
+
+@media(max-width:900px){
+  .page-section,.cover-body,.cover-top,.cover-bottom,.split-section,.report-footer{padding-left:24px;padding-right:24px}
+  .score-grid{grid-template-columns:repeat(2,1fr)}
+  .roadmap-grid{grid-template-columns:repeat(2,1fr)}
+  .split-grid{grid-template-columns:1fr}
+  .issue-card{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .issue-fix{border-left:none;border-top:1px solid rgba(0,0,0,.06);grid-column:1/-1;max-width:100%}
+  .issue-num{display:none}
+}
+@media(max-width:600px){
+  .score-grid,.roadmap-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-top">
+    <div class="cover-brand">Nyrah <span>Beauty</span></div>
+    <div class="cover-tag">Confidential · Not for distribution</div>
+  </div>
+  <div class="cover-body">
+    <div class="cover-eyebrow">Pre-Strategy Audit · March 2026</div>
+    <h1 class="cover-title">SEO & <em>AEO</em><br>Readiness Report</h1>
+    <div class="cover-subtitle">Search Engine & Answer Engine Optimisation</div>
+    <div class="rleg-row">
+      <div class="rleg cr">🔴 Critical — fix now</div>
+      <div class="rleg hi">🟠 High — fix within 2 weeks</div>
+      <div class="rleg me">🟡 Medium — fix within 30 days</div>
+      <div class="rleg lo">🟢 Low — improve over time</div>
+      <div class="rleg ok">✅ Already strong</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cmi"><span class="cml">Website</span><span class="cmv">nyrahbeauty.com</span></div>
+      <div class="cmi"><span class="cml">Total issues found</span><span class="cmv">25 + 5 additional</span></div>
+      <div class="cmi"><span class="cml">Critical issues</span><span class="cmv" style="color:#FCA5A5">5 requiring immediate action</span></div>
+      <div class="cmi"><span class="cml">AEO blockers</span><span class="cmv" style="color:#FDC8A8">Schema, crawlers, content structure</span></div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-conf">Prepared exclusively for Nyrah Beauty CMO</div>
+  </div>
+</section>
+
+<!-- SNAPSHOT -->
+<section class="page-section" style="background:white">
+  <div class="section-eyebrow">At a glance</div>
+  <h2 class="section-title">Issue <em>Snapshot</em></h2>
+  <p class="section-intro">25 distinct issues identified across technical SEO, on-page signals, and AEO readiness — plus 5 additional tracking & analytics findings.</p>
+  <div class="score-grid">
+    <div class="score-card cr"><div class="score-num">5</div><div class="score-label">Critical 🔴</div></div>
+    <div class="score-card hi"><div class="score-num">6</div><div class="score-label">High Priority 🟠</div></div>
+    <div class="score-card me"><div class="score-num">8</div><div class="score-label">Medium Priority 🟡</div></div>
+    <div class="score-card ok"><div class="score-num">5</div><div class="score-label">Already Working ✅</div></div>
+  </div>
+  <div class="section-eyebrow" style="margin-bottom:12px">What's already strong ✅</div>
+  <div class="wins-grid">
+    <div class="win-card"><div class="win-icon">🔗</div><div class="win-title">Descriptive, keyword-rich product URLs</div><div class="win-body">URLs like /products/drench and /products/rosacea-relief-bundle are clean and keyword-relevant — a foundational SEO best practice Nyrah has nailed.</div></div>
+    <div class="win-card"><div class="win-icon">📄</div><div class="win-title">Rich product page content</div><div class="win-body">Ingredient lists, usage guides, FAQs, and skin-type suitability on product pages are excellent raw material for AEO citation eligibility.</div></div>
+    <div class="win-card"><div class="win-icon">🎯</div><div class="win-title">Clear niche brand positioning</div><div class="win-body">Irish-made, hormonal skin, 40+, plant-based — a highly searchable niche with growing AI query volume. A major long-term AEO advantage.</div></div>
+    <div class="win-card"><div class="win-icon">✍️</div><div class="win-title">Relevant blog content exists</div><div class="win-body">Posts on rosacea, hormonal skin, bio-retinol, and skincare for 35+ already published — a foundation to restructure for AEO without starting from zero.</div></div>
+    <div class="win-card"><div class="win-icon">🧪</div><div class="win-title">Skin quiz / personalisation tool</div><div class="win-body">The Find My Routine quiz is live and linked in navigation. AI engines reward interactive expert tools as signals of depth and authority.</div></div>
+  </div>
+</section>
+
+<!-- CRITICAL -->
+<section class="page-section">
+  <div class="section-eyebrow">Section 2 — Must fix before any campaign work begins</div>
+  <h2 class="section-title">Critical <em>Issues</em></h2>
+  <p class="section-intro">These 5 issues are actively damaging the site's ability to rank and be cited by AI engines. Nothing else matters until these are resolved.</p>
+  <div class="issues-list">
+
+    <div class="issue-card">
+      <div class="issue-num">1</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Duplicate website — two separate versions running simultaneously</div><span class="risk-badge rb-cr">🔴 Critical</span></div>
+        <div class="issue-explain">The site runs at two URLs: <strong>nyrahbeauty.com</strong> (EU/IE) and <strong>nyrahbeauty.com/en-us/</strong> (US) — virtually identical content, just different currencies.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Google splits SEO authority between both versions — neither ranks as strongly as it should. AI crawlers are confused about which is the canonical source, weakening citation eligibility across the board. This is one of the most damaging SEO issues a site can have.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Set hreflang tags on ALL pages. Set canonical tags on /en-us/ pages pointing to root equivalents. Configure Shopify Markets so en-us is a proper market subdirectory, not a duplicate root.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">2</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Entire sitemap points to /en-us/ URLs — root domain invisible to Google</div><span class="risk-badge rb-cr">🔴 Critical</span></div>
+        <div class="issue-explain">Every URL in the sitemap is /en-us/ prefixed. The clean root domain URLs appear nowhere in the sitemap Google reads.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> All backlinks and press coverage pointing to nyrahbeauty.com are not being attributed to the indexed version. You are effectively ranking with half your authority. Catastrophic for any SEO or AEO campaign.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Update XML sitemap to root domain URLs only. Ensure sitemap_index.xml reflects root-domain pages. Resubmit to Google Search Console. Set up GSC for BOTH versions.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">3</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Tracking parameter appending to homepage URL from Google clicks</div><span class="risk-badge rb-cr">🔴 Critical</span></div>
+        <div class="issue-explain">Clicking the homepage from Google lands users on: <em>nyrahbeauty.com/?srsltid=AfmBOoqUi-f6Acc...</em> — a Google Shopping/Merchant Center tracking ID in the URL.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Parameterised URLs can be indexed as unique pages, fragmenting page authority and wasting crawl budget. AI crawlers may encounter the parameterised version, weakening citation eligibility.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Dev + ✍️ SEO</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Canonical tag on homepage must always point to https://nyrahbeauty.com/ (no parameters). Configure parameter handling in Google Search Console under Settings → URL Parameters.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">4</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Favicon is missing from the website</div><span class="risk-badge rb-cr">🔴 Critical</span></div>
+        <div class="issue-explain">No favicon exists — the small branded icon that appears in browser tabs, bookmarks, and next to Google search listings.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Sites with favicons get a branded icon next to their Google listing — increases click-through rate. For AEO: Perplexity and other AI engines display brand icons next to cited sources. A missing favicon means zero visual brand identity in AI citations.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Create favicon at 32×32px and 180×180px using the Nyrah logo. Upload via Shopify Admin → Online Store → Themes → Customize → Theme Settings → Favicon.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">5</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">CDN image URLs listed as page entries in sitemap</div><span class="risk-badge rb-cr">🔴 Critical</span></div>
+        <div class="issue-explain">Some sitemap entries show raw Shopify CDN links (cdn.shopify.com/s/files/...) instead of actual page URLs — crawlers expect pages, get image files.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Wastes crawl budget and means some collection pages may be entirely absent from the sitemap — completely invisible to search engines.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-seo">✍️ SEO Team</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Review sitemap XML and remove all cdn.shopify.com entries. Only proper page URLs should appear. Image URLs belong inside image: tags within a page entry, never as standalone URLs.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGH -->
+<section class="page-section" style="background:white">
+  <div class="section-eyebrow">Section 3 — Fix within 2 weeks</div>
+  <h2 class="section-title">High Priority <em>Issues</em></h2>
+  <p class="section-intro">6 issues that directly block AEO performance and damage SEO health. Several are quick wins once the technical foundation is solid.</p>
+  <div class="issues-list">
+
+    <div class="issue-card">
+      <div class="issue-num">6</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Blog split across two separate blogs — fragmented authority</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">TWO active blogs: /blogs/nyrah-blog-home-page/ and /blogs/news/ — posts appear in both, confirmed in sitemap.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> All blogging authority is split. Google can't understand the site's topical structure. For AEO: AI engines need one clear, authoritative content hub to cite from. Two weak blogs are worse than one strong one.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-both">🛠 Dev + ✍️ SEO</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Consolidate into one blog. Rename handle to /blogs/skincare-guide. 301 redirects from ALL old /blogs/news/ URLs. Update all internal links site-wide. Do before any AEO content work begins.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">7</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Blog URL contains "nyrah-blog-home-page" — internal naming leaked into public URL</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">Posts live at .../blogs/<strong>nyrah-blog-home-page</strong>/post-title. The subfolder is internal naming that became a public URL.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Tells neither humans nor AI engines anything about the content topic. Prevents topical cluster-building because all posts share one generic subfolder regardless of subject.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix required</div>
+        <div class="fix-body">Rename blog handle to /blogs/skincare or /blogs/hormonal-skincare-guide. Every existing URL changes — 301 redirects from ALL old URLs are mandatory. Do once, carefully, before creating new content.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">8</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Two duplicate rewards pages both indexed simultaneously</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">/pages/rewards-program-page AND /pages/rewards-program-page-1 — identical content, split authority, both indexed.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Google doesn't know which to rank. Backlinks and citations are divided. For AEO, creates confusion about which page is the authoritative source on the loyalty programme.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Keep /pages/rewards-program-page as canonical. Delete or 301-redirect rewards-program-page-1 to the primary. Verify only one version in navigation and internal links.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">9</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Two duplicate early-access sign-up pages</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">/pages/nyrah-beauty-sign-up-for-early-access-to-our-new-products AND /pages/nyrah-beauty-sign-up-for-early-access-to-new-product-launches — same purpose, different names, both live.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Leftover campaign pages quietly damage SEO health over time by fragmenting authority. Common in Shopify — requires periodic auditing to prevent recurrence.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Pick the preferred URL. 301-redirect the other. Both should also be noindexed — they are email-capture pages, not SEO destination pages.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">10</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Eye gel product URL contains "draft" — live in sitemap</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">Live product URL: /en-us/products/<strong>eye-gel-draft-30ml</strong> — created as a draft version, never renamed before going live.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> "Draft" in a live product URL looks unfinished to customers and AI crawlers. Brand credibility issue and wasted keyword opportunity in the URL.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Update URL handle to /products/revive-eye-gel-30ml in Shopify Admin. Set up 301 redirect from old URL. Audit for any other slugs containing "draft", "test", or "temp".</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">11</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">No schema markup beyond basic Shopify defaults — top AEO blocker</div><span class="risk-badge rb-hi">🟠 High</span></div>
+        <div class="issue-explain">Shopify auto-generates basic Product schema only. No FAQPage schema, HowTo, Article, or Organization schema visible anywhere on the site.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Schema is the single most important technical requirement for AEO. Without FAQPage schema, Nyrah's excellent product page FAQs are invisible to AI answer extraction. Without Article schema, blog posts are harder to cite. This is a top-3 AEO priority.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Priority order</div>
+        <div class="fix-body">① FAQPage schema on all product pages with Q&amp;A content ② Article schema on all blog posts (author + date) ③ Organization schema on homepage (brand name, country: Ireland, social links). Use Schema Plus app or custom JSON-LD via theme code.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MEDIUM -->
+<section class="page-section">
+  <div class="section-eyebrow">Section 4 — Fix within 30 days</div>
+  <h2 class="section-title">Medium Priority <em>Issues</em></h2>
+  <p class="section-intro">Several quick wins with outsized impact on crawlability, UX, and brand trust.</p>
+  <div class="issues-list">
+
+    <div class="issue-card">
+      <div class="issue-num">12</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Bloom collection URL contains "nyrah-beauty" twice — redundant</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">/collections/bloom-by-nyrah-self-tanning-<strong>nyrah-beauty</strong> — brand name appears twice. Looks spammy, wastes URL space.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Redundant keywords in URLs reduce readability for humans and search engines. Simplify to carry more descriptive, searchable terms.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Simplify to /collections/bloom-self-tanning or /collections/bloom-by-nyrah. Set up 301 redirect from old URL.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">13</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Help Centre nav link has a typo — creates a 404 error</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">One nav instance links to /pages/help-<strong>cente</strong> (missing "r"). The correct /pages/help-center also exists, so users clicking the broken link hit a 404.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> 404 errors in navigation signal poor site quality to Google and frustrate users. Crawlers log this error in site health scores.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Fix the typo in Shopify Navigation admin. Then run a full broken link audit with Screaming Frog (free up to 500 URLs) to catch all other broken internal links.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">14</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Internal links in /en-us/ navigation are inconsistent</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">Some /en-us/ homepage links use /en-us/collections/... (correct), others drop the prefix and link to /collections/... (which redirects to the IE version).</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Creates unnecessary redirect chains, confuses crawlers about canonical versions, and may cause US-market users to land on the wrong currency version.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Audit all navigation and homepage links in the /en-us/ theme. Ensure consistent /en-us/ prefixed URLs throughout. May require theme liquid file editing.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">15</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Page speed and image optimisation not verified</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">Multiple full-resolution PNG/JPEG images without confirmed WebP conversion or lazy loading. Shopify serves via CDN but image formats need auditing.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Page speed is a confirmed Google ranking factor. Slow pages are crawled less often by Google and AI bots. For a skincare brand targeting women over 40 on mobile devices, this matters especially.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Run Google PageSpeed Insights. Confirm images serve in WebP. Ensure width + height attributes prevent layout shift. Target Largest Contentful Paint (LCP) under 2.5 seconds on mobile.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">16</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">About Us page has a timestamped URL</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">/pages/about-us-<strong>1704554089699</strong> — a Shopify internal timestamp. Should simply be /pages/about-us.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> About Us pages contribute to E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) signals — the URL should look authoritative, not auto-generated.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Edit page URL handle to "about-us" in Shopify Admin. Set up 301 redirect from old URL. Verify new URL appears in sitemap.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">17</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Draft homepage page is live and indexed</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">/pages/new_home_page_1760692928333 — a test/draft page currently indexed by Google and listed in the sitemap.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Thin draft pages waste crawl budget and dilute brand authority. Anyone landing from search would have a very poor experience.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Admin</div>
+        <div class="fix-header">Quick fix</div>
+        <div class="fix-body">Delete the page or add a noindex meta tag. Audit all Shopify pages for similar draft/test pages and apply the same treatment.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">18</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Advertorial pages indexed by Google</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">/pages/revive-advertorial, /pages/revive-eye-gel-launch-advertorial-style, /pages/trial-pack-advertorial-page — paid ad landing pages currently indexed for organic search.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Advertorial pages contain duplicate/thin content relative to product pages. Organic indexing can cannibalise proper product page rankings.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-seo">✍️ SEO Team</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Add noindex meta tags to all advertorial and campaign landing pages. Keeps them accessible for paid traffic while removing them from organic indexing. Apply same to all infuse-behind-the-scenes, mystery-bag-winners, seasonal-offers, and waitlist pages.</div>
+      </div>
+    </div>
+
+    <div class="issue-card">
+      <div class="issue-num">19</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">No canonical tag management system across key pages</div><span class="risk-badge rb-me">🟡 Medium</span></div>
+        <div class="issue-explain">Shopify adds default canonicals but there is no custom canonical management — especially critical given the root vs /en-us/ duplicate structure and parameterised URLs observed.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Without explicit canonicals, Google decides which URL is the "real" version. Given the dual-domain structure, this is actively hurting Nyrah. Canonical tags are Google's primary signal for consolidating duplicate page authority.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-dev">🛠 Shopify Dev</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Implement via theme's layout.liquid file or a dedicated SEO app. For every page, canonical should point to the clean preferred URL — part of the /en-us/ fix in Issue 1.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHO DOES WHAT -->
+<section class="split-section">
+  <h2 class="split-title">Who does <em>what?</em></h2>
+  <p class="split-intro">Complete responsibility breakdown — Dev vs SEO Team</p>
+  <div class="split-grid">
+    <div class="split-col dev">
+      <div class="split-col-head">
+        <div>
+          <div class="split-col-title">🛠 Shopify Developer</div>
+          <div style="font-size:10px;color:rgba(196,181,253,.4);margin-top:2px">Theme, config, redirects, schema, tech fixes</div>
+        </div>
+      </div>
+      <div class="split-col-body">
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Fix /en-us/ duplicate domain</strong> — hreflang tags + canonical tags on all pages<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Rebuild and resubmit sitemap</strong> — root domain URLs only, no CDN entries<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Add favicon</strong> — 32×32 and 180×180px, upload via Shopify Themes<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Canonical tag system</strong> — via layout.liquid or SEO app<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Homepage canonical</strong> — strip parameter, point to clean https://nyrahbeauty.com/<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Delete/301 redirect duplicate pages</strong> — rewards, sign-up, blog<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Rename blog handle</strong> — /blogs/skincare-guide + all 301 redirects<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Fix eye gel product slug</strong> — /products/revive-eye-gel-30ml + 301 redirect<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Install schema markup</strong> — FAQPage, Article, Organization JSON-LD via theme or app<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Fix Help Centre nav typo</strong> — /pages/help-center (missing "r")<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Fix /en-us/ internal link inconsistency</strong> — audit all nav + homepage links for consistent prefixing<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Image optimisation</strong> — WebP format, lazy loading, LCP under 2.5s on mobile<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Author bio section on blog</strong> — theme modification to display author metadata<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>GA4 + Meta Pixel tracking fix</strong> — verify GA4 in GTM, standard scripts for essential events<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>GTM noscript tag</strong> — add immediately after opening &lt;body&gt; tag<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="split-col seo">
+      <div class="split-col-head">
+        <div>
+          <div class="split-col-title">✍️ SEO Team</div>
+          <div style="font-size:10px;color:rgba(103,232,249,.4);margin-top:2px">Content, metadata, strategy, AEO architecture</div>
+        </div>
+      </div>
+      <div class="split-col-body">
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Remove CDN image URLs from sitemap</strong> — only proper page URLs as entries<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>GSC URL parameter configuration</strong> — strip srsltid parameter in Search Console Settings<div class="split-badge-row"><span class="sb sb-cr">Critical</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Consolidate blog content</strong> — migrate all /blogs/news/ posts to primary blog<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Noindex all campaign pages</strong> — advertorials, waitlists, seasonal, mystery bag winners, draft pages<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Rewrite all meta descriptions</strong> — unique, specific, under 155 chars. Format: [Problem] + [Nyrah answer] + [Brand differentiator]<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Restructure page titles to keyword-first</strong> — "Hormonal Skincare for Women Over 40 | Nyrah Beauty"<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Verify robots.txt allows AI crawlers</strong> — GPTBot, ClaudeBot, PerplexityBot, CCBot must not be disallowed<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Add author bios to blog posts</strong> — Lorraine Corcoran's credentials + expertise description on every post<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Restructure blog posts with question-led H2/H3s</strong> — 3–5 questions per post, 40–60 word direct answers beneath each<div class="split-badge-row"><span class="sb sb-me">Medium</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Build topical content clusters</strong> — 4 pillars: Hormonal Skin After 40 · Rosacea &amp; Sensitive Skin · Plant-Based Skincare Science · Simplified Routines<div class="split-badge-row"><span class="sb sb-me">Month 2</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Create 7 skin-concern collection pages</strong> — hyperpigmentation, acne, rosacea, dry skin, mature skin, hormonal, sensitive<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+        <div class="split-item"><span class="split-dot"></span><div class="split-item-text"><strong>Create ingredient glossary</strong> — /pages/ingredients targeting "what is bio-retinol" queries — single highest AEO impact page to build<div class="split-badge-row"><span class="sb sb-hi">High</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOW PRIORITY -->
+<section class="page-section" style="background:white">
+  <div class="section-eyebrow">Section 5 — AEO-specific gaps</div>
+  <h2 class="section-title">Low Priority & <em>AEO Gaps</em></h2>
+  <p class="section-intro">These compound in importance as AI search grows. Begin addressing in Month 2 alongside content cluster work.</p>
+  <div class="issues-list">
+    <div class="issue-card">
+      <div class="issue-num">20</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">AI crawler access not confirmed in robots.txt</div><span class="risk-badge rb-lo">🟢 Low</span></div>
+        <div class="issue-explain">Not confirmed whether robots.txt allows GPTBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, Googlebot-Extended. Many Shopify setups block these inadvertently.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> If AI crawlers are blocked — even accidentally — Nyrah cannot be cited or sourced in AI-generated answers. This is a fundamental AEO requirement.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-seo">✍️ SEO Team</div>
+        <div class="fix-header">Check</div>
+        <div class="fix-body">Visit nyrahbeauty.com/robots.txt. Confirm NO Disallow entries for GPTBot, ClaudeBot, PerplexityBot, CCBot. If blocked, remove those rules. Can also explicitly allow: User-agent: GPTBot / Allow: /</div>
+      </div>
+    </div>
+    <div class="issue-card">
+      <div class="issue-num">21–22</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Blog posts lack author bios & use statement headings instead of questions</div><span class="risk-badge rb-lo">🟢 Low</span></div>
+        <div class="issue-explain">No visible author credentials. Headings are statements, not questions ("5 Tips for Mature Skin" vs "What skincare routine works for women over 40?").</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) requires credentialed authors. Question-led H2/H3s followed by 40–60 word direct answers are the primary format cited by Perplexity, Google AI Overviews, and ChatGPT.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-both">🛠 Dev + ✍️ SEO</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Feature Lorraine Corcoran's name + credentials on all posts. Restructure existing posts with 3–5 question H2/H3s. Pair with FAQPage schema (Issue 11) for maximum AEO impact.</div>
+      </div>
+    </div>
+    <div class="issue-card">
+      <div class="issue-num">23</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">No topical content cluster architecture</div><span class="risk-badge rb-lo">🟢 Low</span></div>
+        <div class="issue-explain">Blog has standalone posts without a pillar-cluster structure. No central hub page for hormonal skincare, rosacea, or perimenopause skincare with cluster posts linking back.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Topical authority is how AI engines decide who is the trusted expert. One pillar page linking to 8 cluster posts is far more likely to be cited as an authority than the same content scattered loosely.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-seo">✍️ SEO Team</div>
+        <div class="fix-header">Month 2</div>
+        <div class="fix-body">Build clusters around 4 pillars: ① Hormonal Skin After 40 ② Rosacea &amp; Sensitive Skin ③ Plant-Based Skincare Science ④ Simplified Routines. Each = 1 hub page + 5–8 cluster posts, all interlinked.</div>
+      </div>
+    </div>
+    <div class="issue-card">
+      <div class="issue-num">24–25</div>
+      <div class="issue-body">
+        <div class="issue-header"><div class="issue-title">Generic meta descriptions + brand-first page titles across collection pages</div><span class="risk-badge rb-lo">🟢 Low</span></div>
+        <div class="issue-explain">Same boilerplate description ("Our inclusive range...") on multiple pages. Titles put brand name first: "Nyrah Beauty | Products" rather than keyword-first.</div>
+        <div class="issue-impact"><strong>Why it matters:</strong> Meta descriptions affect click-through rate and are used by AI engines for page summaries. Keyword-first titles — "Hormonal Skincare for Women Over 40 | Nyrah Beauty" — outperform brand-first titles for both SEO and AI parsing.</div>
+      </div>
+      <div class="issue-fix">
+        <div class="owner-badge ob-seo">✍️ SEO Team</div>
+        <div class="fix-header">Fix</div>
+        <div class="fix-body">Write unique meta descriptions: [Problem] + [Nyrah's answer] + [Brand differentiator], under 155 chars. Rewrite titles to keyword-first format for homepage, all collections, and blog posts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="page-section">
+  <div class="section-eyebrow">Section 6 — Implementation plan</div>
+  <h2 class="section-title">Recommended <em>Roadmap</em></h2>
+  <p class="section-intro">Four phases. No AEO strategy work begins until the technical foundation is solid. Phases 1 and 2 run in parallel where possible.</p>
+  <div class="roadmap-grid">
+    <div class="phase-card">
+      <div class="phase-head p1">
+        <div class="phase-num">01</div>
+        <div><div class="phase-label">Technical Foundation</div><div class="phase-timeline">Week 1–2</div></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-task"><span class="pt-dot"></span>Fix /en-us/ duplicate domain — hreflang + canonical</div>
+        <div class="phase-task"><span class="pt-dot"></span>Rebuild and resubmit sitemap</div>
+        <div class="phase-task"><span class="pt-dot"></span>Add favicon (32px + 180px)</div>
+        <div class="phase-task"><span class="pt-dot"></span>Remove CDN URLs from sitemap</div>
+        <div class="phase-task"><span class="pt-dot"></span>Homepage canonical — strip parameter</div>
+        <div class="phase-task"><span class="pt-dot"></span>Set canonical tags systematically</div>
+        <div class="phase-task"><span class="pt-dot"></span>Fix Help Centre nav typo (404)</div>
+        <div class="phase-task"><span class="pt-dot"></span>Noindex advertorial + draft pages</div>
+        <div class="phase-task"><span class="pt-dot"></span>Verify robots.txt allows AI crawlers</div>
+        <div class="phase-task"><span class="pt-dot"></span>Fix GA4, GTM, Meta Pixel tracking</div>
+        <div class="phase-owners"><span class="po dev">Dev</span><span class="po seo">SEO</span></div>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-head p2">
+        <div class="phase-num">02</div>
+        <div><div class="phase-label">Content Consolidation</div><div class="phase-timeline">Week 2–3</div></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-task"><span class="pt-dot"></span>Merge two blogs into one, rename handle</div>
+        <div class="phase-task"><span class="pt-dot"></span>Set up all 301 redirects from old blog URLs</div>
+        <div class="phase-task"><span class="pt-dot"></span>Remove/merge duplicate rewards + sign-up pages</div>
+        <div class="phase-task"><span class="pt-dot"></span>Fix eye gel product URL slug</div>
+        <div class="phase-task"><span class="pt-dot"></span>Clean timestamped About Us URL</div>
+        <div class="phase-task"><span class="pt-dot"></span>Rewrite meta descriptions across all key pages</div>
+        <div class="phase-task"><span class="pt-dot"></span>Restructure page titles to keyword-first format</div>
+        <div class="phase-task"><span class="pt-dot"></span>Fix /en-us/ internal link inconsistency</div>
+        <div class="phase-owners"><span class="po dev">Dev</span><span class="po seo">SEO</span></div>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-head p3">
+        <div class="phase-num">03</div>
+        <div><div class="phase-label">AEO Infrastructure</div><div class="phase-timeline">Week 3–4</div></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-task"><span class="pt-dot"></span>Install FAQPage schema on all product pages</div>
+        <div class="phase-task"><span class="pt-dot"></span>Add Article schema to all blog posts</div>
+        <div class="phase-task"><span class="pt-dot"></span>Add Organization schema to homepage</div>
+        <div class="phase-task"><span class="pt-dot"></span>Set up author bios on blog (theme mod)</div>
+        <div class="phase-task"><span class="pt-dot"></span>Run PageSpeed audit — fix top image issues</div>
+        <div class="phase-task"><span class="pt-dot"></span>Restructure blog H2/H3 to question format</div>
+        <div class="phase-owners"><span class="po dev">Dev</span><span class="po seo">SEO</span></div>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-head p4">
+        <div class="phase-num">04</div>
+        <div><div class="phase-label">AEO Content Architecture</div><div class="phase-timeline">Month 2 onwards</div></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-task"><span class="pt-dot"></span>Build 4 topical content cluster pillars</div>
+        <div class="phase-task"><span class="pt-dot"></span>Create 7 skin-concern collection pages</div>
+        <div class="phase-task"><span class="pt-dot"></span>Build ingredient glossary (/pages/ingredients)</div>
+        <div class="phase-task"><span class="pt-dot"></span>Create Skincare for Women 35+ editorial hub</div>
+        <div class="phase-task"><span class="pt-dot"></span>Publish new AEO-optimised cluster content</div>
+        <div class="phase-task"><span class="pt-dot"></span>Begin tracking AI citation appearances</div>
+        <div class="phase-owners"><span class="po seo">SEO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDITIONAL FINDINGS -->
+<section class="page-section" style="background:white">
+  <div class="section-eyebrow">Section 7 — Analytics & tracking</div>
+  <h2 class="section-title">Additional <em>Findings</em></h2>
+  <p class="section-intro">Tracking and analytics issues affecting data accuracy and paid campaign measurement — all owned by the Shopify Dev.</p>
+  <div style="background:white;border:1px solid rgba(0,0,0,.07);border-radius:4px;overflow:hidden">
+    <table class="extras-table">
+      <thead>
+        <tr><th>#</th><th>Issue</th><th style="width:12%">Impact</th><th style="width:12%">Owner</th><th>Recommendation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><div class="et-issue">CDN image URLs in sitemap</div><div class="et-impact">Not required — Google discovers images via on-page content</div></td>
+          <td><span class="risk-badge rb-hi">High</span></td>
+          <td><span class="owner-badge ob-seo" style="font-size:9px;padding:2px 7px">✍️ SEO</span></td>
+          <td class="et-rec">Optimise image alt attributes instead. Focus sitemap on page URLs only.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><div class="et-issue">Duplicate website versions (EU & US)</div><div class="et-impact">Duplicate content with no SEO benefit — dilutes rankings for both versions</div></td>
+          <td><span class="risk-badge rb-hi">High</span></td>
+          <td><span class="owner-badge ob-dev" style="font-size:9px;padding:2px 7px">🛠 Dev</span></td>
+          <td class="et-rec">Disable, redirect, or noindex /en-us/ OR implement proper hreflang to consolidate authority to primary domain.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><div class="et-issue">GA4 tracking not directly detected</div><div class="et-impact">Analytics data may be missing or incomplete</div></td>
+          <td><span class="risk-badge rb-hi">High</span></td>
+          <td><span class="owner-badge ob-dev" style="font-size:9px;padding:2px 7px">🛠 Dev</span></td>
+          <td class="et-rec">Verify GA4 is configured inside GTM. If missing, configure GA4 with GTM to capture full analytics data.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><div class="et-issue">GTM & Meta Pixel are lazy-loaded</div><div class="et-impact">Tracking may be delayed — affects GA4 data accuracy and Meta ad attribution</div></td>
+          <td><span class="risk-badge rb-hi">High</span></td>
+          <td><span class="owner-badge ob-dev" style="font-size:9px;padding:2px 7px">🛠 Dev</span></td>
+          <td class="et-rec">Use standard GTM & Meta Pixel script for essential events. Add lazy-load only for non-critical scripts like banners or chat widgets inside GTM.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><div class="et-issue">Missing GTM &lt;noscript&gt; code in &lt;body&gt;</div><div class="et-impact">Incomplete coverage for users with JS disabled</div></td>
+          <td><span class="risk-badge rb-lo">Low</span></td>
+          <td><span class="owner-badge ob-dev" style="font-size:9px;padding:2px 7px">🛠 Dev</span></td>
+          <td class="et-rec">Add GTM &lt;noscript&gt; iframe tag immediately after the opening &lt;body&gt; tag to ensure complete tracking coverage.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="rf-left">Nyrah Beauty · SEO &amp; AEO Readiness Report · March 2026 · Confidential · Not for distribution</div>
+  <div class="rf-right">Nyrah <span>Beauty</span></div>
+</footer>
+
+</body>
+</html>
