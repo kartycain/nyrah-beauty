@@ -3,857 +3,1254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nyrah Beauty — Navigation Architecture</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Nyrah Beauty — Navigation Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold:       #C9A84C;
-    --gold-light: #E8C96A;
-    --gold-pale:  #F5EDD4;
-    --gold-dark:  #8B6914;
-    --gold-deep:  #5C440D;
-    --ink:        #0E0B06;
-    --ink-soft:   #2A2214;
-    --cream:      #FAF6EE;
-    --cream-mid:  #F0E9D8;
-    --cream-deep: #E4D9C0;
-    --green:      #1B5E20;
-    --green-bg:   #E8F5E9;
-    --amber:      #BF360C;
-    --amber-bg:   #FFF3E0;
-    --orange:     #E65100;
-    --orange-bg:  #FBE9E7;
-    --grey:       #5A5A5A;
-    --grey-bg:    #F5F5F5;
-    --critical:   #B71C1C;
-    --critical-bg:#FFEBEE;
-    --high:       #E65100;
-    --high-bg:    #FFF8E1;
-    --medium-c:   #2E7D32;
-    --medium-bg:  #F1F8E9;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold:        #C9A84C;
+  --gold-light:  #E2C46E;
+  --gold-pale:   #F5EDD4;
+  --gold-deep:   #8B6B14;
+  --ink:         #0F0D09;
+  --ink2:        #1A1710;
+  --ink3:        #242018;
+  --cream:       #FAF6EE;
+  --cream2:      #F0E9D8;
+  --exists:      #2E7D32;
+  --exists-bg:   #E8F5E9;
+  --tbc:         #B45309;
+  --tbc-bg:      #FFFBEB;
+  --slug:        #C2410C;
+  --slug-bg:     #FFF7ED;
+}
 
-  body {
-    background: var(--ink);
-    color: var(--cream);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+body {
+  font-family: 'Jost', sans-serif;
+  background: #F7F3EC;
+  color: var(--ink);
+  min-height: 100vh;
+}
 
-  /* ── DECORATIVE BG ─────────────────────────────────────── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 10% 20%, rgba(201,168,76,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 90% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ═══════════════════════════════════════════════
+   PAGE LABEL
+═══════════════════════════════════════════════ */
+.doc-label {
+  background: var(--ink);
+  color: var(--gold);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 
-  .page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
+/* ═══════════════════════════════════════════════
+   SECTION DIVIDERS
+═══════════════════════════════════════════════ */
+.section-divider {
+  background: var(--ink);
+  color: var(--gold);
+  padding: 10px 40px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(201,168,76,0.25);
+}
 
-  /* ── HEADER ─────────────────────────────────────────────── */
-  .site-header {
-    border-bottom: 1px solid rgba(201,168,76,0.25);
-    padding: 48px 0 36px;
-    margin-bottom: 48px;
-    text-align: center;
-    position: relative;
-  }
-  .site-header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: 50%; transform: translateX(-50%);
-    width: 120px; height: 1px;
-    background: var(--gold);
-  }
-  .brand-eyebrow {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .brand-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 300;
-    letter-spacing: 0.08em;
-    color: var(--cream);
-    line-height: 1.1;
-  }
-  .brand-title em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-  .brand-subtitle {
-    margin-top: 10px;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    color: rgba(232,201,106,0.6);
-    text-transform: uppercase;
-  }
+/* ═══════════════════════════════════════════════
+   HEADER NAV
+═══════════════════════════════════════════════ */
+.site-header {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  position: relative;
+  z-index: 100;
+}
 
-  /* ── LEGEND ─────────────────────────────────────────────── */
-  .legend {
-    display: flex; flex-wrap: wrap; gap: 12px;
-    justify-content: center;
-    margin-bottom: 52px;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
-    color: rgba(245,237,212,0.7);
-  }
-  .legend-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    flex-shrink: 0;
-  }
+/* Top utility bar */
+.utility-bar {
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+}
+.utility-left {
+  font-size: 10px;
+  color: rgba(201,168,76,0.5);
+  letter-spacing: 0.12em;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+}
+.utility-right {
+  display: flex;
+  gap: 0;
+}
+.util-link {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(201,168,76,0.55);
+  padding: 0 14px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-left: 1px solid rgba(201,168,76,0.08);
+  transition: color 0.2s;
+  position: relative;
+  gap: 6px;
+}
+.util-link:hover { color: var(--gold-light); }
+.util-badge {
+  font-size: 8px;
+  background: var(--tbc-bg);
+  color: var(--tbc);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.util-badge.exists {
+  background: var(--exists-bg);
+  color: var(--exists);
+}
 
-  /* ── TABS ───────────────────────────────────────────────── */
-  .tabs {
-    display: flex; gap: 4px;
-    margin-bottom: 36px;
-    border-bottom: 1px solid rgba(201,168,76,0.18);
-    padding-bottom: 0;
-  }
-  .tab-btn {
-    background: none; border: none; cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(245,237,212,0.45);
-    padding: 12px 20px;
-    position: relative;
-    transition: color 0.2s;
-  }
-  .tab-btn::after {
-    content: '';
-    position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
-    background: var(--gold);
-    transform: scaleX(0); transition: transform 0.2s;
-  }
-  .tab-btn:hover { color: rgba(245,237,212,0.75); }
-  .tab-btn.active { color: var(--gold-light); }
-  .tab-btn.active::after { transform: scaleX(1); }
+/* Main nav bar */
+.nav-bar {
+  height: 64px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-right: 48px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.nav-logo span {
+  color: var(--gold);
+  font-style: italic;
+}
 
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
+.nav-items {
+  display: flex;
+  align-items: stretch;
+  height: 64px;
+  flex: 1;
+}
 
-  /* ── SECTION BLOCK ──────────────────────────────────────── */
-  .section-block {
-    margin-bottom: 28px;
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .section-head {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 20px;
-    cursor: pointer;
-    background: rgba(201,168,76,0.06);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    user-select: none;
-    transition: background 0.15s;
-  }
-  .section-head:hover { background: rgba(201,168,76,0.1); }
-  .section-badge {
-    display: inline-flex; align-items: center;
-    width: 28px; height: 28px; border-radius: 2px;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; font-weight: 500;
-    flex-shrink: 0;
-  }
-  .section-name {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold-light);
-    flex: 1;
-  }
-  .section-count {
-    font-size: 10px; font-weight: 500;
-    color: rgba(201,168,76,0.5);
-    letter-spacing: 0.05em;
-  }
-  .chevron {
-    font-size: 10px; color: var(--gold);
-    transition: transform 0.2s;
-    flex-shrink: 0;
-  }
-  .chevron.open { transform: rotate(90deg); }
-  .section-body { display: none; }
-  .section-body.open { display: block; }
+.nav-item {
+  position: relative;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+.nav-item > .nav-trigger {
+  height: 64px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,237,212,0.7);
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+  position: relative;
+}
+.nav-item > .nav-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+.nav-item:hover > .nav-trigger,
+.nav-item.open > .nav-trigger {
+  color: var(--gold-light);
+}
+.nav-item:hover > .nav-trigger::after,
+.nav-item.open > .nav-trigger::after {
+  transform: scaleX(1);
+}
+.nav-chevron {
+  font-size: 8px;
+  color: rgba(201,168,76,0.4);
+  transition: transform 0.2s;
+}
+.nav-item:hover .nav-chevron,
+.nav-item.open .nav-chevron {
+  transform: rotate(180deg);
+  color: var(--gold);
+}
 
-  /* ── TABLE ──────────────────────────────────────────────── */
-  .nav-table {
-    width: 100%; border-collapse: collapse;
-  }
-  .nav-table thead th {
-    background: rgba(14,11,6,0.6);
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(201,168,76,0.55);
-    padding: 9px 16px;
-    text-align: left;
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-  }
-  .nav-table tbody tr {
-    border-bottom: 1px solid rgba(201,168,76,0.07);
-    transition: background 0.12s;
-  }
-  .nav-table tbody tr:hover { background: rgba(201,168,76,0.04); }
-  .nav-table tbody tr:last-child { border-bottom: none; }
-  .nav-table td {
-    padding: 10px 16px;
-    vertical-align: top;
-  }
-  .col-label {
-    font-size: 12px; font-weight: 500;
-    color: var(--cream);
-    line-height: 1.4;
-  }
-  .col-label.sub { color: rgba(245,237,212,0.65); padding-left: 12px; }
-  .col-url {
-    font-size: 10.5px;
-    color: rgba(201,168,76,0.7);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    word-break: break-all;
-    line-height: 1.5;
-  }
-  .col-notes {
-    font-size: 11px;
-    color: rgba(245,237,212,0.5);
-    line-height: 1.5;
-  }
+/* MEGA DROPDOWN */
+.mega-drop {
+  position: absolute;
+  top: 63px;
+  left: 0;
+  min-width: 260px;
+  background: var(--ink2);
+  border: 1px solid rgba(201,168,76,0.18);
+  border-top: 2px solid var(--gold);
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s, transform 0.18s;
+  z-index: 200;
+}
+.mega-drop.wide {
+  min-width: 680px;
+  display: grid;
+  gap: 0 32px;
+}
+.mega-drop.cols2 { grid-template-columns: 1fr 1fr; min-width: 500px; }
+.mega-drop.cols3 { grid-template-columns: 1fr 1fr 1fr; min-width: 680px; }
 
-  /* ── STATUS BADGES ──────────────────────────────────────── */
-  .badge {
-    display: inline-block;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 2px;
-    white-space: nowrap;
-  }
-  .badge-exists      { background: var(--green-bg);   color: var(--green); }
-  .badge-tbc         { background: var(--amber-bg);   color: var(--amber); }
-  .badge-slug        { background: var(--orange-bg);  color: var(--orange); }
-  .badge-internal    { background: var(--grey-bg);    color: var(--grey); }
-  .badge-critical    { background: var(--critical-bg);color: var(--critical); }
-  .badge-high        { background: var(--high-bg);    color: var(--high); }
-  .badge-medium      { background: var(--medium-bg);  color: var(--medium-c); }
-  .badge-low         { background: var(--grey-bg);    color: var(--grey); }
+.nav-item:hover .mega-drop,
+.nav-item.open .mega-drop {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
 
-  /* ── CLEANUP TABLE specific ─────────────────────────────── */
-  .col-current {
-    font-size: 10px; color: #EF9A9A;
-    word-break: break-all; line-height: 1.5;
-    font-family: 'Montserrat', sans-serif;
-  }
-  .col-fix {
-    font-size: 10px; color: #A5D6A7;
-    word-break: break-all; line-height: 1.5;
-    font-family: 'Montserrat', sans-serif;
-  }
+.drop-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  margin-bottom: 10px;
+}
+.drop-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(245,237,212,0.65);
+  cursor: pointer;
+  transition: color 0.15s;
+  line-height: 1.3;
+}
+.drop-link:hover { color: var(--gold-light); }
+.drop-link.sub {
+  font-size: 11px;
+  padding: 4px 0 4px 12px;
+  color: rgba(245,237,212,0.45);
+  border-left: 1px solid rgba(201,168,76,0.15);
+  margin-left: 4px;
+}
+.drop-link.sub:hover { color: rgba(201,168,76,0.8); }
+.drop-link.cta {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--gold-light);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.drop-link.cta:hover {
+  background: rgba(201,168,76,0.2);
+  color: var(--gold-light);
+}
 
-  /* ── GOLD DIVIDER ───────────────────────────────────────── */
-  .gold-divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    margin: 48px 0;
-    opacity: 0.4;
-  }
+/* status dot */
+.sdot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.sdot.e  { background: var(--exists); }
+.sdot.t  { background: var(--tbc); }
+.sdot.s  { background: var(--slug); }
 
-  /* ── FOOTER BAR ─────────────────────────────────────────── */
-  .page-footer {
-    text-align: center;
-    padding-top: 36px;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: rgba(201,168,76,0.35);
-    text-transform: uppercase;
-  }
+/* small badge inline */
+.ibadge {
+  font-size: 8px;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.ibadge.e { background: var(--exists-bg); color: var(--exists); }
+.ibadge.t { background: var(--tbc-bg);    color: var(--tbc); }
+.ibadge.s { background: var(--slug-bg);   color: var(--slug); }
 
-  /* ── SUMMARY CARDS ──────────────────────────────────────── */
-  .summary-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 44px;
-  }
-  @media (max-width: 700px) { .summary-row { grid-template-columns: repeat(2, 1fr); } }
-  .summary-card {
-    border: 1px solid rgba(201,168,76,0.18);
-    border-radius: 2px;
-    padding: 18px 16px;
-    text-align: center;
-    background: rgba(201,168,76,0.03);
-  }
-  .summary-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 38px; font-weight: 300;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-  .summary-label {
-    font-size: 9px; font-weight: 600;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(245,237,212,0.45);
-    margin-top: 6px;
-  }
+.drop-divider {
+  height: 1px;
+  background: rgba(201,168,76,0.1);
+  margin: 10px 0;
+  grid-column: 1/-1;
+}
 
-  /* scroll */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--ink); }
-  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+/* ═══════════════════════════════════════════════
+   LEGEND STRIP
+═══════════════════════════════════════════════ */
+.legend-strip {
+  background: var(--ink3);
+  padding: 8px 40px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; color: rgba(245,237,212,0.4);
+  letter-spacing: 0.06em;
+}
 
-  @media (max-width: 600px) {
-    .page { padding: 0 16px 60px; }
-    .nav-table thead { display: none; }
-    .nav-table td { display: block; padding: 6px 14px; }
-    .nav-table td:first-child { padding-top: 12px; }
-    .nav-table td:last-child { padding-bottom: 12px; }
-  }
+/* ═══════════════════════════════════════════════
+   DEMO HERO (spacer between header and footer)
+═══════════════════════════════════════════════ */
+.demo-body {
+  background: #EDE8DF;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid #D5CDBE;
+}
+.demo-body-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: rgba(15,13,9,0.15);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-style: italic;
+}
+.demo-body-sub {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(15,13,9,0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+.site-footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(201,168,76,0.2);
+}
+
+.footer-top {
+  padding: 56px 40px 48px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.footer-brand {}
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.footer-brand-name span { color: var(--gold); font-style: italic; }
+.footer-brand-tagline {
+  font-size: 10px;
+  color: rgba(201,168,76,0.45);
+  letter-spacing: 0.1em;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 20px;
+}
+.footer-brand-desc {
+  font-size: 11px;
+  color: rgba(245,237,212,0.35);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.footer-socials {
+  display: flex; gap: 8px; margin-top: 4px;
+}
+.social-btn {
+  width: 30px; height: 30px;
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: rgba(201,168,76,0.5);
+  cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0;
+}
+.social-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 0;
+  font-size: 11.5px;
+  color: rgba(245,237,212,0.5);
+  cursor: pointer;
+  transition: color 0.15s;
+  line-height: 1.3;
+}
+.footer-link:hover { color: rgba(201,168,76,0.85); }
+.footer-link.cta-link {
+  color: rgba(201,168,76,0.7);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+.footer-link.cta-link:hover { color: var(--gold-light); }
+
+/* Footer bottom bar */
+.footer-bottom {
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-legal-links {
+  display: flex; gap: 0; flex-wrap: wrap;
+}
+.legal-link {
+  font-size: 10px;
+  color: rgba(201,168,76,0.3);
+  padding: 0 12px;
+  border-right: 1px solid rgba(201,168,76,0.1);
+  cursor: pointer;
+  transition: color 0.15s;
+  letter-spacing: 0.05em;
+}
+.legal-link:first-child { padding-left: 0; }
+.legal-link:last-child { border-right: none; }
+.legal-link:hover { color: rgba(201,168,76,0.6); }
+.footer-copy {
+  font-size: 10px;
+  color: rgba(201,168,76,0.25);
+  letter-spacing: 0.08em;
+}
+.footer-payments {
+  display: flex; gap: 6px; align-items: center;
+}
+.pay-badge {
+  font-size: 9px;
+  border: 1px solid rgba(201,168,76,0.15);
+  padding: 3px 8px;
+  color: rgba(201,168,76,0.3);
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════
+   CLEANUP SECTION (below footer)
+═══════════════════════════════════════════════ */
+.cleanup-section {
+  background: #F0EBE0;
+  padding: 48px 40px 64px;
+}
+.cleanup-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.cleanup-title em { font-style: italic; color: var(--gold-deep); }
+.cleanup-subtitle {
+  font-size: 11px;
+  color: rgba(15,13,9,0.4);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.cleanup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.cleanup-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.cleanup-card-head {
+  background: var(--ink);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cleanup-card-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.cleanup-card-count {
+  font-size: 9px;
+  color: rgba(201,168,76,0.45);
+  letter-spacing: 0.06em;
+}
+.cleanup-card-body { padding: 0; }
+.cleanup-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 9px 16px;
+  align-items: start;
+}
+.cleanup-row:last-child { border-bottom: none; }
+.cleanup-row:hover { background: rgba(201,168,76,0.03); }
+.cr-current {
+  font-size: 10px;
+  color: #B91C1C;
+  word-break: break-all;
+  line-height: 1.45;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  padding-right: 10px;
+}
+.cr-fix {
+  font-size: 10px;
+  color: #166534;
+  word-break: break-all;
+  line-height: 1.45;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  padding-right: 10px;
+}
+.cr-note {
+  font-size: 10px;
+  color: rgba(15,13,9,0.4);
+  word-break: break-all;
+  line-height: 1.45;
+  grid-column: 1/-1;
+  padding-top: 3px;
+  font-style: italic;
+}
+.pr-badge {
+  font-size: 8px; font-weight: 700;
+  padding: 2px 7px; border-radius: 2px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pr-critical { background: #FEE2E2; color: #991B1B; }
+.pr-high     { background: #FEF3C7; color: #92400E; }
+.pr-medium   { background: #DCFCE7; color: #166534; }
+
+.cleanup-table-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  padding: 8px 16px 6px;
+  background: rgba(201,168,76,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  gap: 0;
+}
+.cth {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(15,13,9,0.35);
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); }
+
+/* hover indicator on nav items */
+.active-nav-demo .nav-item:first-child > .nav-trigger::after { transform: scaleX(1); }
+.active-nav-demo .nav-item:first-child > .nav-trigger { color: var(--gold-light); }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="brand-eyebrow">Site Architecture Document</div>
-    <h1 class="brand-title">Nyrah Beauty<br><em>Navigation Architecture</em></h1>
-    <div class="brand-subtitle">Header &amp; Footer · SEO &amp; AEO · Cleanup Action Plan</div>
-  </header>
+<!-- PAGE LABEL -->
+<div class="doc-label">Nyrah Beauty — Navigation Architecture · Design Preview · AEO &amp; SEO Strategy</div>
 
-  <!-- SUMMARY CARDS -->
-  <div class="summary-row">
-    <div class="summary-card">
-      <div class="summary-num">65</div>
-      <div class="summary-label">Pages existing</div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-num">29</div>
-      <div class="summary-label">To be created</div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-num">8</div>
-      <div class="summary-label">Slug cleanups</div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-num">13</div>
-      <div class="summary-label">Noindex / remove</div>
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HEADER SECTION LABEL -->
+<div class="section-divider">Header Navigation</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SITE HEADER -->
+<header class="site-header">
+
+  <!-- Utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">Skincare crafted for women 35+</div>
+    <div class="utility-right">
+      <div class="util-link">Skin Quiz <span class="util-badge exists">Exists</span></div>
+      <div class="util-link">Rewards <span class="util-badge exists">Exists</span></div>
+      <div class="util-link">Account <span class="util-badge">To create</span></div>
+      <div class="util-link">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search <span class="util-badge">To create</span>
+      </div>
+      <div class="util-link">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Cart <span class="util-badge">To create</span>
+      </div>
     </div>
   </div>
 
-  <!-- LEGEND -->
-  <div class="legend">
-    <div class="legend-item"><span class="legend-dot" style="background:#2E7D32"></span>Exists</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#BF360C"></span>To be created</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#E65100"></span>Slug cleanup needed</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#5A5A5A"></span>Internal / campaign only</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#B71C1C"></span>Critical priority</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#E65100"></span>High priority</div>
-    <div class="legend-item"><span class="legend-dot" style="background:#2E7D32"></span>Medium priority</div>
+  <!-- Main nav -->
+  <nav class="nav-bar active-nav-demo">
+    <div class="nav-logo">Nyrah <span>Beauty</span></div>
+
+    <div class="nav-items">
+
+      <!-- SHOP -->
+      <div class="nav-item">
+        <div class="nav-trigger">Shop <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols3">
+          <div>
+            <div class="drop-col-title">Main</div>
+            <div class="drop-link"><span class="sdot e"></span>All products <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Best sellers <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot t"></span>New arrivals <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Trial &amp; travel sizes <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Accessories <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot s"></span>Gift cards <span class="ibadge s">Slug fix</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Refills <span class="ibadge t">To create</span></div>
+          </div>
+          <div>
+            <div class="drop-col-title">By Category</div>
+            <div class="drop-link sub"><span class="sdot e"></span>Cleansers</div>
+            <div class="drop-link sub"><span class="sdot e"></span>Moisturisers</div>
+            <div class="drop-link sub"><span class="sdot e"></span>Serums</div>
+            <div class="drop-link sub"><span class="sdot e"></span>SPF / Sun protection</div>
+            <div class="drop-link sub"><span class="sdot s"></span>Eye care <span class="ibadge s">Slug fix</span></div>
+            <div class="drop-link sub"><span class="sdot e"></span>Toners &amp; mists</div>
+            <div class="drop-link sub"><span class="sdot e"></span>Self-tanning</div>
+          </div>
+          <div>
+            <div class="drop-col-title">Quick links</div>
+            <div class="drop-link cta">→ Find my routine</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROUTINES -->
+      <div class="nav-item">
+        <div class="nav-trigger">Routines <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols2">
+          <div>
+            <div class="drop-col-title">Shop Routines</div>
+            <div class="drop-link"><span class="sdot e"></span>2–3 step routines <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Skin concern routines <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>The daily routine <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Complete AM/PM routine <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Cleanse &amp; moisturise <span class="ibadge e">Exists</span></div>
+          </div>
+          <div>
+            <div class="drop-col-title">Not sure where to start?</div>
+            <div class="drop-link cta">→ Take the skin quiz</div>
+            <div style="margin-top:10px; font-size:10px; color:rgba(245,237,212,0.3); line-height:1.6;">
+              /en-us/pages/find-my-routine-skin-quiz-intro
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUNDLES & GIFTS -->
+      <div class="nav-item">
+        <div class="nav-trigger">Bundles &amp; Gifts <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols3">
+          <div>
+            <div class="drop-col-title">Bundles</div>
+            <div class="drop-link"><span class="sdot t"></span>View all bundles <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot e"></span>Hormonal breakout bundle</div>
+            <div class="drop-link"><span class="sdot e"></span>Deep hydration bundle</div>
+            <div class="drop-link"><span class="sdot e"></span>Bright &amp; even bundle</div>
+            <div class="drop-link"><span class="sdot e"></span>Rosacea relief bundle</div>
+            <div class="drop-link"><span class="sdot e"></span>Timeless skin bundle</div>
+            <div class="drop-link"><span class="sdot e"></span>Duo — intense hydration</div>
+            <div class="drop-link"><span class="sdot e"></span>Duo — collagen booster</div>
+          </div>
+          <div>
+            <div class="drop-col-title">Gift Sets</div>
+            <div class="drop-link"><span class="sdot e"></span>Bloom radiance gift set</div>
+            <div class="drop-link"><span class="sdot e"></span>Revive gift set + cooling tool</div>
+            <div class="drop-link"><span class="sdot e"></span>Discovery kit</div>
+            <div class="drop-link"><span class="sdot e"></span>Trial pack</div>
+            <div class="drop-link"><span class="sdot e"></span>Luxury gift bag</div>
+          </div>
+          <div>
+            <div class="drop-col-title">Need help choosing?</div>
+            <div class="drop-link cta">→ Take the skin quiz</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKIN CONCERNS -->
+      <div class="nav-item">
+        <div class="nav-trigger">Skin Concerns <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols3">
+          <div>
+            <div class="drop-col-title">Shop by Concern</div>
+            <div class="drop-link"><span class="sdot t"></span>Hyperpigmentation <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Acne &amp; breakouts <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Rosacea &amp; redness <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Dry &amp; dehydrated skin <span class="ibadge t">To create</span></div>
+          </div>
+          <div>
+            <div class="drop-col-title">&nbsp;</div>
+            <div class="drop-link"><span class="sdot t"></span>Mature skin (35+) <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Hormonal skin <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Sensitive &amp; reactive skin <span class="ibadge t">To create</span></div>
+          </div>
+          <div>
+            <div class="drop-col-title">Find your match</div>
+            <div class="drop-link cta">→ Take the skin quiz</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOOM BY NYRAH -->
+      <div class="nav-item">
+        <div class="nav-trigger">Bloom <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols2">
+          <div>
+            <div class="drop-col-title">Bloom by Nyrah</div>
+            <div class="drop-link"><span class="sdot e"></span>Self-tanning collection</div>
+            <div class="drop-link"><span class="sdot e"></span>Bloom mousse</div>
+            <div class="drop-link"><span class="sdot e"></span>Bloom glow serum</div>
+            <div class="drop-link"><span class="sdot e"></span>Bloom radiance crème 200ml</div>
+          </div>
+          <div>
+            <div class="drop-col-title">Tools &amp; Accessories</div>
+            <div class="drop-link"><span class="sdot e"></span>Velvet tanning mitt</div>
+            <div class="drop-link"><span class="sdot e"></span>Exfoliating mitt</div>
+            <div class="drop-link"><span class="sdot e"></span>Kabuki brush</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEARN -->
+      <div class="nav-item">
+        <div class="nav-trigger">Learn <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop wide cols2">
+          <div>
+            <div class="drop-col-title">Content &amp; Education</div>
+            <div class="drop-link"><span class="sdot e"></span>Blog home <span class="ibadge e">Exists</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Ingredient guide <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Skincare for women 35+ <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>How-to tutorials <span class="ibadge t">To create</span></div>
+            <div class="drop-link"><span class="sdot t"></span>Press &amp; media <span class="ibadge t">To create</span></div>
+          </div>
+          <div>
+            <div class="drop-col-title">Know your skin</div>
+            <div class="drop-link cta">→ Take the skin quiz</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="nav-item">
+        <div class="nav-trigger">About <span class="nav-chevron">▼</span></div>
+        <div class="mega-drop">
+          <div class="drop-col-title">Our Story</div>
+          <div class="drop-link"><span class="sdot s"></span>About us <span class="ibadge s">Slug fix</span></div>
+          <div class="drop-link"><span class="sdot e"></span>Store locator <span class="ibadge e">Exists</span></div>
+          <div class="drop-link"><span class="sdot s"></span>Ambassador programme <span class="ibadge s">Slug fix</span></div>
+          <div class="drop-link"><span class="sdot t"></span>Sustainability <span class="ibadge t">To create</span></div>
+          <div class="drop-link"><span class="sdot e"></span>Contact us <span class="ibadge e">Exists</span></div>
+          <div class="drop-link"><span class="sdot s"></span>Rewards programme <span class="ibadge s">Slug fix</span></div>
+        </div>
+      </div>
+
+    </div><!-- /nav-items -->
+  </nav><!-- /nav-bar -->
+
+  <!-- Legend -->
+  <div class="legend-strip">
+    <div class="legend-item"><span class="sdot e"></span>Page exists</div>
+    <div class="legend-item"><span class="sdot t"></span>To be created</div>
+    <div class="legend-item"><span class="sdot s"></span>Slug needs cleanup + 301 redirect</div>
   </div>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('header')">Header Navigation</button>
-    <button class="tab-btn" onclick="switchTab('footer')">Footer Navigation</button>
-    <button class="tab-btn" onclick="switchTab('cleanup')">Cleanup &amp; Action Items</button>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- DEMO BODY SPACER -->
+<div class="demo-body">
+  <div class="demo-body-label">Page Content Area</div>
+  <div class="demo-body-sub">Hover the menu items above to see the dropdowns</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FOOTER SECTION LABEL -->
+<div class="section-divider">Footer Navigation</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+  <div class="footer-top">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <div class="footer-brand-name">Nyrah <span>Beauty</span></div>
+      <div class="footer-brand-tagline">Luxury skincare for women 35+</div>
+      <div class="footer-brand-desc">Science-backed, nature-inspired formulations designed to support changing skin at every stage.</div>
+      <div class="footer-socials">
+        <div class="social-btn">ig</div>
+        <div class="social-btn">tk</div>
+        <div class="social-btn">fb</div>
+        <div class="social-btn">yt</div>
+      </div>
+    </div>
+
+    <!-- SHOP col -->
+    <div>
+      <div class="footer-col-title">Shop</div>
+      <div class="footer-link"><span class="sdot e"></span>All products</div>
+      <div class="footer-link"><span class="sdot e"></span>Best sellers</div>
+      <div class="footer-link"><span class="sdot t"></span>Bundles</div>
+      <div class="footer-link"><span class="sdot e"></span>Gift sets</div>
+      <div class="footer-link"><span class="sdot e"></span>Self-tanning (Bloom)</div>
+      <div class="footer-link"><span class="sdot e"></span>Trial &amp; travel sizes</div>
+      <div class="footer-link"><span class="sdot e"></span>Accessories</div>
+      <div class="footer-link"><span class="sdot t"></span>Refills</div>
+    </div>
+
+    <!-- SKIN CONCERNS col -->
+    <div>
+      <div class="footer-col-title">Skin Concerns</div>
+      <div class="footer-link"><span class="sdot t"></span>Hyperpigmentation</div>
+      <div class="footer-link"><span class="sdot t"></span>Acne &amp; breakouts</div>
+      <div class="footer-link"><span class="sdot t"></span>Rosacea &amp; redness</div>
+      <div class="footer-link"><span class="sdot t"></span>Dry &amp; dehydrated skin</div>
+      <div class="footer-link"><span class="sdot t"></span>Mature skin (35+)</div>
+      <div class="footer-link"><span class="sdot t"></span>Hormonal skin</div>
+      <div class="footer-link cta-link"><span class="sdot e"></span>→ Take the skin quiz</div>
+    </div>
+
+    <!-- LEARN col -->
+    <div>
+      <div class="footer-col-title">Learn</div>
+      <div class="footer-link"><span class="sdot e"></span>Blog</div>
+      <div class="footer-link"><span class="sdot t"></span>Ingredient guide</div>
+      <div class="footer-link"><span class="sdot t"></span>Skincare for women 35+</div>
+      <div class="footer-link"><span class="sdot t"></span>How-to tutorials</div>
+      <div class="footer-link"><span class="sdot t"></span>Press &amp; media</div>
+    </div>
+
+    <!-- ABOUT col -->
+    <div>
+      <div class="footer-col-title">About Nyrah</div>
+      <div class="footer-link"><span class="sdot s"></span>About us</div>
+      <div class="footer-link"><span class="sdot e"></span>Store locator</div>
+      <div class="footer-link"><span class="sdot s"></span>Ambassador programme</div>
+      <div class="footer-link"><span class="sdot t"></span>Sustainability</div>
+      <div class="footer-link"><span class="sdot s"></span>Rewards programme</div>
+      <div class="footer-link"><span class="sdot t"></span>Press &amp; media</div>
+    </div>
+
+    <!-- CUSTOMER CARE col -->
+    <div>
+      <div class="footer-col-title">Customer Care</div>
+      <div class="footer-link"><span class="sdot e"></span>Contact us</div>
+      <div class="footer-link"><span class="sdot e"></span>Help centre</div>
+      <div class="footer-link"><span class="sdot t"></span>Shipping &amp; delivery</div>
+      <div class="footer-link"><span class="sdot t"></span>Returns &amp; refunds</div>
+      <div class="footer-link"><span class="sdot e"></span>Trial pack policy</div>
+      <div class="footer-link"><span class="sdot e"></span>Check gift card balance</div>
+      <div class="footer-link"><span class="sdot s"></span>Trade sign-up</div>
+    </div>
+
+  </div><!-- /footer-top -->
+
+  <!-- Footer bottom bar -->
+  <div class="footer-bottom">
+    <div class="footer-legal-links">
+      <div class="legal-link">Privacy policy <span style="font-size:8px;opacity:0.6;margin-left:3px">(create)</span></div>
+      <div class="legal-link">Terms of service <span style="font-size:8px;opacity:0.6;margin-left:3px">(create)</span></div>
+      <div class="legal-link">Cookie policy <span style="font-size:8px;opacity:0.6;margin-left:3px">(create)</span></div>
+      <div class="legal-link">Accessibility <span style="font-size:8px;opacity:0.6;margin-left:3px">(create)</span></div>
+    </div>
+    <div class="footer-copy">© 2025 Nyrah Beauty. All rights reserved.</div>
+    <div class="footer-payments">
+      <div class="pay-badge">Visa</div>
+      <div class="pay-badge">Mastercard</div>
+      <div class="pay-badge">PayPal</div>
+      <div class="pay-badge">Klarna</div>
+    </div>
   </div>
 
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- TAB 1: HEADER NAVIGATION                              -->
-  <!-- ══════════════════════════════════════════════════════ -->
-  <div id="tab-header" class="tab-pane active">
+  <!-- Footer legend -->
+  <div class="legend-strip" style="border-top:1px solid rgba(201,168,76,0.1); justify-content:center; gap:28px;">
+    <div class="legend-item"><span class="sdot e"></span>Page exists</div>
+    <div class="legend-item"><span class="sdot t"></span>To be created</div>
+    <div class="legend-item"><span class="sdot s"></span>Slug needs cleanup + 301 redirect</div>
+  </div>
 
-    <!-- SHOP -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">01 &nbsp;Shop</span>
-        <span class="section-count">14 items</span>
-        <span class="chevron open">▶</span>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CLEANUP SECTION -->
+<div class="section-divider">Cleanup &amp; Action Items</div>
+
+<div class="cleanup-section">
+  <div class="cleanup-title">Cleanup &amp; <em>Action Items</em></div>
+  <div class="cleanup-subtitle">Technical SEO · Redirects · Pages to create</div>
+
+  <div class="cleanup-grid">
+
+    <!-- Slug Cleanup -->
+    <div class="cleanup-card">
+      <div class="cleanup-card-head">
+        <div class="cleanup-card-title">Slug Cleanup</div>
+        <div class="cleanup-card-count">5 items</div>
       </div>
-      <div class="section-body open">
-        <table class="nav-table">
-          <thead>
-            <tr>
-              <th style="width:22%">Nav Level 2</th>
-              <th style="width:35%">URL / Slug</th>
-              <th style="width:13%">Status</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="col-label">All products</td><td class="col-url">/en-us/collections/shop-all-products-nyrah-beauty-official</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Main shop landing — link from logo + nav</td></tr>
-            <tr><td class="col-label">Best sellers</td><td class="col-url">/en-us/collections/best-sellers</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">New arrivals</td><td class="col-url">/en-us/collections/new-arrivals</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Standard e-commerce page; helps SEO freshness signals</td></tr>
-            <tr><td class="col-label">Trial &amp; travel sizes</td><td class="col-url">/en-us/collections/trial-travel-skincare-sizes-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Accessories</td><td class="col-url">/en-us/collections/skincare-accessories</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Gift cards</td><td class="col-url">/en-us/products/rise-ai-giftcard</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Rename slug to /products/gift-card for clarity</td></tr>
-            <tr><td class="col-label">Refills</td><td class="col-url">/en-us/collections/refills</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Absorb &amp; Undress refills already exist as products — create collection</td></tr>
-            <tr><td class="col-label sub">— Cleansers</td><td class="col-url">/en-us/products/undress-vitamin-e-gel-cleanser</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Single product; create /collections/cleansers when range expands</td></tr>
-            <tr><td class="col-label sub">— Moisturisers</td><td class="col-url">/en-us/products/infuse-oxygen-moisturiser-fragrance-free-50ml + /fragranced-50ml</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Two variants — consider a moisturiser collection page</td></tr>
-            <tr><td class="col-label sub">— Serums</td><td class="col-url">/en-us/products/glisten-superfood-sea-avocado-glow-serum</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Also: /bloom-glow-serum, /elixir, /transform-bioretinol-booster</td></tr>
-            <tr><td class="col-label sub">— SPF / Sun protection</td><td class="col-url">/en-us/products/lumina-shield-serum-spf50</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Also: /spf30-sunveil-lumina</td></tr>
-            <tr><td class="col-label sub">— Eye care</td><td class="col-url">/en-us/products/eye-gel-draft-30ml</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Rename to /products/revive-eye-gel-30ml — 'draft' in slug hurts SEO</td></tr>
-            <tr><td class="col-label sub">— Toners &amp; mists</td><td class="col-url">/en-us/products/defend-tonic-hyaluronic-acid-cooling-brightening-mist-50ml</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Slug very long — consider shortening</td></tr>
-            <tr><td class="col-label sub">— Self-tanning</td><td class="col-url">/en-us/collections/bloom-by-nyrah-self-tanning-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Duplicated under Bloom by Nyrah menu too</td></tr>
-          </tbody>
-        </table>
+      <div class="cleanup-card-body">
+        <div class="cleanup-table-head">
+          <span class="cth">Current URL</span>
+          <span class="cth">Recommended fix</span>
+          <span class="cth">Priority</span>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/pages/about-us-1704554089699</div>
+          <div class="cr-fix">/en-us/pages/about-us</div>
+          <span class="pr-badge pr-high">High</span>
+          <div class="cr-note">Timestamp in slug is ugly and unhelpful for SEO; 301 redirect old to new</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/pages/ambassador-page-1744631903173</div>
+          <div class="cr-fix">/en-us/pages/ambassadors</div>
+          <span class="pr-badge pr-high">High</span>
+          <div class="cr-note">Same as above — clean timestamp slug</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/products/eye-gel-draft-30ml</div>
+          <div class="cr-fix">/en-us/products/revive-eye-gel-30ml</div>
+          <span class="pr-badge pr-critical">Critical</span>
+          <div class="cr-note">'draft' in live product URL signals unfinished page to Google</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/pages/trade-sign-up-page</div>
+          <div class="cr-fix">/en-us/pages/trade</div>
+          <span class="pr-badge pr-medium">Medium</span>
+          <div class="cr-note">Cleaner slug; 301 redirect</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/products/rise-ai-giftcard</div>
+          <div class="cr-fix">/en-us/products/gift-card</div>
+          <span class="pr-badge pr-medium">Medium</span>
+          <div class="cr-note">Slug is unclear; rename for clarity</div>
+        </div>
       </div>
     </div>
 
-    <!-- ROUTINES -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">02 &nbsp;Routines</span>
-        <span class="section-count">6 items</span>
-        <span class="chevron">▶</span>
+    <!-- Duplicate — Consolidate -->
+    <div class="cleanup-card">
+      <div class="cleanup-card-head">
+        <div class="cleanup-card-title">Duplicate — Consolidate</div>
+        <div class="cleanup-card-count">3 items</div>
       </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">2–3 step routines</td><td class="col-url">/en-us/collections/2-3-step-routines-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Skin concern routines</td><td class="col-url">/en-us/collections/skin-concern-focused-routines-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">The daily routine</td><td class="col-url">/en-us/products/the-daily-routine</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Complete AM/PM routine</td><td class="col-url">/en-us/products/the-complete-ampm-routine</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Cleanse &amp; moisturise</td><td class="col-url">/en-us/products/cleanse-and-moisturise</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Find my routine (skin quiz)</td><td class="col-url">/en-us/pages/find-my-routine-skin-quiz-intro</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Pin as CTA at top of routines dropdown</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- BUNDLES & GIFTS -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">03 &nbsp;Bundles &amp; Gifts</span>
-        <span class="section-count">13 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">View all bundles</td><td class="col-url">/en-us/collections/bundles-and-gifts</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Create master collection for SEO + UX</td></tr>
-            <tr><td class="col-label">Hormonal breakout bundle</td><td class="col-url">/en-us/products/hormonal-breakout-bundle</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Deep hydration bundle</td><td class="col-url">/en-us/products/deep-hydration-bundle</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bright &amp; even bundle</td><td class="col-url">/en-us/products/bright-even-bundle</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Rosacea relief bundle</td><td class="col-url">/en-us/products/rosacea-relief-bundle</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Timeless skin bundle</td><td class="col-url">/en-us/products/timeless-skin-bundle</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Duo — intense hydration</td><td class="col-url">/en-us/products/duo-intense-hydration</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Duo — collagen booster</td><td class="col-url">/en-us/products/duo-collagen-booster</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bloom radiance gift set</td><td class="col-url">/en-us/products/bloom-by-nyrah-radiance-glow-gift-set</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Revive gift set + cooling tool</td><td class="col-url">/en-us/products/gift-set-revive-with-cooling-applicator-tool</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Discovery kit</td><td class="col-url">/en-us/products/discovery-kit</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Trial pack</td><td class="col-url">/en-us/products/trial-pack</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Luxury gift bag</td><td class="col-url">/en-us/products/nyrah-beauty-luxury-gift-bag</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-          </tbody>
-        </table>
+      <div class="cleanup-card-body">
+        <div class="cleanup-table-head">
+          <span class="cth">Current URL / Issue</span>
+          <span class="cth">Recommended fix</span>
+          <span class="cth">Priority</span>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/pages/rewards-program-page AND /rewards-program-page-1</div>
+          <div class="cr-fix">Keep /rewards-program-page — 301 redirect the other</div>
+          <span class="pr-badge pr-critical">Critical</span>
+          <div class="cr-note">Two live pages split link equity and confuse crawlers</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/pages/nyrah-beauty-sign-up-for-early-access-to-new-product-launches AND /to-our-new-products</div>
+          <div class="cr-fix">Merge into one; 301 redirect</div>
+          <span class="pr-badge pr-high">High</span>
+          <div class="cr-note">Duplicate early-access pages — pick one canonical URL</div>
+        </div>
+        <div class="cleanup-row">
+          <div class="cr-current">/en-us/blogs/news AND /blogs/nyrah-blog-home-page</div>
+          <div class="cr-fix">Consolidate to one blog; 301 redirect /blogs/news</div>
+          <span class="pr-badge pr-high">High</span>
+          <div class="cr-note">Two blog sections split authority — one canonical blog URL recommended</div>
+        </div>
       </div>
     </div>
 
-    <!-- SKIN CONCERNS -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">04 &nbsp;Skin Concerns</span>
-        <span class="section-count">8 items</span>
-        <span class="chevron">▶</span>
+    <!-- Remove from Sitemap + Noindex -->
+    <div class="cleanup-card" style="grid-column: 1 / -1;">
+      <div class="cleanup-card-head">
+        <div class="cleanup-card-title">Remove from Sitemap + Noindex</div>
+        <div class="cleanup-card-count">13 items</div>
       </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Hyperpigmentation</td><td class="col-url">/en-us/collections/hyperpigmentation</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Blog content already covers this topic — high AEO priority</td></tr>
-            <tr><td class="col-label">Acne &amp; breakouts</td><td class="col-url">/en-us/collections/acne-breakouts</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Blog: 'Unmasking culprits behind breakouts'</td></tr>
-            <tr><td class="col-label">Rosacea &amp; redness</td><td class="col-url">/en-us/collections/rosacea-redness</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Blog + rosacea bundle already exist</td></tr>
-            <tr><td class="col-label">Dry &amp; dehydrated skin</td><td class="col-url">/en-us/collections/dry-dehydrated-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Supports Drench, Infuse products</td></tr>
-            <tr><td class="col-label">Mature skin (35+)</td><td class="col-url">/en-us/collections/mature-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Core brand audience — multiple blog posts on this</td></tr>
-            <tr><td class="col-label">Hormonal skin</td><td class="col-url">/en-us/collections/hormonal-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Blog: 'Infuse — soothe hormonal reactive skin'</td></tr>
-            <tr><td class="col-label">Sensitive &amp; reactive skin</td><td class="col-url">/en-us/collections/sensitive-reactive-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Fragrance-free Infuse variant supports this</td></tr>
-            <tr><td class="col-label">Take the skin quiz →</td><td class="col-url">/en-us/pages/find-my-routine-skin-quiz-intro</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">CTA at bottom of concerns dropdown</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- BLOOM BY NYRAH -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">05 &nbsp;Bloom by Nyrah</span>
-        <span class="section-count">7 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Self-tanning collection</td><td class="col-url">/en-us/collections/bloom-by-nyrah-self-tanning-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bloom mousse</td><td class="col-url">/en-us/products/bloom-mousse</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bloom glow serum</td><td class="col-url">/en-us/products/bloom-glow-serum</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bloom radiance crème 200ml</td><td class="col-url">/en-us/products/bloom-radiance-creme-200ml</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Velvet tanning mitt</td><td class="col-url">/en-us/products/tool-expert-velvet-tanning-mitt</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Exfoliating mitt</td><td class="col-url">/en-us/products/exfoliating-mitt</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Kabuki brush</td><td class="col-url">/en-us/products/kabuki-brush</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- LEARN -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">06 &nbsp;Learn</span>
-        <span class="section-count">6 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Blog home</td><td class="col-url">/en-us/blogs/nyrah-blog-home-page</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Ingredient guide</td><td class="col-url">/en-us/pages/ingredients</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Massive AEO win — answers 'what is bio-retinol' etc.</td></tr>
-            <tr><td class="col-label">Skincare for women 35+</td><td class="col-url">/en-us/pages/skincare-for-women-over-35</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Core brand editorial page — matches blog content</td></tr>
-            <tr><td class="col-label">How-to tutorials</td><td class="col-url">/en-us/pages/how-to-use</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Video + text tutorials → featured snippets for 'how to apply…'</td></tr>
-            <tr><td class="col-label">Press &amp; media</td><td class="col-url">/en-us/pages/press</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Brand trust builder</td></tr>
-            <tr><td class="col-label">Skin quiz</td><td class="col-url">/en-us/pages/find-my-routine-skin-quiz-intro</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Pin as hero CTA in Learn dropdown</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ABOUT -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">07 &nbsp;About</span>
-        <span class="section-count">6 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">About us</td><td class="col-url">/en-us/pages/about-us</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Current slug has timestamp suffix — redirect to /pages/about-us</td></tr>
-            <tr><td class="col-label">Store locator</td><td class="col-url">/en-us/pages/store-locator</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Ambassador programme</td><td class="col-url">/en-us/pages/ambassadors</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Current: /pages/ambassador-page-1744631903173 — needs clean redirect</td></tr>
-            <tr><td class="col-label">Sustainability</td><td class="col-url">/en-us/pages/sustainability</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Bamboo cloths + refills = story to tell; trust signal</td></tr>
-            <tr><td class="col-label">Contact us</td><td class="col-url">/en-us/pages/contact</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Rewards programme</td><td class="col-url">/en-us/pages/rewards-program-page</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Duplicate: /rewards-program-page-1 also exists — consolidate</td></tr>
-          </tbody>
-        </table>
+      <div class="cleanup-card-body" style="display:grid; grid-template-columns:1fr 1fr;">
+        <div>
+          <div class="cleanup-table-head" style="grid-template-columns:1fr auto;">
+            <span class="cth">Current URL</span>
+            <span class="cth">Priority</span>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/new_home_page_1760692928333</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Draft home page leaking into sitemap; wastes crawl budget</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/black-friday-signup-2025</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Campaign page — not a destination page</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/seasonal-offers-2025</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Campaign landing page</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/infuse-moisturiser-signup-page-2025</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Product waitlist — not a content page</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/product-launch-waitlist-page</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Generic waitlist</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/mystery-bag-winners-page</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">One-off campaign</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/blogs/unlocking-radiance-the-top-3-skincare-trends...</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Redirect to blog post version under /blogs/news/</div>
+          </div>
+        </div>
+        <div>
+          <div class="cleanup-table-head" style="grid-template-columns:1fr auto;">
+            <span class="cth">Current URL</span>
+            <span class="cth">Priority</span>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/revive-advertorial</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Paid ad landing page — not for organic indexing</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/revive-eye-gel-launch-advertorial-style</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Same as above</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/trial-pack-advertorial-page</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Advertorial — paid traffic only</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/infuse-behind-the-scenes</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Campaign / email page</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/nyrah-beauty-sign-up-for-early-access-to-new-product-launches</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Email capture page</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-current">/en-us/pages/nyrah-beauty-sign-up-for-early-access-to-our-new-products</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Duplicate — remove both after consolidating</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- UTILITY NAV -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">08 &nbsp;Utility Nav (top-right)</span>
-        <span class="section-count">5 items</span>
-        <span class="chevron">▶</span>
+    <!-- Create New Pages -->
+    <div class="cleanup-card" style="grid-column: 1 / -1;">
+      <div class="cleanup-card-head">
+        <div class="cleanup-card-title">Create New Pages</div>
+        <div class="cleanup-card-count">19 items</div>
       </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Nav Level 2</th><th style="width:35%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Skin quiz CTA</td><td class="col-url">/en-us/pages/find-my-routine-skin-quiz-intro</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Highlight as primary CTA button in nav bar</td></tr>
-            <tr><td class="col-label">Rewards</td><td class="col-url">/en-us/pages/rewards-program-page</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Icon/link in utility bar</td></tr>
-            <tr><td class="col-label">Account / login</td><td class="col-url">/account</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Standard Shopify — confirm enabled</td></tr>
-            <tr><td class="col-label">Cart</td><td class="col-url">/cart</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Standard Shopify cart icon</td></tr>
-            <tr><td class="col-label">Search</td><td class="col-url">/search</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Site search — essential for UX</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div><!-- /tab-header -->
-
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- TAB 2: FOOTER NAVIGATION                              -->
-  <!-- ══════════════════════════════════════════════════════ -->
-  <div id="tab-footer" class="tab-pane">
-
-    <!-- SHOP -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 1 &nbsp;Shop</span>
-        <span class="section-count">8 items</span>
-        <span class="chevron open">▶</span>
-      </div>
-      <div class="section-body open">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">All products</td><td class="col-url">/en-us/collections/shop-all-products-nyrah-beauty-official</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Best sellers</td><td class="col-url">/en-us/collections/best-sellers</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Bundles</td><td class="col-url">/en-us/collections/bundles-and-gifts</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Create master bundles collection</td></tr>
-            <tr><td class="col-label">Gift sets</td><td class="col-url">/en-us/products/bloom-by-nyrah-radiance-glow-gift-set</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">Link to gift set category when created</td></tr>
-            <tr><td class="col-label">Self-tanning (Bloom)</td><td class="col-url">/en-us/collections/bloom-by-nyrah-self-tanning-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Trial &amp; travel sizes</td><td class="col-url">/en-us/collections/trial-travel-skincare-sizes-nyrah-beauty</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Accessories</td><td class="col-url">/en-us/collections/skincare-accessories</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Refills</td><td class="col-url">/en-us/collections/refills</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Absorb + Undress refills — sustainability angle</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- SKIN CONCERNS -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 2 &nbsp;Skin Concerns</span>
-        <span class="section-count">7 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Hyperpigmentation</td><td class="col-url">/en-us/collections/hyperpigmentation</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Acne &amp; breakouts</td><td class="col-url">/en-us/collections/acne-breakouts</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Rosacea &amp; redness</td><td class="col-url">/en-us/collections/rosacea-redness</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Dry &amp; dehydrated skin</td><td class="col-url">/en-us/collections/dry-dehydrated-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Mature skin (35+)</td><td class="col-url">/en-us/collections/mature-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Hormonal skin</td><td class="col-url">/en-us/collections/hormonal-skin</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Take the skin quiz</td><td class="col-url">/en-us/pages/find-my-routine-skin-quiz-intro</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes">CTA link — pin at bottom of column</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- LEARN -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 3 &nbsp;Learn</span>
-        <span class="section-count">5 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Blog</td><td class="col-url">/en-us/blogs/nyrah-blog-home-page</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Ingredient guide</td><td class="col-url">/en-us/pages/ingredients</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">AEO priority</td></tr>
-            <tr><td class="col-label">Skincare for women 35+</td><td class="col-url">/en-us/pages/skincare-for-women-over-35</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Core audience editorial</td></tr>
-            <tr><td class="col-label">How-to tutorials</td><td class="col-url">/en-us/pages/how-to-use</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Press &amp; media</td><td class="col-url">/en-us/pages/press</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ABOUT NYRAH -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 4 &nbsp;About Nyrah</span>
-        <span class="section-count">6 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">About us</td><td class="col-url">/en-us/pages/about-us</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Redirect from timestamped slug</td></tr>
-            <tr><td class="col-label">Store locator</td><td class="col-url">/en-us/pages/store-locator</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Ambassador programme</td><td class="col-url">/en-us/pages/ambassadors</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Redirect from timestamped slug</td></tr>
-            <tr><td class="col-label">Sustainability</td><td class="col-url">/en-us/pages/sustainability</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Rewards programme</td><td class="col-url">/en-us/pages/rewards-program-page</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Consolidate duplicate page</td></tr>
-            <tr><td class="col-label">Press &amp; media</td><td class="col-url">/en-us/pages/press</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- CUSTOMER CARE -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 5 &nbsp;Customer Care</span>
-        <span class="section-count">7 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Contact us</td><td class="col-url">/en-us/pages/contact</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Help centre</td><td class="col-url">/en-us/pages/help-center</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Shipping &amp; delivery</td><td class="col-url">/en-us/pages/shipping-and-delivery</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Critical for purchase confidence + SEO</td></tr>
-            <tr><td class="col-label">Returns &amp; refunds</td><td class="col-url">/en-us/pages/returns-refunds</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Critical — currently missing</td></tr>
-            <tr><td class="col-label">Trial pack policy</td><td class="col-url">/en-us/pages/trial-pack-coupon-policy</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Check gift card balance</td><td class="col-url">/en-us/pages/check-gift-card-balance</td><td><span class="badge badge-exists">Exists</span></td><td class="col-notes"></td></tr>
-            <tr><td class="col-label">Trade sign-up</td><td class="col-url">/en-us/pages/trade-sign-up-page</td><td><span class="badge badge-slug">Slug cleanup</span></td><td class="col-notes">Consider /pages/trade for cleaner slug</td></tr>
-          </tbody>
-        </table>
+      <div class="cleanup-card-body" style="display:grid; grid-template-columns:1fr 1fr 1fr;">
+        <div>
+          <div class="cleanup-table-head" style="grid-template-columns:1fr auto;">
+            <span class="cth">URL to create</span>
+            <span class="cth">Priority</span>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/ingredients</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Ingredient glossary — highest AEO impact</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/hyperpigmentation</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Concern-based collection — SEO &amp; UX</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/acne-breakouts</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Concern-based collection</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/rosacea-redness</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Existing bundle + blog content</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/dry-dehydrated-skin</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Concern-based collection</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/mature-skin</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Core audience — multiple blog posts exist</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/shipping-and-delivery</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Essential for purchase confidence</div>
+          </div>
+        </div>
+        <div>
+          <div class="cleanup-table-head" style="grid-template-columns:1fr auto;">
+            <span class="cth">URL to create</span>
+            <span class="cth">Priority</span>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/returns-refunds</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Missing — reduces support tickets</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/policies/privacy-policy</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Legal requirement — not in sitemap</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/policies/terms-of-service</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">Legal requirement</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/cookie-policy</div>
+            <span class="pr-badge pr-critical">Critical</span>
+            <div class="cr-note">GDPR compliance</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/hormonal-skin</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Concern-based collection</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/sensitive-reactive-skin</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Fragrance-free products support this</div>
+          </div>
+        </div>
+        <div>
+          <div class="cleanup-table-head" style="grid-template-columns:1fr auto;">
+            <span class="cth">URL to create</span>
+            <span class="cth">Priority</span>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/skincare-for-women-over-35</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Editorial hub for core audience</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/sustainability</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Brand trust + refills/bamboo story</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/bundles-and-gifts</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">Master bundles collection for nav + SEO</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/pages/how-to-use</div>
+            <span class="pr-badge pr-high">High</span>
+            <div class="cr-note">How-to hub → AEO featured snippets</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/new-arrivals</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Standard e-commerce; SEO freshness signal</div>
+          </div>
+          <div class="cleanup-row" style="grid-template-columns:1fr auto;">
+            <div class="cr-fix">/en-us/collections/refills</div>
+            <span class="pr-badge pr-medium">Medium</span>
+            <div class="cr-note">Sustainability + retention play</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- LEGAL -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Col 6 &nbsp;Legal</span>
-        <span class="section-count">4 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:22%">Link Label</th><th style="width:38%">URL / Slug</th><th style="width:13%">Status</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td class="col-label">Privacy policy</td><td class="col-url">/en-us/policies/privacy-policy</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Required — missing from sitemap entirely</td></tr>
-            <tr><td class="col-label">Terms of service</td><td class="col-url">/en-us/policies/terms-of-service</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Required</td></tr>
-            <tr><td class="col-label">Cookie policy</td><td class="col-url">/en-us/pages/cookie-policy</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Required for GDPR compliance</td></tr>
-            <tr><td class="col-label">Accessibility</td><td class="col-url">/en-us/pages/accessibility</td><td><span class="badge badge-tbc">To be created</span></td><td class="col-notes">Good practice + legal safety</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+  </div><!-- /cleanup-grid -->
+</div><!-- /cleanup-section -->
 
-  </div><!-- /tab-footer -->
-
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!-- TAB 3: CLEANUP & ACTION ITEMS                         -->
-  <!-- ══════════════════════════════════════════════════════ -->
-  <div id="tab-cleanup" class="tab-pane">
-
-    <!-- SLUG CLEANUP -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Slug Cleanup</span>
-        <span class="section-count">5 items</span>
-        <span class="chevron open">▶</span>
-      </div>
-      <div class="section-body open">
-        <table class="nav-table">
-          <thead><tr><th style="width:32%">Current URL / Issue</th><th style="width:30%">Recommended Fix</th><th style="width:10%">Priority</th><th>Reason</th></tr></thead>
-          <tbody>
-            <tr><td class="col-current">/en-us/pages/about-us-1704554089699</td><td class="col-fix">/en-us/pages/about-us</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Timestamp in slug is ugly and unhelpful for SEO; 301 redirect old to new</td></tr>
-            <tr><td class="col-current">/en-us/pages/ambassador-page-1744631903173</td><td class="col-fix">/en-us/pages/ambassadors</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Same as above — clean timestamp slug</td></tr>
-            <tr><td class="col-current">/en-us/products/eye-gel-draft-30ml</td><td class="col-fix">/en-us/products/revive-eye-gel-30ml</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">'draft' in live product URL signals unfinished page to Google</td></tr>
-            <tr><td class="col-current">/en-us/pages/trade-sign-up-page</td><td class="col-fix">/en-us/pages/trade</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Cleaner slug; 301 redirect</td></tr>
-            <tr><td class="col-current">/en-us/products/rise-ai-giftcard</td><td class="col-fix">/en-us/products/gift-card</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Slug is unclear; rename for clarity</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- DUPLICATE — CONSOLIDATE -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Duplicate — Consolidate</span>
-        <span class="section-count">3 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:35%">Current URL / Issue</th><th style="width:27%">Recommended Fix</th><th style="width:10%">Priority</th><th>Reason</th></tr></thead>
-          <tbody>
-            <tr><td class="col-current">/en-us/pages/rewards-program-page AND /rewards-program-page-1</td><td class="col-fix">Keep: /rewards-program-page — 301 redirect the other</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Two live pages split link equity and confuse crawlers</td></tr>
-            <tr><td class="col-current">/en-us/pages/nyrah-beauty-sign-up-for-early-access-to-new-product-launches AND /to-our-new-products</td><td class="col-fix">Merge into one; 301 redirect</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Duplicate early-access pages — pick one canonical URL</td></tr>
-            <tr><td class="col-current">/en-us/blogs/news AND /blogs/nyrah-blog-home-page</td><td class="col-fix">Consolidate to one blog; 301 redirect /blogs/news</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Two blog sections split authority — one canonical blog URL recommended</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- REMOVE FROM SITEMAP + NOINDEX -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Remove from Sitemap + Noindex</span>
-        <span class="section-count">13 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:38%">Current URL / Issue</th><th style="width:24%">Recommended Fix</th><th style="width:10%">Priority</th><th>Reason</th></tr></thead>
-          <tbody>
-            <tr><td class="col-current">/en-us/pages/new_home_page_1760692928333</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Draft home page leaking into sitemap; wastes crawl budget</td></tr>
-            <tr><td class="col-current">/en-us/pages/black-friday-signup-2025</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Campaign page — not a destination page</td></tr>
-            <tr><td class="col-current">/en-us/pages/seasonal-offers-2025</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Campaign landing page</td></tr>
-            <tr><td class="col-current">/en-us/pages/infuse-moisturiser-signup-page-2025</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Product waitlist — not a content page</td></tr>
-            <tr><td class="col-current">/en-us/pages/product-launch-waitlist-page</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Generic waitlist</td></tr>
-            <tr><td class="col-current">/en-us/pages/mystery-bag-winners-page</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">One-off campaign</td></tr>
-            <tr><td class="col-current">/en-us/pages/revive-advertorial</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Paid ad landing page — not for organic indexing</td></tr>
-            <tr><td class="col-current">/en-us/pages/revive-eye-gel-launch-advertorial-style</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Same as above</td></tr>
-            <tr><td class="col-current">/en-us/pages/trial-pack-advertorial-page</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Advertorial — paid traffic only</td></tr>
-            <tr><td class="col-current">/en-us/pages/infuse-behind-the-scenes</td><td class="col-fix">noindex, remove from sitemap</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Campaign / email page</td></tr>
-            <tr><td class="col-current">/en-us/pages/nyrah-beauty-sign-up-for-early-access-to-new-product-launches</td><td class="col-fix">noindex</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Email capture page</td></tr>
-            <tr><td class="col-current">/en-us/pages/nyrah-beauty-sign-up-for-early-access-to-our-new-products</td><td class="col-fix">noindex</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Duplicate — remove both after consolidating</td></tr>
-            <tr><td class="col-current">/en-us/blogs/unlocking-radiance-the-top-3-skincare-trends-of-2024-for-gorgeous-and-healthy-skin</td><td class="col-fix">Redirect to blog post version under /blogs/news/</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">This URL looks like a misrouted blog post slug at collection level</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- CREATE NEW PAGE -->
-    <div class="section-block">
-      <div class="section-head" onclick="toggle(this)">
-        <span class="section-name">Create New Pages</span>
-        <span class="section-count">19 items</span>
-        <span class="chevron">▶</span>
-      </div>
-      <div class="section-body">
-        <table class="nav-table">
-          <thead><tr><th style="width:16%">Current Status</th><th style="width:38%">Recommended URL to Create</th><th style="width:10%">Priority</th><th>Reason</th></tr></thead>
-          <tbody>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/ingredients</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Ingredient glossary — highest AEO impact; targets 'what is X ingredient' queries</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/hyperpigmentation</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Concern-based collection — SEO &amp; UX</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/acne-breakouts</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Concern-based collection</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/rosacea-redness</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Concern-based collection + existing bundle/blog content</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/dry-dehydrated-skin</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Concern-based collection</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/mature-skin</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Core audience — multiple blog posts already exist</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/shipping-and-delivery</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Missing — essential for purchase confidence</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/returns-refunds</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Missing — essential + reduces support tickets</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/policies/privacy-policy</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Legal requirement — not in sitemap</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/policies/terms-of-service</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">Legal requirement</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/cookie-policy</td><td><span class="badge badge-critical">Critical</span></td><td class="col-notes">GDPR compliance</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/hormonal-skin</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Concern-based collection</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/sensitive-reactive-skin</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Fragrance-free products support this</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/skincare-for-women-over-35</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Editorial hub for core audience</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/sustainability</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Brand trust + refills/bamboo story</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/bundles-and-gifts</td><td><span class="badge badge-high">High</span></td><td class="col-notes">Master bundles collection for nav + SEO</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/pages/how-to-use</td><td><span class="badge badge-high">High</span></td><td class="col-notes">How-to hub → AEO featured snippets</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/new-arrivals</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Standard e-commerce; freshness signal for SEO</td></tr>
-            <tr><td class="col-current">Missing</td><td class="col-fix">/en-us/collections/refills</td><td><span class="badge badge-medium">Medium</span></td><td class="col-notes">Sustainability + retention; Absorb &amp; Undress refills exist</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div><!-- /tab-cleanup -->
-
-  <div class="gold-divider"></div>
-
-  <footer class="page-footer">
-    Nyrah Beauty &nbsp;·&nbsp; Navigation Architecture &nbsp;·&nbsp; SEO &amp; AEO Strategy Document &nbsp;·&nbsp; 2025
-  </footer>
-
-</div><!-- /page -->
-
-<script>
-  function toggle(head) {
-    const body = head.nextElementSibling;
-    const ch = head.querySelector('.chevron');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    ch.classList.toggle('open', !isOpen);
-  }
-  function switchTab(name) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelector(`[onclick="switchTab('${name}')"]`).classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
-  }
-</script>
 </body>
 </html>
