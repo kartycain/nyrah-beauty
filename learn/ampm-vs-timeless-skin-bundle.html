@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Bundle Comparison</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold-deep: #8B6914;
+    --gold-mid: #C49A2A;
+    --gold-light: #E8C96A;
+    --gold-pale: #F7EDD0;
+    --gold-faint: #FDF8EE;
+    --cream: #FFFDF6;
+    --charcoal: #1C1810;
+    --warm-dark: #2D2416;
+    --warm-mid: #6B5A3A;
+    --warm-light: #A89070;
+    --warm-faint: #EDE5D4;
+    --white: #FFFFFF;
+    --ampm-color: #3A5A4A;
+    --ampm-light: #E8F2EC;
+    --ampm-mid: #6A9A7A;
+    --timeless-color: #5A3A6A;
+    --timeless-light: #F0E8F5;
+    --timeless-mid: #9A6AAA;
+    --both-color: #C49A2A;
+    --both-light: #FDF8EE;
+    --card-radius: 20px;
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--warm-dark);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,154,42,0.15);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4.5vw, 48px);
+    color: var(--gold-pale);
+    line-height: 1.15;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-light);
+    letter-spacing: 0.05em;
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 24px 80px;
+  }
+
+  /* VIEW TOGGLE */
+  .view-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 44px;
+  }
+  .view-btn {
+    padding: 10px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid var(--warm-faint);
+    border-radius: 40px;
+    background: transparent;
+    color: var(--warm-mid);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .view-btn.active {
+    background: var(--gold-mid);
+    border-color: var(--gold-mid);
+    color: var(--warm-dark);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .section-label h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .section-label p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-mid);
+  }
+
+  /* ===================== SIDE BY SIDE VIEW ===================== */
+  .sidebyside { display: none; }
+  .sidebyside.active { display: block; }
+
+  .sbs-header-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .bundle-header-card {
+    border-radius: var(--card-radius);
+    padding: 24px 22px;
+    border: 1px solid;
+  }
+  .bundle-header-card.ampm {
+    background: var(--ampm-light);
+    border-color: var(--ampm-mid);
+  }
+  .bundle-header-card.timeless {
+    background: var(--timeless-light);
+    border-color: var(--timeless-mid);
+  }
+  .bundle-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .ampm .bundle-badge { background: var(--ampm-color); color: var(--white); }
+  .timeless .bundle-badge { background: var(--timeless-color); color: var(--white); }
+  .bundle-header-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .ampm h3 { color: var(--ampm-color); }
+  .timeless h3 { color: var(--timeless-color); }
+  .bundle-header-card .tagline {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .bundle-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .meta-pill {
+    font-size: 11px;
+    font-weight: 400;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .ampm .meta-pill { border-color: var(--ampm-mid); color: var(--ampm-color); background: var(--white); }
+  .timeless .meta-pill { border-color: var(--timeless-mid); color: var(--timeless-color); background: var(--white); }
+
+  /* PRODUCT ROWS */
+  .products-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .product-row {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+  .prod-cell {
+    border-radius: 12px;
+    padding: 13px 16px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .prod-cell:hover { filter: brightness(0.97); }
+  .prod-cell.ampm-cell { background: var(--ampm-light); border: 1px solid rgba(106,154,122,0.3); }
+  .prod-cell.timeless-cell { background: var(--timeless-light); border: 1px solid rgba(154,106,170,0.3); }
+  .prod-cell.shared-cell { background: var(--both-light); border: 1px solid rgba(196,154,42,0.3); }
+  .prod-cell.empty-cell {
+    background: transparent;
+    border: 1px dashed var(--warm-faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    cursor: default;
+  }
+  .empty-text {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--warm-light);
+    font-style: italic;
+  }
+  .prod-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .ampm-cell .prod-name { color: var(--ampm-color); }
+  .timeless-cell .prod-name { color: var(--timeless-color); }
+  .shared-cell .prod-name { color: var(--gold-deep); }
+  .prod-desc {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    line-height: 1.4;
+  }
+  .prod-role {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+  .ampm-cell .prod-role { color: var(--ampm-mid); }
+  .timeless-cell .prod-role { color: var(--timeless-mid); }
+  .shared-cell .prod-role { color: var(--gold-mid); }
+
+  /* CENTER CONNECTOR */
+  .row-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .connector-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .connector-dot.shared { background: var(--gold-pale); color: var(--gold-deep); border: 1px solid var(--gold-light); }
+  .connector-dot.diff { background: var(--warm-faint); color: var(--warm-mid); border: 1px solid rgba(168,144,112,0.3); }
+  .connector-dot.only { background: var(--warm-faint); color: var(--warm-light); border: 1px dashed rgba(168,144,112,0.3); }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--warm-mid);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* STATS GRID */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .stat-card {
+    border-radius: 14px;
+    padding: 18px 20px;
+    border: 1px solid;
+  }
+  .stat-card.ampm { background: var(--ampm-light); border-color: rgba(106,154,122,0.4); }
+  .stat-card.timeless { background: var(--timeless-light); border-color: rgba(154,106,170,0.4); }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .ampm .stat-label { color: var(--ampm-mid); }
+  .timeless .stat-label { color: var(--timeless-mid); }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-key { font-size: 12px; font-weight: 300; color: var(--warm-mid); }
+  .stat-val { font-size: 13px; font-weight: 500; color: var(--charcoal); }
+
+  /* ===================== DECISION VIEW ===================== */
+  .decision { display: none; }
+  .decision.active { display: block; }
+
+  .decision-intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .decision-intro p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .scenarios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .scenario-card {
+    border-radius: 14px;
+    border: 1px solid var(--warm-faint);
+    background: var(--white);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.25s ease;
+  }
+  .scenario-card:hover { border-color: var(--gold-light); }
+  .scenario-card.open { border-color: var(--gold-mid); }
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    gap: 16px;
+  }
+  .scenario-q {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .scenario-chevron {
+    width: 18px; height: 18px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .scenario-card.open .scenario-chevron { transform: rotate(180deg); }
+  .scenario-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .scenario-card.open .scenario-answer { max-height: 300px; }
+  .scenario-answer-inner {
+    padding: 0 20px 18px;
+    border-top: 1px solid var(--warm-faint);
+    padding-top: 16px;
+  }
+  .answer-rec {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .answer-rec.ampm { background: var(--ampm-light); color: var(--ampm-color); }
+  .answer-rec.timeless { background: var(--timeless-light); color: var(--timeless-color); }
+  .answer-rec.both { background: var(--gold-faint); color: var(--gold-deep); }
+  .answer-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-mid);
+    line-height: 1.65;
+  }
+
+  /* ===================== INGREDIENT VIEW ===================== */
+  .ingredients-view { display: none; }
+  .ingredients-view.active { display: block; }
+
+  .ingr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) {
+    .ingr-grid { grid-template-columns: 1fr; }
+    .sbs-header-grid { grid-template-columns: 1fr; }
+    .product-row { grid-template-columns: 1fr 32px 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+  }
+
+  .ingr-column h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--warm-faint);
+  }
+  .ingr-column.ampm-col h3 { color: var(--ampm-color); }
+  .ingr-column.timeless-col h3 { color: var(--timeless-color); }
+
+  .ingr-product {
+    margin-bottom: 16px;
+  }
+  .ingr-product-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--warm-dark);
+  }
+  .ingr-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .ingr-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .ampm-col .ingr-pill { border-color: rgba(106,154,122,0.4); color: var(--ampm-color); background: var(--ampm-light); }
+  .timeless-col .ingr-pill { border-color: rgba(154,106,170,0.4); color: var(--timeless-color); background: var(--timeless-light); }
+  .ingr-pill.highlight {
+    font-weight: 500;
+  }
+  .ingr-pill.unique {
+    border-style: solid;
+    font-weight: 500;
+  }
+
+  /* INSIGHT BOX */
+  .insight-box {
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-top: 28px;
+    background: var(--gold-faint);
+    border: 1px solid var(--gold-light);
+  }
+  .insight-box h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--gold-deep);
+    margin-bottom: 10px;
+  }
+  .insight-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .insight-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .insight-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold-mid);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .insight-item p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--warm-dark);
+    line-height: 1.6;
+  }
+  .insight-item strong {
+    font-weight: 500;
+    color: var(--gold-deep);
+  }
+
+  /* FOOTER */
+  .footer-note {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--warm-faint);
+  }
+  .footer-note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--warm-light);
+  }
+  .footer-note strong {
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 8px;
+    color: var(--gold-mid);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Nyrah Beauty · Bundle Guide</div>
+  <h1>Two Bundles.<br><em>One Right Choice for You.</em></h1>
+  <p class="hero-sub">Understand exactly what each bundle contains, who it's built for, and which one fits your skin's needs.</p>
+</div>
+
+<div class="main">
+
+  <!-- VIEW TOGGLE -->
+  <div class="view-toggle">
+    <button class="view-btn active" onclick="switchView('sidebyside', this)">Side by Side</button>
+    <button class="view-btn" onclick="switchView('decision', this)">Which One is For Me?</button>
+    <button class="view-btn" onclick="switchView('ingredients-view', this)">Key Ingredients</button>
+  </div>
+
+  <!-- ===================== SIDE BY SIDE ===================== -->
+  <div class="sidebyside active" id="view-sidebyside">
+
+    <div class="sbs-header-grid">
+      <div class="bundle-header-card ampm">
+        <span class="bundle-badge">Complete System</span>
+        <h3>Complete AM/PM Routine</h3>
+        <p class="tagline">For all skin types. The most complete Nyrah routine — covers every need, morning and night.</p>
+        <div class="bundle-meta">
+          <span class="meta-pill">7 Products</span>
+          <span class="meta-pill">€249.95</span>
+          <span class="meta-pill">All Skin Types</span>
+          <span class="meta-pill">Save 40%</span>
+        </div>
+      </div>
+      <div class="bundle-header-card timeless">
+        <span class="bundle-badge">Targeted Bundle</span>
+        <h3>Timeless Skin Bundle</h3>
+        <p class="tagline">For mature and aging skin. Tightly focused on fine lines, firmness, and SPF-led anti-ageing.</p>
+        <div class="bundle-meta">
+          <span class="meta-pill">6 Products</span>
+          <span class="meta-pill">€220.00</span>
+          <span class="meta-pill">Mature Skin</span>
+          <span class="meta-pill">Includes SPF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--gold-mid);"></div>
+        <span>In both bundles</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--ampm-mid);"></div>
+        <span>Only in AM/PM Routine</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--timeless-mid);"></div>
+        <span>Only in Timeless Bundle</span>
+      </div>
+    </div>
+
+    <!-- PRODUCT ROWS -->
+    <div class="products-compare">
+
+      <!-- Undress — shared -->
+      <div class="product-row">
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Undress</div>
+          <div class="prod-desc">Vitamin E+C Gel Cleanser · 50ml</div>
+          <div class="prod-role">Clean</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot shared">=</div></div>
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Undress</div>
+          <div class="prod-desc">Vitamin E Gel Cleanser · 50ml</div>
+          <div class="prod-role">Gentle Renewal</div>
+        </div>
+      </div>
+
+      <!-- Drench — shared -->
+      <div class="product-row">
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Drench</div>
+          <div class="prod-desc">Triple Molecular Hyaluronic Serum · 30ml</div>
+          <div class="prod-role">Hydrate</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot shared">=</div></div>
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Drench</div>
+          <div class="prod-desc">Triple Molecular Hyaluronic Serum · 30ml</div>
+          <div class="prod-role">Deep Hydration</div>
+        </div>
+      </div>
+
+      <!-- Glisten — shared -->
+      <div class="product-row">
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Glisten</div>
+          <div class="prod-desc">Seaweed &amp; Avocado Peptide Serum · 30ml</div>
+          <div class="prod-role">Nourish</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot shared">=</div></div>
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Glisten</div>
+          <div class="prod-desc">Peptide Serum · 30ml</div>
+          <div class="prod-role">Firmness &amp; Glow</div>
+        </div>
+      </div>
+
+      <!-- Transform — shared -->
+      <div class="product-row">
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Transform</div>
+          <div class="prod-desc">BioRetinol &amp; Bakuchiol Serum · 30ml</div>
+          <div class="prod-role">Repair (PM only)</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot shared">=</div></div>
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Transform</div>
+          <div class="prod-desc">Plant-Based Bio-Retinol · 30ml</div>
+          <div class="prod-role">Gentle Renewal</div>
+        </div>
+      </div>
+
+      <!-- Absorb — shared -->
+      <div class="product-row">
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Absorb</div>
+          <div class="prod-desc">Moisturising Face &amp; Hair Serum · 50ml</div>
+          <div class="prod-role">Overnight Seal</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot shared">=</div></div>
+        <div class="prod-cell shared-cell">
+          <div class="prod-name">Absorb</div>
+          <div class="prod-desc">Restorative Overnight Balm · 50ml</div>
+          <div class="prod-role">Repair While Sleeping</div>
+        </div>
+      </div>
+
+      <!-- Infuse — AM/PM only -->
+      <div class="product-row">
+        <div class="prod-cell ampm-cell">
+          <div class="prod-name">Infuse</div>
+          <div class="prod-desc">Oxygen Botanical Moisturiser · 50ml</div>
+          <div class="prod-role">Daytime Moisture Seal</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot diff">≠</div></div>
+        <div class="prod-cell empty-cell">
+          <span class="empty-text">Not included — replaced by Lumina SPF as the final AM step</span>
+        </div>
+      </div>
+
+      <!-- Tonic — AM/PM only -->
+      <div class="product-row">
+        <div class="prod-cell ampm-cell">
+          <div class="prod-name">Tonic</div>
+          <div class="prod-desc">Hyaluronic Cooling Mist · 50ml</div>
+          <div class="prod-role">Soothe &amp; Set</div>
+        </div>
+        <div class="row-connector"><div class="connector-dot only">–</div></div>
+        <div class="prod-cell empty-cell">
+          <span class="empty-text">Not included — comfort step, not an anti-ageing essential</span>
+        </div>
+      </div>
+
+      <!-- Lumina SPF — Timeless only -->
+      <div class="product-row">
+        <div class="prod-cell empty-cell">
+          <span class="empty-text">No SPF included — must be purchased separately</span>
+        </div>
+        <div class="row-connector"><div class="connector-dot only">–</div></div>
+        <div class="prod-cell timeless-cell">
+          <div class="prod-name">Lumina SPF</div>
+          <div class="prod-desc">SPF30 or SPF50+ Daily Protection Serum · 30ml</div>
+          <div class="prod-role">UV Protection · Anti-Ageing Shield</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card ampm">
+        <div class="stat-label">Complete AM/PM Routine</div>
+        <div class="stat-row"><span class="stat-key">Products</span><span class="stat-val">7 full-sized</span></div>
+        <div class="stat-row"><span class="stat-key">Price</span><span class="stat-val">€249.95</span></div>
+        <div class="stat-row"><span class="stat-key">Best for</span><span class="stat-val">All skin types</span></div>
+        <div class="stat-row"><span class="stat-key">SPF included</span><span class="stat-val">No</span></div>
+        <div class="stat-row"><span class="stat-key">Fragrance option</span><span class="stat-val">Yes — fragranced or free</span></div>
+        <div class="stat-row"><span class="stat-key">Routine time</span><span class="stat-val">5–7 mins AM + PM</span></div>
+        <div class="stat-row"><span class="stat-key">Lasts</span><span class="stat-val">8–12 weeks</span></div>
+      </div>
+      <div class="stat-card timeless">
+        <div class="stat-label">Timeless Skin Bundle</div>
+        <div class="stat-row"><span class="stat-key">Products</span><span class="stat-val">6 full-sized</span></div>
+        <div class="stat-row"><span class="stat-key">Price</span><span class="stat-val">€220.00</span></div>
+        <div class="stat-row"><span class="stat-key">Best for</span><span class="stat-val">Mature / aging skin</span></div>
+        <div class="stat-row"><span class="stat-key">SPF included</span><span class="stat-val">Yes — SPF30 or SPF50+</span></div>
+        <div class="stat-row"><span class="stat-key">Fragrance option</span><span class="stat-val">Not specified</span></div>
+        <div class="stat-row"><span class="stat-key">Routine time</span><span class="stat-val">5–7 mins AM + PM</span></div>
+        <div class="stat-row"><span class="stat-key">Results visible</span><span class="stat-val">1–2 weeks (hydration)</span></div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <h4>The key difference in plain English</h4>
+      <div class="insight-list">
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p>The Complete AM/PM Routine is the <strong>full meal</strong> — every product Nyrah makes in one box. It covers all skin types and all concerns.</p>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p>The Timeless Skin Bundle is the <strong>targeted meal</strong> — built specifically for aging skin. It swaps the daytime moisturiser for an SPF, and focuses everything on fine lines, firmness, and overnight repair.</p>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p>5 of 6 products overlap. The real difference is <strong>Infuse + Tonic out, Lumina SPF in</strong>. One is broader, one is sharper.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== DECISION VIEW ===================== -->
+  <div class="decision" id="view-decision">
+    <div class="decision-intro">
+      <p>Answer these questions to find which bundle makes more sense for your skin and your goals.</p>
+    </div>
+
+    <div class="scenarios">
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">My skin is dry, sensitive, and reactive — but I'm not particularly concerned about aging or fine lines yet.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec ampm">Complete AM/PM Routine</div>
+            <p class="answer-text">The Complete AM/PM Routine is the better fit. It includes Infuse — the daytime moisturiser — which is specifically designed for sensitive, reactive skin with Niacinamide and barrier-supporting ingredients. It also includes Tonic which calms irritation throughout the day. The Timeless Bundle skips both of these and focuses its energy on anti-ageing actives you don't yet need.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">I'm going through perimenopause. My skin feels thinner, drier, and I'm noticing fine lines and dullness for the first time.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec timeless">Timeless Skin Bundle</div>
+            <p class="answer-text">This is exactly who the Timeless Skin Bundle was built for. Every product in it was chosen with hormonal skin changes in mind. Transform addresses fine lines and cell renewal. Absorb provides deep overnight nourishment for thinning skin. And the Lumina SPF protects against UV-related collagen breakdown — the biggest cause of premature aging. This bundle treats the cause, not just the symptoms.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">I want the most complete Nyrah experience and I'm happy to invest in the full system.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec ampm">Complete AM/PM Routine</div>
+            <p class="answer-text">The Complete AM/PM Routine gives you all 7 products — including Infuse and Tonic which the Timeless Bundle does not have. It is the most thorough version of the Nyrah routine and covers every step morning and night without gaps. Note: it does not include an SPF, so you would need to add a Lumina SPF separately for full daytime protection.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">I already have an SPF I love and I just want a complete skincare routine without it.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec ampm">Complete AM/PM Routine</div>
+            <p class="answer-text">The Complete AM/PM Routine is the better choice here. It does not include an SPF, which means you are not paying for something you already have. You get all 7 products including Infuse and Tonic which the Timeless Bundle skips. Apply your existing SPF as the last step of the AM routine after Infuse.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">I have rosacea or eczema-prone skin and I am worried about reactions.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec both">Either — start with the Trial Pack first</div>
+            <p class="answer-text">Both bundles are designed to be safe for sensitive, rosacea, and eczema-prone skin. However, for reactive skin, the safest approach is to start with the Nyrah Trial Pack first — it contains smaller sizes of the core products so you can test each one on your skin before committing to a full-sized bundle. Once you know your skin responds well, choose based on your age and primary concern.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-card" onclick="toggleScenario(this)">
+        <div class="scenario-header">
+          <span class="scenario-q">I want to fight aging and I also want daily sun protection in one system.</span>
+          <svg class="scenario-chevron" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="scenario-answer">
+          <div class="scenario-answer-inner">
+            <div class="answer-rec timeless">Timeless Skin Bundle</div>
+            <p class="answer-text">The Timeless Skin Bundle is the only Nyrah bundle that includes SPF as part of the routine. It gives you the anti-ageing actives (Transform, Absorb, Glisten) and the UV protection (Lumina SPF30 or SPF50+) in a single system. Dermatologists agree that SPF is the single most effective anti-ageing step available — this bundle treats it that way.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== INGREDIENTS VIEW ===================== -->
+  <div class="ingredients-view" id="view-ingredients-view">
+
+    <div class="section-label">
+      <h2>What's doing the work</h2>
+      <p>Key active ingredients in each bundle and what they target</p>
+    </div>
+
+    <div class="ingr-grid">
+      <div class="ingr-column ampm-col">
+        <h3>Complete AM/PM Routine</h3>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Undress — Cleanser</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Vitamin E</span>
+            <span class="ingr-pill highlight">Vitamin C</span>
+            <span class="ingr-pill">Papaya Enzymes</span>
+            <span class="ingr-pill">Milk Thistle</span>
+            <span class="ingr-pill">Avocado Oil</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Drench — Hydration</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Hydrolyzed Hyaluronic Acid</span>
+            <span class="ingr-pill">Glycerin</span>
+            <span class="ingr-pill">Acacia Gum</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Glisten — Peptide Serum</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Brown Algae</span>
+            <span class="ingr-pill highlight">Avocado Extract</span>
+            <span class="ingr-pill">Aloe Vera</span>
+            <span class="ingr-pill">Paeonia Root</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Transform — Bio-Retinol</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Bakuchiol</span>
+            <span class="ingr-pill highlight">Bidens Pilosa</span>
+            <span class="ingr-pill">Calendula</span>
+            <span class="ingr-pill">Sweet Almond Oil</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Infuse — Moisturiser (unique to AM/PM)</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill unique highlight">Niacinamide</span>
+            <span class="ingr-pill unique highlight">Squalane</span>
+            <span class="ingr-pill unique">Shea Butter</span>
+            <span class="ingr-pill unique">Liquorice Root</span>
+            <span class="ingr-pill unique">Argan Oil</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Absorb — Overnight Balm</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Sodium Hyaluronate</span>
+            <span class="ingr-pill">Argan Oil</span>
+            <span class="ingr-pill">Jojoba Oil</span>
+            <span class="ingr-pill">Retinyl Palmitate</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Tonic — Mist (unique to AM/PM)</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill unique">Chamomile</span>
+            <span class="ingr-pill unique">Witch Hazel</span>
+            <span class="ingr-pill unique">Green Tea</span>
+            <span class="ingr-pill unique">Allantoin</span>
+            <span class="ingr-pill unique">Cucumber</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ingr-column timeless-col">
+        <h3>Timeless Skin Bundle</h3>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Undress — Cleanser</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Vitamin E</span>
+            <span class="ingr-pill highlight">Vitamin C</span>
+            <span class="ingr-pill">Papaya Enzymes</span>
+            <span class="ingr-pill">Milk Thistle</span>
+            <span class="ingr-pill">Avocado Oil</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Drench — Hydration</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Hydrolyzed Hyaluronic Acid</span>
+            <span class="ingr-pill">Glycerin</span>
+            <span class="ingr-pill">Acacia Gum</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Glisten — Peptide Serum</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Brown Algae</span>
+            <span class="ingr-pill highlight">Paeonia Root</span>
+            <span class="ingr-pill">Aloe Vera</span>
+            <span class="ingr-pill unique highlight">Spirulina</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Transform — Bio-Retinol</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Bakuchiol</span>
+            <span class="ingr-pill highlight">Bidens Pilosa</span>
+            <span class="ingr-pill">Calendula</span>
+            <span class="ingr-pill">Sweet Almond Oil</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Absorb — Overnight Balm</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill highlight">Sodium Hyaluronate</span>
+            <span class="ingr-pill">Argan Oil</span>
+            <span class="ingr-pill">Jojoba Oil</span>
+            <span class="ingr-pill">Retinyl Palmitate</span>
+            <span class="ingr-pill">Ascorbyl Tetraisopalmitate</span>
+          </div>
+        </div>
+
+        <div class="ingr-product">
+          <div class="ingr-product-name">Lumina SPF — Protection (unique to Timeless)</div>
+          <div class="ingr-pills">
+            <span class="ingr-pill unique highlight">Astaxanthin</span>
+            <span class="ingr-pill unique highlight">Broad-spectrum UV filters</span>
+            <span class="ingr-pill unique">Titanium Dioxide</span>
+            <span class="ingr-pill unique">Sunflower Seed Oil</span>
+            <span class="ingr-pill unique">Tocopherol</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <h4>What the ingredient differences actually mean</h4>
+      <div class="insight-list">
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p><strong>Astaxanthin</strong> appears only in the Timeless Bundle via Lumina SPF. It is stated as being 6,000× more potent than Vitamin C as an antioxidant. This is the single most powerful anti-ageing ingredient across both bundles.</p>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p><strong>Niacinamide and Liquorice Root</strong> appear only in the Complete AM/PM Routine via Infuse. Both are specifically effective for redness reduction and brightening — making the Complete Routine stronger for reactive or rosacea-prone skin.</p>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p><strong>Spirulina</strong> appears in Glisten only in the Timeless Bundle version — it is absent from the Complete Routine version of the same product. This may indicate a formulation difference between bundles. Worth verifying with the brand.</p>
+        </div>
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <p><strong>Bakuchiol and Bidens Pilosa</strong> are in both — these are the primary anti-ageing actives in Transform and are present regardless of which bundle you choose.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <p>Both bundles are made in Ireland, cruelty-free, vegan, and plant-based.</p>
+    <strong>Nyrah Beauty · Made in Ireland · Formulated by Lorraine Corcoran</strong>
+  </div>
+
+</div>
+
+<script>
+  function switchView(viewId, btn) {
+    document.querySelectorAll('.sidebyside, .decision, .ingredients-view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('view-' + viewId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleScenario(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.scenario-card.open').forEach(s => s.classList.remove('open'));
+    if (!isOpen) el.classList.add('open');
+  }
+</script>
+</body>
+</html>
