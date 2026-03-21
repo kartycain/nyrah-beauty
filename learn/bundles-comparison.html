@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Bundle & Routine Knowledge Base</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C49A2A;--gold-deep:#8B6914;--gold-pale:#F7EDD0;--gold-faint:#FDF8EE;
+  --cream:#FFFDF6;--charcoal:#1C1810;--warm-dark:#2D2416;--warm-mid:#6B5A3A;--warm-light:#A89070;--warm-faint:#EDE5D4;
+  --white:#fff;
+  --c-ampm:#2E5E4E;--c-ampm-l:#E8F3EE;
+  --c-timeless:#5A3A2A;--c-timeless-l:#F5EDE8;
+  --c-rosacea:#8B3A4A;--c-rosacea-l:#F7EAED;
+  --c-hormonal:#4A3A6A;--c-hormonal-l:#EEEAF7;
+  --c-hydration:#2A4A7A;--c-hydration-l:#EAF0F9;
+  --c-bright:#6A5A1A;--c-bright-l:#F7F3E0;
+  --c-daily:#3A5A3A;--c-daily-l:#EAF3EA;
+  --radius:16px;
+}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--charcoal);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ── HERO ── */
+.hero{background:var(--warm-dark);padding:56px 32px 44px;text-align:center;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(196,154,42,.1);left:50%;transform:translateX(-50%)}
+.hero::before{width:600px;height:600px;top:-200px}
+.hero::after{width:360px;height:360px;top:-100px}
+.hero-tag{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:400;position:relative}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,4vw,48px);color:var(--gold-pale);line-height:1.15;position:relative;margin-bottom:10px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:13px;font-weight:300;color:var(--warm-light);max-width:480px;margin:0 auto;position:relative}
+
+/* ── NAV TABS ── */
+.nav-wrap{background:var(--warm-dark);border-top:1px solid rgba(196,154,42,.15);padding:0 32px 28px;position:sticky;top:0;z-index:100}
+.nav-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:9px 18px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;border-radius:40px;border:1px solid rgba(196,154,42,.3);background:transparent;color:var(--warm-light);cursor:pointer;transition:all .25s ease;white-space:nowrap}
+.nav-btn:hover{border-color:var(--gold);color:var(--gold-pale)}
+.nav-btn.active{color:var(--warm-dark);border-color:transparent}
+
+/* ── MAIN ── */
+.main{max-width:1080px;margin:0 auto;padding:48px 24px 80px}
+
+/* ── SECTION PANEL ── */
+.panel{display:none}.panel.active{display:block}
+
+/* ── BUNDLE HERO CARD ── */
+.bundle-header{border-radius:var(--radius);padding:32px 36px;margin-bottom:32px;border:1px solid;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.bh-left{flex:1;min-width:220px}
+.bh-badge{display:inline-block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.bh-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;line-height:1.15;margin-bottom:8px}
+.bh-desc{font-size:13px;font-weight:300;line-height:1.7;color:var(--warm-mid);max-width:480px}
+.bh-right{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.price-block{text-align:right}
+.price-was{font-size:12px;color:var(--warm-light);text-decoration:line-through;font-weight:300}
+.price-now{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;line-height:1}
+.price-note{font-size:11px;font-weight:300;color:var(--warm-mid);margin-top:2px}
+.meta-pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.meta-pill{font-size:11px;padding:3px 10px;border-radius:20px;border:1px solid;font-weight:400}
+
+/* ── SECTION HEADING ── */
+.section-h{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--charcoal);margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--warm-faint)}
+
+/* ── PRODUCTS GRID ── */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:8px}
+.product-card{border-radius:12px;padding:16px;border:1px solid;transition:box-shadow .2s}
+.product-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.pc-step{font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+.pc-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;line-height:1;margin-bottom:4px}
+.pc-type{font-size:11px;color:var(--warm-light);font-weight:300;margin-bottom:8px}
+.pc-role-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:4px;opacity:.7}
+.pc-role{font-size:12px;font-weight:300;line-height:1.5;color:var(--warm-mid)}
+.pc-keys{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.pc-key{font-size:10px;padding:2px 8px;border-radius:12px;background:rgba(0,0,0,.04);color:var(--warm-mid)}
+
+/* ── ABSENT PRODUCTS ── */
+.absent-section{margin-bottom:28px}
+.absent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+.absent-card{border-radius:12px;padding:16px;background:var(--warm-faint);border:1px dashed rgba(107,90,58,.3)}
+.absent-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--warm-mid);margin-bottom:4px}
+.absent-why{font-size:12px;font-weight:300;color:var(--warm-mid);line-height:1.6}
+.absent-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm-light);margin-bottom:6px}
+
+/* ── ROUTINE FLOW ── */
+.routine-flows{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:8px}
+@media(max-width:600px){.routine-flows{grid-template-columns:1fr}}
+.routine-block{border-radius:12px;padding:20px;border:1px solid var(--warm-faint);background:var(--white)}
+.routine-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;margin-bottom:14px;color:var(--warm-mid)}
+.routine-steps{display:flex;flex-direction:column;gap:0}
+.rs-item{display:flex;gap:12px;align-items:flex-start}
+.rs-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:2px}
+.rs-connector{width:1px;height:16px;margin-left:11px;background:var(--warm-faint)}
+.rs-content{flex:1;padding-bottom:8px}
+.rs-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;line-height:1}
+.rs-what{font-size:11px;font-weight:300;color:var(--warm-mid);line-height:1.4;margin-top:2px}
+
+/* ── AUDIENCE ── */
+.audience-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:8px}
+.audience-item{background:var(--warm-faint);border-radius:10px;padding:12px 14px;font-size:12px;font-weight:300;color:var(--warm-dark);line-height:1.5}
+
+/* ── CLAIMS ── */
+.claims-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.claim-item{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;background:var(--white);border-radius:10px;border:1px solid var(--warm-faint)}
+.claim-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+.claim-text{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.5}
+
+/* ── SKIN CONCERNS ── */
+.concerns-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.concern-tag{font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid;font-weight:400}
+
+/* ── TABS within bundle ── */
+.inner-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.inner-tab{padding:7px 16px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;border-radius:30px;border:1px solid var(--warm-faint);background:transparent;color:var(--warm-mid);cursor:pointer;transition:all .2s}
+.inner-tab.active{background:var(--charcoal);color:var(--white);border-color:var(--charcoal)}
+.inner-section{display:none}.inner-section.active{display:block}
+
+/* ── FAQ ── */
+.faq-item{border-radius:10px;border:1px solid var(--warm-faint);background:var(--white);overflow:hidden;margin-bottom:8px;cursor:pointer}
+.faq-q{padding:14px 18px;font-size:13px;font-weight:400;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-chevron{width:16px;height:16px;flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-chevron{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 18px 14px;font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.65;border-top:1px solid var(--warm-faint)}
+
+/* ══════════════════════════════════════
+   MEGA COMPARISON TABLE
+══════════════════════════════════════ */
+.comparison-wrap{overflow-x:auto;margin-bottom:40px}
+.comp-table{border-collapse:collapse;width:100%;min-width:900px;font-size:12px}
+.comp-table th,.comp-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--warm-faint);vertical-align:top}
+.comp-table th{font-weight:500;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--warm-mid);background:var(--cream);position:sticky;top:0}
+.comp-table th.bundle-th{text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:0;text-transform:none;font-weight:400;color:var(--charcoal)}
+.comp-table .product-th{font-weight:600;font-size:12px;color:var(--charcoal);white-space:nowrap}
+td.present{text-align:center}
+td.absent-cell{text-align:center;color:var(--warm-light)}
+.present-dot{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:11px;font-weight:500}
+.absent-dash{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.03);color:var(--warm-light);font-size:14px}
+.comp-table tr:hover td{background:rgba(0,0,0,.015)}
+
+/* ── PRODUCT ROW DETAILS (mega) ── */
+.comp-detail-row{background:var(--warm-faint)}
+.comp-detail-row td{padding:16px 14px;font-size:11px;font-weight:300;color:var(--warm-mid);line-height:1.6}
+
+/* ── LEGEND ── */
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:300;color:var(--warm-mid)}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* ── PRODUCT DEEP DIVES ── */
+.product-deep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:8px}
+.pdg-card{border-radius:14px;padding:20px;border:1px solid var(--warm-faint);background:var(--white)}
+.pdg-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:4px}
+.pdg-type{font-size:11px;color:var(--warm-light);font-weight:300;margin-bottom:12px}
+.pdg-section-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;color:var(--warm-light);margin-bottom:6px;margin-top:12px}
+.pdg-text{font-size:12px;font-weight:300;color:var(--warm-mid);line-height:1.6}
+.pdg-bundles{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.pdg-bundle-tag{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:400}
+
+/* ── INSIGHT BOX ── */
+.insight-box{border-radius:14px;padding:22px 26px;background:var(--gold-faint);border:1px solid rgba(196,154,42,.3);margin-bottom:16px}
+.insight-box h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-deep);margin-bottom:10px}
+.insight-rows{display:flex;flex-direction:column;gap:8px}
+.insight-row{display:flex;gap:10px;align-items:flex-start}
+.i-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px}
+.insight-row p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.6}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:40px 24px;border-top:1px solid var(--warm-faint);margin-top:60px}
+.footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--warm-light)}
+.footer strong{font-family:'Jost',sans-serif;font-style:normal;font-size:10px;letter-spacing:.2em;text-transform:uppercase;display:block;margin-top:8px;color:var(--gold)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:700px){
+  .bundle-header{flex-direction:column}
+  .bh-right{align-items:flex-start}
+  .meta-pills{justify-content:flex-start}
+  .routine-flows{grid-template-columns:1fr}
+}
+
+/* COLOR THEMES per bundle */
+.theme-ampm .bh-badge{background:var(--c-ampm);color:var(--white)}.theme-ampm .bh-name{color:var(--c-ampm)}.theme-ampm .bundle-header{background:var(--c-ampm-l);border-color:rgba(46,94,78,.2)}.theme-ampm .pc-step{color:var(--c-ampm)}.theme-ampm .product-card{background:var(--c-ampm-l);border-color:rgba(46,94,78,.2)}.theme-ampm .rs-num{background:var(--c-ampm);color:var(--white)}.theme-ampm .inner-tab.active{background:var(--c-ampm);border-color:var(--c-ampm)}.theme-ampm .present-dot{background:var(--c-ampm);color:var(--white)}.theme-ampm .nav-btn.active{background:var(--c-ampm);color:var(--white)}.theme-ampm .concern-tag{border-color:rgba(46,94,78,.3);color:var(--c-ampm);background:var(--c-ampm-l)}.theme-ampm .price-now{color:var(--c-ampm)}
+
+.theme-timeless .bh-badge{background:var(--c-timeless);color:var(--white)}.theme-timeless .bh-name{color:var(--c-timeless)}.theme-timeless .bundle-header{background:var(--c-timeless-l);border-color:rgba(90,58,42,.2)}.theme-timeless .pc-step{color:var(--c-timeless)}.theme-timeless .product-card{background:var(--c-timeless-l);border-color:rgba(90,58,42,.2)}.theme-timeless .rs-num{background:var(--c-timeless);color:var(--white)}.theme-timeless .inner-tab.active{background:var(--c-timeless);border-color:var(--c-timeless)}.theme-timeless .present-dot{background:var(--c-timeless);color:var(--white)}.theme-timeless .nav-btn.active{background:var(--c-timeless);color:var(--white)}.theme-timeless .concern-tag{border-color:rgba(90,58,42,.3);color:var(--c-timeless);background:var(--c-timeless-l)}.theme-timeless .price-now{color:var(--c-timeless)}
+
+.theme-rosacea .bh-badge{background:var(--c-rosacea);color:var(--white)}.theme-rosacea .bh-name{color:var(--c-rosacea)}.theme-rosacea .bundle-header{background:var(--c-rosacea-l);border-color:rgba(139,58,74,.2)}.theme-rosacea .pc-step{color:var(--c-rosacea)}.theme-rosacea .product-card{background:var(--c-rosacea-l);border-color:rgba(139,58,74,.2)}.theme-rosacea .rs-num{background:var(--c-rosacea);color:var(--white)}.theme-rosacea .inner-tab.active{background:var(--c-rosacea);border-color:var(--c-rosacea)}.theme-rosacea .present-dot{background:var(--c-rosacea);color:var(--white)}.theme-rosacea .nav-btn.active{background:var(--c-rosacea);color:var(--white)}.theme-rosacea .concern-tag{border-color:rgba(139,58,74,.3);color:var(--c-rosacea);background:var(--c-rosacea-l)}.theme-rosacea .price-now{color:var(--c-rosacea)}
+
+.theme-hormonal .bh-badge{background:var(--c-hormonal);color:var(--white)}.theme-hormonal .bh-name{color:var(--c-hormonal)}.theme-hormonal .bundle-header{background:var(--c-hormonal-l);border-color:rgba(74,58,106,.2)}.theme-hormonal .pc-step{color:var(--c-hormonal)}.theme-hormonal .product-card{background:var(--c-hormonal-l);border-color:rgba(74,58,106,.2)}.theme-hormonal .rs-num{background:var(--c-hormonal);color:var(--white)}.theme-hormonal .inner-tab.active{background:var(--c-hormonal);border-color:var(--c-hormonal)}.theme-hormonal .present-dot{background:var(--c-hormonal);color:var(--white)}.theme-hormonal .nav-btn.active{background:var(--c-hormonal);color:var(--white)}.theme-hormonal .concern-tag{border-color:rgba(74,58,106,.3);color:var(--c-hormonal);background:var(--c-hormonal-l)}.theme-hormonal .price-now{color:var(--c-hormonal)}
+
+.theme-hydration .bh-badge{background:var(--c-hydration);color:var(--white)}.theme-hydration .bh-name{color:var(--c-hydration)}.theme-hydration .bundle-header{background:var(--c-hydration-l);border-color:rgba(42,74,122,.2)}.theme-hydration .pc-step{color:var(--c-hydration)}.theme-hydration .product-card{background:var(--c-hydration-l);border-color:rgba(42,74,122,.2)}.theme-hydration .rs-num{background:var(--c-hydration);color:var(--white)}.theme-hydration .inner-tab.active{background:var(--c-hydration);border-color:var(--c-hydration)}.theme-hydration .present-dot{background:var(--c-hydration);color:var(--white)}.theme-hydration .nav-btn.active{background:var(--c-hydration);color:var(--white)}.theme-hydration .concern-tag{border-color:rgba(42,74,122,.3);color:var(--c-hydration);background:var(--c-hydration-l)}.theme-hydration .price-now{color:var(--c-hydration)}
+
+.theme-bright .bh-badge{background:var(--c-bright);color:var(--white)}.theme-bright .bh-name{color:var(--c-bright)}.theme-bright .bundle-header{background:var(--c-bright-l);border-color:rgba(106,90,26,.2)}.theme-bright .pc-step{color:var(--c-bright)}.theme-bright .product-card{background:var(--c-bright-l);border-color:rgba(106,90,26,.2)}.theme-bright .rs-num{background:var(--c-bright);color:var(--white)}.theme-bright .inner-tab.active{background:var(--c-bright);border-color:var(--c-bright)}.theme-bright .present-dot{background:var(--c-bright);color:var(--white)}.theme-bright .nav-btn.active{background:var(--c-bright);color:var(--white)}.theme-bright .concern-tag{border-color:rgba(106,90,26,.3);color:var(--c-bright);background:var(--c-bright-l)}.theme-bright .price-now{color:var(--c-bright)}
+
+.theme-daily .bh-badge{background:var(--c-daily);color:var(--white)}.theme-daily .bh-name{color:var(--c-daily)}.theme-daily .bundle-header{background:var(--c-daily-l);border-color:rgba(58,90,58,.2)}.theme-daily .pc-step{color:var(--c-daily)}.theme-daily .product-card{background:var(--c-daily-l);border-color:rgba(58,90,58,.2)}.theme-daily .rs-num{background:var(--c-daily);color:var(--white)}.theme-daily .inner-tab.active{background:var(--c-daily);border-color:var(--c-daily)}.theme-daily .present-dot{background:var(--c-daily);color:var(--white)}.theme-daily .nav-btn.active{background:var(--c-daily);color:var(--white)}.theme-daily .concern-tag{border-color:rgba(58,90,58,.3);color:var(--c-daily);background:var(--c-daily-l)}.theme-daily .price-now{color:var(--c-daily)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">Nyrah Beauty · Internal Knowledge Base</div>
+  <h1>Bundles, Routines &amp;<br><em>Everything In Between</em></h1>
+  <p class="hero-sub">Click any bundle to explore products, audiences, routines, and reasoning. Use the Mega Comparison to see the full picture at once.</p>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-scroll">
+    <button class="nav-btn active theme-ampm" onclick="showPanel('ampm',this)">Complete AM/PM</button>
+    <button class="nav-btn theme-timeless" onclick="showPanel('timeless',this)">Timeless Skin</button>
+    <button class="nav-btn theme-rosacea" onclick="showPanel('rosacea',this)">Rosacea Relief</button>
+    <button class="nav-btn theme-hormonal" onclick="showPanel('hormonal',this)">Hormonal Breakout</button>
+    <button class="nav-btn theme-hydration" onclick="showPanel('hydration',this)">Deep Hydration</button>
+    <button class="nav-btn theme-bright" onclick="showPanel('bright',this)">Bright &amp; Even</button>
+    <button class="nav-btn theme-daily" onclick="showPanel('daily',this)">Daily Routine</button>
+    <button class="nav-btn" style="border-color:var(--gold);color:var(--gold)" onclick="showPanel('compare',this)">⟷ Mega Compare</button>
+    <button class="nav-btn" style="border-color:var(--gold);color:var(--gold)" onclick="showPanel('products',this)">◎ All Products</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ════════════════════════════════════
+     1. COMPLETE AM/PM ROUTINE
+════════════════════════════════════ -->
+<div class="panel active theme-ampm" id="panel-ampm">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Complete System · 7 Products</div>
+      <div class="bh-name">Complete AM/PM Routine</div>
+      <div class="bh-desc">Nyrah's most complete offering. Every core product in one purchase — covering every step morning and night. Built for all skin types, especially sensitive, reactive, mature, and hormonal skin.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €351.90</div><div class="price-now">€249.95</div><div class="price-note">Save 40% · Fragranced or Fragrance Free</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-ampm);color:var(--c-ampm);background:var(--c-ampm-l)">All Skin Types</span><span class="meta-pill" style="border-color:var(--c-ampm);color:var(--c-ampm);background:var(--c-ampm-l)">8–12 weeks supply</span><span class="meta-pill" style="border-color:var(--c-ampm);color:var(--c-ampm);background:var(--c-ampm-l)">No SPF included</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('ampm','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('ampm','routine',this)">Routine</button>
+    <button class="inner-tab" onclick="innerTab('ampm','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('ampm','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="ampm-products">
+    <h3 class="section-h">7 Full-Sized Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1 · AM &amp; PM</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E+C Gel Cleanser · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Removes overnight oil, product residue, and environmental buildup without stripping. Clean canvas for everything that follows.</div><div class="pc-keys"><span class="pc-key">Vitamin E</span><span class="pc-key">Vitamin C</span><span class="pc-key">Papaya Enzymes</span><span class="pc-key">Milk Thistle</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2 · AM &amp; PM</div><div class="pc-name">Drench</div><div class="pc-type">Triple Molecular Hyaluronic Serum · 30ml</div><div class="pc-role-label">Role</div><div class="pc-role">Hydrates at every skin depth using three molecular weights of HA. Applied to damp skin to pull maximum moisture in before sealing.</div><div class="pc-keys"><span class="pc-key">Hydrolyzed HA</span><span class="pc-key">Glycerin</span><span class="pc-key">Salicylic Acid</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3 · AM</div><div class="pc-name">Glisten</div><div class="pc-type">Superfood Peptide Serum · 30ml</div><div class="pc-role-label">Role</div><div class="pc-role">Signals skin to produce collagen, repair itself, stay firm. Antioxidant botanicals shield against daily environmental damage.</div><div class="pc-keys"><span class="pc-key">Peptides</span><span class="pc-key">Brown Algae</span><span class="pc-key">Avocado Extract</span><span class="pc-key">Paeonia Root</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3 · PM only</div><div class="pc-name">Transform</div><div class="pc-type">Bio-Retinol &amp; Bakuchiol Serum · 30ml</div><div class="pc-role-label">Role</div><div class="pc-role">Sends repair signals deep into skin cells overnight — speeds cell turnover, reduces fine lines, fades uneven tone. PM only due to UV sensitivity.</div><div class="pc-keys"><span class="pc-key">Bakuchiol</span><span class="pc-key">Bidens Pilosa</span><span class="pc-key">Calendula</span><span class="pc-key">⚠ Almond Oil</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4 · AM</div><div class="pc-name">Infuse</div><div class="pc-type">Oxygen Botanical Moisturiser · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Daytime seal — creates a barrier that prevents moisture from evaporating. Delivers Niacinamide for redness and Squalane for softness all day.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Squalane</span><span class="pc-key">Shea Butter</span><span class="pc-key">Argan Oil</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4 · PM</div><div class="pc-name">Absorb</div><div class="pc-type">Water-Free Moisturising Jelly Serum · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Rich oil-based overnight seal. Creates ideal repair conditions for Transform to work — locks everything in while skin rebuilds through the night.</div><div class="pc-keys"><span class="pc-key">Argan Oil</span><span class="pc-key">Jojoba Oil</span><span class="pc-key">Sodium Hyaluronate</span><span class="pc-key">Vitamin C</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM &amp; PM</div><div class="pc-name">Tonic</div><div class="pc-type">Hyaluronic Cooling Mist · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Calms surface irritation after applying products. Adds last layer of HA. Sets everything and keeps skin feeling dewy not heavy. Can be used midday.</div><div class="pc-keys"><span class="pc-key">Hyaluronic Acid</span><span class="pc-key">Chamomile</span><span class="pc-key">Aloe Vera</span><span class="pc-key">Green Tea</span></div></div>
+    </div>
+    <div class="insight-box" style="margin-top:20px"><h4>Why No SPF in This Bundle?</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p>The Complete AM/PM Routine is the broadest, most foundational Nyrah bundle. SPF is sold separately — customers choose Lumina SPF30 (brightening tint) or SPF50+ (pure protection) based on their need. Not including SPF keeps the bundle universally applicable.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="ampm-routine">
+    <h3 class="section-h">AM &amp; PM Routine Steps</h3>
+    <div class="routine-flows">
+      <div class="routine-block">
+        <div class="routine-label">☀ Morning Routine</div>
+        <div class="routine-steps">
+          <div class="rs-item"><div class="rs-num">1</div><div class="rs-content"><div class="rs-name">Undress</div><div class="rs-what">Cleanse — wash off, removes overnight oil</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">2</div><div class="rs-content"><div class="rs-name">Drench</div><div class="rs-what">Hydrate — on damp skin, 3 molecular weights</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">3</div><div class="rs-content"><div class="rs-name">Glisten</div><div class="rs-what">Nourish — peptides + antioxidant protection</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">4</div><div class="rs-content"><div class="rs-name">Infuse</div><div class="rs-what">Seal — daytime moisture lock</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">5</div><div class="rs-content"><div class="rs-name">Tonic</div><div class="rs-what">Set — soothe, refresh, final HA layer</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">+</div><div class="rs-content"><div class="rs-name">SPF</div><div class="rs-what">Add separately — Lumina SPF30 or SPF50+</div></div></div>
+        </div>
+      </div>
+      <div class="routine-block">
+        <div class="routine-label">🌙 Evening Routine</div>
+        <div class="routine-steps">
+          <div class="rs-item"><div class="rs-num">1</div><div class="rs-content"><div class="rs-name">Undress</div><div class="rs-what">Cleanse — most important cleanse, removes full day</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">2</div><div class="rs-content"><div class="rs-name">Drench</div><div class="rs-what">Hydrate — loads moisture before overnight seal</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">3</div><div class="rs-content"><div class="rs-name">Transform</div><div class="rs-what">Repair — Bakuchiol sends renewal signals deep</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">4</div><div class="rs-content"><div class="rs-name">Absorb</div><div class="rs-what">Seal richly — overnight occlusive, locks Transform in</div></div></div>
+          <div class="rs-connector"></div>
+          <div class="rs-item"><div class="rs-num">5</div><div class="rs-content"><div class="rs-name">Tonic</div><div class="rs-what">Calm — soothes surface before sleep</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-box"><h4>Pro Tip from the Page</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p>After applying Undress, press a warm damp cloth gently to skin. This boosts absorption — the heat opens pores slightly so Drench and Glisten penetrate more effectively.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="ampm-audience">
+    <h3 class="section-h">Who This Is For</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Dry or dehydrated skin at any age</div>
+      <div class="audience-item">Sensitive or reactive skin that stings with most products</div>
+      <div class="audience-item">Rosacea-prone skin</div>
+      <div class="audience-item">Mature or aging skin</div>
+      <div class="audience-item">Hormonally disrupted skin — menopause, perimenopause</div>
+      <div class="audience-item">Skin with a compromised or damaged barrier</div>
+      <div class="audience-item">Women overwhelmed by complicated routines</div>
+      <div class="audience-item">"Done with guessing" — want one complete trusted system</div>
+    </div>
+    <div class="concerns-wrap" style="margin-top:16px">
+      <span class="concern-tag">Dryness</span><span class="concern-tag">Sensitivity</span><span class="concern-tag">Rosacea</span><span class="concern-tag">Mature Skin</span><span class="concern-tag">Hormonal Changes</span><span class="concern-tag">Barrier Damage</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="ampm-claims">
+    <h3 class="section-h">Key Claims (Exactly as Stated)</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Formulated in Ireland for real women whose skin has changed</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Plant-based, cruelty-free, pregnancy-safe, vegan-friendly</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Each bottle lasts 8–12 weeks with consistent AM and PM use</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Free from parabens, sulfates, drying alcohols, mineral oils, gluten, and synthetic dyes</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Hand-packed in Ireland, small-batch production</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Includes step-by-step routine guide in every box</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">60-day easy returns · WhatsApp order updates</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Rated 4.9/5 based on 3,000+ Trustpilot reviews</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     2. TIMELESS SKIN BUNDLE
+════════════════════════════════════ -->
+<div class="panel theme-timeless" id="panel-timeless">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Anti-Ageing · 6 Products · Includes SPF</div>
+      <div class="bh-name">Timeless Skin Bundle</div>
+      <div class="bh-desc">Built exclusively for mature and aging skin — perimenopause, menopause, and beyond. Every product targets fine lines, firmness loss, dullness, and age-related skin changes. The only bundle that positions SPF as a core anti-ageing step.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €314.95</div><div class="price-now">€220.00</div><div class="price-note">SPF30 or SPF50+ variant</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-timeless);color:var(--c-timeless);background:var(--c-timeless-l)">Mature Skin</span><span class="meta-pill" style="border-color:var(--c-timeless);color:var(--c-timeless);background:var(--c-timeless-l)">Perimenopause</span><span class="meta-pill" style="border-color:var(--c-timeless);color:var(--c-timeless);background:var(--c-timeless-l)">Includes SPF</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('timeless','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('timeless','absent',this)">What's Missing &amp; Why</button>
+    <button class="inner-tab" onclick="innerTab('timeless','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('timeless','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="timeless-products">
+    <h3 class="section-h">6 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">Gentle renewal — removes without stripping. Milk Thistle and Papaya Enzymes support light exfoliation while calming inflammation.</div><div class="pc-keys"><span class="pc-key">Milk Thistle</span><span class="pc-key">Papaya Enzymes</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2</div><div class="pc-name">Drench</div><div class="pc-type">Triple Molecular HA Serum · 30ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">Softens fine dehydration lines and restores plumpness. Aging skin loses moisture faster — three molecular weights reach every depth.</div><div class="pc-keys"><span class="pc-key">Hydrolyzed HA</span><span class="pc-key">Glycerin</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3</div><div class="pc-name">Glisten</div><div class="pc-type">Peptide Serum · 30ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">Firmness and glow — peptides support collagen and elasticity. Marine extracts and Paeonia Root improve tone and radiance.</div><div class="pc-keys"><span class="pc-key">Peptides</span><span class="pc-key">Marine Algae</span><span class="pc-key">Paeonia Root</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4 · PM</div><div class="pc-name">Transform</div><div class="pc-type">Plant-Based Bio-Retinol · 30ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">Smooth fine lines and refine texture without retinol irritation. Bakuchiol and Bidens Pilosa mimic retinol results safely for aging skin.</div><div class="pc-keys"><span class="pc-key">Bakuchiol</span><span class="pc-key">Bidens Pilosa</span><span class="pc-key">⚠ Almond Oil</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 5 · PM</div><div class="pc-name">Absorb</div><div class="pc-type">Restorative Overnight Balm · 50ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">Overnight repair while you sleep. Jojoba oil and retinyl palmitate support renewal. Seals in hydration for softer, stronger skin by morning.</div><div class="pc-keys"><span class="pc-key">Argan Oil</span><span class="pc-key">Jojoba Oil</span><span class="pc-key">Vitamin E</span><span class="pc-key">Vitamin C</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM</div><div class="pc-name">Lumina SPF</div><div class="pc-type">SPF30 or SPF50+ Serum · 30ml</div><div class="pc-role-label">Role in this bundle</div><div class="pc-role">UV causes collagen breakdown. Astaxanthin (6,000× stronger than Vitamin C) fights free radical damage. SPF is the most important anti-ageing step available.</div><div class="pc-keys"><span class="pc-key">Astaxanthin</span><span class="pc-key">Broad-Spectrum UV</span></div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="timeless-absent">
+    <h3 class="section-h">What's Not Here — and Why</h3>
+    <div class="absent-grid">
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Infuse (Moisturiser)</div><div class="absent-why">The bundle replaces the daytime moisturiser role with Lumina SPF as the final AM layer. For mature skin, the priority is overnight repair (Absorb) and UV protection (SPF). Infuse was removed to avoid overlap and to keep the focus on anti-ageing actives. Very dry mature skin may still benefit from adding Infuse separately.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Tonic (Mist)</div><div class="absent-why">Tonic is a comfort and finishing product — not a structural skincare step. When Nyrah designed this bundle, Tonic was the least anti-ageing-specific product and was removed to keep the routine tight at 6 steps. Think of it as the bread basket being cut to keep the meal focused.</div></div>
+    </div>
+    <div class="insight-box" style="margin-top:16px"><h4>The Core Logic of What Was Kept</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p><strong>Drench + Glisten + Transform + Absorb</strong> form the anti-ageing core — hydrate, nourish, renew, repair overnight. Lumina SPF completes it by preventing future collagen damage. Everything in this bundle earns its place specifically for aging skin.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="timeless-audience">
+    <h3 class="section-h">Who This Is For</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Women in perimenopause or menopause</div>
+      <div class="audience-item">Women over 40 with visible fine lines and firmness loss</div>
+      <div class="audience-item">Women with dull, uneven, or aging skin</div>
+      <div class="audience-item">Women who tried harsh anti-ageing products and experienced irritation</div>
+      <div class="audience-item">Women who complement in-clinic treatments and want daily support</div>
+      <div class="audience-item">Skin that feels drier, thinner, or more reactive due to hormonal changes</div>
+    </div>
+    <div class="concerns-wrap" style="margin-top:16px">
+      <span class="concern-tag">Fine Lines &amp; Wrinkles</span><span class="concern-tag">Loss of Firmness</span><span class="concern-tag">Dullness</span><span class="concern-tag">Uneven Tone</span><span class="concern-tag">Loss of Glow</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="timeless-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Smooths, plumps, and protects — 6-step ritual</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Results: softer/hydrated in 1–2 weeks · fine lines and firmness in 4–6 weeks</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Astaxanthin — 6,000× stronger than Vitamin C against free radical damage</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Suitable for sensitive, rosacea, eczema, and psoriasis-prone skin</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">5–7 minutes morning and night</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Formulated by Lorraine Corcoran — mechanical engineer, 25 years in product design</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     3. ROSACEA RELIEF BUNDLE
+════════════════════════════════════ -->
+<div class="panel theme-rosacea" id="panel-rosacea">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Condition-Specific · 5 Products · Fragrance-Free Infuse</div>
+      <div class="bh-name">Rosacea Relief Bundle</div>
+      <div class="bh-desc">Nyrah's most condition-specific bundle. Every product is chosen to calm redness, reduce flare-ups, and strengthen the skin barrier. SPF is included specifically as a rosacea trigger prevention tool, not just sun protection.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €270.95</div><div class="price-now">€195.00</div><div class="price-note">SPF30 or SPF50+ variant</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-rosacea);color:var(--c-rosacea);background:var(--c-rosacea-l)">Rosacea</span><span class="meta-pill" style="border-color:var(--c-rosacea);color:var(--c-rosacea);background:var(--c-rosacea-l)">Fragrance-Free Infuse</span><span class="meta-pill" style="border-color:var(--c-rosacea);color:var(--c-rosacea);background:var(--c-rosacea-l)">Includes SPF</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('rosacea','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('rosacea','absent',this)">What's Missing &amp; Why</button>
+    <button class="inner-tab" onclick="innerTab('rosacea','audience',this)">Audience &amp; Symptoms</button>
+    <button class="inner-tab" onclick="innerTab('rosacea','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="rosacea-products">
+    <h3 class="section-h">5 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role for rosacea</div><div class="pc-role">Chamomile and Milk Thistle are anti-inflammatory botanicals that calm irritation during cleansing — so the barrier isn't further disrupted at step one.</div><div class="pc-keys"><span class="pc-key">Chamomile</span><span class="pc-key">Milk Thistle</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2</div><div class="pc-name">Drench</div><div class="pc-type">Triple Molecular HA Serum · 30ml</div><div class="pc-role-label">Role for rosacea</div><div class="pc-role">Rosacea-prone skin is often dehydrated — a compromised barrier loses moisture faster. Drench replenishes at every layer without triggering flushing.</div><div class="pc-keys"><span class="pc-key">Hydrolyzed HA</span><span class="pc-key">Glycerin</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3</div><div class="pc-name">Glisten</div><div class="pc-type">Peptide Serum · 30ml</div><div class="pc-role-label">Role for rosacea</div><div class="pc-role">Marine Algae and Paeonia Root specifically reduce visible redness and support barrier recovery. Lightweight — won't trigger heat or flushing.</div><div class="pc-keys"><span class="pc-key">Marine Algae</span><span class="pc-key">Paeonia Root</span><span class="pc-key">Aloe Vera</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4</div><div class="pc-name">Infuse (FF)</div><div class="pc-type">Fragrance-Free Moisturiser · 50ml</div><div class="pc-role-label">Role for rosacea</div><div class="pc-role">Fragrance is a documented rosacea trigger — so Infuse here is fixed as Fragrance-Free. Niacinamide is clinically supported for reducing rosacea-associated redness.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Squalane</span><span class="pc-key">Shea Butter</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM</div><div class="pc-name">Lumina SPF</div><div class="pc-type">SPF30 or SPF50+ Serum · 30ml</div><div class="pc-role-label">Role for rosacea</div><div class="pc-role">UV is a primary rosacea trigger. Astaxanthin provides antioxidant protection against UV and environmental triggers that cause flare-ups — not just sunburn.</div><div class="pc-keys"><span class="pc-key">Astaxanthin</span><span class="pc-key">Broad-Spectrum UV</span></div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="rosacea-absent">
+    <h3 class="section-h">What's Not Here — and Why</h3>
+    <div class="absent-grid">
+      <div class="absent-card"><div class="absent-tag">Deliberately excluded</div><div class="absent-name">Transform (Bio-Retinol)</div><div class="absent-why">Transform contains Bakuchiol, Lavender Oil, Lime Oil, and multiple essential oil fragrance components. For rosacea skin, essential oils and fragrance actives are among the most common flare-up triggers. This exclusion has a direct medical rationale — it is the only bundle where an absent product has a clinical justification. Excluding Transform was the correct formulation decision.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Absorb (Overnight Balm)</div><div class="absent-why">Absorb contains Parfum regardless of bundle variant — this makes it unsuitable as a fixed inclusion for a rosacea bundle where fragrance avoidance is a core principle. Also an overnight comfort product rather than a rosacea-specific treatment step.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Tonic (Mist)</div><div class="absent-why">Comfort and finishing product. Not a rosacea treatment. Removed to keep the bundle focused at 5 targeted steps. Tonic also contains Parfum.</div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="rosacea-audience">
+    <h3 class="section-h">Audience &amp; Symptoms</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Diagnosed or suspected rosacea</div>
+      <div class="audience-item">Chronic facial redness that doesn't resolve</div>
+      <div class="audience-item">Skin that flushes, stings, or reacts to most products</div>
+      <div class="audience-item">Visible blood vessels or persistent bumps</div>
+      <div class="audience-item">Skin reactive to UV, heat, or wind</div>
+    </div>
+    <div class="section-h" style="margin-top:24px">Named Rosacea Symptoms (from page)</div>
+    <div class="concerns-wrap">
+      <span class="concern-tag">Facial Redness</span><span class="concern-tag">Blushing</span><span class="concern-tag">Burning &amp; Stinging</span><span class="concern-tag">Bumps &amp; Pimples</span><span class="concern-tag">Skin Swelling</span><span class="concern-tag">Visible Blood Vessels</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="rosacea-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Calm the Redness, Soothe Your Skin & Restore Lasting Confidence In As Little As Two Weeks"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Visibly reduces redness and flare-ups · Calms irritation · Strengthens barrier</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">UV is named as a rosacea trigger — SPF included specifically for this</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Suitable for sensitive, rosacea, eczema, and psoriasis-prone skin</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Fragrance-Free Infuse — fixed, not optional</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     4. HORMONAL BREAKOUT BUNDLE
+════════════════════════════════════ -->
+<div class="panel theme-hormonal" id="panel-hormonal">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Adult Acne · 5 Products · No Drench · Fragrance-Free Infuse</div>
+      <div class="bh-name">Hormonal Breakout Bundle</div>
+      <div class="bh-desc">Built around a clear philosophical position: adult hormonal acne should not be treated like teenage acne. No harsh acids, no stripping, no aggressive actives. Barrier-supportive, anti-inflammatory, and gentle enough for skin that is simultaneously oily and dehydrated.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €275.95</div><div class="price-now">€195.00</div><div class="price-note">SPF30 or SPF50+ variant</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-hormonal);color:var(--c-hormonal);background:var(--c-hormonal-l)">Adult Acne</span><span class="meta-pill" style="border-color:var(--c-hormonal);color:var(--c-hormonal);background:var(--c-hormonal-l)">No Drench</span><span class="meta-pill" style="border-color:var(--c-hormonal);color:var(--c-hormonal);background:var(--c-hormonal-l)">Includes SPF</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('hormonal','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('hormonal','absent',this)">What's Missing &amp; Why</button>
+    <button class="inner-tab" onclick="innerTab('hormonal','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('hormonal','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="hormonal-products">
+    <h3 class="section-h">5 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role for hormonal acne</div><div class="pc-role">Milk Thistle reduces inflammation. Papaya Enzymes gently refine texture without abrasion — acne-prone skin is often over-exfoliated with scrubs. This cleanses without further damaging the barrier.</div><div class="pc-keys"><span class="pc-key">Milk Thistle</span><span class="pc-key">Papaya Enzymes</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2</div><div class="pc-name">Glisten</div><div class="pc-type">Peptide Serum · 30ml</div><div class="pc-role-label">Role for hormonal acne</div><div class="pc-role">Marine Algae and Paeonia Root reduce redness and support barrier repair. Lightweight — non-comedogenic (stated explicitly here, unique to this bundle). Won't clog pores or sit heavily on congested skin.</div><div class="pc-keys"><span class="pc-key">Marine Algae</span><span class="pc-key">Paeonia Root</span><span class="pc-key">Non-comedogenic</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3 · PM</div><div class="pc-name">Transform</div><div class="pc-type">Plant-Based Bio-Retinol · 30ml</div><div class="pc-role-label">Role for hormonal acne</div><div class="pc-role">Bakuchiol and Bidens Pilosa fade post-acne marks and smooth texture. Clears congestion without the irritation of traditional retinol or harsh acids. The gentler effective alternative for adult breakouts.</div><div class="pc-keys"><span class="pc-key">Bakuchiol</span><span class="pc-key">Bidens Pilosa</span><span class="pc-key">Calendula</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4</div><div class="pc-name">Infuse (FF)</div><div class="pc-type">Fragrance-Free Moisturiser · 50ml</div><div class="pc-role-label">Role for hormonal acne</div><div class="pc-role">Niacinamide regulates oil production (stated here for the first time across all bundles). Liquorice Root and Indian Gooseberry brighten marks. Breathable — light enough for oily skin, rich enough for dry patches.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Liquorice Root</span><span class="pc-key">Indian Gooseberry</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM</div><div class="pc-name">Lumina SPF</div><div class="pc-type">SPF30 or SPF50+ Serum · 30ml</div><div class="pc-role-label">Role for hormonal acne</div><div class="pc-role">UV darkens post-acne marks (post-inflammatory hyperpigmentation). Without SPF, any mark-fading work is partially undone daily. Astaxanthin provides antioxidant protection from triggers.</div><div class="pc-keys"><span class="pc-key">Astaxanthin</span><span class="pc-key">Broad-Spectrum UV</span></div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="hormonal-absent">
+    <h3 class="section-h">What's Not Here — and Why</h3>
+    <div class="absent-grid">
+      <div class="absent-card"><div class="absent-tag">Deliberately excluded</div><div class="absent-name">Drench (Hyaluronic Serum)</div><div class="absent-why">Drench contains Salicylic Acid — a keratolytic exfoliant. The entire positioning of this bundle is built around barrier-supportive care rather than active exfoliation. Including Salicylic Acid would directly contradict the "no harsh actives" narrative. Transform (Bakuchiol) and Infuse (Niacinamide) already address congestion and oil regulation through gentler mechanisms. While they don't fully replicate salicylic acid's pore-penetrating action, they cover similar concerns more appropriately for sensitive, hormonally reactive skin.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Absorb (Overnight Balm)</div><div class="absent-why">Absorb is an oil-rich overnight balm. For acne-prone skin that is already dealing with oil imbalance, a heavy overnight occlusive isn't the right fit. Transform (PM) handles overnight renewal without the heaviness.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Tonic (Mist)</div><div class="absent-why">Comfort product. Contains Parfum. Not an anti-acne treatment step. Removed to keep the bundle focused.</div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="hormonal-audience">
+    <h3 class="section-h">Audience</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Women in their 30s, 40s, or 50s experiencing breakouts</div>
+      <div class="audience-item">Acne driven by menstrual cycle, perimenopause, or stress hormones</div>
+      <div class="audience-item">Skin that is simultaneously oily and dehydrated</div>
+      <div class="audience-item">Women dealing with post-acne marks more than active spots</div>
+      <div class="audience-item">Women who found standard acne products too drying or damaging</div>
+    </div>
+    <div class="concerns-wrap" style="margin-top:16px">
+      <span class="concern-tag">Painful Under-Skin Acne</span><span class="concern-tag">Breakouts That Linger</span><span class="concern-tag">Stubborn Red Marks</span><span class="concern-tag">Uneven Skin Tone</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="hormonal-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Clear Skin. Smooth, Blemish-Free Texture. Confidence — At Any Age."</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Calmer skin and fewer flare-ups in 2 weeks · visible improvement in 4–6 weeks</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Niacinamide regulates oil — stated here for the first time across all bundles</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">UV darkens post-acne marks — SPF is essential, not optional</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Compatible with prescription treatments — check with dermatologist first</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     5. DEEP HYDRATION BUNDLE
+════════════════════════════════════ -->
+<div class="panel theme-hydration" id="panel-hydration">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Hydration · 6 Products · Both Infuse &amp; Absorb · Fragrance-Free Infuse</div>
+      <div class="bh-name">Deep Hydration Bundle</div>
+      <div class="bh-desc">The only Nyrah bundle that includes both Infuse (daytime moisturiser) and Absorb (overnight occlusive) together — making it the most hydration-dense bundle in the range. Built on the idea that dryness is a barrier problem, not a cream problem.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €306.50</div><div class="price-now">€220.00</div><div class="price-note">SPF30 or SPF50+ variant</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-hydration);color:var(--c-hydration);background:var(--c-hydration-l)">Dry / Dehydrated</span><span class="meta-pill" style="border-color:var(--c-hydration);color:var(--c-hydration);background:var(--c-hydration-l)">Infuse + Absorb</span><span class="meta-pill" style="border-color:var(--c-hydration);color:var(--c-hydration);background:var(--c-hydration-l)">Includes SPF</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('hydration','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('hydration','absent',this)">What's Missing &amp; Why</button>
+    <button class="inner-tab" onclick="innerTab('hydration','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('hydration','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="hydration-products">
+    <h3 class="section-h">6 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">Avocado Oil and Milk Thistle replenish as they cleanse — the barrier isn't further stripped at step one. Critical for dry skin where every cleanse risks more moisture loss.</div><div class="pc-keys"><span class="pc-key">Avocado Oil</span><span class="pc-key">Milk Thistle</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2</div><div class="pc-name">Drench</div><div class="pc-type">Triple Molecular HA Serum · 30ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">The star product for this bundle. Three molecular weights hydrate at every depth — surface, mid, and deep. Plumps and softens dehydration lines. Most clearly explained here: "three weights reach every skin level."</div><div class="pc-keys"><span class="pc-key">Hydrolyzed HA</span><span class="pc-key">Glycerin</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3 · AM</div><div class="pc-name">Infuse (FF)</div><div class="pc-type">Fragrance-Free Moisturiser · 50ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">Daytime moisture seal — locks in Drench. Niacinamide, Squalane, and Shea strengthen the barrier and smooth texture. Fixed as Fragrance-Free for this bundle.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Squalane</span><span class="pc-key">Shea Butter</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4 · PM</div><div class="pc-name">Absorb</div><div class="pc-type">Overnight Occlusive Balm · 50ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">Called an "occlusive" here for the first time — creates a physical barrier preventing transepidermal water loss overnight. Restores the lipid barrier while skin sleeps. This is why both Infuse and Absorb are needed: day and night moisture protection.</div><div class="pc-keys"><span class="pc-key">Argan Oil</span><span class="pc-key">Jojoba Oil</span><span class="pc-key">Sodium Hyaluronate</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 5</div><div class="pc-name">Tonic / Elixir</div><div class="pc-type">Hydration Booster Mist · 50ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">Included in this bundle as a hydration enhancer — not just comfort. Aloe, Chamomile, and Green Tea boost absorption of products applied before it. Can be used throughout the day as a hydration refresh.</div><div class="pc-keys"><span class="pc-key">Hyaluronic Acid</span><span class="pc-key">Aloe Vera</span><span class="pc-key">Chamomile</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM</div><div class="pc-name">Lumina SPF</div><div class="pc-type">SPF30 or SPF50+ Serum · 30ml</div><div class="pc-role-label">Role for dry skin</div><div class="pc-role">UV causes transepidermal water loss and dehydration — stated here for the first time across all bundles. Astaxanthin provides antioxidant protection. SPF prevents UV-driven moisture loss, not just burning.</div><div class="pc-keys"><span class="pc-key">Astaxanthin</span><span class="pc-key">Broad-Spectrum UV</span></div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="hydration-absent">
+    <h3 class="section-h">What's Not Here — and Why</h3>
+    <div class="absent-grid">
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Transform (Bio-Retinol)</div><div class="absent-why">Transform's primary role is renewal and congestion clearing — not hydration. Its absence is logical and does not create a gap for dry skin. The bundle is purely focused on water delivery and barrier restoration. Transform can always be added separately.</div></div>
+      <div class="absent-card"><div class="absent-tag">Unexplained absence</div><div class="absent-name">Glisten (Peptide Serum)</div><div class="absent-why">Glisten is in every other targeted bundle. Its peptide and marine extract ingredients do contribute to barrier support, which is directly relevant to dry skin. No explanation is given on the page for its absence. This may be a deliberate formulation or cost decision — but it is not explained.</div></div>
+    </div>
+    <div class="insight-box" style="margin-top:16px"><h4>Why Both Infuse AND Absorb Are Here</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p>Every other bundle uses either Infuse (daytime) or Absorb (overnight) — not both. For chronically dry skin, you need a daytime moisture seal AND a rich overnight occlusive. Infuse gets you through the day. Absorb prevents moisture escaping all night. They are not redundant — they cover different time zones of hydration.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="hydration-audience">
+    <h3 class="section-h">Audience</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Persistent skin tightness, flakiness, and discomfort</div>
+      <div class="audience-item">Skin that feels dry even after using a moisturiser</div>
+      <div class="audience-item">Fine dehydration lines (different from deep wrinkles)</div>
+      <div class="audience-item">Compromised or weakened skin barrier</div>
+      <div class="audience-item">Oily but dehydrated skin — FAQ specifically addresses this</div>
+      <div class="audience-item">Anyone who's tried heavy creams for temporary relief</div>
+    </div>
+    <div class="concerns-wrap" style="margin-top:16px">
+      <span class="concern-tag">Tightness &amp; Discomfort</span><span class="concern-tag">Flaking</span><span class="concern-tag">Fine Dehydration Lines</span><span class="concern-tag">Increased Sensitivity</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="hydration-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"From Tight, Dry & Flaky To Comfortably Hydrated In As Little As Two Weeks"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Dry, dehydrated skin isn't always about age — it's your barrier crying out for repair"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Relief from tightness after first use · texture improvement 1–2 weeks · plumper skin 4–6 weeks</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Non-comedogenic — stated in FAQ here for the first time across all bundles</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">UV causes transepidermal water loss — SPF prevents UV-driven dehydration</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     6. BRIGHT & EVEN BUNDLE
+════════════════════════════════════ -->
+<div class="panel theme-bright" id="panel-bright">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Brightening · 5 Products · Fragranced Infuse · No Drench</div>
+      <div class="bh-name">Bright &amp; Even Bundle</div>
+      <div class="bh-desc">Nyrah's brightening bundle — focused on pigmentation, dark spots, melasma, and uneven tone. Gently fades existing discolouration while preventing it returning via SPF. No harsh acids or traditional retinol — all results through gentle, barrier-safe actives.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €275.95</div><div class="price-now">€195.00</div><div class="price-note">Save €80.95 · SPF variant</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-bright);color:var(--c-bright);background:var(--c-bright-l)">Pigmentation</span><span class="meta-pill" style="border-color:var(--c-bright);color:var(--c-bright);background:var(--c-bright-l)">Melasma</span><span class="meta-pill" style="border-color:var(--c-bright);color:var(--c-bright);background:var(--c-bright-l)">Fragranced Infuse</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('bright','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('bright','absent',this)">What's Missing &amp; Why</button>
+    <button class="inner-tab" onclick="innerTab('bright','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('bright','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="bright-products">
+    <h3 class="section-h">5 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role for brightening</div><div class="pc-role">Papaya Enzymes function as a mild enzymatic exfoliant — relevant for fading surface-level pigmentation. Milk Thistle calms irritation so the skin doesn't inflame post-cleanse.</div><div class="pc-keys"><span class="pc-key">Papaya Enzymes</span><span class="pc-key">Milk Thistle</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2 · PM</div><div class="pc-name">Transform</div><div class="pc-type">Plant-Based Bio-Retinol · 30ml</div><div class="pc-role-label">Role for brightening</div><div class="pc-role">Bakuchiol fades dark spots and smooths texture — the most directly brightening use case for Transform across all bundles. Retinol-type ingredients are among the most clinically supported for pigmentation fading.</div><div class="pc-keys"><span class="pc-key">Bakuchiol</span><span class="pc-key">Bidens Pilosa</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3</div><div class="pc-name">Glisten</div><div class="pc-type">Peptide Serum · 30ml</div><div class="pc-role-label">Role for brightening</div><div class="pc-role">Reducing inflammation prevents post-inflammatory hyperpigmentation from forming. Seaweed and Avocado Peptides restore radiance — glow restoration is the primary function here, unique to this bundle.</div><div class="pc-keys"><span class="pc-key">Marine Algae</span><span class="pc-key">Avocado Peptides</span><span class="pc-key">Paeonia Root</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4</div><div class="pc-name">Infuse</div><div class="pc-type">Fragranced Moisturiser · 50ml</div><div class="pc-role-label">Role for brightening</div><div class="pc-role">Niacinamide inhibits melanin transfer — one of the most clinically supported ingredients for pigmentation. Liquorice Root and Indian Gooseberry brighten. Oxylance™ delivers the "yoga glow." Note: fragranced version only.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Liquorice Root</span><span class="pc-key">Indian Gooseberry</span><span class="pc-key">Oxylance™</span></div></div>
+      <div class="product-card"><div class="pc-step">Final Step · AM</div><div class="pc-name">Lumina SPF</div><div class="pc-type">SPF30 or SPF50+ Serum · 30ml</div><div class="pc-role-label">Role for brightening</div><div class="pc-role">Without daily SPF, any pigmentation fading is partially undone by ongoing UV exposure. "Daily SPF is the single best defence against pigmentation" — stated in FAQ. Strongest SPF-as-brightening argument across all bundles.</div><div class="pc-keys"><span class="pc-key">Astaxanthin</span><span class="pc-key">Broad-Spectrum UV</span></div></div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="bright-absent">
+    <h3 class="section-h">What's Not Here — and Why</h3>
+    <div class="absent-grid">
+      <div class="absent-card"><div class="absent-tag">Consistent with Hormonal Bundle logic</div><div class="absent-name">Drench (Hyaluronic Serum)</div><div class="absent-why">Drench contains Salicylic Acid — a keratolytic exfoliant. This bundle is positioned around gentle, non-harsh actives. Including Salicylic Acid would contradict the "no harsh actives" messaging. Transform (Bakuchiol) and Infuse (Niacinamide) cover the renewal and tone-evening functions through gentler mechanisms.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Absorb (Overnight Balm)</div><div class="absent-why">Absorb is an overnight repair product. Transform handles PM renewal in this bundle. Absorb is the most expensive single product in the range — removing it keeps the brightening bundle accessible while still delivering the core brightening actives.</div></div>
+      <div class="absent-card"><div class="absent-tag">Not included</div><div class="absent-name">Tonic (Mist)</div><div class="absent-why">Comfort product. Contains Parfum. Not a brightening treatment step. Trimmed for focus.</div></div>
+    </div>
+    <div class="insight-box" style="margin-top:16px"><h4>Why Fragranced Infuse — Unlike Other Bundles?</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p>Every other condition bundle (Rosacea, Hormonal Acne, Deep Hydration) uses Fragrance-Free Infuse. The Bright & Even Bundle uses Fragranced Infuse. No explanation is given on the page. This is worth flagging — for post-inflammatory hyperpigmentation linked to acne and skin trauma, fragrance can be a sensitising trigger.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="bright-audience">
+    <h3 class="section-h">Audience</h3>
+    <div class="audience-grid">
+      <div class="audience-item">Women with dark spots and patches from sun exposure</div>
+      <div class="audience-item">Melasma or hormonal pigmentation</div>
+      <div class="audience-item">Post-acne marks and uneven tone</div>
+      <div class="audience-item">Skin tone that worsens with sun</div>
+      <div class="audience-item">Women who found brightening products too harsh or irritating</div>
+    </div>
+    <div class="concerns-wrap" style="margin-top:16px">
+      <span class="concern-tag">Dark Spots</span><span class="concern-tag">Melasma</span><span class="concern-tag">Post-Acne Marks</span><span class="concern-tag">Uneven Skin Tone</span><span class="concern-tag">Worsening with Sun</span>
+    </div>
+  </div>
+
+  <div class="inner-section" id="bright-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Even Out, Brighten Up & Feel Confident In Your Skin In As Little As Two Weeks"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Pigmentation fading: 6–8 weeks — the most honest and longest results timeline across all bundles</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Daily SPF is the single best defence against pigmentation and premature ageing"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Melasma is named as a target condition — first and only bundle to do so</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">5-minute AM/PM routine · No harsh retinols · No irritation</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     7. DAILY ROUTINE
+════════════════════════════════════ -->
+<div class="panel theme-daily" id="panel-daily">
+  <div class="bundle-header">
+    <div class="bh-left">
+      <div class="bh-badge">Entry-Level · 4 Products · No SPF · Broadest Audience</div>
+      <div class="bh-name">The Daily Routine</div>
+      <div class="bh-desc">The simplest, most accessible Nyrah set. Four essential products — cleanse, hydrate, nourish, seal. No condition-specific targeting, no overnight actives, no SPF. The entry point into the Nyrah system. Under 3 minutes morning and night.</div>
+    </div>
+    <div class="bh-right">
+      <div class="price-block"><div class="price-was">RRP €212.95</div><div class="price-now">€175.00</div><div class="price-note">Fragranced or Fragrance Free</div></div>
+      <div class="meta-pills"><span class="meta-pill" style="border-color:var(--c-daily);color:var(--c-daily);background:var(--c-daily-l)">All Skin Types</span><span class="meta-pill" style="border-color:var(--c-daily);color:var(--c-daily);background:var(--c-daily-l)">Under 3 mins</span><span class="meta-pill" style="border-color:var(--c-daily);color:var(--c-daily);background:var(--c-daily-l)">No SPF</span></div>
+    </div>
+  </div>
+
+  <div class="inner-tabs">
+    <button class="inner-tab active" onclick="innerTab('daily','products',this)">Products</button>
+    <button class="inner-tab" onclick="innerTab('daily','routine',this)">Routine Steps</button>
+    <button class="inner-tab" onclick="innerTab('daily','audience',this)">Audience</button>
+    <button class="inner-tab" onclick="innerTab('daily','claims',this)">Claims</button>
+  </div>
+
+  <div class="inner-section active" id="daily-products">
+    <h3 class="section-h">4 Products</h3>
+    <div class="products-grid">
+      <div class="product-card"><div class="pc-step">Step 1</div><div class="pc-name">Undress</div><div class="pc-type">Vitamin E Gel Cleanser · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Removes SPF, makeup, oil, and impurities without stripping. The foundation — nothing else works properly without this done right.</div><div class="pc-keys"><span class="pc-key">Vitamin E</span><span class="pc-key">Papaya Enzymes</span><span class="pc-key">Milk Thistle</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 2</div><div class="pc-name">Drench</div><div class="pc-type">Triple Molecular HA Serum · 30ml</div><div class="pc-role-label">Role</div><div class="pc-role">2–3 drops on damp skin. Hydrates deeply at every layer. Most specific application instruction on the site — dose and technique stated here.</div><div class="pc-keys"><span class="pc-key">Hydrolyzed HA</span><span class="pc-key">Glycerin</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 3</div><div class="pc-name">Glisten</div><div class="pc-type">Peptide Serum · 30ml</div><div class="pc-role-label">Role</div><div class="pc-role">Press gently into skin — not rubbed. Boosts collagen, calms inflammation, locks in moisture from Drench. Bridges hydration and protection.</div><div class="pc-keys"><span class="pc-key">Peptides</span><span class="pc-key">Brown Algae</span><span class="pc-key">Aloe Vera</span></div></div>
+      <div class="product-card"><div class="pc-step">Step 4</div><div class="pc-name">Infuse</div><div class="pc-type">Oxygen-Infused Moisturiser · 50ml</div><div class="pc-role-label">Role</div><div class="pc-role">Seals everything in. Strengthens the barrier. Delivers Niacinamide, Oxylance™, and Indian Gooseberry. Apply over face, neck, and décolletage. Available fragranced or fragrance-free.</div><div class="pc-keys"><span class="pc-key">Niacinamide</span><span class="pc-key">Squalane</span><span class="pc-key">Oxylance™</span></div></div>
+    </div>
+    <div class="insight-box" style="margin-top:20px"><h4>Key Distinction from Other Sets</h4><div class="insight-rows"><div class="insight-row"><div class="i-dot"></div><p>No Transform (no renewal), no Absorb (no overnight repair), no Tonic, no SPF. This is the foundational daytime routine. Add SPF separately. For anyone who wants to graduate to a fuller system, the Complete AM/PM Routine adds Transform, Absorb, and Tonic on top of these same four products.</p></div></div></div>
+  </div>
+
+  <div class="inner-section" id="daily-routine">
+    <h3 class="section-h">Routine Steps (Most Specific Instructions on the Site)</h3>
+    <div class="routine-block" style="max-width:500px">
+      <div class="routine-label">AM &amp; PM · Under 3 minutes</div>
+      <div class="routine-steps">
+        <div class="rs-item"><div class="rs-num">1</div><div class="rs-content"><div class="rs-name">Undress</div><div class="rs-what">Massage into damp skin. Rinse with lukewarm water.</div></div></div>
+        <div class="rs-connector"></div>
+        <div class="rs-item"><div class="rs-num">2</div><div class="rs-content"><div class="rs-name">Drench</div><div class="rs-what">2–3 drops to damp skin. Let absorb.</div></div></div>
+        <div class="rs-connector"></div>
+        <div class="rs-item"><div class="rs-num">3</div><div class="rs-content"><div class="rs-name">Glisten</div><div class="rs-what">Press gently into skin — focus under eyes and expression areas.</div></div></div>
+        <div class="rs-connector"></div>
+        <div class="rs-item"><div class="rs-num">4</div><div class="rs-content"><div class="rs-name">Infuse</div><div class="rs-what">Small amount — massage over face, neck, and décolletage.</div></div></div>
+        <div class="rs-connector"></div>
+        <div class="rs-item"><div class="rs-num">+</div><div class="rs-content"><div class="rs-name">SPF (daytime)</div><div class="rs-what">Add Lumina SPF30 or SPF50+ as the last step.</div></div></div>
+        <div class="rs-connector"></div>
+        <div class="rs-item"><div class="rs-num">opt</div><div class="rs-content"><div class="rs-name">Night option</div><div class="rs-what">Layer Drench + Glisten again for maximum overnight repair.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="daily-audience">
+    <h3 class="section-h">Audience</h3>
+    <div class="audience-grid">
+      <div class="audience-item">All skin types — broadest audience of any Nyrah product</div>
+      <div class="audience-item">Skin that feels tight, tired, or forgotten</div>
+      <div class="audience-item">Anyone who wants simplicity — under 3 minutes</div>
+      <div class="audience-item">Daily stressors: pollution, heating, weather, stress</div>
+      <div class="audience-item">Sensitive, reactive, rosacea-prone, hormonal — all covered</div>
+      <div class="audience-item">Entry point for new Nyrah customers</div>
+    </div>
+  </div>
+
+  <div class="inner-section" id="daily-claims">
+    <h3 class="section-h">Key Claims</h3>
+    <div class="claims-list">
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Less than 3 minutes a day" — shortest time claim across all Nyrah products</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Each product lasts 6–8 weeks with daily use</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Oxylance™ explained here: "enhances oxygen supply for that breathable yoga skin effect"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Infuse Fragranced scent: "grapefruit soufflé — light, citrusy, and spa-like"</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">"Real care, made simple" — brand positioning line</div></div>
+      <div class="claim-item"><div class="claim-dot"></div><div class="claim-text">Ethically made in Ireland — eco-conscious practices stated here for the first time</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     MEGA COMPARISON
+════════════════════════════════════ -->
+<div class="panel" id="panel-compare">
+  <div style="text-align:center;margin-bottom:36px">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin-bottom:8px">Every Bundle.<br><em>Every Product. Every Reason.</em></div>
+    <div style="font-size:13px;font-weight:300;color:var(--warm-mid)">Scroll horizontally to see all bundles. Click a row for reasoning.</div>
+  </div>
+
+  <div class="legend-row">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--c-ampm)"></div>Present — core to routine</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--warm-faint);border:1px dashed var(--warm-light)"></div>Absent</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div>All bundles include this</div>
+  </div>
+
+  <div class="comparison-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="bundle-th" style="color:var(--c-ampm)">Complete AM/PM</th>
+          <th class="bundle-th" style="color:var(--c-timeless)">Timeless</th>
+          <th class="bundle-th" style="color:var(--c-rosacea)">Rosacea</th>
+          <th class="bundle-th" style="color:var(--c-hormonal)">Hormonal</th>
+          <th class="bundle-th" style="color:var(--c-hydration)">Deep Hydration</th>
+          <th class="bundle-th" style="color:var(--c-bright)">Bright &amp; Even</th>
+          <th class="bundle-th" style="color:var(--c-daily)">Daily Routine</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- UNDRESS -->
+        <tr onclick="toggleDetail('undress-detail')" style="cursor:pointer">
+          <td class="product-th">Undress · Cleanser</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-rosacea);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hormonal);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-bright);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-daily);color:#fff">✓</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="undress-detail" style="display:none"><td colspan="8"><strong>Undress is in every bundle</strong> — it is the non-negotiable first step. No skincare product works on skin that hasn't been properly cleansed. The key ingredients called out vary by bundle: Chamomile and Milk Thistle (rosacea), Papaya Enzymes (acne and brightening), Avocado Oil (hydration). Same product, different hero ingredients emphasised per condition.</td></tr>
+
+        <!-- DRENCH -->
+        <tr onclick="toggleDetail('drench-detail')" style="cursor:pointer">
+          <td class="product-th">Drench · HA Serum</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-rosacea);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-daily);color:#fff">✓</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="drench-detail" style="display:none"><td colspan="8"><strong>Absent from Hormonal Breakout and Bright &amp; Even bundles.</strong> Reason: Drench contains Salicylic Acid — a keratolytic exfoliant. Both these bundles are built around barrier-supportive, non-harsh care. Including Salicylic Acid would contradict their core positioning. The hormonal and brightening bundles use Transform (Bakuchiol) and Infuse (Niacinamide) to address congestion and oil regulation through gentler mechanisms. These do not fully replicate salicylic acid's pore-penetrating action, but they cover similar concerns more appropriately for sensitive skin.</td></tr>
+
+        <!-- GLISTEN -->
+        <tr onclick="toggleDetail('glisten-detail')" style="cursor:pointer">
+          <td class="product-th">Glisten · Peptide Serum</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-rosacea);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hormonal);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-bright);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-daily);color:#fff">✓</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="glisten-detail" style="display:none"><td colspan="8"><strong>Absent from Deep Hydration Bundle only.</strong> Glisten is in every other targeted bundle — its peptides and marine extracts contribute to barrier support, which is directly relevant to dry skin. No explanation is given on the page for its absence in the hydration bundle. This may be a deliberate formulation decision or cost decision — but it leaves a gap in barrier-support content for that bundle specifically.</td></tr>
+
+        <!-- TRANSFORM -->
+        <tr onclick="toggleDetail('transform-detail')" style="cursor:pointer">
+          <td class="product-th">Transform · Bio-Retinol</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hormonal);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-bright);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="transform-detail" style="display:none"><td colspan="8"><strong>Absent from Rosacea, Deep Hydration, and Daily Routine.</strong> <em>Rosacea:</em> Transform contains Lavender Oil, Lime Oil, and multiple essential oil fragrance components — these are documented rosacea flare-up triggers. This exclusion has a direct clinical rationale. <em>Deep Hydration:</em> Transform's role is renewal and congestion clearing, not hydration — logically absent. <em>Daily Routine:</em> The simplest entry-level set intentionally excludes overnight actives. Transform is PM-only and represents an advanced step not needed in the foundational routine. ⚠ Contains Sweet Almond Oil — flag for nut allergies.</td></tr>
+
+        <!-- INFUSE -->
+        <tr onclick="toggleDetail('infuse-detail')" style="cursor:pointer">
+          <td class="product-th">Infuse · Moisturiser</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-rosacea);color:#fff">FF</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hormonal);color:#fff">FF</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">FF</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-bright);color:#fff">F</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-daily);color:#fff">✓</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="infuse-detail" style="display:none"><td colspan="8"><strong>FF = Fragrance-Free · F = Fragranced · ✓ = Customer's choice.</strong> Absent only from Timeless Bundle (replaced by Lumina SPF as the final AM layer — mature skin prioritises SPF as daytime protection). In Rosacea, Hormonal, and Deep Hydration bundles, Infuse is fixed as Fragrance-Free because fragrance is a known trigger or irritant for those conditions. In the Bright &amp; Even Bundle, Infuse is Fragranced — the only condition bundle where this is the case. No explanation is given on that page for this choice. Key ingredients across all versions: Niacinamide (redness reduction, oil regulation, melanin inhibition), Squalane (softening), Shea Butter, Argan Oil, Indian Gooseberry, Liquorice Root.</td></tr>
+
+        <!-- ABSORB -->
+        <tr onclick="toggleDetail('absorb-detail')" style="cursor:pointer">
+          <td class="product-th">Absorb · Overnight Balm</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="absorb-detail" style="display:none"><td colspan="8"><strong>Present in Complete AM/PM, Timeless, and Deep Hydration only.</strong> Absorb is a rich oil-based overnight occlusive — it seals and nourishes intensively. <em>Timeless:</em> Aging skin benefits from overnight deep repair, and Transform's renewal signals need a rich sealed environment to work. <em>Deep Hydration:</em> The only bundle with both Infuse (day) and Absorb (night) — because dry skin needs moisture protection around the clock. <em>Absent from Rosacea:</em> Absorb contains Parfum which is a rosacea trigger. <em>Absent from Hormonal Acne:</em> Oil-rich overnight balm not appropriate for acne-prone skin dealing with oil imbalance. <em>Absent from Brightening and Daily:</em> Transform covers PM renewal in Brightening. Daily Routine is a simplified daytime system. ⚠ Contains Parfum regardless of bundle variant. Also contains Almond Oil — flag for nut allergies.</td></tr>
+
+        <!-- TONIC -->
+        <tr onclick="toggleDetail('tonic-detail')" style="cursor:pointer">
+          <td class="product-th">Tonic / Elixir · Mist</td>
+          <td class="present"><span class="present-dot" style="background:var(--c-ampm);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="tonic-detail" style="display:none"><td colspan="8"><strong>Present only in Complete AM/PM and Deep Hydration.</strong> Tonic is a comfort and finishing product — not a structural treatment step. It soothes, refreshes, and adds a final surface layer of HA. <em>In Complete AM/PM:</em> The most comprehensive bundle includes every product. <em>In Deep Hydration:</em> Tonic is repositioned here as a hydration delivery enhancer — its Aloe, Chamomile, and Green Tea improve absorption of other products. For dry skin, even this comfort step has a functional role. <em>Absent everywhere else:</em> The bread basket cut to keep the meal focused. ⚠ Contains Parfum regardless of variant — the "fragrance-free" label on bundles refers only to the Infuse variant, not Tonic.</td></tr>
+
+        <!-- LUMINA SPF -->
+        <tr onclick="toggleDetail('spf-detail')" style="cursor:pointer">
+          <td class="product-th">Lumina SPF · Sun Protection</td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-timeless);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-rosacea);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hormonal);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-hydration);color:#fff">✓</span></td>
+          <td class="present"><span class="present-dot" style="background:var(--c-bright);color:#fff">✓</span></td>
+          <td class="present absent-cell"><span class="absent-dash">—</span></td>
+        </tr>
+        <tr class="comp-detail-row" id="spf-detail" style="display:none"><td colspan="8"><strong>Absent from Complete AM/PM and Daily Routine.</strong> In all targeted condition bundles, SPF is included because UV directly worsens each condition: UV breaks down collagen (ageing), UV triggers rosacea flare-ups, UV darkens post-acne marks, UV drives transepidermal water loss (dehydration), UV prevents pigmentation from fading. In Complete AM/PM, SPF is sold separately — the customer chooses SPF30 (brightening tint) or SPF50+ (pure protection) independently. In the Daily Routine (simplest set), SPF is advised on page but purchased separately. Astaxanthin — 6,000× stronger than Vitamin C as an antioxidant — is present in both Lumina variants and is the most powerfully differentiated ingredient across the entire Nyrah range.</td></tr>
+
+        <!-- PRICE ROW -->
+        <tr style="background:var(--warm-faint)">
+          <td class="product-th" style="color:var(--warm-mid)">Price (EUR)</td>
+          <td style="font-weight:500;color:var(--c-ampm)">€249.95</td>
+          <td style="font-weight:500;color:var(--c-timeless)">€220.00</td>
+          <td style="font-weight:500;color:var(--c-rosacea)">€195.00</td>
+          <td style="font-weight:500;color:var(--c-hormonal)">€195.00</td>
+          <td style="font-weight:500;color:var(--c-hydration)">€220.00</td>
+          <td style="font-weight:500;color:var(--c-bright)">€195.00</td>
+          <td style="font-weight:500;color:var(--c-daily)">€175.00</td>
+        </tr>
+        <tr style="background:var(--warm-faint)">
+          <td class="product-th" style="color:var(--warm-mid)">Products</td>
+          <td style="color:var(--warm-mid)">7</td>
+          <td style="color:var(--warm-mid)">6</td>
+          <td style="color:var(--warm-mid)">5</td>
+          <td style="color:var(--warm-mid)">5</td>
+          <td style="color:var(--warm-mid)">6</td>
+          <td style="color:var(--warm-mid)">5</td>
+          <td style="color:var(--warm-mid)">4</td>
+        </tr>
+        <tr style="background:var(--warm-faint)">
+          <td class="product-th" style="color:var(--warm-mid)">SPF included</td>
+          <td style="color:var(--warm-light)">No</td>
+          <td style="color:var(--c-timeless);font-weight:500">Yes</td>
+          <td style="color:var(--c-rosacea);font-weight:500">Yes</td>
+          <td style="color:var(--c-hormonal);font-weight:500">Yes</td>
+          <td style="color:var(--c-hydration);font-weight:500">Yes</td>
+          <td style="color:var(--c-bright);font-weight:500">Yes</td>
+          <td style="color:var(--warm-light)">No</td>
+        </tr>
+        <tr style="background:var(--warm-faint)">
+          <td class="product-th" style="color:var(--warm-mid)">Infuse variant</td>
+          <td style="color:var(--warm-mid)">Choice</td>
+          <td style="color:var(--warm-light)">Absent</td>
+          <td style="color:var(--c-rosacea);font-weight:500">FF only</td>
+          <td style="color:var(--c-hormonal);font-weight:500">FF only</td>
+          <td style="color:var(--c-hydration);font-weight:500">FF only</td>
+          <td style="color:var(--c-bright)">Fragranced</td>
+          <td style="color:var(--warm-mid)">Choice</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px;color:var(--warm-light);margin-bottom:32px">Click any product row to expand the reasoning for why it is present or absent in each bundle.</p>
+
+  <div class="insight-box">
+    <h4>The Master Logic Behind Bundle Design</h4>
+    <div class="insight-rows">
+      <div class="insight-row"><div class="i-dot"></div><p><strong>Undress is always there.</strong> Every routine starts with a clean surface. Non-negotiable.</p></div>
+      <div class="insight-row"><div class="i-dot"></div><p><strong>Drench is excluded when Salicylic Acid conflicts with the bundle positioning.</strong> Rosacea and acne bundles already have it (no — wait — rosacea DOES include Drench; acne and brightening do not). The rule: if the bundle is built around "no harsh actives," Drench goes out.</p></div>
+      <div class="insight-row"><div class="i-dot"></div><p><strong>Transform is excluded when fragrance or irritation is a clinical concern.</strong> Rosacea excludes it for essential oil triggers. Daily Routine excludes it as an advanced step for a foundational set.</p></div>
+      <div class="insight-row"><div class="i-dot"></div><p><strong>Infuse is Fragrance-Free in every condition bundle except Bright &amp; Even.</strong> Fragrance is a trigger for rosacea, acne, and sensitive/dry skin. The brightening bundle is the exception — and no reason is given on the page.</p></div>
+      <div class="insight-row"><div class="i-dot"></div><p><strong>SPF is excluded from the two broadest sets</strong> (Complete AM/PM and Daily Routine) where customers choose their SPF separately. It is included in all five condition bundles because UV is a direct driver of each condition.</p></div>
+      <div class="insight-row"><div class="i-dot"></div><p><strong>Absorb is a premium overnight product</strong> — it appears only where overnight deep repair is the core function (Timeless, Deep Hydration) or as the most comprehensive option (Complete AM/PM).</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     ALL PRODUCTS DEEP DIVE
+════════════════════════════════════ -->
+<div class="panel" id="panel-products">
+  <div style="text-align:center;margin-bottom:36px">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;margin-bottom:8px">Every Product.<br><em>Every Role. Every Bundle.</em></div>
+    <div style="font-size:13px;font-weight:300;color:var(--warm-mid)">Each core Nyrah product — what it does and where it appears.</div>
+  </div>
+
+  <div class="product-deep-grid">
+    <div class="pdg-card">
+      <div class="pdg-name">Undress</div><div class="pdg-type">Vitamin E+C Gel Cleanser · 50ml · AM &amp; PM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Removes oil, makeup, SPF, and environmental buildup without stripping the skin barrier. Wash-off cleanser — massage in, rinse with lukewarm water. The foundation step that makes every other product work better.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Vitamin E (antioxidant), Vitamin C (brightening), Papaya Enzymes (gentle enzymatic exfoliation), Milk Thistle (anti-inflammatory), Avocado Oil (nourishing), Chamomile (calming).</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-rosacea-l);color:var(--c-rosacea)">Rosacea</span><span class="pdg-bundle-tag" style="background:var(--c-hormonal-l);color:var(--c-hormonal)">Hormonal</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration</span><span class="pdg-bundle-tag" style="background:var(--c-bright-l);color:var(--c-bright)">Bright</span><span class="pdg-bundle-tag" style="background:var(--c-daily-l);color:var(--c-daily)">Daily</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Drench</div><div class="pdg-type">Triple Molecular Hyaluronic Serum · 30ml · AM &amp; PM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Delivers hydration at three molecular depths simultaneously — surface, mid-layer, and deep. Applied to damp skin so it pulls moisture in rather than sitting on top. Plumps fine dehydration lines and restores bounce.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Hydrolyzed Hyaluronic Acid (three weights), Glycerin, Acacia Gum. Also contains Salicylic Acid — a mild keratolytic that is the reason Drench is absent from the Hormonal and Brightening bundles.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-rosacea-l);color:var(--c-rosacea)">Rosacea</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration</span><span class="pdg-bundle-tag" style="background:var(--c-daily-l);color:var(--c-daily)">Daily</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Glisten</div><div class="pdg-type">Superfood Peptide Serum · 30ml · AM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Signals skin to produce collagen, repair barrier, and improve elasticity. Antioxidant botanicals protect against environmental damage. Role shifts per bundle: firmness (Timeless), redness reduction (Rosacea), non-comedogenic soothing (Hormonal), glow restoration (Brightening).</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Peptides, Brown Algae (Pelvetia Canaliculata), Avocado Fruit Extract, Paeonia Albiflora Root Extract, Aloe Vera, Spirulina Platensis.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-rosacea-l);color:var(--c-rosacea)">Rosacea</span><span class="pdg-bundle-tag" style="background:var(--c-hormonal-l);color:var(--c-hormonal)">Hormonal</span><span class="pdg-bundle-tag" style="background:var(--c-bright-l);color:var(--c-bright)">Bright</span><span class="pdg-bundle-tag" style="background:var(--c-daily-l);color:var(--c-daily)">Daily</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Transform</div><div class="pdg-type">BioRetinol &amp; Bakuchiol Serum · 30ml · PM only</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Sends biological renewal signals deep into skin cells overnight — speeds cell turnover, reduces fine lines, fades uneven tone and post-acne marks. PM only because Bakuchiol increases UV sensitivity. Skin does most repair while sleeping.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Bakuchiol (retinol-alternative), Bidens Pilosa Extract, Calendula, Sweet Almond Oil ⚠, multiple essential oil fragrance components including Lavender Oil and Lime Oil (reason for exclusion from Rosacea bundle).</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-hormonal-l);color:var(--c-hormonal)">Hormonal</span><span class="pdg-bundle-tag" style="background:var(--c-bright-l);color:var(--c-bright)">Bright</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Infuse</div><div class="pdg-type">Oxygen Botanical Moisturiser · 50ml · AM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Daytime moisture seal — creates a barrier that prevents hydration from evaporating. Delivers Niacinamide (redness, oil regulation, melanin inhibition), Squalane (softening), Liquorice Root and Indian Gooseberry (brightening). Available fragranced or fragrance-free.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Niacinamide, Squalane, Shea Butter, Jojoba Oil, Argan Oil, Phyllanthus Emblica (Indian Gooseberry), Glycyrrhiza Glabra (Liquorice Root), Oxylance™. Fragrance version adds: Grapefruit Soufflé proprietary scent.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-rosacea-l);color:var(--c-rosacea)">Rosacea (FF)</span><span class="pdg-bundle-tag" style="background:var(--c-hormonal-l);color:var(--c-hormonal)">Hormonal (FF)</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration (FF)</span><span class="pdg-bundle-tag" style="background:var(--c-bright-l);color:var(--c-bright)">Bright (Frag)</span><span class="pdg-bundle-tag" style="background:var(--c-daily-l);color:var(--c-daily)">Daily (Choice)</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Absorb</div><div class="pdg-type">Water-Free Moisturising Jelly Serum · 50ml · PM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Rich oil-based overnight occlusive. Seals everything underneath — Transform's renewal signals, Drench's hydration — and feeds the skin surface with oils and vitamins through the night. Creates the ideal environment for repair to happen undisturbed.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Argan Oil, Jojoba Oil, Sweet Almond Oil ⚠, Sodium Hyaluronate, Ascorbyl Tetraisopalmitate (Vit C), Retinyl Palmitate (Vit A), Tocopherol. Always contains Parfum ⚠ regardless of bundle variant.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Tonic / Elixir</div><div class="pdg-type">Hyaluronic Cooling Mist · 50ml · AM &amp; PM</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Calms surface irritation after applying other products. Adds a final surface layer of Hyaluronic Acid. Keeps skin feeling dewy not heavy. Can be used throughout the day. In the Hydration bundle specifically, repositioned as an absorption enhancer for other products.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Sodium Hyaluronate, Chamomile, Aloe Vera, Green Tea, Witch Hazel, Allantoin, Cucumber. Always contains Parfum ⚠ regardless of bundle variant.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-ampm-l);color:var(--c-ampm)">AM/PM</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration</span></div>
+    </div>
+
+    <div class="pdg-card">
+      <div class="pdg-name">Lumina SPF</div><div class="pdg-type">Daily Protection Serum · 30ml · AM (final step)</div>
+      <div class="pdg-section-label">What it does</div><div class="pdg-text">Broad-spectrum UV protection that functions as the last AM step. SPF30 version adds a soft brightening tint. SPF50+ is pure protection, colourless. UV directly worsens every condition Nyrah targets — ageing, rosacea, acne marks, dehydration, pigmentation.</div>
+      <div class="pdg-section-label">Key ingredients</div><div class="pdg-text">Astaxanthin (6,000× stronger than Vitamin C as antioxidant), Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Titanium Dioxide. Contains Parfum ⚠.</div>
+      <div class="pdg-section-label">In which bundles</div>
+      <div class="pdg-bundles"><span class="pdg-bundle-tag" style="background:var(--c-timeless-l);color:var(--c-timeless)">Timeless</span><span class="pdg-bundle-tag" style="background:var(--c-rosacea-l);color:var(--c-rosacea)">Rosacea</span><span class="pdg-bundle-tag" style="background:var(--c-hormonal-l);color:var(--c-hormonal)">Hormonal</span><span class="pdg-bundle-tag" style="background:var(--c-hydration-l);color:var(--c-hydration)">Hydration</span><span class="pdg-bundle-tag" style="background:var(--c-bright-l);color:var(--c-bright)">Bright</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Every product has a reason. Every absence has a logic.</p>
+  <strong>Nyrah Beauty · Formulated in Ireland · Lorraine Corcoran · Mechanical Engineer · 25 Years in Product Design</strong>
+</div>
+</div>
+
+<script>
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: document.querySelector('.nav-wrap').offsetTop, behavior: 'smooth'});
+}
+
+function innerTab(bundle, section, btn) {
+  const panel = document.getElementById('panel-' + bundle);
+  panel.querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+  panel.querySelectorAll('.inner-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(bundle + '-' + section).classList.add('active');
+}
+
+function toggleDetail(id) {
+  const row = document.getElementById(id);
+  row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+}
+
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  el.closest('.panel, .inner-section').querySelectorAll('.faq-item.open').forEach(f => f.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+</script>
+</body>
+</html>
