@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Product Page Checklist</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#f59e0b;--gold-light:#fef3c7;--gold-mid:#fde68a;--gold-dark:#b45309;--gold-deep:#92400e;
+  --red-light:#fee2e2;--red:#b91c1c;
+  --green-light:#d1fae5;--green:#065f46;
+  --blue-light:#e0f2fe;--blue:#0c4a6e;
+  --purple-light:#ede9fe;--purple:#3b0764;
+  --ink:#1c1917;--ink2:#44403c;--ink3:#78716c;
+  --surface:#fff;--surface2:#faf7f2;--border:rgba(180,83,9,0.14);--border2:rgba(180,83,9,0.26);
+  --r:10px;--r2:14px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--surface2);color:var(--ink);padding:28px 20px 60px;max-width:960px;margin:0 auto;line-height:1.6}
+h1{font-size:20px;font-weight:500;margin-bottom:4px;color:var(--ink)}
+.doc-sub{font-size:12.5px;color:var(--ink3);margin-bottom:6px}
+.doc-note{font-size:12px;color:var(--gold-dark);background:var(--gold-light);border:0.5px solid var(--border2);border-radius:6px;padding:8px 12px;margin-bottom:28px;line-height:1.5}
+
+.section{margin-bottom:28px}
+.section-header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--r2) var(--r2) 0 0;border:0.5px solid var(--border2);cursor:pointer;user-select:none;background:var(--gold-light);transition:background 0.15s}
+.section-header:hover{background:var(--gold-mid)}
+.s-num{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--gold-deep);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s-title{font-size:14px;font-weight:500;color:var(--gold-deep);flex:1}
+.s-count{font-size:11px;color:var(--gold-dark);background:rgba(180,83,9,0.1);padding:2px 7px;border-radius:12px;white-space:nowrap}
+.chevron{width:14px;height:14px;color:var(--gold-dark);transition:transform 0.2s;flex-shrink:0}
+.section.open .chevron{transform:rotate(90deg)}
+
+.items{display:none;border:0.5px solid var(--border2);border-top:none;border-radius:0 0 var(--r2) var(--r2);background:var(--surface);overflow:hidden}
+.section.open .items{display:block}
+
+.item{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:11px 16px;border-bottom:0.5px solid var(--border);cursor:pointer;transition:background 0.12s}
+.item:last-child{border-bottom:none}
+.item:hover{background:var(--surface2)}
+.item.checked{background:#f0fdf4}
+.item.checked .item-text{color:var(--ink3)}
+.item.na{background:#f8f8f8;opacity:0.6}
+
+.cb{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all 0.15s;background:var(--surface)}
+.item.checked .cb{background:#16a34a;border-color:#16a34a}
+.cb svg{display:none;width:11px;height:11px}
+.item.checked .cb svg{display:block}
+
+.item-body{min-width:0}
+.item-text{font-size:13px;color:var(--ink);line-height:1.45;margin-bottom:3px}
+.item-desc{font-size:11.5px;color:var(--ink3);line-height:1.55}
+.item-desc strong{color:var(--ink2);font-weight:500}
+
+.badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:12px;white-space:nowrap;align-self:start;margin-top:2px;flex-shrink:0}
+.b-must{background:#fee2e2;color:#7f1d1d}
+.b-reg{background:var(--purple-light);color:var(--purple)}
+.b-aeo{background:var(--blue-light);color:var(--blue)}
+.b-conv{background:var(--green-light);color:var(--green)}
+.b-brand{background:var(--gold-light);color:var(--gold-deep)}
+.b-ux{background:#f3f4f6;color:#374151}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink2)}
+
+.progress-wrap{background:var(--gold-light);border:0.5px solid var(--border2);border-radius:var(--r);padding:14px 16px;margin-bottom:24px}
+.progress-label{font-size:11px;font-weight:500;color:var(--gold-dark);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between}
+.progress-track{height:8px;background:var(--gold-mid);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);border-radius:4px;transition:width 0.3s;width:0%}
+
+.toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.btn{font-size:12px;padding:6px 12px;border-radius:6px;border:0.5px solid var(--border2);background:var(--surface);color:var(--ink2);cursor:pointer;transition:background 0.15s}
+.btn:hover{background:var(--gold-light)}
+.btn-primary{background:var(--gold-light);color:var(--gold-deep);border-color:var(--border2)}
+
+footer{margin-top:40px;padding-top:16px;border-top:0.5px solid var(--border);font-size:11px;color:var(--ink3);text-align:center}
+</style>
+</head>
+<body>
+
+<h1>Nyrah Beauty — Product Page Master Checklist</h1>
+<p class="doc-sub">Derived from the full product audit · applies to every product page, new or optimised · March 2026</p>
+<div class="doc-note">Every item in this checklist was derived directly from weaknesses, critical flags, and AEO gaps identified across all 30+ product pages in the audit. Every item marked <strong>Must-have</strong> was missing from at least one live page. Nothing here is generic — each item exists because the audit proved its absence costs either trust, conversions, or compliance.</div>
+
+<div class="progress-wrap">
+  <div class="progress-label"><span>Checklist progress</span><span id="progress-text">0 / 0 items</span></div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<div class="toolbar">
+  <button class="btn btn-primary" onclick="expandAll()">Expand all sections</button>
+  <button class="btn" onclick="collapseAll()">Collapse all</button>
+  <button class="btn" onclick="resetAll()">Reset all checks</button>
+  <button class="btn" onclick="filterUnchecked()">Show unchecked only</button>
+  <button class="btn" onclick="showAll()">Show all</button>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="badge b-must">Must-have</span> Non-negotiable — page fails without it</div>
+  <div class="legend-item"><span class="badge b-reg">Regulatory</span> Legal / compliance requirement (EU/IE/UK)</div>
+  <div class="legend-item"><span class="badge b-aeo">AEO</span> Required for AI engine citation</div>
+  <div class="legend-item"><span class="badge b-conv">Conversion</span> Directly impacts purchase decision</div>
+  <div class="legend-item"><span class="badge b-brand">Brand</span> Brand consistency across the site</div>
+  <div class="legend-item"><span class="badge b-ux">UX</span> User experience / clarity</div>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+<div class="section-header" onclick="toggleSection('s1')">
+  <div class="s-num">1</div>
+  <div class="s-title">URL and metadata</div>
+  <span class="s-count" id="s1-count">0/5</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s1-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">URL slug is clean, accurate, and matches current product name</div>
+      <div class="item-desc">Audit found <strong>/eye-gel-draft-30ml</strong> (wrong type, wrong size, contains "draft") and <strong>/spf30-sunveil-lumina</strong> (stale working title) both live. URL must describe what the product actually is, using its current name. No working titles, no draft labels, no wrong sizes.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">301 redirect in place from any old URL if the slug has been changed</div>
+      <div class="item-desc">Every URL change without a redirect creates a 404. Every 404 on a previously indexed page loses crawl equity. Redirects are not optional when URLs are corrected.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Meta title: includes product name, one key attribute, and brand name</div>
+      <div class="item-desc">Format: <strong>[Product Name] | [Key Attribute] | Nyrah Beauty</strong>. Attribute should be the most searchable differentiator (e.g. Fragrance-Free, SPF50+, Hyaluronic Serum). Keep under 60 characters. The product name used must be identical to the canonical name used everywhere on the site.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Meta description: states what the product is, who it is for, and one key claim under 155 characters</div>
+      <div class="item-desc">No generic copy. Each product's meta description must be unique. The audit found product name variants used inconsistently across pages — the meta description must use the same name as the H1 and the URL.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Product name is identical across: H1, meta title, URL, breadcrumb, schema markup, and internal links pointing to this page</div>
+      <div class="item-desc">Lumina Brighten SPF30 had 6 different name variations across the site. Absorb's INCI and price differed between standalone and bundle pages. One canonical product name must be locked and used everywhere. If the name changes, all instances change simultaneously.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+<div class="section-header" onclick="toggleSection('s2')">
+  <div class="s-num">2</div>
+  <div class="s-title">Product hero — above the fold</div>
+  <span class="s-count" id="s2-count">0/8</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s2-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">H1: full canonical product name as the heading — no truncation, no variation</div>
+      <div class="item-desc">The H1 is the single most important on-page SEO signal. It must exactly match the canonical product name. Audit found the Undress page using "Nourishing Gel Cleanser" in the description header while the page title said "Transforming Vitamin E+C Gel Cleanser" — two different descriptors on the same page.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Short product descriptor line: one sentence stating what the product is, in plain language</div>
+      <div class="item-desc">Immediately below the H1. Not a tagline, not a slogan — a factual one-sentence description that can stand alone as an AI engine citation. Example: "A fragrance-free hyaluronic acid serum that hydrates skin at three molecular depths." This is what LLMs extract.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Current sale price displayed (if applicable) with original/RRP price crossed out</div>
+      <div class="item-desc">Audit found the Velvet Tanning Mitt with the sale price (€9.95) higher than the original price (€8.95) — a live commercial compliance issue. RRP must always be higher than the sale price, and both must be accurate. Under the Consumer Rights Act 2022, strike-through pricing requires the RRP to reflect a genuine previous price.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Variant selector (if multiple variants exist): clearly labelled, e.g. Fragranced / Fragrance Free, Medium / Dark</div>
+      <div class="item-desc">The Infuse FF page had no visual identifier distinguishing it from the Fragranced version beyond the page title. The Bloom Mousse had Medium and Dark variants with no clear visual label in the hero. Customers must be able to identify which version they are on without reading the URL or the INCI.</div>
+    </div>
+    <span class="badge b-ux">UX</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Primary CTA button: "Add to Cart" or "Add to Bag" — prominent, above the fold, accessible on mobile</div>
+      <div class="item-desc">The Gift Bag and Gift Card pages had all variants showing as "sold out or unavailable" with no purchase possible, yet the pages were live. Any product page where the CTA is non-functional must either be taken down or replaced with a back-in-stock notification.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Product size / volume stated in the hero (e.g. 30ml, 50ml, 15ml)</div>
+      <div class="item-desc">Multiple pages were inconsistent — the Revive URL said 30ml when the product is 15ml. The size must be visible in the hero, in the product title or immediately below it, so customers don't need to scroll to the INCI to find it.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Fragrance status badge in the hero: "Fragrance-Free" or "Contains Fragrance" — clearly labelled, not buried in the INCI</div>
+      <div class="item-desc">The audit's most dangerous finding: the Infuse Fragranced page told fragrance-sensitive customers the product was fragrance-free. Absorb contained Parfum with no mention of fragrance anywhere in the copy. Transform claimed fragrance-free while containing 4 essential oils. Every page must state fragrance status visibly in the hero or the trust badge strip — not only in the INCI list.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Payment method icons: Klarna, Shop Pay, PayPal, Visa, Mastercard, Apple Pay, Google Pay — as applicable</div>
+      <div class="item-desc">Klarna is prominently used across Nyrah pages. Payment icons reduce purchase anxiety. They must be visible near the CTA, not only in the footer. This was present on some pages and absent on others — it must be consistent.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+<div class="section-header" onclick="toggleSection('s3')">
+  <div class="s-num">3</div>
+  <div class="s-title">Product images</div>
+  <span class="s-count" id="s3-count">0/5</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s3-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Minimum 2 product images: one clean studio shot of the product, one lifestyle or in-use shot</div>
+      <div class="item-desc">The Elixir (Tonic) page had only one product image — the only standalone product with a single image. Every other standalone product had at least two. The lifestyle shot gives context that a studio shot cannot.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">All images have descriptive alt text — product name, key attribute, Nyrah Beauty</div>
+      <div class="item-desc">Ingredient spotlight images, comparison table images, and before/after images were consistently image-locked across the audit — no alt text, invisible to AI engines and screen readers. Alt text is not optional. Format example: "Drench Triple Molecular Hyaluronic Serum 30ml by Nyrah Beauty — fragrance-free."</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Ingredient spotlights and key claims are readable text — not embedded only in images</div>
+      <div class="item-desc">The Lumina Shield SPF50 page had all ingredient names locked in images in the carousel. AI engines, search crawlers, and screen readers could read none of them. Any claim, ingredient name, or benefit that exists only as an image does not exist for SEO or AEO purposes. Text must exist alongside or instead of images for all key content.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Variant-specific imagery: if product has fragrance/fragrance-free or shade variants, images must be differentiated per variant</div>
+      <div class="item-desc">The Infuse Fragranced and Infuse FF pages used identical image carousels. The Bloom Mousse Medium and Dark variant pages used the same images. Customers navigating between variants had no visual way to confirm they had selected correctly.</div>
+    </div>
+    <span class="badge b-ux">UX</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Before/after images include a disclaimer: "Individual results may vary"</div>
+      <div class="item-desc">Before/after imagery appeared on Infuse, Bloom Glow Serum, Bloom Crème, Bloom Mousse, and Revive Gift Set pages without any results disclaimer. Under ASAI and UK ASA advertising codes, before/after claims in cosmetics must include individual results disclosures.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+<div class="section-header" onclick="toggleSection('s4')">
+  <div class="s-num">4</div>
+  <div class="s-title">Product description and claims</div>
+  <span class="s-count" id="s4-count">0/10</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s4-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Product description: what the product is, who it is for, and what problem it solves — in plain text, readable by crawlers</div>
+      <div class="item-desc">The Infuse FF "Full Product Details" accordion contained only the letter "c" — the entire description body was missing. Basic Shopify template pages (Undress, Drench, Glisten, Absorb, Transform, Elixir) had no social proof, no founder note, and minimal body copy compared to custom landing pages. Every page must have a substantive, readable description.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Claims are accurate and consistent with the INCI — no claim contradicted by the ingredient list</div>
+      <div class="item-desc">Critical regulatory failures found: Transform claimed "fragrance-free" with 4 essential oils and 5 declared allergens in the INCI. Bloom Glow Serum FAQ stated "completely fragrance-free" with Parfum in the INCI. Bloom Crème featured Champagne & Truffle Extract and Vitamin E as hero ingredients — neither was in the INCI. Every claim must be verified against the INCI before the page goes live.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">No medicinal or prohibited cosmetic claims — remove "DNA protection," "memory enhancement," "oxygen delivery"</div>
+      <div class="item-desc">"DNA protection" appeared on Glow & Nourish and Absorb pages — a medicinal claim under EU Reg EC 1223/2009. "Memory enhancement" appeared on the Tonic page FAQ. The Oxylance™ "oxygen" claim must always be accompanied by the Infuse Q7 disclaimer: it is a cosmetic claim, not a medical one. EU Reg 1223/2009 prohibits claims that imply biological function modification.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Asterisked claims have corresponding footnotes visible on the same page</div>
+      <div class="item-desc">The Revive page stated "Visibly reduces the appearance of Dark Circles & Under-Eye Puffiness in as little as 7 Days*" — the asterisk had no footnote anywhere on the page. Under ASAI and UK ASA standards, asterisked claims must reference the basis for the claim (e.g. "based on consumer perception study of X participants over 7 days").</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">"Award-winning" claims: specific award name, year, and awarding organisation stated — or the claim is removed</div>
+      <div class="item-desc">"Award-winning" appeared on the Trial Pack, bundles, and collection pages. No award was named on any page across the entire audit. An unattributed "award-winning" claim is an unsubstantiated claim under ASAI/ASA advertising codes and unindexable as an E-E-A-T signal by AI engines.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">"Clinically proven" or "dermatologist-approved" claims linked to a named source or replaced with "formulated with clinically studied ingredients"</div>
+      <div class="item-desc">"Clinically proven" appeared on Revive, Bloom Glow Serum, and the Timeless Skin Bundle without any study cited. "Dermatologist-approved" appeared on 4 bundle pages without naming a single dermatologist or study. These are the two most commonly misused claims in EU skincare marketing and must be substantiated or reworded.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">No stale seasonal, promotional, or launch copy — all time-sensitive content reviewed at regular intervals</div>
+      <div class="item-desc">Live stale content found: "WILL BE BACK IN STOCK LATE OCTOBER 2025" on Bloom Crème (5 months past), "Limited Black Friday Special" on Revive Gift Set, "ships from week of 24th November 2025" on Revive Gift Set, "New Year Sale" and "January Sale" in navigation on Trial Pack. Stale promotional copy damages trust and AEO authority — crawlers and LLMs treat date-specific content as a freshness signal.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Product description consistent with how the product is described on all bundle pages, duo pages, and collection pages where it also appears</div>
+      <div class="item-desc">Multiple inconsistencies found: Absorb's price was €59.95 standalone but recorded at €85 in bundle contexts. Transform's INCI on the Glow & Nourish page was shorter than the standalone version. Glisten's INCI on the standalone page omitted Spirulina Platensis Powder which was present on bundle pages. One authoritative version must exist and all other pages match it.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">All links on the page are checked — no links pointing to competitor websites, broken pages, or incorrect URLs</div>
+      <div class="item-desc">The most urgent finding in the entire audit: FAQ Q6 on the Trial Pack page and FAQ Q12 on the Lumina SPF30 page linked to letschat@kosas.com (a US competitor brand). The Instagram link pointed to @kosas. These are live, active redirects to a competitor that appeared because a third-party template's links were never updated. Every link on every page must be verified.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">No typos visible to customers or crawlers — all copy proofread before publishing</div>
+      <div class="item-desc">"Teat your skin" appeared in both the Description and the Key Features section of the Glow & Nourish Serum Collection page — live and visible to every customer and every search crawler. "PEG-40 Hydrogenated Castor Oi" was a typo in the published INCI of the Elixir page. Typos in INCI lists are a regulatory concern — EU Cosmetics Regulation requires INCI names to be correct and complete.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+<div class="section-header" onclick="toggleSection('s5')">
+  <div class="s-num">5</div>
+  <div class="s-title">Who it is for + skin concerns</div>
+  <span class="s-count" id="s5-count">0/5</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s5-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Explicit "who this is for" section: named skin types (sensitive, rosacea, hormonal, dry, mature) and named life stages (perimenopause, postpartum, menopause) where applicable</div>
+      <div class="item-desc">Drench's standalone page stated only "perfect for dry or dehydrated skin" — significantly narrower than how it appeared in bundles targeting rosacea, mature skin, and hormonal skin. Glisten named no age bracket. The "who is it for" section is an AEO anchor — LLMs use it to match the product to user queries.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Audience statement is consistent with how the product is positioned in every bundle where it appears</div>
+      <div class="item-desc">Transform's standalone page called it "ideal for rosacea-prone skin types." The Rosacea Relief Bundle explicitly excluded Transform because its essential oils trigger rosacea flares. Both statements existed simultaneously on the same website. A product's audience claim must not contradict its exclusion rationale on any other page on the site.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Pregnancy safety status explicitly stated: "pregnancy-safe," "check with your GP," or "not recommended during pregnancy"</div>
+      <div class="item-desc">Glisten, Drench, Infuse FF, Lumina Shield, and Trial Pack all stated pregnancy-safe. Absorb, Transform, and Revive had no pregnancy statement despite Nyrah's core audience including postpartum women. Absence of a statement is not neutral — it is a gap that drives support queries and erodes trust. Every product must carry a defined position.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Nut allergy warning visible in the hero or description for products containing Sweet Almond Oil (Prunus Amygdalus Dulcis) or other nut-derived ingredients</div>
+      <div class="item-desc">Transform and Absorb both contain Sweet Almond Oil. The nut allergy warning appeared only in the "Important Warning" accordion — not in the description or the "Who is it for" section where a customer is more likely to read it. For a brand targeting women with reactive and sensitive skin, this warning must be visible before the customer adds to cart.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">AM/PM use timing explicitly stated for products with photosensitivity concerns or time-specific application requirements</div>
+      <div class="item-desc">Transform contains Bakuchiol and Revinage™ (bio-retinol) plus photosensitising essential oils — but gave zero AM/PM guidance anywhere on the page. The page implied PM use by recommending Absorb as the follow-up (a night product), but never stated it directly. Photosensitising products must carry explicit PM-only guidance.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+<div class="section-header" onclick="toggleSection('s6')">
+  <div class="s-num">6</div>
+  <div class="s-title">Key ingredients — in text, not images</div>
+  <span class="s-count" id="s6-count">0/6</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s6-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Hero/key ingredients section: each ingredient named in text (not only in images), with its function explained in plain language</div>
+      <div class="item-desc">Lumina Shield SPF50's ingredient section was entirely image-locked — no search engine or AI engine could read the ingredient names. The "Why INFUSE Works" ingredient tiles on the Infuse pages were image-based. Ingredient explanations that exist only as images provide zero AEO value and zero accessibility value.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Proprietary ingredient technologies: trade name AND INCI equivalent both stated (e.g. PrimalHyal™ 3K = Hydrolyzed Hyaluronic Acid)</div>
+      <div class="item-desc">Nyrah's strongest differentiator is its proprietary ingredient stack. PrimalHyal™ 3K, Argireline®, Revinage™, Effipulp™, Oxylance™, Pepha®-Tight CB, Skinmimics® Pro MB, Uplevity™, STAY-C® 50, Emblica®, G2Light™ must all appear with both their trade name and their INCI name. AI engines verify claims by cross-referencing trade names against INCI databases — pages that only state trade names without INCI equivalents are less citable.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Featured ingredients are verified present in the INCI — no phantom ingredient claims</div>
+      <div class="item-desc">Bloom Glow Serum spotlighted Niacinamide, Isopropyl Myristate, and Coconut Blossom — none were in the INCI. Bloom Crème spotlighted Champagne & Truffle Extract and Vitamin E — absent from the INCI. Bloom Mousse spotlighted Niacinamide and Isopropyl Myristate — absent from the INCI. Under EU Reg 1223/2009, claiming an ingredient is present when it is not is a falsification, not a copy error.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Synthetic colorants present in the formula disclosed in copy (e.g. CI 42090 / FD&C Blue No. 1 in Glisten)</div>
+      <div class="item-desc">Glisten contains CI 42090 — a synthetic colorant that gives the serum its colour. The Bloom Crème, Mousse, and Glow Serum all contain synthetic colorants. None were disclosed in the marketing copy on any of these pages. Some consumer segments specifically avoid synthetic colorants — their presence must be disclosed, not hidden in the INCI alone.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Full INCI list published as readable text — not inside an image, not inside a PDF, not in a non-crawlable format</div>
+      <div class="item-desc">The Tonic page had no INCI published at all — a direct breach of EU Cosmetics Regulation, which requires full INCI to appear on all product presentations. All other Nyrah pages published the INCI as text, which is correct. The INCI must be readable text: a screen reader, a search crawler, and an LLM must all be able to extract it.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">INCI is consistent across all pages where this product appears (standalone, bundle, duo, gift set)</div>
+      <div class="item-desc">Glisten had two different INCIs — one on the standalone page (without Spirulina), one on bundle pages (with Spirulina). Absorb had significantly different INCIs between the standalone and Intense Hydration Duo pages. The Collagen Booster Duo's Undress INCI listed Aqua first; the standalone listed Caprylic/Capric Triglyceride first. One product = one INCI, consistent across all pages where it appears.</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+<div class="section-header" onclick="toggleSection('s7')">
+  <div class="s-num">7</div>
+  <div class="s-title">How to use — directions</div>
+  <span class="s-count" id="s7-count">0/5</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s7-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Directions as numbered steps: application surface (face / eye area / hair), skin state (dry / damp), amount (pumps / drops / gram equivalent), technique (tap / massage / circular motions)</div>
+      <div class="item-desc">Revive had the most specific directions on the site: half a pump, ring finger, tap not rub, orbital bone. Drench stated "a few drops" without a count. The Lumina SPF30 stated "two-finger method" — a specific and citable application instruction. The more specific the directions, the more AEO value the page carries for "how to apply [product]" queries.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Routine placement stated: where in the AM and/or PM routine this product is applied — before or after which other products</div>
+      <div class="item-desc">Drench named companion products in its directions (Undress before, Glisten after, Absorb or Infuse as moisturiser) — the only standalone page to do this. Every page should state its routine position. AI engines answering "what order do you use Nyrah products" can only cite pages that explicitly state this.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Cross-sell references in directions use the current, canonical product name — no references to discontinued, unreleased, or renamed products</div>
+      <div class="item-desc">Drench directions referenced "REFRESH Citrus Tonic" — a product name that does not exist anywhere on the Nyrah website. Every customer who reads those directions and searches for that product will find nothing. Directions must reference only currently available products by their canonical names, with internal links to those product pages.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Directions are consistent between the standalone product page and every bundle/duo page where this product appears</div>
+      <div class="item-desc">The Glow & Nourish Serum Collection positioned Transform as usable AM and/or PM. The Complete AM/PM Routine page placed Transform in PM only. Both cannot be correct simultaneously. Customers who buy the collection and cross-reference the flagship routine page will receive contradictory guidance.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Multi-use products: all use cases stated (e.g. Undress as mask, as balm; Absorb for hair and face; Revive for lips and eyes)</div>
+      <div class="item-desc">Undress could be used as a 10–20 minute mask and as a dry-patch balm for hands, elbows, knees — but these uses were not mentioned on any bundle page. Absorb's hair use case was given only two sentences. Revive's lip use was only confirmed in FAQ Q8. Every use case is an additional AEO hook and a conversion opportunity.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section" id="s8">
+<div class="section-header" onclick="toggleSection('s8')">
+  <div class="s-num">8</div>
+  <div class="s-title">FAQ section — minimum 5 questions</div>
+  <span class="s-count" id="s8-count">0/6</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s8-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">FAQ section exists on the page with a minimum of 5 questions and answers — in readable text, not inside images</div>
+      <div class="item-desc">Undress, Drench, Glisten, Absorb, Transform, Elixir — all had zero FAQ sections. These were the six standalone product pages using the basic Shopify template. Every bundle page had at least 4 FAQs. A product page with no FAQ section provides no AEO value for conversational queries. FAQs are the primary citation source for AI engine answers.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">FAQs are specific to this product — not copy-pasted from another product's page</div>
+      <div class="item-desc">The Collagen Booster Duo had all 7 FAQ answers about the Intense Hydration Duo — entirely wrong product. The Bloom Glow Serum FAQ Q4 was copy-pasted from the Bloom Mousse template. FAQ numbering errors (questions labelled with wrong numbers) appeared on Revive and Bloom Gift Set pages — visible evidence of unreviewed copy-paste. Each FAQ must be specific to the product on that page.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">FAQ answers are self-contained — each answer makes sense without the surrounding page context</div>
+      <div class="item-desc">AI engines extract FAQ answers individually and cite them without the surrounding copy. An answer that says "yes, as explained above" is not self-contained. Each FAQ answer must include the question context within the answer itself. The Infuse Q7 oxygen disclaimer is the gold standard: it names Oxylance™, explains what it is, and clarifies the claim boundary all within one answer.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Mandatory FAQ questions: fragrance status, pregnancy safety, routine placement, how long one bottle lasts, compatibility with active ingredients (retinol, acids)</div>
+      <div class="item-desc">These 5 questions appeared across the highest-performing pages in the audit (Revive's 12 FAQs, Lumina SPF30's 14 FAQs, Infuse's 7 FAQs). They represent the most common pre-purchase queries for this brand's audience. Every product page must answer all 5 at minimum. Additional product-specific questions should be added based on the product's unique claims and audience.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Contact/support links within FAQs point to Nyrah contact details — not to any other brand</div>
+      <div class="item-desc">FAQ Q6 on the Trial Pack and FAQ Q12 on Lumina SPF30 linked to letschat@kosas.com and the @kosas Instagram. These are copy-paste errors from a third-party template. Every FAQ that directs customers to contact support must link to store@nyrahbeauty.com and @nyrahbeauty — verified before every publish.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">FAQPage schema implemented on all pages with a FAQ section</div>
+      <div class="item-desc">No product page on the site had FAQPage schema implemented at the time of the audit. FAQPage schema makes FAQ content eligible for rich results in Google Search and is the most direct mechanism for getting product-specific content into Google AI Overviews. Without it, FAQ content is invisible to the rich results system even if it is visible on the page.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section" id="s9">
+<div class="section-header" onclick="toggleSection('s9')">
+  <div class="s-num">9</div>
+  <div class="s-title">Social proof and reviews</div>
+  <span class="s-count" id="s9-count">0/6</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s9-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Minimum 3 customer reviews visible on the page as readable text — not inside images, not locked in a widget that is not crawlable</div>
+      <div class="item-desc">Undress, Drench, Glisten, Absorb, Transform, Elixir — all had zero visible customer reviews on the standalone page. Every bundle and custom landing page had reviews. Reviews in image format (screenshots of social media) were present on the Trial Pack's "We Don't Make False Claims" section but invisible to crawlers. Review text must exist as readable text.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Trustpilot rating and review count: single consistent figure across the entire site — taken from the live widget, not hardcoded</div>
+      <div class="item-desc">Six different Trustpilot review counts appeared across Nyrah pages: 550+, 1,800+, 2,112+, 2,768+, 3,000+, 3,074. Four different ratings: 4.8 and 4.9 both stated on the same pages. The only accurate figure is from the live Trustpilot widget on the Trial Pack: 4.8 / 3,074. Use the live widget wherever possible. Where hardcoded, use one agreed figure updated on a defined schedule.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Customer count: one agreed figure used consistently across all pages — updated at defined intervals, never inflated</div>
+      <div class="item-desc">Customer count figures found across the site: 45,000+, 60,000+, 65,000+, 75,000+, 80,000+, 81,129+. The Lumina SPF30 page's founder section stated 60,000 — the lowest across the site. The Trial Pack stated 81,129+ in the same session. Six different figures in active use simultaneously signal to LLMs that none of them are reliable.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Founder or brand connection in reviews is disclosed — no undisclosed material connections</div>
+      <div class="item-desc">Lorraine C. reviewed the Revive serum as a "Verified customer" with the quote "since developing this" — identifying herself as the creator, but with no disclosure of her role as founder. Under ASAI (Ireland) and CAP Code (UK), material connections between a reviewer and a brand must be disclosed. Label must read: "Lorraine Corcoran, Founder of Nyrah Beauty."</div>
+    </div>
+    <span class="badge b-reg">Regulatory</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">AggregateRating schema implemented using the single accurate Trustpilot figure</div>
+      <div class="item-desc">No product page had AggregateRating schema implemented at the time of the audit. Schema is required for star ratings to appear in Google Search results. The schema must use a single, accurate, consistent ratingValue — using different figures on different pages creates conflicting signals in Google's knowledge graph.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Results timeline: if the product claims visible results within a specific timeframe, state it in readable text (e.g. "results within 7 days, firmer contours by week three")</div>
+      <div class="item-desc">Revive stated "less puffiness and brighter eyes within 7 days, firmer and smoother contours by week three." The Rosacea Bundle stated "calmer skin in first 2 weeks." These are the most citable claims for AEO — AI engines answering "how long does X take to work" will cite pages that state specific timelines. Must be accompanied by a qualifier: "individual results vary."</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 10 -->
+<div class="section" id="s10">
+<div class="section-header" onclick="toggleSection('s10')">
+  <div class="s-num">10</div>
+  <div class="s-title">Trust signals and brand authority</div>
+  <span class="s-count" id="s10-count">0/6</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s10-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Trust badge strip: vegan, cruelty-free, made in Ireland, fragrance status, pregnancy status — as applicable to this product</div>
+      <div class="item-desc">These badges appeared on custom landing pages but were absent from the basic Shopify template pages. The trust badges must be consistent across all product pages, not only the flagship ones. "Made in Ireland" specifically appeared inconsistently — the Trial Pack page stated "Made right here in Ireland in small batches" as a quality claim, but this language was not on any basic template page.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Free shipping threshold: correct and consistent — Ireland €70, UK £66 — stated in the trust strip and any banner</div>
+      <div class="item-desc">Six different free shipping thresholds appeared across the site: €55, €70, €80, £45, £66, £80. The Infuse page trust badge stated €55. The Lumina SPF30 footer stated "on orders over €55." The correct threshold is Ireland €70 / UK £66. Incorrect shipping thresholds are a commercial compliance issue — a customer who orders €60 of product expecting free shipping at €55 and is then charged will not return.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Press/media coverage: "Featured In" strip uses text names with linked articles — not image-only logos</div>
+      <div class="item-desc">The Infuse and Lumina SPF30 pages showed "Featured In" strips with publication logos (Irish Examiner, Business Plus, Irish Independent, Woman's Way) as images with no links, no article titles, no dates. These provide zero E-E-A-T value as images. They must be replaced with text publication names, linked to the specific articles, with dates. Without this they are unverifiable and uncitable.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Founder note: signed by Lorraine Corcoran with her role, background, and relevance to this specific product</div>
+      <div class="item-desc">Founder notes appeared on custom landing pages (Infuse, Revive, Lumina SPF30, bundles) but not on any basic Shopify template page (Undress, Drench, Glisten, Absorb, Transform, Elixir). The Infuse founder note (18 months of development, 10+ years formulating for Irish and UK skincare brands) is the strongest E-E-A-T signal on the site. All pages should carry a version of this, even if shorter.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">External citations for health statistics and clinical study references: linked to named sources (Irish Cancer Society, HSE, peer-reviewed papers)</div>
+      <div class="item-desc">The Lumina SPF30 founder note cited specific health statistics — 11,000 annual skin cancer cases in Ireland, 60–75% increased melanoma risk from tanning beds before 35 — without a single source link. These are the strongest E-E-A-T signals on the site but carry no authority without attribution. Any statistic used in copy must have a linked source before the page is published or amplified.</div>
+    </div>
+    <span class="badge b-brand">Brand</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Comparison table (where the product competes with other Nyrah products): uses readable text rows — not images</div>
+      <div class="item-desc">The Infuse page comparison table header images for "INFUSE" and "OTHERS" were image-locked. AI engines parsing comparison tables need the column headers and row values as text. A comparison table where the column headers are images provides zero AEO value. Comparison tables must be HTML tables with all text rendered as text.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 11 -->
+<div class="section" id="s11">
+<div class="section-header" onclick="toggleSection('s11')">
+  <div class="s-num">11</div>
+  <div class="s-title">Cross-selling and internal linking</div>
+  <span class="s-count" id="s11-count">0/4</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s11-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">"You may also like" / cross-sell section: products recommended are relevant and are not duplicate listings of the same product</div>
+      <div class="item-desc">The Elixir page cross-sold both "Elixir — Hyaluronic Cooling & Brightening Mist" and "Tonic — Hyaluronic Cooling & Brightening Mist" simultaneously — two listings for the same product appearing as cross-sells to each other. This is the Tonic/Elixir duplicate listing issue. Cross-sells must be deduplicated and must recommend genuinely related products.</div>
+    </div>
+    <span class="badge b-ux">UX</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Internal links to companion products, accessory recommendations, and relevant bundles appear in the directions or FAQ — not just in the cross-sell widget</div>
+      <div class="item-desc">Undress's directions mentioned the Konjac Root Sponge and Bamboo Face Cloths by name — the only standalone page to cross-reference accessories. Drench's directions named 5 companion products. These in-copy links carry more semantic weight than widget-based cross-sells because they are contextual. Every product with natural companion products must name and link to them in the body copy.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Links to the relevant bundle or routine page where this product appears — a path from the standalone product page to the full routine purchase</div>
+      <div class="item-desc">A customer landing on the Undress standalone page had no path to the Complete AM/PM Routine, the Cleanse & Moisturise Duo, or the Collagen Booster Duo — all pages where Undress is the primary product. The standalone page must link to at least one bundle or routine where this product is featured, so customers who want the full routine can find it without searching.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Proprietary ingredient trade names link to the Ingredient Glossary page entry for that ingredient</div>
+      <div class="item-desc">Once the Ingredient Glossary page is live, every first mention of a proprietary trade name (PrimalHyal™ 3K, Argireline®, Revinage™, Effipulp™, Ambre Oceane™, Detoskin™, Oxylance™, Pepha®-Tight CB, Skinmimics® Pro MB, Uplevity™, STAY-C® 50, Emblica®, G2Light™) on any product page must link to its Glossary entry. This builds the knowledge graph that LLMs use to associate Nyrah with specific ingredients.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 12 -->
+<div class="section" id="s12">
+<div class="section-header" onclick="toggleSection('s12')">
+  <div class="s-num">12</div>
+  <div class="s-title">Shipping, returns, and support</div>
+  <span class="s-count" id="s12-count">0/4</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s12-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Shipping information: delivery timeframes for Ireland and UK stated as readable text — accurate and consistent across all pages</div>
+      <div class="item-desc">The Revive Gift Set stated "Ireland delivery: 2–5 working days" while other pages stated "1–3 business days." One shipping page must be the authority — all product pages must either link to it or replicate it exactly. AI engines answering "how long does Nyrah delivery take" will cite pages with specific, text-based shipping information.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Returns policy: clearly stated (60-day easy returns was shown as a trust badge on the Revive Gift Set — this must appear as text, not only as a badge)</div>
+      <div class="item-desc">The "60-Days Easy Returns" trust badge appeared on the Revive Gift Set page. No other standalone product page included a visible returns statement. The returns policy is a conversion signal — customers who know they can return are more likely to buy. It must exist as readable text, not only as an icon badge.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Support contact: correct Nyrah email and social handles — verified before every publish</div>
+      <div class="item-desc">The Kosas link failure in FAQ sections was a template copy-paste error where the support contact links were never updated. This will happen again unless there is a pre-publish checklist item specifically for verifying that every support link resolves to store@nyrahbeauty.com and @nyrahbeauty. This item must be checked every time a page is published or edited.</div>
+    </div>
+    <span class="badge b-must">Must-have</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Payment security statement or badge: "secure payment" or equivalent visible near the CTA</div>
+      <div class="item-desc">The Revive Gift Set trust strip included "Secure Payment." This should be present on all product pages. Payment security messaging reduces cart abandonment, particularly for first-time buyers from organic search or AI-referred traffic who have no prior brand relationship.</div>
+    </div>
+    <span class="badge b-conv">Conversion</span>
+  </div>
+</div>
+</div>
+
+<!-- SECTION 13 -->
+<div class="section" id="s13">
+<div class="section-header" onclick="toggleSection('s13')">
+  <div class="s-num">13</div>
+  <div class="s-title">Schema markup</div>
+  <span class="s-count" id="s13-count">0/5</span>
+  <svg class="chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 2l5 5-5 5"/></svg>
+</div>
+<div class="items" id="s13-items">
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Product schema: name, description, image, brand, offers (price, currency, availability, URL)</div>
+      <div class="item-desc">No product page on the site had Product schema implemented at the time of the audit. Product schema is required for Google's rich product results and for LLMs to identify this page as a purchasable product. Without it, a page about a skincare product is structurally indistinguishable from a blog about skincare ingredients.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">FAQPage schema: all FAQ questions and answers marked up — using the single accurate answer text from the page</div>
+      <div class="item-desc">FAQPage schema was absent from all pages across the audit despite many pages having substantial FAQ sections. FAQPage schema is the most direct mechanism for getting product content into Google AI Overviews. Without it, FAQ content is processed as body text, not as structured Q&A data — it is less likely to be extracted and cited.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">AggregateRating schema: ratingValue (4.8), reviewCount (3074), using the single accurate live Trustpilot figure</div>
+      <div class="item-desc">Star ratings in Google Search results require AggregateRating schema. Without it, even a Trustpilot widget embedded on the page does not generate star ratings in search results. The ratingValue and reviewCount must match across all pages — using different figures on different pages corrupts the aggregate signal.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">BreadcrumbList schema: Home > Category > Product Name</div>
+      <div class="item-desc">BreadcrumbList schema was absent from all pages. It signals the page's position in the site hierarchy to Google and allows breadcrumbs to appear in search results — reducing the bounce rate for users who land on a product page from search and want to explore the category. It also helps LLMs understand the site's content architecture.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+  <div class="item" onclick="toggleItem(this)">
+    <div class="cb"><svg viewBox="0 0 11 9" fill="none" stroke="#fff" stroke-width="2"><path d="M1 4.5l3 3 6-6"/></svg></div>
+    <div class="item-body">
+      <div class="item-text">Schema validated in Google Search Console — no errors or warnings before page is considered complete</div>
+      <div class="item-desc">Schema implementation without validation is unreliable. The Google Rich Results Test and Search Console Coverage report will identify schema errors (missing required fields, invalid values, incorrect nesting) that prevent rich results from appearing. Validation must be part of every publish process, not a one-time setup task.</div>
+    </div>
+    <span class="badge b-aeo">AEO</span>
+  </div>
+</div>
+</div>
+
+<footer>Nyrah Beauty Product Page Checklist · 75 items · Derived from the full product audit · March 2026 · Reference the master SEO/AEO doc for full context on each flag.</footer>
+
+<script>
+var totalItems=0,checkedItems=0,hidingUnchecked=false;
+
+function toggleSection(id){
+  var el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+function expandAll(){document.querySelectorAll('.section').forEach(function(s){s.classList.add('open')})}
+function collapseAll(){document.querySelectorAll('.section').forEach(function(s){s.classList.remove('open')})}
+
+function toggleItem(row){
+  if(event.target.tagName==='A')return;
+  row.classList.toggle('checked');
+  updateProgress();
+  updateSectionCount(row.closest('.items'));
+}
+
+function updateProgress(){
+  var all=document.querySelectorAll('.item');
+  var done=document.querySelectorAll('.item.checked');
+  totalItems=all.length;checkedItems=done.length;
+  var pct=totalItems>0?Math.round(checkedItems/totalItems*100):0;
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-text').textContent=checkedItems+' / '+totalItems+' items ('+pct+'%)';
+}
+
+function updateSectionCount(itemsEl){
+  var sid=itemsEl.id.replace('-items','');
+  var all=itemsEl.querySelectorAll('.item').length;
+  var done=itemsEl.querySelectorAll('.item.checked').length;
+  var el=document.getElementById(sid+'-count');
+  if(el)el.textContent=done+'/'+all;
+}
+
+function resetAll(){
+  document.querySelectorAll('.item.checked').forEach(function(i){i.classList.remove('checked')});
+  updateProgress();
+  document.querySelectorAll('.items').forEach(function(i){updateSectionCount(i)});
+}
+
+function filterUnchecked(){
+  hidingUnchecked=true;
+  document.querySelectorAll('.item').forEach(function(i){
+    if(i.classList.contains('checked')){i.style.display='none'}else{i.style.display=''}
+  });
+  expandAll();
+}
+function showAll(){
+  hidingUnchecked=false;
+  document.querySelectorAll('.item').forEach(function(i){i.style.display=''});
+}
+
+document.querySelectorAll('.items').forEach(function(i){updateSectionCount(i)});
+updateProgress();
+</script>
+</body>
+</html>
