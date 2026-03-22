@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — DUO Products Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold-deep:#8B6914;--gold-mid:#C49A2A;--gold-light:#E8C96A;--gold-pale:#F7EDD0;--gold-faint:#FDF8EE;
+  --cream:#FFFDF6;--charcoal:#1C1810;--warm-dark:#2D2416;--warm-mid:#6B5A3A;--warm-light:#A89070;--warm-faint:#EDE5D4;
+  --white:#FFFFFF;
+  --green:#2A5C3A;--green-pale:#E8F5EC;--green-mid:#4A8A5A;
+  --red-deep:#7A2A2A;--red-pale:#FBEAEA;--red-mid:#C45A5A;
+  --blue:#2D3A5A;--blue-pale:#EEF2F9;--blue-mid:#7B9EC8;
+  --card-r:18px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;overflow-x:hidden;}
+
+/* HERO */
+.hero{background:var(--warm-dark);padding:52px 40px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(196,154,42,0.12);}
+.hero-ey{font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;position:relative;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,5vw,48px);color:var(--gold-pale);line-height:1.15;position:relative;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:13px;font-weight:300;color:var(--warm-light);position:relative;margin-bottom:28px;}
+
+/* DUO SELECTOR */
+.duo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;position:relative;z-index:2;border-top:1px solid rgba(196,154,42,0.15);padding:3px;}
+@media(max-width:540px){.duo-grid{grid-template-columns:1fr;}}
+.duo-btn{padding:14px 12px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;transition:all .25s;color:var(--warm-light);border-bottom:2px solid transparent;text-align:center;line-height:1.5;}
+.duo-btn:hover{color:var(--gold-pale);}
+.duo-btn.act{color:var(--gold-light);border-bottom:2px solid var(--gold-mid);}
+.duo-btn .duo-price{display:block;font-size:11px;font-weight:300;color:var(--gold-mid);font-style:italic;margin-top:3px;}
+.duo-btn .duo-contents{display:block;font-size:10px;font-weight:300;color:var(--warm-light);letter-spacing:.05em;margin-top:2px;text-transform:none;}
+
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:44px 24px 80px;}
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* DUO HEADER */
+.duo-header{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--warm-faint);}
+.duo-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-pale);line-height:1;flex-shrink:0;}
+.duo-header-right{flex:1;}
+.duo-eyebrow{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:6px;}
+.duo-header h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(20px,4vw,30px);color:var(--charcoal);line-height:1.2;margin-bottom:6px;}
+.duo-tagline{font-size:13px;font-weight:300;color:var(--warm-mid);margin-bottom:12px;font-style:italic;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;}
+.tag{font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;letter-spacing:.08em;}
+.tag-price{background:var(--gold-faint);color:var(--gold-deep);border:1px solid var(--gold-light);}
+.tag-save{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.3);}
+.tag-ff{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.3);}
+.tag-frag{background:var(--red-pale);color:var(--red-deep);border:1px solid rgba(122,42,42,0.3);}
+.tag-step{background:rgba(139,105,20,0.08);color:var(--gold-deep);border:1px solid var(--gold-light);}
+.tag-warn{background:#FFF8EC;color:var(--gold-deep);border:1px solid rgba(196,154,42,0.35);}
+
+/* CTABS */
+.ctab-bar{display:flex;gap:0;border-bottom:1px solid var(--warm-faint);margin-bottom:24px;overflow-x:auto;}
+.ctab{padding:10px 18px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;color:var(--warm-light);border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;font-family:'Jost',sans-serif;}
+.ctab:hover{color:var(--warm-mid);}
+.ctab.act{color:var(--gold-deep);border-bottom:2px solid var(--gold-mid);}
+.cpanel{display:none;}
+.cpanel.active{display:block;animation:fadeIn .25s ease;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--warm-faint);border-radius:var(--card-r);padding:18px 20px;transition:border-color .3s;}
+.card:hover{border-color:var(--gold-light);}
+.card.full{grid-column:1/-1;}
+.card.gold{background:var(--gold-faint);border-color:rgba(201,168,76,0.3);}
+.card-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--charcoal);margin-bottom:6px;}
+.card p{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.75;}
+.card p strong{color:var(--charcoal);font-weight:500;}
+.card ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;}
+.card ul li{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.65;display:flex;gap:8px;align-items:flex-start;}
+.card ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold-mid);flex-shrink:0;margin-top:8px;}
+.card ul li strong{color:var(--charcoal);font-weight:500;}
+
+/* PRODUCT PAIR */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:500px){.pair{grid-template-columns:1fr;}}
+.pair-item{border-radius:var(--card-r);padding:20px;border:1px solid;}
+.pair-item.p1{background:var(--gold-faint);border-color:rgba(201,168,76,0.3);}
+.pair-item.p2{background:var(--blue-pale);border-color:rgba(123,158,200,0.3);}
+.pair-step{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;}
+.pair-item.p1 .pair-step{color:var(--gold-deep);}
+.pair-item.p2 .pair-step{color:var(--blue);}
+.pair-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);margin-bottom:4px;}
+.pair-size{font-size:11px;font-weight:300;color:var(--warm-mid);margin-bottom:8px;}
+.pair-desc{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.7;}
+.pair-desc strong{font-weight:500;color:var(--charcoal);}
+.pair-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.ptag{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;border:1px solid;}
+.ptag-gold{background:var(--gold-faint);color:var(--gold-deep);border-color:rgba(201,168,76,0.3);}
+.ptag-blue{background:var(--blue-pale);color:var(--blue);border-color:rgba(123,158,200,0.3);}
+.ptag-green{background:var(--green-pale);color:var(--green);border-color:rgba(42,90,58,0.25);}
+
+/* ROUTINE FLOW */
+.flow-steps{display:flex;flex-direction:column;gap:3px;margin-bottom:20px;}
+.flow-step{display:flex;gap:16px;align-items:center;background:var(--white);border:1px solid var(--warm-faint);border-radius:12px;padding:14px 18px;transition:border-color .3s;}
+.flow-step:hover{border-color:var(--gold-light);}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--gold-pale);border:1.5px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--gold-deep);flex-shrink:0;}
+.flow-body{flex:1;}
+.flow-title{font-size:13.5px;font-weight:500;color:var(--charcoal);margin-bottom:2px;}
+.flow-desc{font-size:12.5px;font-weight:300;color:var(--warm-mid);line-height:1.65;}
+.flow-desc strong{font-weight:500;color:var(--charcoal);}
+.flow-tag{font-size:10px;font-weight:500;padding:2px 8px;border-radius:8px;background:var(--gold-faint);color:var(--gold-deep);border:1px solid rgba(201,168,76,0.25);flex-shrink:0;white-space:nowrap;}
+
+/* VALUE CALC */
+.value-calc{background:var(--gold-faint);border:1px solid var(--gold-light);border-radius:var(--card-r);padding:22px 26px;margin-bottom:20px;}
+.vc-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px;}
+.vc-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(201,168,76,0.2);font-size:13px;font-weight:300;color:var(--warm-dark);}
+.vc-row:last-of-type{border-bottom:none;}
+.vc-row.total{font-weight:500;color:var(--charcoal);font-size:14px;padding-top:12px;border-top:1px solid var(--gold-light);}
+.vc-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-deep);}
+.vc-row.total .vc-price{color:var(--green);}
+
+/* INCI */
+.inci-block{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-radius:12px;padding:14px 16px;font-size:11.5px;font-weight:300;color:var(--warm-mid);line-height:1.8;margin-bottom:12px;}
+.inci-label{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-mid);margin-bottom:6px;}
+.inci-note{font-size:12px;font-weight:300;color:var(--warm-mid);margin-top:8px;padding-top:8px;border-top:1px solid rgba(107,90,58,0.2);line-height:1.7;}
+.inci-note strong{color:var(--warm-dark);font-weight:500;}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:3px;margin-bottom:20px;}
+.faq-item{background:var(--white);border:1px solid var(--warm-faint);border-radius:12px;overflow:hidden;transition:border-color .3s;}
+.faq-item:hover,.faq-item.open{border-color:var(--gold-light);}
+.faq-trigger{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none;}
+.faq-qn{font-size:11px;font-weight:500;color:var(--gold-deep);flex-shrink:0;min-width:22px;}
+.faq-qt{font-size:13px;font-weight:400;color:var(--charcoal);flex:1;line-height:1.4;}
+.faq-badge{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:8px;flex-shrink:0;}
+.faq-badge.flag{background:var(--red-pale);color:var(--red-mid);border:1px solid rgba(196,90,90,0.25);}
+.faq-badge.ok{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.25);}
+.faq-badge.aeo{background:var(--gold-faint);color:var(--gold-deep);border:1px solid rgba(201,168,76,0.25);}
+.faq-chev{width:15px;height:15px;transition:transform .3s;flex-shrink:0;color:var(--warm-light);}
+.faq-item.open .faq-chev{transform:rotate(180deg);}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-item.open .faq-ans{max-height:220px;}
+.faq-ans-inner{padding:0 16px 14px 50px;border-top:1px solid var(--warm-faint);padding-top:12px;font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;}
+.faq-ans-inner strong{font-weight:500;color:var(--charcoal);}
+
+/* FLAGS */
+.flag-list{display:flex;flex-direction:column;gap:5px;margin-bottom:20px;}
+.flag-item{border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;}
+.flag-item.critical{background:var(--red-pale);border:1px solid rgba(196,90,90,0.25);border-left:3px solid var(--red-mid);}
+.flag-item.high{background:#FFF8EC;border:1px solid rgba(196,154,42,0.3);border-left:3px solid var(--gold-mid);}
+.flag-item.medium{background:var(--blue-pale);border:1px solid rgba(123,158,200,0.3);border-left:3px solid var(--blue-mid);}
+.flag-item.low{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-left:3px solid var(--warm-light);}
+.flag-sev{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;margin-top:2px;min-width:52px;}
+.flag-item.critical .flag-sev{color:var(--red-mid);}
+.flag-item.high .flag-sev{color:var(--gold-deep);}
+.flag-item.medium .flag-sev{color:var(--blue);}
+.flag-item.low .flag-sev{color:var(--warm-mid);}
+.flag-text{font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.7;}
+.flag-text strong{font-weight:500;color:var(--charcoal);}
+
+/* AEO SPLIT */
+.aeo-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:520px){.aeo-split{grid-template-columns:1fr;}}
+.aeo-box{border-radius:14px;padding:16px 18px;}
+.aeo-box.strong{background:var(--green-pale);border:1px solid rgba(42,90,58,0.2);}
+.aeo-box.gap{background:var(--red-pale);border:1px solid rgba(196,90,90,0.2);}
+.aeo-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.aeo-box.strong .aeo-label{color:var(--green);}
+.aeo-box.gap .aeo-label{color:var(--red-mid);}
+.aeo-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;}
+.aeo-item::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:8px;}
+.aeo-box.strong .aeo-item::before{background:var(--green-mid);}
+.aeo-box.gap .aeo-item::before{background:var(--red-mid);}
+
+/* SUMMARY */
+.summary-bar{border-radius:var(--card-r);padding:22px 28px;display:flex;align-items:flex-start;gap:16px;margin-top:24px;background:var(--gold-pale);border:1px solid var(--gold-light);}
+.summary-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.summary-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--gold-deep);}
+
+/* PRO TIP */
+.pro-tip{margin-top:12px;border-radius:10px;padding:14px 18px;background:var(--warm-faint);border-left:3px solid var(--gold-mid);display:flex;gap:12px;}
+.pro-tip-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);flex-shrink:0;padding-top:1px;}
+.pro-tip p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.65;}
+.pro-tip p strong{font-weight:500;color:var(--charcoal);}
+
+/* SITEWIDE ISSUES */
+.sitewide-note{background:rgba(196,154,42,0.06);border:1px solid rgba(196,154,42,0.2);border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;}
+.sitewide-note strong{color:var(--charcoal);font-weight:500;}
+
+/* FOOTER */
+.footer-note{text-align:center;margin-top:56px;padding-top:36px;border-top:1px solid var(--warm-faint);}
+.footer-note p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--warm-light);}
+.footer-note strong{font-family:'Jost',sans-serif;font-style:normal;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;display:block;margin-top:8px;color:var(--gold-mid);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-ey">Nyrah Beauty · Two-Product Bundles</div>
+  <h1>The DUO<br><em>Products Guide</em></h1>
+  <p class="hero-sub">Three two-product bundles — each a simplified entry point into the Nyrah routine. Select a DUO below.</p>
+  <div class="duo-grid">
+    <button class="duo-btn act" onclick="switchDuo('collagen',this)">
+      DUO: Collagen Booster
+      <span class="duo-price">€89.00 — Save €5</span>
+      <span class="duo-contents">Undress + Glisten</span>
+    </button>
+    <button class="duo-btn" onclick="switchDuo('cleanse',this)">
+      DUO: Cleanse &amp; Moisturise
+      <span class="duo-price">€109.95 — Save €5</span>
+      <span class="duo-contents">Undress + Infuse (FF or Fragranced)</span>
+    </button>
+    <button class="duo-btn" onclick="switchDuo('hydration',this)">
+      DUO: Intense Hydration
+      <span class="duo-price">€99.00 — Save €9.95</span>
+      <span class="duo-contents">Drench + Absorb</span>
+    </button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════ COLLAGEN BOOSTER DUO ══════════════════════ -->
+<div class="panel active" id="duo-collagen">
+  <div class="duo-header">
+    <div class="duo-num">01</div>
+    <div class="duo-header-right">
+      <div class="duo-eyebrow">2-step · Cleanse + Glow</div>
+      <h2>DUO: Collagen Booster — Gently Cleanse &amp; Plump Fine Lines</h2>
+      <div class="duo-tagline">"No clutter, no confusion — just two simple steps."</div>
+      <div class="tag-row">
+        <span class="tag tag-price">€89.00 · Save €5</span>
+        <span class="tag tag-step">Undress 50ml + Glisten 30ml</span>
+        <span class="tag tag-ff">Both fragrance-free</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('collagen','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('collagen','routine',this)">Routine</button>
+    <button class="ctab" onclick="switchCtab('collagen','inci',this)">INCIs</button>
+    <button class="ctab" onclick="switchCtab('collagen','faq',this)">FAQ</button>
+    <button class="ctab" onclick="switchCtab('collagen','flags',this)">Flags</button>
+  </div>
+
+  <div class="cpanel active" id="collagen-what">
+    <div class="pair">
+      <div class="pair-item p1">
+        <div class="pair-step">Step 1 · Cleanse</div>
+        <div class="pair-name">Undress</div>
+        <div class="pair-size">Vitamin E+C Gel Cleanser — 50ml</div>
+        <div class="pair-desc">Non-foaming gel cleanser applied to <strong>dry skin</strong>. Removes makeup, SPF, and buildup while protecting the skin barrier. Standalone price: €45.00</div>
+        <div class="pair-tags"><span class="ptag ptag-green">Fragrance-free</span><span class="ptag ptag-gold">AM + PM</span></div>
+      </div>
+      <div class="pair-item p2">
+        <div class="pair-step">Step 2 · Nourish + Firm</div>
+        <div class="pair-name">Glisten</div>
+        <div class="pair-size">Seaweed &amp; Avocado Peptide Serum — 30ml</div>
+        <div class="pair-desc">Lightweight peptide serum. Collagen-boosting, antioxidant protection, redness reduction. Can double as a <strong>makeup primer</strong>. Standalone price: €49.00</div>
+        <div class="pair-tags"><span class="ptag ptag-green">Fragrance-free</span><span class="ptag ptag-blue">AM + PM</span></div>
+      </div>
+    </div>
+
+    <div class="value-calc">
+      <div class="vc-label">Pricing check</div>
+      <div class="vc-row"><span>Undress standalone</span><span class="vc-price">€45.00</span></div>
+      <div class="vc-row"><span>Glisten standalone</span><span class="vc-price">€49.00</span></div>
+      <div class="vc-row"><span>Combined standalone value</span><span class="vc-price">€94.00</span></div>
+      <div class="vc-row total"><span>DUO price (saving €5.00)</span><span class="vc-price">€89.00 ✓</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--warm-mid);margin-bottom:16px;">The stated retail price of €94 correctly adds up to the sum of current standalone prices — consistent pricing. ✓</p>
+
+    <div class="grid">
+      <div class="card"><div class="card-label">Positioning</div><h3>Entry-level collagen-boosting duo</h3><p>Positioned as the simplest two-step routine on the site: cleanse then treat with collagen-boosting peptides. No moisturiser, no SPF — this is the skeleton of a routine for someone starting from scratch or looking for a complementary treatment layer.</p></div>
+      <div class="card"><div class="card-label">Target audience</div><h3>Women in Ireland and the UK</h3><p>45,000+ women cited. Notably, <strong>no age bracket, no hormonal skin or rosacea mention</strong> — more broadly positioned than most Nyrah pages. The language uses "rediscovering confidence" rather than condition-specific targeting.</p></div>
+      <div class="card gold full"><div class="card-label">AEO opportunity</div><h3>Underused: "Deliberate minimalism" as a content angle</h3><p>Both DUO pages share a positioning angle — fewer but better products — that is genuinely underused across the Nyrah site. The "less is more" angle is a real, searchable skincare conversation, especially for women overwhelmed by multi-step routines. This is a strong AEO hook for all three DUO pages.</p></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="collagen-routine">
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Cleanse with Undress — AM and/or PM</div><div class="flow-desc">Apply <strong>1–2 pumps to dry skin</strong> in circular motions. Rinse with lukewarm water or remove with Konjac sponge. Can be left as a 10–20 minute mask once or twice a week for extra barrier support.</div></div><span class="flow-tag">Dry skin application</span></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Apply Glisten — on slightly damp skin</div><div class="flow-desc">Layer after cleansing while skin is still receptive. Let absorb fully before applying any moisturiser or SPF on top. <strong>Can also be used as a makeup primer</strong> in the AM — unique to the Glow &amp; Nourish page, not stated on Glisten's standalone page.</div></div><span class="flow-tag">AM + PM</span></div>
+    </div>
+    <div class="pro-tip"><span class="pro-tip-label">Team note</span><p>This duo doesn't include a moisturiser or SPF — make sure customers understand they still need those steps. The DUO works as a cleanse-and-treat layer within a fuller routine, or as a starting point for someone building from scratch. The upsell path is: add Drench, then Infuse, then Lumina SPF.</p></div>
+  </div>
+
+  <div class="cpanel" id="collagen-inci">
+    <div class="inci-block">
+      <div class="inci-label">Undress INCI — as published on this DUO page</div>
+      Caprylic/Capric Triglyceride, Glycerin, Aqua, Helianthus Annuus Seed Oil, Persea Gratissima Oil, Citrus Aurantium Dulcis Peel Oil Expressed, Tocopherol, Chamomilla Recutita Flower Extract, Tocopheryl Acetate, Bellis Perennis Flower Extract, Silybum Marianum Extract, Aspalathus Linearis Leaf Extract, Carica Papaya Fruit Extract, Mangifera Indica Fruit Extract, Leuconostoc/Radish Root Ferment Filtrate, Retinyl Palmitate, Sucrose Laurate, Sucrose Stearate, Sucrose Palmitate, Sorbitan Olivate, Cetearyl Olivate, Potassium Sorbate, Sodium Benzoate, Limonene, Linalool, Citral.
+      <div class="inci-note">✓ Consistent with standalone Undress page. Sucrose esters listed individually here vs combined elsewhere — same ingredients, different formatting. No issues.</div>
+    </div>
+    <div class="inci-block">
+      <div class="inci-label">Glisten INCI — as published on this DUO page ⚠ Includes Spirulina</div>
+      Aqua, Propanediol, Glycerin, Aloe Barbadensis Leaf Juice, Pentylene Glycol, Sodium Citrate, Citric Acid, Benzyl Alcohol, Ethylhexyl Glycerin, Xanthan Gum, Persea Gratissima Fruit Extract, Maltodextrina [sic], Sodium Hydroxide, Paeonia Albiflora Root Extract, Sodium Benzoate, Potassium Sorbate, Pelvetia Canaliculata Extract, Dehydroacetic Acid, <strong>Spirulina Platensis Powder</strong>, Trehalose, CI 42090.
+      <div class="inci-note"><strong>Critical:</strong> This page includes Spirulina Platensis Powder. The standalone Glisten page (/products/glisten-superfood-sea-avocado-glow-serum) does not. This confirms the sitewide INCI inconsistency — one of these lists is wrong. Must be resolved with client before any Glisten ingredient content is published. Also: "Maltodextrina" is a typo — correct INCI name is "Maltodextrin."</div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="collagen-faq">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>ALL 7 FAQ answers on this page are about the Intense Hydration DUO (Absorb + Drench) — not this product.</strong> Every question references "Intense Hydration Duo," "Absorb and Drench," and "hydration." None of it applies to Undress and Glisten. A customer reading the FAQ on this page gets answers about a completely different product. Must be replaced immediately with the correct FAQ for this product combination.</span></div>
+    </div>
+    <div class="pro-tip"><span class="pro-tip-label">For team</span><p>Until the FAQ is fixed, do not direct customers to the page FAQ for product questions. The correct FAQ content for this DUO should address: how to use Undress (dry application), when to apply Glisten in the routine, who this is suitable for, whether they still need a moisturiser, and how long the products last. Use the standalone product pages for accurate information in the meantime.</p></div>
+  </div>
+
+  <div class="cpanel" id="collagen-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>All 7 FAQs are wrong product content:</strong> See FAQ tab. The Intense Hydration DUO FAQ is live on this page. Replace completely before any traffic is driven here.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Glisten INCI inconsistency — Spirulina:</strong> This page includes Spirulina Platensis Powder. The standalone Glisten page does not. Two different INCIs for the same product cannot coexist. Requires client confirmation of the current formula.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Free shipping badge states €55/£45:</strong> Ireland threshold should be €70. UK threshold should be £66. Shipping accordion on the same page correctly states €70/£66. The trust badge is wrong and creates a contradictory experience.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Maltodextrina" typo in Glisten INCI:</strong> Correct INCI name is "Maltodextrin." Published on a live page — minor but a regulatory accuracy concern.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Award-Winning Customer Service" in trust strip:</strong> No award named, no link, no evidence. Consistent with other pages but unsubstantiated across the site.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"guarantees compliments" in Step 3 copy:</strong> Unsubstantiated performance guarantee. Under UK/IE consumer protection regulations, marketing copy cannot guarantee subjective outcomes.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Trustpilot figures inconsistent:</strong> "4.9/5 based on 2,112+ reviews" — not seen on any other page. Also "2,100+ reviews" in trust badge vs "2,112+" two sections earlier on the same page. Standardise to one figure sitewide.</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>Step 3 copy: "gently cleanser"</strong> — grammatical error. Should read "gently cleanse."</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>"co-founder" for Lorraine:</strong> Other pages say "founder." Inconsistent across the site. Also introduces the question: who is the other co-founder? Not named anywhere.</span></div>
+    </div>
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item">Clean 2-step structure is highly citable for "minimal skincare routine" and "simple skincare for beginners" queries</div>
+        <div class="aeo-item">Both products are fragrance-free — strong signal for rosacea and sensitive skin audience</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Blockers</div>
+        <div class="aeo-item"><strong>Wrong FAQ is a live AEO problem</strong> — AI engines will index incorrect product information from this page</div>
+        <div class="aeo-item">Spirulina inconsistency must be resolved before any Glisten ingredient content is built</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ CLEANSE & MOISTURISE DUO ══════════════════════ -->
+<div class="panel" id="duo-cleanse">
+  <div class="duo-header">
+    <div class="duo-num">02</div>
+    <div class="duo-header-right">
+      <div class="duo-eyebrow">2-step · Cleanse + Moisturise</div>
+      <h2>DUO: Cleanse &amp; Moisturise — When Less is More</h2>
+      <div class="duo-tagline">"Overwhelmed, reactive, or just needs a moment of calm."</div>
+      <div class="tag-row">
+        <span class="tag tag-price">€109.95 · Save €5</span>
+        <span class="tag tag-step">Undress 50ml + Infuse 50ml</span>
+        <span class="tag tag-warn">Variant choice: FF or Fragranced</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('cleanse','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('cleanse','variants',this)">FF vs Fragranced</button>
+    <button class="ctab" onclick="switchCtab('cleanse','routine',this)">Routine</button>
+    <button class="ctab" onclick="switchCtab('cleanse','inci',this)">INCIs</button>
+    <button class="ctab" onclick="switchCtab('cleanse','faq',this)">FAQ</button>
+    <button class="ctab" onclick="switchCtab('cleanse','flags',this)">Flags</button>
+  </div>
+
+  <div class="cpanel active" id="cleanse-what">
+    <div class="pair">
+      <div class="pair-item p1">
+        <div class="pair-step">Step 1 · Cleanse</div>
+        <div class="pair-name">Undress</div>
+        <div class="pair-size">Vitamin E+C Gel Cleanser — 50ml</div>
+        <div class="pair-desc">Non-foaming gel cleanser on <strong>dry skin</strong>. Removes all daily buildup without stripping. Standalone price: €45.00</div>
+        <div class="pair-tags"><span class="ptag ptag-green">Fragrance-free</span><span class="ptag ptag-gold">AM + PM</span></div>
+      </div>
+      <div class="pair-item p2">
+        <div class="pair-step">Step 2 · Moisturise — Customer's choice</div>
+        <div class="pair-name">Infuse</div>
+        <div class="pair-size">Oxygen Botanical Moisturiser — 50ml (FF or Fragranced)</div>
+        <div class="pair-desc">Nyrah's hero moisturiser. Customer selects Fragrance-Free or Fragranced at the point of purchase — same price both variants. Standalone price: €63.95</div>
+        <div class="pair-tags"><span class="ptag ptag-green">FF version available</span><span class="ptag ptag-blue">AM + PM</span></div>
+      </div>
+    </div>
+
+    <div class="value-calc">
+      <div class="vc-label">Pricing check</div>
+      <div class="vc-row"><span>Undress standalone</span><span class="vc-price">€45.00</span></div>
+      <div class="vc-row"><span>Infuse standalone</span><span class="vc-price">€63.95</span></div>
+      <div class="vc-row"><span>Combined standalone value</span><span class="vc-price">€108.95</span></div>
+      <div class="vc-row total"><span>DUO price (saving €5.00)</span><span class="vc-price">€109.95 ⚠</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--warm-mid);margin-bottom:16px;">Note: The stated retail price is €114.95 — this is €6 more than the actual sum of standalone prices (€108.95). The DUO price of €109.95 is actually more than the combined standalone value. The saving is relative to the inflated retail price, not to actual buying both standalone. Worth checking whether this is intentional positioning or a pricing error.</p>
+
+    <div class="grid">
+      <div class="card"><div class="card-label">Key differentiator</div><h3>Only DUO with a variant choice at checkout</h3><p>The Fragranced vs Fragrance-Free selector at the product level is the right UX decision for a product pairing that includes Infuse — whose FF vs Fragranced distinction is one of the most important product decisions on the site for sensitive skin customers.</p></div>
+      <div class="card"><div class="card-label">Best FAQ on any DUO page</div><h3>Clean, accurate, and has an upsell path</h3><p>Unlike the Collagen Booster Duo (completely wrong FAQs), this page's FAQs are correct and relevant. Uniquely, <strong>Q6 explicitly signals the upsell path</strong>: "you can easily layer in DRENCH, GLISTEN, or TRANSFORM serums later on." No other DUO page does this.</p></div>
+      <div class="card gold full"><div class="card-label">Positioning angle</div><h3>"Deliberate minimalism" — underused but ownable</h3><p>At €109.95 for just a cleanser and moisturiser, this is the highest-priced 2-product DUO on the site. The "when less is more" positioning is doing real work to justify the simplicity. This deliberate minimalism angle is an underused content hook for the brand overall — "fewer but better products" is a genuine counter-narrative to the overwhelming 12-step routine culture.</p></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="cleanse-variants">
+    <div class="grid">
+      <div class="card"><div class="card-label">Fragrance Free variant — recommended for</div><h3>Rosacea, sensitive, reactive skin</h3><p>No Parfum. No fragrance allergens. Identical base formula to the Fragranced version. This is the correct choice for anyone with known fragrance sensitivity, rosacea, or hormonal skin that reacts to scent.</p></div>
+      <div class="card"><div class="card-label">Fragranced variant — recommended for</div><h3>Customers who enjoy the scent experience</h3><p>Contains the "proprietary grapefruit-soufflé scent" — the same fragrance as Absorb. Contains Parfum plus 8+ declared fragrance allergens. Not suitable for fragrance-sensitive skin. The scent is described as light and not overpowering.</p></div>
+    </div>
+    <div class="flag-list">
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Citronellol absent from Fragranced Infuse INCI on this page:</strong> The standalone Fragranced Infuse page lists Citronellol as a declared fragrance allergen. It is absent from the Fragranced Infuse INCI on this DUO page. Citronellol is a regulated allergen requiring mandatory declaration above threshold. One of these INCI lists is incorrect — client confirmation needed.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>No visual distinction between FF and Fragranced on the DUO page itself:</strong> The variant selector exists at checkout but there is no prominent page-level callout explaining the difference. Customers who don't know about the FF distinction may select randomly. Consider adding a visible comparison or tooltip explaining which variant suits which skin type.</span></div>
+    </div>
+    <div class="pro-tip"><span class="pro-tip-label">For team</span><p>When recommending this DUO, always confirm fragrance preference first. If the customer has rosacea, reactive skin, or has had reactions to other products, direct them to <strong>Fragrance Free</strong> without hesitation. If they're unsure, recommend FF — it is the lower-risk choice and the formulas are otherwise identical.</p></div>
+  </div>
+
+  <div class="cpanel" id="cleanse-routine">
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Cleanse with Undress — AM and/or PM</div><div class="flow-desc">Apply to <strong>dry skin</strong> before adding water. Massage, then rinse. This is Undress's key differentiator vs other cleansers — the dry application allows oils to break down makeup before emulsifying.</div></div><span class="flow-tag">Dry skin application</span></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Moisturise with Infuse — AM and PM</div><div class="flow-desc">The final step before SPF in the AM, or the final step at night. Seals in hydration after cleansing. If serums (Drench, Glisten, Transform) are in the routine, Infuse goes on last among them.</div></div><span class="flow-tag">Last step before SPF</span></div>
+      <div class="flow-step"><div class="flow-num">→</div><div class="flow-body"><div class="flow-title">Upsell path (from FAQ Q6)</div><div class="flow-desc">"You can easily layer in <strong>DRENCH, GLISTEN, or TRANSFORM serums later on</strong>" — the only DUO page that explicitly names the upsell path. Use this when a customer asks what to add next.</div></div><span class="flow-tag">From FAQ Q6</span></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="cleanse-inci">
+    <div class="inci-block">
+      <div class="inci-label">Undress INCI — as published on this DUO page ⚠ Different ordering</div>
+      <strong>Aqua</strong>, Caprylic/Capric Triglyceride, Glycerin, Helianthus Annuus Seed Oil, Persea Gratissima Oil, Citrus Aurantium Dulcis Peel Oil, Tocopherol, Chamomilla Recutita Flower Extract, Tocopheryl Acetate, Bellis Perennis Flower Extract, Silybum Marianum Extract, Aspalathus Linearis Leaf Extract, Carica Papaya Fruit Extract, Mangifera Indica Fruit Extract, Leuconostoc/Radish Root Ferment Filtrate, Retinyl Palmitate, Sucrose Laurate, Sucrose Stearate, Sucrose Palmitate, Sorbitan Olivate, Cetearyl Olivate, Potassium Sorbate, Sodium Benzoate, Limonene, Linalool, Citral.
+      <div class="inci-note"><strong>INCI ordering issue:</strong> On the standalone Undress page and the Collagen Booster DUO, Caprylic/Capric Triglyceride is listed first (highest concentration). Here, Aqua is listed first. INCI ingredient order reflects descending concentration — if these are the same formula, the lead ingredient must be the same across all pages. This is the third INCI ordering variation for Undress found across the site. Client confirmation needed that the formula is identical.</div>
+    </div>
+    <div class="inci-block">
+      <div class="inci-label">Infuse Fragranced INCI — as published here ⚠ Missing Citronellol</div>
+      Aqua, Squalane, Glycerin, Butyrospermum Parkii Butter, Simmondsia Chinensis Seed Oil, Niacinamide, Cetearyl Olivate, Glyceryl Stearate SE, Aluminum Starch Octenylsuccinate, Cetearyl Alcohol, Sorbitan Olivate, Sodium Ascorbyl Phosphate, Trehalose, Butylene Glycol, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Triethyl Citrate, Sorbitan Isostearate, Argania Spinosa Kernel Oil, Parfum, Phyllanthus Emblica Fruit Extract, Glycyrrhiza Glabra Root Extract, Ligustrum Lucidum Seed Extract, Tocopherol, Glyceryl Caprylate, Benzoic Acid, Maltodextrin, Sodium Metabisulfite, Disodium EDTA, Silicon Dioxide, Sodium Benzoate, Sodium Chloride, Citric Acid, Citrus Aurantium Peel Oil, Eugenia Caryophyllus Oil, Eugenol, Geraniol, Geranyl Acetate, Hexamethylindanopyran, Limonene, Linalool, Linalyl Acetate, Pogostemon Cablin Oil, Terpineol, Vanillin.
+      <div class="inci-note"><strong>Citronellol is absent from this INCI.</strong> It is present on the standalone Fragranced Infuse page as a declared fragrance allergen. EU Cosmetics Regulation requires declaration of allergens above threshold. If Citronellol is present at a declarable concentration, it must appear on all Infuse Fragranced INCI lists. One of the two INCI lists is wrong.</div>
+    </div>
+    <div class="inci-block">
+      <div class="inci-label">Infuse Fragrance Free INCI — as published here ✓ Consistent</div>
+      Aqua, Squalane, Glycerin, Butyrospermum Parkii Butter, Simmondsia Chinensis Seed Oil, Niacinamide, Cetearyl Olivate, Glyceryl Stearate SE, Aluminum Starch Octenylsuccinate, Cetearyl Alcohol, Sorbitan Olivate, Sodium Ascorbyl Phosphate, Trehalose, Butylene Glycol, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Triethyl Citrate, Sorbitan Isostearate, Argania Spinosa Kernel Oil, Phyllanthus Emblica Fruit Extract, Glycyrrhiza Glabra Root Extract, Ligustrum Lucidum Seed Extract, Tocopherol, Glyceryl Caprylate, Benzoic Acid, Maltodextrin, Sodium Metabisulfite, Disodium EDTA, Silicon Dioxide, Sodium Benzoate, Sodium Chloride, Citric Acid.
+      <div class="inci-note">✓ Matches FF standalone Infuse page. Consistent and correct.</div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="cleanse-faq">
+    <p style="font-size:13px;color:var(--warm-mid);margin-bottom:16px;line-height:1.8;">Unlike the Collagen Booster DUO, all 7 FAQs on this page are correct and relevant. Noted for context — this is how the DUO FAQ should look.</p>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q1</span><span class="faq-qt">What is this duo?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Correctly describes this duo: Undress cleanser and Infuse moisturiser as a simplified 2-step daily ritual.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q2</span><span class="faq-qt">Who is this best for?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Sensitive or reactive skin, tight/dry/out-of-balance skin, anyone wanting a simplified routine, mornings when time is short or evenings needing calm. Well-defined and accurate.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q3</span><span class="faq-qt">Which variant should I choose?</span><span class="faq-badge aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Fragrance-Free is recommended for sensitive, rosacea-prone, or reactive skin. Fragranced for those who enjoy the grapefruit-soufflé scent. Both have identical base formulas. <strong>For team:</strong> When in doubt, always recommend FF — it is the lower-risk choice.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q4</span><span class="faq-qt">Can I use this with other Nyrah products?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Yes — these two products form the foundation. Serums (Drench, Glisten, Transform) sit between Undress and Infuse in the routine.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q5</span><span class="faq-qt">How long will it last?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Approximately 8–10 weeks with twice-daily use.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q6</span><span class="faq-qt">Can I build on this routine later?</span><span class="faq-badge aeo">AEO — Upsell</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">"You can easily layer in DRENCH, GLISTEN, or TRANSFORM serums later on." <strong>The only DUO page that explicitly names the product upsell path.</strong> This is a strong AEO and commercial asset — someone searching "how to build a Nyrah routine" can use this as a starting point.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q7</span><span class="faq-qt">Will it clog pores?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">No — both products are non-comedogenic. Infuse is specifically formulated to be lightweight and non-pore-blocking.</div></div></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="cleanse-flags">
+    <div class="flag-list">
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Citronellol missing from Fragranced Infuse INCI:</strong> Present on standalone page, absent here. EU-regulated fragrance allergen that requires mandatory declaration. One INCI is wrong — requires client confirmation and correction.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Undress INCI ordering inconsistency:</strong> This is the third different INCI ordering variation for Undress across the site. Aqua leads here; Caprylic/Capric Triglyceride leads on other pages. INCI order is descending by concentration — if formula is identical, lead ingredient must be consistent.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Step 1 of "3 Simple Steps" references "Collagen Booster Duo":</strong> This is the Cleanse &amp; Moisturise DUO page, but Step 1 reads "Join over 45,000 women who are rediscovering their confidence with our Collagen Booster Duo." Direct copy-paste error from the wrong DUO template.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Free shipping badge states €55/£45:</strong> Should be €70 (IE) / £66 (UK). Shipping accordion on same page correctly states €70/£66.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>DUO price (€109.95) is higher than combined standalone value (€108.95):</strong> The stated retail price of €114.95 is inflated, making the "saving" appear larger than it is. The DUO is actually €1 more than buying both products separately at current prices.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"guarantees compliments" in Step 3:</strong> Unsubstantiated performance guarantee — same error as on the Collagen Booster DUO page. Remove or replace with a substantiated benefit claim.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ INTENSE HYDRATION DUO ══════════════════════ -->
+<div class="panel" id="duo-hydration">
+  <div class="duo-header">
+    <div class="duo-num">03</div>
+    <div class="duo-header-right">
+      <div class="duo-eyebrow">2-step · Hydrate + Seal</div>
+      <h2>DUO: Intense Hydration — For Dry, Dull, Lacklustre Skin</h2>
+      <div class="duo-tagline">Two serums — no cleanser, no moisturiser. A layered treatment, not a complete routine.</div>
+      <div class="tag-row">
+        <span class="tag tag-price">€99.00 · Save €9.95</span>
+        <span class="tag tag-step">Drench 30ml + Absorb 50ml</span>
+        <span class="tag tag-frag">Absorb contains Parfum</span>
+        <span class="tag tag-warn">Nut allergy warning — Absorb</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('hydration','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('hydration','routine',this)">Routine</button>
+    <button class="ctab" onclick="switchCtab('hydration','inci',this)">INCIs ⚠</button>
+    <button class="ctab" onclick="switchCtab('hydration','faq',this)">FAQ</button>
+    <button class="ctab" onclick="switchCtab('hydration','flags',this)">Flags</button>
+  </div>
+
+  <div class="cpanel active" id="hydration-what">
+    <div class="pair">
+      <div class="pair-item p1">
+        <div class="pair-step">Step 1 · Hydrate</div>
+        <div class="pair-name">Drench</div>
+        <div class="pair-size">Triple Molecular Hyaluronic Serum — 30ml</div>
+        <div class="pair-desc">Applied to <strong>damp skin immediately after cleansing</strong>. PrimalHyal™ 3K delivers hydration at three skin depths. Lightweight, fast-absorbing. Standalone price: €49.00</div>
+        <div class="pair-tags"><span class="ptag ptag-green">Fragrance-free</span><span class="ptag ptag-gold">AM + PM</span></div>
+      </div>
+      <div class="pair-item p2">
+        <div class="pair-step">Step 2 · Seal</div>
+        <div class="pair-name">Absorb</div>
+        <div class="pair-size">Moisturising Face &amp; Hair Serum — 50ml</div>
+        <div class="pair-desc">Oil-based jelly serum. Seals in Drench overnight. Also works as a hair treatment — this use case is dropped entirely on this DUO page. <strong>Contains Parfum + nut allergy risk (Sweet Almond Oil).</strong> Standalone price: €59.95</div>
+        <div class="pair-tags"><span class="ptag ptag-blue">PM focus</span><span class="ptag ptag-gold">⚠ Nut allergy</span></div>
+      </div>
+    </div>
+
+    <div class="value-calc">
+      <div class="vc-label">Pricing check</div>
+      <div class="vc-row"><span>Drench standalone</span><span class="vc-price">€49.00</span></div>
+      <div class="vc-row"><span>Absorb standalone</span><span class="vc-price">€59.95</span></div>
+      <div class="vc-row"><span>Combined standalone value</span><span class="vc-price">€108.95</span></div>
+      <div class="vc-row total"><span>DUO price (saving €9.95)</span><span class="vc-price">€99.00 ✓</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--warm-mid);margin-bottom:16px;">Stated retail price of €108.95 correctly matches the sum of current standalone prices. ✓</p>
+
+    <div class="grid">
+      <div class="card"><div class="card-label">Important — not a complete routine</div><h3>Two serums, no cleanser or moisturiser</h3><p>This DUO pairs two serums rather than a cleanser-plus-something combination. It is a <strong>layered hydration treatment</strong>, not a complete routine. Customers need Undress (or another cleanser) and SPF separately. Make this clear in any recommendation.</p></div>
+      <div class="card"><div class="card-label">The FAQ on this page</div><h3>These are the correct FAQs — and also the ones live on the Collagen Booster DUO in error</h3><p>The 7 FAQs on this page are correct for this product. They are also the exact same FAQs that were copy-pasted onto the Collagen Booster DUO page by mistake. The Intense Hydration DUO FAQ is the source of the copy-paste error.</p></div>
+      <div class="card gold full"><div class="card-label">Watch out for</div><h3>Pump dispenser mention — packaging discrepancy</h3><p>The Full Product Details tab describes Absorb as having a <strong>"mess-free pump."</strong> The standalone Absorb page makes no mention of a pump mechanism. If Absorb has been relaunched with a pump format, the standalone page and all other mentions need updating. If this is an error, it needs to be removed. Cannot be left unresolved — it affects the product application story across all pages referencing Absorb.</p></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="hydration-routine">
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-num">0</div><div class="flow-body"><div class="flow-title">Cleanse first — not included in DUO</div><div class="flow-desc">This DUO starts from post-cleanse. Use Undress or any other cleanser before applying Drench. <strong>Drench must be applied to damp skin</strong> — still slightly damp from rinsing the cleanser is ideal.</div></div><span class="flow-tag">Not in this DUO</span></div>
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><div class="flow-title">Apply Drench — on damp skin, AM and PM</div><div class="flow-desc">A few drops on slightly damp face, neck, and décolletage. Let absorb fully before applying Absorb on top. The triple molecular HA delivers hydration at deep, mid, and surface skin layers simultaneously.</div></div><span class="flow-tag">Damp skin</span></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><div class="flow-title">Apply Absorb — on top, as a seal</div><div class="flow-desc">The oil-based jelly seals in everything underneath. Creates a deep overnight seal. <strong>Best used as a PM step</strong> — the page confirms AM and PM but Absorb's oil-based formula and heaviness makes it more appropriate for night use.</div></div><span class="flow-tag">Best as PM seal</span></div>
+    </div>
+    <div class="pro-tip"><span class="pro-tip-label">For team</span><p>The FAQ (Q2) confirms both products are used AM and PM. However, Absorb is a heavy oil-based jelly — most customers will find it uncomfortable under makeup during the day. The practical guidance is: Drench AM and PM, Absorb primarily PM. The duo page doesn't make this distinction explicit, so customers may need guidance.</p></div>
+  </div>
+
+  <div class="cpanel" id="hydration-inci">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Absorb INCI on this page differs significantly from the standalone Absorb page:</strong> Different ingredient ordering and missing ingredients (Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate, Hydrogenated Castor Oil, Caprylic/Capric Triglyceride absent here). Also, this page lists Sweet Almond Oil first (highest concentration) while the standalone page lists C12-15 Alkyl Benzoate first. These are not formatting differences — one INCI is wrong or the formula has changed. Client confirmation urgently needed.</span></div>
+    </div>
+    <div class="inci-block">
+      <div class="inci-label">Drench INCI — as published on this DUO page</div>
+      Aqua, Propylene Glycol, Glycerin, Propanediol, Sorbeth-30, Caprylic/Capric Triglyceride, PEG-20 Hydrogenated Castor Oil, Acacia Senegal Gum, Benzyl Alcohol, Xanthan Gum, Sorbitan Isostearate, Hydrolyzed Hyaluronic Acid, Butylene Glycol, Salicylic Acid, Sorbic Acid, Glyceril Caprylate [sic], Sodium Laureth-4 Phosphate, Citric Acid, Sodium Citrate.
+      <div class="inci-note">Generally consistent with standalone Drench page. Typo: "Glyceril Caprylate" should be "Glyceryl Caprylate." Also note: INCI shows only one HA form (Hydrolyzed Hyaluronic Acid) while the page claims "high, medium, and low molecular weight hyaluronic acids." The three-weight HA claim is partially in tension with the single INCI representation.</div>
+    </div>
+    <div class="inci-block">
+      <div class="inci-label">Absorb INCI — as published on this DUO page ⚠ CONFLICTS with standalone page</div>
+      Prunus Amygdalus Dulcis Oil ⚠, Argania Spinosa Kernel Oil, Simmondsia Chinensis Seed Oil, C12-15 Alkyl Benzoate, BHT, Sodium Hyaluronate, Hydrolyzed Sodium Hyaluronate, Ricinus Communis Seed Oil, Polyamide-8, Undecane, Tridecane, Tocopherol, Retinyl Palmitate, Tocopheryl Acetate, Ascorbyl Tetraisopalmitate, Fragrance (Parfum).
+      <div class="inci-note"><strong>Conflicts with standalone Absorb page in three ways:</strong> (1) Lead ingredient is Sweet Almond Oil here vs C12-15 Alkyl Benzoate on standalone. (2) Missing: Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate, Hydrogenated Castor Oil, Caprylic/Capric Triglyceride. (3) Fragrance allergens (Citronellol, Eugenol, Geraniol, Limonene, Linalool) declared on standalone, absent here. The standalone page INCI is more complete — but one of the two must be confirmed as correct and applied everywhere.</div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="hydration-faq">
+    <p style="font-size:13px;color:var(--warm-mid);margin-bottom:16px;line-height:1.8;">All 7 FAQs are correct for this product. These are also the FAQs that were incorrectly pasted onto the Collagen Booster DUO page.</p>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q1</span><span class="faq-qt">What is this duo?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Correctly describes Absorb and Drench as a two-serum hydration combination for dry, dull, and lacklustre skin.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q2</span><span class="faq-qt">How do I use this duo?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Drench first on damp skin, then Absorb. AM and PM. Use after cleansing and before moisturiser and SPF if adding other products.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q3</span><span class="faq-qt">Who is this suitable for?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">All skin types including dry, sensitive, and mature skin.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q4</span><span class="faq-qt">Can I use it with other products?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Yes — use after cleansing and before moisturiser and SPF.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q5</span><span class="faq-qt">How long will it last?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">8–10 weeks per bottle with consistent twice-daily use.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q6</span><span class="faq-qt">Will it clog pores?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">No — both described as non-comedogenic.</div></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q7</span><span class="faq-qt">Can I wear makeup after?</span><span class="faq-badge ok">Correct</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Yes — let absorb fully first. Given Absorb's oil-heavy formula, allow extra time before applying makeup to avoid pilling.</div></div></div>
+    </div>
+  </div>
+
+  <div class="cpanel" id="hydration-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Absorb INCI conflicts with standalone Absorb page:</strong> Different lead ingredient, missing ingredients, absent fragrance allergen declarations. Two different INCIs for the same product cannot coexist under EU Cosmetics Regulation. Client must confirm the single correct INCI and it must be applied to every page that lists Absorb — 4 bundles plus 2 DUO pages.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Nut allergy warning absent from DUO page:</strong> Absorb contains Sweet Almond Oil. The standalone Absorb page carries an explicit nut allergy warning. This DUO page does not mention it anywhere. Must be added — this is a consumer safety issue.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Fragrance allergens not individually declared for Absorb:</strong> "Fragrance (Parfum)" listed but no individual allergens (Citronellol, Eugenol, Geraniol, Limonene, Linalool) declared. Present on standalone page. EU Cosmetics Regulation requires individual declaration above threshold.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Free shipping badge states €55/£45:</strong> Should be €70 (IE) / £66 (UK). Ongoing sitewide error.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Mess-free pump" for Absorb:</strong> Not mentioned on the standalone Absorb page. If Absorb now ships with a pump, this needs to be added to all product pages. If this is an error, remove it from this page.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Triple Molecular HA claim vs single INCI representation:</strong> Page describes Drench as delivering "high, medium, and low molecular weight hyaluronic acids." INCI lists only Hydrolyzed Hyaluronic Acid. PrimalHyal™ 3K is named on the standalone Drench page — needs to be visible in the INCI or explained in the context of the proprietary technology.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Hair use case for Absorb dropped entirely:</strong> Standalone Absorb page describes it as "Moisturising Face &amp; Hair Serum." This DUO page calls it "Moisturising Serum" — the hair use case is removed. If the product works for hair, this is a missed opportunity for differentiation on the DUO page.</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>"Glyceril Caprylate" typo in Drench INCI:</strong> Should be "Glyceryl Caprylate." Same typo seen on standalone Drench page — needs to be fixed across all instances.</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>Step 3 image shows Undress cleanser:</strong> Irrelevant to a DUO that contains Absorb and Drench. Template image from the cleansing-focused DUO was not replaced.</span></div>
+    </div>
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item">Correct FAQs — all 7 questions are accurate and citable for this product combination</div>
+        <div class="aeo-item">The "dry, dull, lacklustre skin" positioning is specific and matches real search queries</div>
+        <div class="aeo-item">Pricing check passes — claimed savings are accurate against current standalone prices</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Blockers</div>
+        <div class="aeo-item"><strong>Absorb INCI conflict must be resolved</strong> before any ingredient content is built around this DUO or any page containing Absorb</div>
+        <div class="aeo-item">No fragrance or nut allergy disclosure for Absorb — consumer safety gap that undermines brand trust</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SITEWIDE PATTERNS -->
+<div class="pro-tip" style="margin-top:32px;"><span class="pro-tip-label">Sitewide patterns across all 3 DUOs</span><p><strong>Three issues appear on every DUO page:</strong> (1) Free shipping badge states €55/£45 when the correct thresholds are €70/£66. (2) "Award-Winning Customer Service" in the trust strip — no award named. (3) "guarantees compliments" in the Step 3 copy — unsubstantiated performance claim. All three need to be fixed in a single pass across the DUO template before any content is published. <strong>Additionally:</strong> Lorraine is described as "co-founder" on all DUO pages — but as "founder" on standalone product pages. The word "co-founder" has appeared consistently across DUO and custom landing pages only, suggesting it was introduced during a template redesign. The second co-founder is never named anywhere on the site.</p></div>
+
+<div class="footer-note">
+  <p>Two products. One intention. The simplest version of a routine done properly.</p>
+  <strong>Nyrah Beauty · Made in Ireland</strong>
+</div>
+
+</div><!-- end main -->
+
+<script>
+function switchDuo(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.duo-btn').forEach(b=>b.classList.remove('act'));
+  const el=document.getElementById('duo-'+id);
+  if(el)el.classList.add('active');
+  btn.classList.add('act');
+  // Reset ctabs
+  const ctabs=el?.querySelectorAll('.ctab');
+  const cpanels=el?.querySelectorAll('.cpanel');
+  if(ctabs&&cpanels){
+    ctabs.forEach(c=>c.classList.remove('act'));
+    cpanels.forEach(c=>c.classList.remove('active'));
+    if(ctabs[0])ctabs[0].classList.add('act');
+    if(cpanels[0])cpanels[0].classList.add('active');
+  }
+}
+function switchCtab(duo,tab,btn){
+  const panel=document.getElementById('duo-'+duo);
+  if(!panel)return;
+  panel.querySelectorAll('.ctab').forEach(c=>c.classList.remove('act'));
+  panel.querySelectorAll('.cpanel').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('act');
+  const t=document.getElementById(duo+'-'+tab);
+  if(t)t.classList.add('active');
+}
+function toggleFaq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(f=>f.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+</script>
+</body>
+</html>
