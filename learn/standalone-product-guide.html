@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Core Products Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold-deep:#8B6914;--gold-mid:#C49A2A;--gold-light:#E8C96A;--gold-pale:#F7EDD0;--gold-faint:#FDF8EE;
+  --cream:#FFFDF6;--charcoal:#1C1810;--warm-dark:#2D2416;--warm-mid:#6B5A3A;--warm-light:#A89070;--warm-faint:#EDE5D4;
+  --white:#FFFFFF;
+  --pm:#2D3A5A;--pm-pale:#EEF2F9;--pm-mid:#7B9EC8;
+  --green:#2A5C3A;--green-pale:#E8F5EC;--green-mid:#4A8A5A;
+  --red-deep:#7A2A2A;--red-pale:#FBEAEA;--red-mid:#C45A5A;
+  --card-r:18px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;overflow-x:hidden;}
+
+/* HERO */
+.hero{background:var(--warm-dark);padding:52px 40px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(196,154,42,0.12);}
+.hero-ey{font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;position:relative;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,5vw,48px);color:var(--gold-pale);line-height:1.15;position:relative;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:13px;font-weight:300;color:var(--warm-light);position:relative;margin-bottom:30px;}
+
+/* PRODUCT SELECTOR GRID */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:3px;position:relative;z-index:2;border-top:1px solid rgba(196,154,42,0.15);padding:3px;}
+.pg-btn{padding:10px 8px;font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;transition:all .25s;color:var(--warm-light);border-bottom:2px solid transparent;line-height:1.4;text-align:center;}
+.pg-btn:hover{color:var(--gold-pale);}
+.pg-btn.act{color:var(--gold-light);border-bottom:2px solid var(--gold-mid);}
+.pg-btn .pg-price{display:block;font-size:11px;font-weight:300;color:var(--gold-mid);letter-spacing:.02em;margin-top:3px;font-style:italic;}
+
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:44px 24px 80px;}
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* PRODUCT HEADER */
+.prod-header{display:flex;gap:20px;align-items:flex-start;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--warm-faint);}
+.prod-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--gold-pale);line-height:1;flex-shrink:0;}
+.prod-header-right{flex:1;}
+.prod-eyebrow{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:6px;}
+.prod-header h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,4vw,32px);color:var(--charcoal);line-height:1.2;margin-bottom:6px;}
+.prod-tagline{font-size:13px;font-weight:300;color:var(--warm-mid);margin-bottom:12px;}
+.prod-meta-row{display:flex;gap:10px;flex-wrap:wrap;}
+.prod-tag{font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;letter-spacing:.1em;text-transform:uppercase;}
+.pt-price{background:var(--gold-faint);color:var(--gold-deep);border:1px solid var(--gold-light);}
+.pt-size{background:var(--warm-faint);color:var(--warm-mid);border:1px solid rgba(107,90,58,0.2);}
+.pt-time{background:var(--pm-pale);color:var(--pm);border:1px solid var(--pm-mid);}
+.pt-ff{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.3);}
+.pt-frag{background:var(--red-pale);color:var(--red-deep);border:1px solid rgba(122,42,42,0.3);}
+.pt-step{background:rgba(139,105,20,0.08);color:var(--gold-deep);border:1px solid var(--gold-light);}
+
+/* CONTENT TABS */
+.ctab-bar{display:flex;gap:0;border-bottom:1px solid var(--warm-faint);margin-bottom:24px;overflow-x:auto;}
+.ctab{padding:10px 18px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;color:var(--warm-light);border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;font-family:'Jost',sans-serif;}
+.ctab:hover{color:var(--warm-mid);}
+.ctab.act{color:var(--gold-deep);border-bottom:2px solid var(--gold-mid);}
+.cpanel{display:none;}
+.cpanel.active{display:block;animation:fadeIn .25s ease;}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:560px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--white);border:1px solid var(--warm-faint);border-radius:var(--card-r);padding:18px 20px;transition:border-color .3s;}
+.info-card:hover{border-color:var(--gold-light);}
+.info-card.full{grid-column:1/-1;}
+.info-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;}
+.info-card h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--charcoal);margin-bottom:6px;}
+.info-card p{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.75;}
+.info-card p strong{color:var(--charcoal);font-weight:500;}
+.info-card ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
+.info-card ul li{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.65;display:flex;align-items:flex-start;gap:8px;}
+.info-card ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold-mid);flex-shrink:0;margin-top:8px;}
+.info-card ul li strong{color:var(--charcoal);font-weight:500;}
+
+/* INGREDIENT TABLE */
+.ing-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.ing-table th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);padding:8px 12px;border-bottom:1px solid var(--gold-light);text-align:left;background:var(--gold-faint);}
+.ing-table td{padding:10px 12px;border-bottom:1px solid var(--warm-faint);font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;vertical-align:top;}
+.ing-table tr:hover td{background:var(--gold-faint);}
+.ing-name{font-weight:500;color:var(--charcoal);}
+.ing-trade{font-size:10px;font-weight:500;color:var(--gold-deep);display:block;margin-top:1px;}
+
+/* INCI BLOCK */
+.inci-block{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-radius:12px;padding:14px 16px;font-size:11.5px;font-weight:300;color:var(--warm-mid);line-height:1.8;margin-bottom:16px;}
+.inci-label{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-mid);margin-bottom:6px;}
+.inci-note{font-size:12px;font-weight:300;color:var(--warm-mid);margin-top:8px;padding-top:8px;border-top:1px solid rgba(107,90,58,0.2);line-height:1.7;}
+.inci-note strong{color:var(--warm-dark);font-weight:500;}
+
+/* CLAIMS LIST */
+.claims-grid{display:flex;flex-direction:column;gap:3px;margin-bottom:16px;}
+.claim-item{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--warm-faint);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:300;color:var(--warm-dark);}
+.claim-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-mid);flex-shrink:0;}
+
+/* FLAGS */
+.flag-list{display:flex;flex-direction:column;gap:5px;margin-bottom:16px;}
+.flag-item{border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;}
+.flag-item.critical{background:var(--red-pale);border:1px solid rgba(196,90,90,0.25);border-left:3px solid var(--red-mid);}
+.flag-item.high{background:#FFF8EC;border:1px solid rgba(196,154,42,0.3);border-left:3px solid var(--gold-mid);}
+.flag-item.medium{background:var(--pm-pale);border:1px solid rgba(123,158,200,0.3);border-left:3px solid var(--pm-mid);}
+.flag-item.low{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-left:3px solid var(--warm-light);}
+.flag-sev{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;margin-top:2px;min-width:52px;}
+.flag-item.critical .flag-sev{color:var(--red-mid);}
+.flag-item.high .flag-sev{color:var(--gold-deep);}
+.flag-item.medium .flag-sev{color:var(--pm);}
+.flag-item.low .flag-sev{color:var(--warm-mid);}
+.flag-text{font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.7;}
+.flag-text strong{font-weight:500;color:var(--charcoal);}
+
+/* AEO STRENGTHS/GAPS */
+.aeo-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+@media(max-width:520px){.aeo-split{grid-template-columns:1fr;}}
+.aeo-box{border-radius:14px;padding:16px 18px;}
+.aeo-box.strong{background:var(--green-pale);border:1px solid rgba(42,90,58,0.2);}
+.aeo-box.gap{background:var(--red-pale);border:1px solid rgba(196,90,90,0.2);}
+.aeo-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.aeo-box.strong .aeo-label{color:var(--green);}
+.aeo-box.gap .aeo-label{color:var(--red-mid);}
+.aeo-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;}
+.aeo-item::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:8px;}
+.aeo-box.strong .aeo-item::before{background:var(--green-mid);}
+.aeo-box.gap .aeo-item::before{background:var(--red-mid);}
+
+/* COMPARISON (SPF) */
+.comp-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.comp-table th{background:var(--gold-faint);padding:10px 14px;font-size:11px;font-weight:500;letter-spacing:.08em;text-align:left;color:var(--gold-deep);border-bottom:1px solid var(--gold-light);}
+.comp-table td{padding:10px 14px;border-bottom:1px solid var(--warm-faint);font-size:13px;font-weight:300;color:var(--warm-dark);}
+.comp-table tr:hover td{background:var(--gold-faint);}
+.comp-table td:first-child{font-weight:500;color:var(--charcoal);}
+
+/* ANALOGY BAR */
+.analogy{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--warm-faint);margin-bottom:10px;}
+.analogy-icon{font-size:16px;flex-shrink:0;}
+.analogy-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--warm-mid);line-height:1.5;}
+
+/* SUMMARY */
+.summary-bar{border-radius:var(--card-r);padding:24px 28px;display:flex;align-items:flex-start;gap:16px;margin-top:28px;}
+.summary-bar.am{background:var(--gold-pale);border:1px solid var(--gold-light);}
+.summary-bar.pm{background:var(--pm-pale);border:1px solid var(--pm-mid);}
+.summary-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.summary-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.7;}
+.summary-bar.am .summary-text{color:var(--gold-deep);}
+.summary-bar.pm .summary-text{color:var(--pm);}
+
+/* PRO TIP */
+.pro-tip{margin-top:12px;border-radius:10px;padding:14px 18px;background:var(--warm-faint);border-left:3px solid var(--gold-mid);display:flex;gap:12px;}
+.pro-tip-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);flex-shrink:0;padding-top:1px;}
+.pro-tip p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.65;}
+
+/* FOOTER */
+.footer-note{text-align:center;margin-top:56px;padding-top:36px;border-top:1px solid var(--warm-faint);}
+.footer-note p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--warm-light);}
+.footer-note strong{font-family:'Jost',sans-serif;font-style:normal;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;display:block;margin-top:8px;color:var(--gold-mid);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-ey">Nyrah Beauty · Product Knowledge</div>
+  <h1>Core Standalone<br><em>Products Guide</em></h1>
+  <p class="hero-sub">What every product is, what it does, and everything a customer or team member needs to know.</p>
+
+  <div class="product-grid">
+    <button class="pg-btn act" onclick="switchProd('undress',this)">Undress<span class="pg-price">€45</span></button>
+    <button class="pg-btn" onclick="switchProd('drench',this)">Drench<span class="pg-price">€49</span></button>
+    <button class="pg-btn" onclick="switchProd('glisten',this)">Glisten<span class="pg-price">€49</span></button>
+    <button class="pg-btn" onclick="switchProd('transform',this)">Transform<span class="pg-price">€49</span></button>
+    <button class="pg-btn" onclick="switchProd('absorb',this)">Absorb<span class="pg-price">€59.95</span></button>
+    <button class="pg-btn" onclick="switchProd('infuse',this)">Infuse<span class="pg-price">€63.95</span></button>
+    <button class="pg-btn" onclick="switchProd('revive',this)">Revive<span class="pg-price">€64.95</span></button>
+    <button class="pg-btn" onclick="switchProd('spf30',this)">Lumina SPF30<span class="pg-price">€78</span></button>
+    <button class="pg-btn" onclick="switchProd('spf50',this)">Lumina SPF50<span class="pg-price">€54.95</span></button>
+    <button class="pg-btn" onclick="switchProd('tonic',this)">Tonic / Elixir<span class="pg-price">€25</span></button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════════════ UNDRESS ══════════════════════ -->
+<div class="panel active" id="prod-undress">
+  <div class="prod-header">
+    <div class="prod-num">01</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 1 · Cleanser</div>
+      <h2>Undress — Transforming Vitamin E+C Gel Cleanser</h2>
+      <div class="prod-tagline">Non-foaming, non-stripping gel cleanser. Applied to dry skin. Works AM and PM.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€45.00 · 50ml</span>
+        <span class="prod-tag pt-step">AM + PM · Step 1</span>
+        <span class="prod-tag pt-ff">Fragrance-free</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('undress','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('undress','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('undress','use',this)">How to use</button>
+    <button class="ctab" onclick="switchCtab('undress','aeo',this)">AEO notes</button>
+    <button class="ctab" onclick="switchCtab('undress','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="undress-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Removes without stripping</h3><p>Removes makeup, SPF, and daily buildup while protecting the skin barrier. Described as a "daily skin reset." Unlike most gel cleansers, it is applied to <strong>dry skin</strong> — the oils break down makeup before emulsifying with water.</p></div>
+      <div class="info-card"><div class="info-label">Target audience</div><h3>All skin types</h3><p>The broadest audience statement of any standalone page: <strong>all skin types including sensitive, rosacea-prone, hormonal, dry, or dehydrated.</strong> Universal entry point for any customer.</p></div>
+      <div class="info-card"><div class="info-label">Multi-use positioning</div><h3>3 uses in one product</h3><ul><li><strong>Cleanser:</strong> First and second cleanse, morning and evening</li><li><strong>Mask:</strong> 10–20 minutes once or twice a week for barrier support</li><li><strong>Balm:</strong> Applied to dry patches on hands, elbows, and knees</li></ul></div>
+      <div class="info-card"><div class="info-label">Key claims</div><h3>What the page states</h3><ul><li>Gently removes makeup, SPF, and daily buildup</li><li>Cleanses without stripping</li><li>No added parfum — free from parabens, sulfates, gluten, fragrances</li><li>Vitamin Complex A, C, D &amp; E (broader than bundle pages which say only E &amp; C)</li><li>Vegan, cruelty-free, made in Ireland</li></ul></div>
+    </div>
+    <div class="analogy">
+      <span class="analogy-icon">🧱</span>
+      <span class="analogy-text">Think of it as cleaning the wall before you paint. Every product that follows depends on this step being done correctly.</span>
+    </div>
+    <div class="summary-bar am"><span class="summary-icon">✦</span><span class="summary-text">Undress opens both routines. Nothing after it works properly on unclean skin. The dry-skin application method is genuinely differentiated — most gel cleansers are applied wet. This is the detail that builds customer trust immediately.</span></div>
+  </div>
+  <div class="cpanel" id="undress-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient Group</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Vitamin-Rich Complex (A, C, D &amp; E)</span></td><td>Collagen support, brightness, antioxidant protection, barrier repair</td></tr>
+      <tr><td><span class="ing-name">Sunflower, Avocado &amp; Orange Peel Oils</span></td><td>Omega fatty acids, moisture, calms irritation</td></tr>
+      <tr><td><span class="ing-name">Red Bush Tea &amp; Milk Thistle Extracts</span></td><td>Antioxidants, reduces inflammation, promotes skin regeneration</td></tr>
+      <tr><td><span class="ing-name">Fruit Enzymes (Papaya &amp; Mango)</span></td><td>Gently refine and brighten without irritation</td></tr>
+      <tr><td><span class="ing-name">Retinyl Palmitate</span></td><td>Vitamin A derivative (in INCI) — supports cell turnover. Not named in marketing copy but present.</td></tr>
+    </table>
+    <div class="inci-block">
+      <div class="inci-label">Full INCI</div>
+      Caprylic/Capric Triglyceride, Glycerin, Aqua, Helianthus Annuus (Sunflower) Seed Oil, Persea Gratissima (Avocado) Oil, Citrus Aurantium Dulcis (Orange) Peel Oil Expressed, Tocopherol, Chamomilla Recutita (Matricaria) Flower Extract, Tocopheryl Acetate, Bellis Perennis (Daisy) Flower Extract, Silybum Marianum (Milk Thistle) Extract, Aspalathus Linearis (Red Bush Tea) Leaf Extract, Carica Papaya (Papaya) Fruit Extract, Mangifera Indica (Mango) Fruit Extract, Leuconostoc/Radish Root Ferment Filtrate, Retinyl Palmitate, Sucrose Laurate, Sucrose Stearate, Sucrose Palmitate, Sorbitan Olivate, Cetearyl Olivate, Potassium Sorbate, Sodium Benzoate, Limonene, Linalool, Citral.
+      <div class="inci-note"><strong>Fragrance nuance:</strong> Page says "No added parfum" and "Free from fragrances" — technically accurate (no Parfum in INCI). However, Limonene, Linalool, and Citral are naturally-occurring fragrance allergens from the Orange Peel Oil and must be declared. For fragrance-sensitive customers, this nuance matters. Not a regulatory error but a potential support query trigger.</div>
+    </div>
+  </div>
+  <div class="cpanel" id="undress-use">
+    <div class="info-grid">
+      <div class="info-card full"><div class="info-label">Directions (exactly as published)</div><ul><li>Use AM and/or PM as first and/or second cleanse</li><li>Massage <strong>1 to 2 pumps onto dry skin</strong> in circular motions</li><li>Rinse with lukewarm water or remove with the Konjac Root Sponge or bamboo face cloths</li><li>Use as a <strong>10–20 minute mask</strong> once or twice a week for extra nourishment</li><li>Apply to dry patches (hands, elbows, knees) for softness as a balm</li></ul></div>
+      <div class="info-card"><div class="info-label">The dry-skin method — why it matters</div><p>Most gel cleansers are applied to wet skin. Undress is applied to <strong>dry skin</strong> — this allows the oils to break down makeup and SPF more effectively before water is added. This is a genuine differentiator and the most-searched usage question for this product.</p></div>
+      <div class="info-card"><div class="info-label">Cross-sell recommendation</div><p>The page specifically recommends using Undress with the <strong>Nyrah Konjac Root Cleansing Sponge</strong> or bamboo face cloths. This is the only standalone product page with a direct accessory cross-sell — use it in customer conversations.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="undress-aeo">
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item">Only page that answers "can I use a cleanser as a face mask" and "do you apply Undress to dry or wet skin"</div>
+        <div class="aeo-item">Multi-use positioning (cleanser + mask + balm) creates multiple distinct AEO content hooks</div>
+        <div class="aeo-item">Konjac Sponge cross-sell creates internal linking opportunity</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Gaps</div>
+        <div class="aeo-item"><strong>No FAQ on the page</strong> — single biggest gap. AI engines can't answer "is Undress good for rosacea" from this URL.</div>
+        <div class="aeo-item">No social proof, no reviews, no results timeline</div>
+        <div class="aeo-item">Vitamin A+D+C+E claim here vs only C+E on bundle pages — inconsistency must be resolved</div>
+        <div class="aeo-item">Two different product descriptors on same page: "Transforming Vitamin E+C Gel Cleanser" vs "Nourishing Gel Cleanser"</div>
+      </div>
+    </div>
+  </div>
+  <div class="cpanel" id="undress-flags">
+    <div class="flag-list">
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Vitamin A &amp; D claim inconsistency:</strong> Standalone page claims "Vitamin Complex A, C, D &amp; E." All bundle pages reference only C &amp; E. Confirm with client which is accurate — one of them is wrong.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>No FAQ section:</strong> Every bundle page has at least 4 FAQs. This standalone page has none. "Is Undress good for rosacea?" or "does it strip skin?" cannot be answered from this URL.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Name inconsistency:</strong> Page title says "Transforming Vitamin E+C Gel Cleanser." Description header says "Nourishing Gel Cleanser." Two different product descriptors on the same page.</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>Fragrance allergen nuance:</strong> Page says "fragrance-free" but Orange Peel Oil contributes Limonene, Linalool, and Citral — naturally-occurring allergens declared in INCI. Fragrance-sensitive customers should be aware of this distinction.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ DRENCH ══════════════════════ -->
+<div class="panel" id="prod-drench">
+  <div class="prod-header">
+    <div class="prod-num">02</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 2 · Hydration Serum</div>
+      <h2>Drench — Triple Molecular Hyaluronic Serum</h2>
+      <div class="prod-tagline">Best-selling HA serum. Applied to damp skin immediately after cleansing.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€49.00 · 30ml</span>
+        <span class="prod-tag pt-step">AM + PM · Step 2</span>
+        <span class="prod-tag pt-ff">Fragrance-free</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('drench','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('drench','3d',this)">3D System</button>
+    <button class="ctab" onclick="switchCtab('drench','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('drench','aeo',this)">AEO notes</button>
+    <button class="ctab" onclick="switchCtab('drench','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="drench-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Hydration at three skin depths</h3><p>Uses <strong>PrimalHyal™ 3K</strong> — a proprietary clinically tested blend of three different molecular weights of HA. Each weight reaches a different layer of skin simultaneously. Applied on <strong>damp skin</strong> right after cleansing to pull in maximum moisture.</p></div>
+      <div class="info-card"><div class="info-label">Target audience</div><h3>Formally: dry or dehydrated skin</h3><p>Standalone page narrowly states "perfect for dry or dehydrated skin." However, across all bundles it appears in: rosacea, mature, sensitive, hormonal, and general skin types. <strong>The page undersells the product's versatility.</strong></p></div>
+      <div class="info-card"><div class="info-label">Key claims</div><h3>Exactly as stated</h3><ul><li>"Best-selling hyaluronic acid serum"</li><li>Zero stickiness — stated twice</li><li>Fragrance-free, lightweight, fast-absorbing</li><li>Plays well under SPF or makeup without pilling</li><li>"Because hydrated skin behaves better"</li></ul></div>
+      <div class="info-card"><div class="info-label">Why second in the routine</div><h3>Lightest product goes first</h3><p>Drench is almost watery. It must go on before anything heavier or it cannot penetrate. Applied while skin is still <strong>slightly damp</strong> from cleansing — this maximises how much moisture it pulls in.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">💧</span><span class="analogy-text">Like watering a plant before fertilising it. The moisture sets up the skin to absorb everything that follows.</span></div>
+  </div>
+  <div class="cpanel" id="drench-3d">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">Deep Layer</div><h3>Triple Molecular HA (PrimalHyal™ 3K)</h3><p>Penetrates below the surface. Plumps fine lines and rehydrates from within. The smallest molecular weight reaches the deepest layers.</p></div>
+      <div class="info-card"><div class="info-label">Middle Layer</div><h3>Humectants</h3><p><strong>Glycerin, Propanediol, Propylene Glycol</strong> — draw moisture into the skin and help it stay put. These form the holding mechanism that keeps the deep hydration locked at the middle layers.</p></div>
+      <div class="info-card"><div class="info-label">Surface Layer</div><h3>Film-formers</h3><p><strong>Acacia Senegal &amp; Xanthan Gums</strong> — form a lightweight breathable film on the skin's surface that prevents water loss and reinforces the natural barrier.</p></div>
+      <div class="info-card"><div class="info-label">GEOGARD ECT — important context</div><h3>Why Salicylic Acid is in Drench</h3><p>Drench is excluded from the Hormonal Breakout and Bright &amp; Even bundles partly due to Salicylic Acid. However, the Drench standalone page explains: <strong>Salicylic Acid is part of GEOGARD ECT, an ECOCERT-approved preservative system</strong> — not a standalone exfoliant active. This context is absent from all bundle pages.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="drench-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient / Technology</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">PrimalHyal™ 3K</span><span class="ing-trade">Proprietary — Triple Molecular HA</span></td><td>Targets hydration at multiple skin depths, plumps fine lines, boosts elasticity</td></tr>
+      <tr><td><span class="ing-name">Glycerin, Propanediol, Propylene Glycol</span></td><td>Humectants — draw moisture in and hold it there</td></tr>
+      <tr><td><span class="ing-name">Acacia Senegal &amp; Xanthan Gums</span></td><td>Film-formers — soothe and protect the skin barrier at the surface</td></tr>
+      <tr><td><span class="ing-name">NIKKOFINE™ CIO Complex</span><span class="ing-trade">Proprietary — Castor oil esters</span></td><td>Creates the silky, non-sticky texture — explains the "glide-y feel"</td></tr>
+      <tr><td><span class="ing-name">GEOGARD ECT</span><span class="ing-trade">Benzyl Alcohol, Salicylic Acid, Sorbic Acid</span></td><td>ECOCERT-approved preservative system — keeps formula stable. Salicylic Acid here is a preservative, not an exfoliant active.</td></tr>
+    </table>
+    <div class="inci-block">
+      <div class="inci-label">Full INCI</div>
+      Aqua, Propylene Glycol, Glycerin, Propanediol, Sorbeth-30, Caprylic/Capric Triglyceride, PEG-20 Hydrogenated Castor Oil, Acacia Senegal Gum, Benzyl Alcohol, Xanthan Gum, Sorbitan Isostearate, Hydrolyzed Hyaluronic Acid, Butylene Glycol, Salicylic Acid, Sorbic Acid, Glyceril Caprylate, Sodium Laureth-4 Phosphate, Citric Acid, Sodium Citrate.
+    </div>
+    <div class="flag-list">
+      <div class="flag-item medium"><span class="flag-sev">Fix</span><span class="flag-text"><strong>"REFRESH Citrus Tonic" in Directions</strong> — this product does not exist on the site under this name. Every customer who reads the directions and searches for it finds nothing. Must be corrected to "Tonic" or "Elixir."</span></div>
+    </div>
+  </div>
+  <div class="cpanel" id="drench-aeo">
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item"><strong>Strongest standalone page on the site for AEO.</strong> The 3D hydration framework (Deep / Middle / Surface) directly answers "what does hyaluronic acid do" and "what is triple molecular hyaluronic acid."</div>
+        <div class="aeo-item">PrimalHyal™ 3K is named, clinically tested, and specific — AI engines can cite it as a verifiable ingredient claim</div>
+        <div class="aeo-item">GEOGARD ECT context resolves Salicylic Acid concern — educationally valuable for sensitive skin audience</div>
+        <div class="aeo-item">Directions section naming companion products creates internal linking signals for AI engines</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Gaps</div>
+        <div class="aeo-item">No FAQ, no social proof, no reviews — for a "best-selling" product there is no evidence to support that claim</div>
+        <div class="aeo-item">Audience statement "perfect for dry skin" is too narrow — undersells versatility</div>
+        <div class="aeo-item">REFRESH Citrus Tonic error in directions is a live broken cross-sell</div>
+      </div>
+    </div>
+  </div>
+  <div class="cpanel" id="drench-flags">
+    <div class="flag-list">
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>"REFRESH Citrus Tonic" in Directions:</strong> Product doesn't exist on the site under this name. Must be updated to current product name (Tonic or Elixir).</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Audience too narrow:</strong> "Perfect for dry or dehydrated skin" on standalone page. Drench appears in bundles targeting rosacea, mature skin, and all general skin types. The page undersells it.</span></div>
+      <div class="flag-item low"><span class="flag-sev">Low</span><span class="flag-text"><strong>INCI typo:</strong> "Glyceril Caprylate" should be "Glyceryl Caprylate." Minor but worth standardising for regulatory accuracy.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ GLISTEN ══════════════════════ -->
+<div class="panel" id="prod-glisten">
+  <div class="prod-header">
+    <div class="prod-num">03</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 3 · Peptide Serum</div>
+      <h2>Glisten — Seaweed &amp; Avocado Peptide Serum</h2>
+      <div class="prod-tagline">Collagen-boosting, glow-giving, antioxidant serum. Can double as a makeup primer.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€49.00 · 30ml</span>
+        <span class="prod-tag pt-step">AM + PM · Step 3</span>
+        <span class="prod-tag pt-ff">Fragrance-free</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('glisten','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('glisten','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('glisten','aeo',this)">AEO notes</button>
+    <button class="ctab" onclick="switchCtab('glisten','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="glisten-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Collagen, glow, and protection</h3><p>Built around three proprietary trade-name actives: <strong>Effipulp™</strong> (upcycled avocado), <strong>Ambre Oceane™</strong> (brown algae), and <strong>Detoskin™</strong> (peony root). Together they stimulate collagen, reduce redness, strengthen the barrier, and protect against oxidative stress.</p></div>
+      <div class="info-card"><div class="info-label">Unique positioning</div><h3>Also a makeup primer</h3><p>The Glow &amp; Nourish page is the first to state Glisten is <strong>"useful as a primer before applying makeup."</strong> This use case does not appear on the standalone page or most bundle pages — but it is a real functional benefit that customers value.</p></div>
+      <div class="info-card"><div class="info-label">Sustainability story</div><h3>Upcycled and sustainably sourced</h3><ul><li><strong>Effipulp™:</strong> Made from food-waste avocados via "Green Press Technology"</li><li><strong>Ambre Oceane™:</strong> Sustainably harvested brown algae</li><li>Neither claim is third-party verified on the page — brand claims only</li></ul></div>
+      <div class="info-card"><div class="info-label">Who it's for</div><h3>All skin types including sensitive</h3><p>Pregnancy-safe, suitable for all genders. Specific conditions: rosacea, hormonal acne, fine lines, dehydration, redness, collagen depletion. No age bracket on standalone page.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">🌿</span><span class="analogy-text">The nutrition layer — feeding the skin with collagen signals and antioxidants while putting up a shield against the day ahead.</span></div>
+  </div>
+  <div class="cpanel" id="glisten-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient / Technology</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Effipulp™</span><span class="ing-trade">Persea Gratissima Fruit Extract — upcycled avocado</span></td><td>Deep hydration, plumps fine lines, reinforces skin barrier</td></tr>
+      <tr><td><span class="ing-name">Ambre Oceane™</span><span class="ing-trade">Pelvetia Canaliculata Extract — brown algae</span></td><td>Stimulates collagen production, smooths fine lines, long-lasting hydration</td></tr>
+      <tr><td><span class="ing-name">Detoskin™</span><span class="ing-trade">Paeonia Lactiflora Root Extract — peony root</span></td><td>Boosts skin renewal, supports collagen, protects against oxidative stress</td></tr>
+      <tr><td><span class="ing-name">Aloe Vera</span><span class="ing-trade">Aloe Barbadensis Leaf Juice</span></td><td>Soothes redness, irritation, and sensitivity</td></tr>
+      <tr><td><span class="ing-name">Trehalose &amp; Pentylene Glycol</span></td><td>Hydration retention and moisture balance</td></tr>
+      <tr><td><span class="ing-name">CI 42090</span><span class="ing-trade">FD&C Blue No. 1 — synthetic colorant</span></td><td>Gives the serum its characteristic colour. <em>Present in INCI but never disclosed in product copy.</em></td></tr>
+    </table>
+    <div class="inci-block">
+      <div class="inci-label">Full INCI (Standalone Page)</div>
+      Aqua, Propanediol, Glycerin, Aloe Barbadensis Leaf Juice, Pentylene Glycol, Sodium Citrate, Citric Acid, Benzyl Alcohol, Xanthan Gum, Ethylhexylglycerin, Sodium Hydroxide, Maltodextrin, Persea Gratissima Fruit Extract, Dehydroacetic Acid, Paeonia Lactiflora Root Extract, Trehalose, Pelvetia Canaliculata Extract, Sodium Benzoate, Potassium Sorbate, CI 42090.
+      <div class="inci-note"><strong>INCI discrepancy:</strong> Bundle pages list <strong>Spirulina Platensis Powder</strong> in the Glisten INCI. The standalone page does not. Either the standalone page has an outdated formula version or the bundle pages have an error. Cannot have two different INCI lists for the same product — requires client confirmation.</div>
+    </div>
+  </div>
+  <div class="cpanel" id="glisten-aeo">
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item">Three proprietary trade names (Effipulp™, Ambre Oceane™, Detoskin™) are genuine differentiators — AI engines can cite them as specific, verifiable claims</div>
+        <div class="aeo-item">Sustainability angle (upcycled avocado, food-waste sourcing) is a real content opportunity</div>
+        <div class="aeo-item">Fragrance-free confirmed by both INCI and page copy — consistent and trustworthy for AEO</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Gaps</div>
+        <div class="aeo-item">No FAQ section — zero structured Q&amp;A content for AI engines to cite</div>
+        <div class="aeo-item">CI 42090 colorant in INCI but never disclosed — some consumers specifically avoid synthetic colorants</div>
+        <div class="aeo-item">Spirulina INCI discrepancy must be resolved before any ingredient content is written about this product</div>
+        <div class="aeo-item">Sustainability claims have no third-party verification or certification linked</div>
+      </div>
+    </div>
+  </div>
+  <div class="cpanel" id="glisten-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Spirulina INCI conflict:</strong> Bundle pages include Spirulina Platensis Powder. Standalone page does not. One of these INCI lists is wrong. Two different ingredient lists for the same product is a regulatory issue — client confirmation required immediately.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>CI 42090 undisclosed:</strong> The synthetic colorant FD&C Blue No. 1 gives Glisten its colour. It is in the INCI but never mentioned or explained in copy. Some consumers specifically avoid synthetic colorants.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>No FAQ, no reviews:</strong> For a product positioned for rosacea, hormonal acne, and sensitive skin — the most common questions ("is Glisten safe for rosacea?", "can I use Glisten if pregnant?") cannot be answered from this page.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ TRANSFORM ══════════════════════ -->
+<div class="panel" id="prod-transform">
+  <div class="prod-header">
+    <div class="prod-num">04</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 3 · BioRetinol Serum · PM Only</div>
+      <h2>Transform — BioRetinol &amp; Bakuchiol Serum</h2>
+      <div class="prod-tagline">Plant-based retinol alternative without the irritation. PM use only — increases photosensitivity.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€49.00 · 30ml</span>
+        <span class="prod-tag pt-time">PM Only · Step 3</span>
+        <span class="prod-tag pt-frag">Contains fragrance oils</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('transform','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('transform','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('transform','flags',this)">Critical flags</button>
+    <button class="ctab" onclick="switchCtab('transform','aeo',this)">AEO notes</button>
+  </div>
+  <div class="cpanel active" id="transform-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Plant-based retinol without irritation</h3><p>Two hero actives: <strong>Revinage™</strong> (bio-retinol from Bidens Pilosa plant) and <strong>Bakuchiol</strong> (retinol alternative from Psoralea Corylifolia seeds). Both signal skin cells to produce more collagen, accelerate cell turnover, and repair damage — without the photosensitivity or irritation of synthetic retinol.</p></div>
+      <div class="info-card"><div class="info-label">Why PM only</div><h3>Retinol alternatives increase UV sensitivity</h3><p>The page does not explicitly state "PM only" — but the formula, the directions (follow with ABSORB, the PM oil), and the mechanism all imply it. For team members: always clarify this is a <strong>nighttime product</strong> when recommending it.</p></div>
+      <div class="info-card"><div class="info-label">Formula type</div><h3>Water-free, oil-only</h3><p>No Aqua in the INCI. Carrier base: Undecane, Tridecane, C13-15 Alkane (lightweight alkane emollients) plus Sweet Almond Oil. This is why it feels different from serums — it is technically an oil, not a water-based serum.</p></div>
+      <div class="info-card"><div class="info-label">⚠ Nut allergy warning</div><h3>Contains Sweet Almond Oil</h3><p><strong>Prunus Amygdalus Dulcis Oil</strong> is in the INCI. The page carries a nut allergy warning in the Important Warning section. This must be communicated to any customer with known nut allergies before purchase.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">🔧</span><span class="analogy-text">Sending the repair crew into the building with specific instructions. They work through the night fixing what the day damaged.</span></div>
+  </div>
+  <div class="cpanel" id="transform-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient / Technology</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Revinage™</span><span class="ing-trade">Bidens Pilosa Extract + Elaeis Guineensis Oil + Gossypium Herbaceum Seed Oil</span></td><td>Proprietary bio-retinol. Boosts collagen, reduces fine lines, evens skin tone without irritation</td></tr>
+      <tr><td><span class="ing-name">Bakuchiol</span><span class="ing-trade">From Psoralea Corylifolia seeds</span></td><td>Plant-based retinol alternative. Collagen stimulation, cell turnover, anti-aging</td></tr>
+      <tr><td><span class="ing-name">Calendula Officinalis Flower Extract</span></td><td>Anti-inflammatory, calms redness and hormonal breakouts</td></tr>
+      <tr><td><span class="ing-name">Sweet Almond Oil ⚠</span><span class="ing-trade">Prunus Amygdalus Dulcis Oil</span></td><td>Emollient carrier oil. Nut allergy risk — see Important Warning on page</td></tr>
+      <tr><td><span class="ing-name">Lavandula Angustifolia Oil, Litsea Cubeba Oil, Citrus Aurantifolia Oil, Rosmarinus Officinalis Leaf Oil</span></td><td>Four essential fragrance oils. Citral, Geraniol, Linalool, Limonene, Citronellol declared as allergens. <em>This product is NOT fragrance-free.</em></td></tr>
+    </table>
+    <div class="inci-block">
+      <div class="inci-label">Full INCI (Standalone — most complete version)</div>
+      Undecane, Prunus Amygdalus Dulcis Oil, Tridecane, C13-15 Alkane, Bidens Pilosa Extract (and) Elaeis Guineensis Oil (and) Gossypium Herbaceum Seed Oil, Linum Usitatissimum Seed Oil, Helianthus Annuus Seed Oil, Calendula Officinalis Flower Extract, Bakuchiol, Rosmarinus Officinalis Leaf Extract, Lavandula Angustifolia Oil, Litsea Cubeba Fruit Oil, Citrus Aurantifolia Oil, Rosmarinus Officinalis Leaf Oil, Citral, Geraniol, Linalool, Limonene, Citronellol.
+      <div class="inci-note"><strong>INCI version inconsistency:</strong> The Glow &amp; Nourish Collection page has a shorter, potentially outdated Transform INCI missing several fragrance components. This standalone INCI is the most complete version — it should be used as the reference for all content.</div>
+    </div>
+  </div>
+  <div class="cpanel" id="transform-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>"Fragrance-free" claim in "How does it work" section:</strong> The page explicitly states "Vegan, cruelty-free &amp; fragrance-free." The INCI contains four essential oils (Lavender, May Chang, Lime, Rosemary) plus five declared EU fragrance allergens. This is a live regulatory violation under EU Cosmetics Regulation 1223/2009. Must be removed immediately. Replace with: "Contains essential oils — not suitable for fragrance-sensitive skin."</span></div>
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>"Ideal for rosacea-prone skin" — contradicts Rosacea Bundle exclusion:</strong> The standalone page says Transform is ideal for rosacea. The Rosacea Relief Bundle explicitly excludes Transform because Lavender, Lime, and May Chang oils are known rosacea triggers. Both statements are live simultaneously. A rosacea sufferer landing here has no warning. Must be corrected before any content is published.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>No PM-only warning:</strong> The page gives zero AM/PM guidance. Bakuchiol and Revinage™ increase photosensitivity. Directions only say "follow with ABSORB Moisturizer" — implying PM without stating it explicitly.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Price discrepancy:</strong> Bundle pages recorded Transform at €70. Standalone page shows €49 sale / €54 original. Either bundle pages use outdated RRPs or standalone price was reduced. Verify with client — affects all bundle "save X%" calculations.</span></div>
+    </div>
+    <div class="pro-tip"><span class="pro-tip-label">Team note</span><p>No AEO content can be built around Transform until the fragrance-free claim and rosacea claim are removed from the live page. Any content that builds on those claims is built on a regulatory error.</p></div>
+  </div>
+  <div class="cpanel" id="transform-aeo">
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths (once fixed)</div>
+        <div class="aeo-item">Two named, differentiated retinol alternatives (Revinage™ + Bakuchiol) — compelling, increasingly searched topic</div>
+        <div class="aeo-item">"Retinol without the irritation" is exactly the kind of question-driven content that performs in AEO</div>
+        <div class="aeo-item">Bakuchiol is one of the highest-volume skincare ingredient queries globally 2024–2026</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Blockers (must fix first)</div>
+        <div class="aeo-item"><strong>Cannot touch this product for content until fragrance-free claim is removed from the live page</strong></div>
+        <div class="aeo-item">No FAQ, no reviews, no social proof</div>
+        <div class="aeo-item">Rosacea contradiction is a consumer safety issue — not just an AEO issue</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ ABSORB ══════════════════════ -->
+<div class="panel" id="prod-absorb">
+  <div class="prod-header">
+    <div class="prod-num">05</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 4 · PM Oil · Also: Hair Treatment</div>
+      <h2>Absorb — Moisturising Face &amp; Hair Serum</h2>
+      <div class="prod-tagline">Water-free oil-based jelly serum. PM overnight seal. Also works as a hair treatment.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€59.95 · 50ml</span>
+        <span class="prod-tag pt-time">PM Step · Also: Hair</span>
+        <span class="prod-tag pt-frag">Contains Parfum</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('absorb','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('absorb','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('absorb','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="absorb-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Deep overnight seal + nourishment</h3><p>An oil-based "jelly serum" — water-free formula using Polyamide-8 for texture. Creates a deep overnight seal that locks in Transform and Drench underneath, while slowly feeding skin with Argan Oil, Vitamins C and E, and dual-weight Hyaluronic Acid through the night.</p></div>
+      <div class="info-card"><div class="info-label">Different from Infuse</div><h3>Heavier, oil-based, PM designed</h3><p><strong>Infuse:</strong> lightweight daytime moisturiser, sits under makeup, AM and PM use.<br><strong>Absorb:</strong> heavier oil-based jelly, designed for overnight use, seals everything in deeply. The FAQ on the Infuse page explains this best — it is the clearest comparison on the site.</p></div>
+      <div class="info-card"><div class="info-label">Underused angle</div><h3>Face AND hair treatment</h3><p>Absorb is positioned as a face, neck, décolletage, and <strong>hair</strong> product. The hair use case is dramatically underplayed — only two sentences in the "How does it work" section. This is a separate audience opportunity: hair oil, split end, and dry hair searches.</p></div>
+      <div class="info-card"><div class="info-label">Fragrance disclosure</div><h3>Contains Parfum — undisclosed in copy</h3><p>The INCI confirms Parfum plus five declared EU fragrance allergens (Citronellol, Eugenol, Geraniol, Limonene, Linalool). <strong>The page makes zero mention of fragrance anywhere.</strong> For a brand that heavily markets fragrance-free, this absence is a transparency gap — especially given the core audience includes sensitive and rosacea-prone skin.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">🔒</span><span class="analogy-text">Locking the building overnight so the repair crew (Transform) can work undisturbed. Seals everything in, nothing escapes until morning.</span></div>
+  </div>
+  <div class="cpanel" id="absorb-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Argan Oil, Jojoba Oil, Sweet Almond Oil ⚠</span></td><td>Nourishment, moisture balance, emollient. Nut allergy warning for Sweet Almond Oil.</td></tr>
+      <tr><td><span class="ing-name">Sodium Hyaluronate + Hydrolyzed Sodium Hyaluronate</span></td><td>Dual-weight HA — page claims "triple-weight" but INCI only shows two forms. See flag below.</td></tr>
+      <tr><td><span class="ing-name">Ascorbyl Tetraisopalmitate</span><span class="ing-trade">Oil-soluble Vitamin C</span></td><td>Brightening, antioxidant</td></tr>
+      <tr><td><span class="ing-name">Retinyl Palmitate</span><span class="ing-trade">Oil-soluble Vitamin A</span></td><td>Anti-aging, cell turnover. Present in INCI but never mentioned in marketing copy — an unused content asset.</td></tr>
+      <tr><td><span class="ing-name">Tocopherol + Tocopheryl Acetate</span><span class="ing-trade">Vitamin E</span></td><td>Antioxidant, skin barrier</td></tr>
+      <tr><td><span class="ing-name">Parfum + Citronellol, Eugenol, Geraniol, Limonene, Linalool</span></td><td>Fragrance components — all EU-regulated allergens declared. Product contains fragrance despite no mention in copy.</td></tr>
+    </table>
+    <div class="inci-block">
+      <div class="inci-label">Full INCI</div>
+      C12-15 Alkyl Benzoate, Polyamide-8, Undecane, Argania Spinosa Kernel Oil, Simmondsia Chinensis Seed Oil, Prunus Amygdalus Dulcis Oil, Tridecane, Tocopheryl Acetate, Sodium Hyaluronate, Hydrolyzed Sodium Hyaluronate, Ricinus Communis Seed Oil, Hydrogenated Castor Oil, Ascorbyl Tetraisopalmitate, Retinyl Palmitate, Tocopherol, Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate, BHT, Caprylic/Capric Triglyceride, Parfum (Fragrance), Citronellol, Eugenol, Geraniol, Limonene, Linalool.
+    </div>
+  </div>
+  <div class="cpanel" id="absorb-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>"DNA protection" listed as a skin concern:</strong> Under EU Cosmetics Regulation EC 1223/2009, this implies effects on biological functions that reclassify a cosmetic as a medicinal product. Must be removed immediately.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>"Triple-weight hyaluronic acid" claim is inaccurate:</strong> The INCI shows only two HA forms. Drench legitimately uses PrimalHyal™ 3K (triple molecular). Absorb appears to have borrowed this claim incorrectly. Change to "dual-weight hyaluronic acid."</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Parfum in INCI — zero mention in copy:</strong> For a brand that prominently markets fragrance-free options, not disclosing that Absorb contains fragrance is a transparency gap. Particularly risky given the core audience includes rosacea and sensitive skin customers.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Price discrepancy:</strong> Standalone page shows €59.95. Bundle pages recorded it at €85. A €25 difference directly affects all bundle "save X%" calculations. Verify with client.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"97% natural" claim — no certification or methodology referenced.</strong> BHT and C12-15 Alkyl Benzoate are synthetic. Different certification frameworks count differently — but the methodology must be referenced before any content amplifies this claim.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ INFUSE ══════════════════════ -->
+<div class="panel" id="prod-infuse">
+  <div class="prod-header">
+    <div class="prod-num">06</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 4 · Moisturiser · Nyrah Hero Product</div>
+      <h2>Infuse — Oxygen Botanical Moisturiser</h2>
+      <div class="prod-tagline">Two versions: Fragrance Free (FF) and Fragranced. Same base formula — fragrance components only difference.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€63.95 · 50ml</span>
+        <span class="prod-tag pt-step">AM + PM · Step 4</span>
+        <span class="prod-tag pt-ff">FF version: fragrance-free</span>
+        <span class="prod-tag pt-frag">Fragranced: contains Parfum</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('infuse','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('infuse','versions',this)">FF vs Fragranced</button>
+    <button class="ctab" onclick="switchCtab('infuse','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('infuse','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="infuse-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">The hero product</div><h3>Nyrah's flagship moisturiser</h3><p>Central claim: <strong>"oxygen-infused" hydration</strong> powered by <strong>Oxylance™</strong> (Ligustrum Lucidum Seed Extract). Described as "first-of-its-kind" for hormonal, sensitive, and reactive skin. Final skincare step before SPF in the AM routine and the final step at night.</p></div>
+      <div class="info-card"><div class="info-label">Best page on the site</div><h3>Gold standard for content quality</h3><p>The Infuse Fragranced page is the most complete product page on the entire site. Custom layout, founder note, FAQ depth, ingredient explanations, and crucially — a FAQ answer that clarifies the "oxygen" claim is cosmetic, not medical. <strong>This is the standard every other page should meet.</strong></p></div>
+      <div class="info-card"><div class="info-label">What Oxylance™ does</div><h3>Botanical oxygen booster</h3><p>Enhances skin oxygenation, improving hydration, clarity, and cell renewal. <strong>Critical note:</strong> The FAQ explicitly clarifies this is a cosmetic claim — Oxylance™ does not deliver oxygen in a medical or clinical sense, does not contain oxygen gas or peroxides. This regulatory disclaimer is the most transparent on the site.</p></div>
+      <div class="info-card"><div class="info-label">Target audience</div><h3>Women experiencing hormonal skin changes</h3><p>Life stages explicitly named: puberty, perimenopause, menopause, postpartum, and stress. Skin concerns: hormonal acne, dryness, sensitivity, rosacea, dehydration, redness. Geography specified: women in Ireland and the UK.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">🔒</span><span class="analogy-text">The main door being shut and locked. Everything good stays in — the serums, the hydration, the nutrients — everything damaging stays out.</span></div>
+  </div>
+  <div class="cpanel" id="infuse-versions">
+    <table class="comp-table">
+      <tr><th>Attribute</th><th>Fragrance Free (FF)</th><th>Fragranced</th></tr>
+      <tr><td>Price</td><td>€63.95 / RRP €69.95</td><td>€63.95 / RRP €69.95</td></tr>
+      <tr><td>Base formula</td><td colspan="2">Identical ✓</td></tr>
+      <tr><td>Fragrance</td><td>Absent — no Parfum in INCI ✓</td><td>Contains Parfum + 14 fragrance allergens</td></tr>
+      <tr><td>Scent</td><td>None</td><td>"Proprietary grapefruit-soufflé" — same scent as Absorb</td></tr>
+      <tr><td>For rosacea / fragrance-sensitive</td><td>Yes — correct choice</td><td>No — contains fragrance allergens</td></tr>
+      <tr><td>Full Product Details accordion</td><td>⚠ Broken — returns only "c"</td><td>Works correctly ✓</td></div></td></tr>
+      <tr><td>FF label visible on page</td><td>⚠ No badge or visual marker in hero</td><td>N/A</td></tr>
+      <tr><td>"Fragrance-free" copy in Sensitive Skin panel</td><td>Correct ✓</td><td>⚠ WRONG — same copy on Fragranced page is a regulatory error</td></tr>
+    </table>
+    <div class="flag-list" style="margin-top:16px;">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Fragranced page: "Infuse is fragrance-free, alcohol-free" copy is live on the WRONG page.</strong> Rosacea and fragrance-sensitive customers will buy the Fragranced version based on this claim and experience a reaction. Fix immediately.</span></div>
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>FF page: Full Product Details accordion broken.</strong> Returns only the letter "c" — entire product description body is missing. The highest-intent buyer (fragrance-sensitive customers who sought out the FF version specifically) sees nothing. Fix immediately.</span></div>
+    </div>
+  </div>
+  <div class="cpanel" id="infuse-ingredients">
+    <table class="ing-table">
+      <tr><th>Ingredient / Technology</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Oxylance™</span><span class="ing-trade">Ligustrum Lucidum Seed Extract</span></td><td>Botanical oxygen booster — enhances skin oxygenation, hydration, clarity, cell renewal. Cosmetic claim only (not medical).</td></tr>
+      <tr><td><span class="ing-name">STAY-C® 50</span><span class="ing-trade">Sodium Ascorbyl Phosphate — stable Vitamin C</span></td><td>Non-irritating Vitamin C derivative. Brightening, collagen support.</td></tr>
+      <tr><td><span class="ing-name">Emblica®</span><span class="ing-trade">Phyllanthus Emblica Fruit Extract — Indian Gooseberry</span></td><td>Antioxidant, brightening, anti-aging</td></tr>
+      <tr><td><span class="ing-name">G2Light™</span><span class="ing-trade">Glycyrrhiza Glabra Root Extract — Licorice Root</span></td><td>Soothes redness, fades dark spots, anti-inflammatory</td></tr>
+      <tr><td><span class="ing-name">Niacinamide (Vitamin B3)</span></td><td>Redness reduction, oil regulation, barrier strengthening</td></tr>
+      <tr><td><span class="ing-name">Squalane + Shea Butter + Jojoba Oil</span></td><td>Lightweight emollient, barrier repair, intense hydration</td></tr>
+    </table>
+  </div>
+  <div class="cpanel" id="infuse-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Fragranced page: fragrance-free copy on wrong page.</strong> See Versions tab. Fix today.</span></div>
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>FF page: broken accordion.</strong> See Versions tab. Fix today.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Free shipping badge states €55</strong> — should be €70 (Ireland). Appears on both Infuse pages.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>No FF visual identifier:</strong> The only way customers know which version they are on is the page title and INCI. No badge, colour label, or hero callout distinguishes the two versions. Given rosacea sufferers specifically seek out the FF version, this is a meaningful UX and safety gap.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ REVIVE ══════════════════════ -->
+<div class="panel" id="prod-revive">
+  <div class="prod-header">
+    <div class="prod-num">07</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Eye &amp; Lip Contour · Standalone</div>
+      <h2>Revive — Eye &amp; Lip Contour Serum</h2>
+      <div class="prod-tagline">Dual-use serum for eye area and lip contour. 15ml airless bottle. 6 reformulations before launch.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€64.95 · 15ml</span>
+        <span class="prod-tag pt-step">AM + PM · Eye + Lip</span>
+        <span class="prod-tag pt-ff">Fragrance-free</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('revive','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('revive','ingredients',this)">Ingredients</button>
+    <button class="ctab" onclick="switchCtab('revive','use',this)">How to use</button>
+    <button class="ctab" onclick="switchCtab('revive','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="revive-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Targets dark circles, puffiness, fine lines</h3><p>Nyrah's only dedicated eye and lip treatment. Positioned as "dual-use" — works around both the eye area and lip contour. Uses the highest density of named proprietary ingredient technologies of any product in the range.</p></div>
+      <div class="info-card"><div class="info-label">Results timeline</div><h3>7 days to first results</h3><ul><li><strong>7 days:</strong> Less puffiness, brighter eyes</li><li><strong>Week 3:</strong> Firmer, smoother contours</li><li>One bottle lasts <strong>8–12 weeks</strong> at half a pump AM + PM</li></ul></div>
+      <div class="info-card"><div class="info-label">The 6-reformulation story</div><h3>Most developed product in the range</h3><p>Page explicitly states the formula went through <strong>six reformulations</strong> before launch — the most development iterations mentioned for any Nyrah product. Founder statement: <em>"After six reformulations, I finally created something that truly works."</em></p></div>
+      <div class="info-card"><div class="info-label">Pro tip from the page</div><h3>Keep in the fridge</h3><p>"Keep in the fridge for an extra cooling, depuffing boost in the morning." This is a memorable, practical tip that works well in customer-facing conversations and content.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="revive-ingredients">
+    <table class="ing-table">
+      <tr><th>Technology</th><th>What it does</th></tr>
+      <tr><td><span class="ing-name">Argireline® Amplified Peptide</span><span class="ing-trade">Acetyl Hexapeptide-8</span></td><td>Clinically proven to soften expression lines, firms delicate skin around eyes and lips</td></tr>
+      <tr><td><span class="ing-name">Pepha®-Tight CB</span><span class="ing-trade">Nannochloropsis Oculata — marine microalgae</span></td><td>Instant tightening and long-term toning</td></tr>
+      <tr><td><span class="ing-name">Skinmimics® Pro MB</span><span class="ing-trade">Ceramide complex + Cholesterol, Fatty Acids</span></td><td>Rebuilds skin barrier, locks in moisture, improves elasticity</td></tr>
+      <tr><td><span class="ing-name">PrimalHyal™ 3K</span><span class="ing-trade">Hydrolyzed Hyaluronic Acid</span></td><td>Multi-depth hydration, plumping, smoothness</td></tr>
+      <tr><td><span class="ing-name">Uplevity™ E-Lift Peptide</span><span class="ing-trade">Tetrapeptide-1</span></td><td>Improves firmness and contour definition</td></tr>
+      <tr><td><span class="ing-name">Caffeine + Camellia Sinensis (Matcha)</span></td><td>De-puff, brighten, protect against screen time and fatigue</td></tr>
+      <tr><td><span class="ing-name">Niacinamide, Ubiquinone (CoQ10), Tocopherol</span></td><td>Even tone, barrier strengthening, antioxidant protection</td></tr>
+    </table>
+  </div>
+  <div class="cpanel" id="revive-use">
+    <div class="info-grid">
+      <div class="info-card full"><div class="info-label">How to use (most specific application instructions on the site)</div><ul><li>Apply AM &amp; PM to clean, dry skin</li><li>Dispense <strong>half a pump</strong> onto fingertip</li><li>Gently <strong>tap</strong> (not rub) around the <strong>orbital bone</strong> and lip contour using the <strong>ring finger</strong></li><li>Let absorb fully before moisturiser and SPF in the morning</li></ul></div>
+      <div class="info-card"><div class="info-label">Why the ring finger</div><p>The ring finger applies less pressure than other fingers — important for the delicate eye and lip contour area. This level of specificity is a genuine AEO asset: AI engines answering "how to apply eye serum correctly" can cite this.</p></div>
+      <div class="info-card"><div class="info-label">AEO hook: dual-use</div><p>"Can you use eye serum on lips?" is a real search query. Revive directly answers it — this is a genuine AEO differentiator that no other product in the range can claim.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="revive-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>URL contains "draft":</strong> Live URL is /products/eye-gel-draft-30ml. Wrong on three counts — "draft" (development placeholder), "gel" (it's a serum), "30ml" (it's 15ml). Must be changed to /products/revive-eye-lip-contour-serum-15ml with 301 redirect. No content can reference this product until URL is fixed.</span></div>
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Lorraine C. founder review — no disclosure:</strong> Review quotes "since developing this" — clearly the founder. Listed as Verified Customer with no disclosure. Violates ASAI Code (Ireland) and UK CAP Code. Must add: "Lorraine Corcoran, Founder of Nyrah Beauty" or remove the review.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>"7 Days*" asterisk has no footnote:</strong> Headline claim "in as little as 7 Days*" — asterisk present, footnote absent anywhere on the page. Regulatory concern in Ireland and UK. Add footnote basis or remove asterisk.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>"Clinically proven" — no study, source, or link:</strong> Appears in opening description. No clinical study referenced anywhere on this or any other Nyrah page. Must be substantiated before any content amplifies this claim.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Stale launch copy:</strong> "Our first batch is small by design — just 750 units for launch" — creates misleading scarcity signal if the product is in regular stock. Remove.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ SPF30 ══════════════════════ -->
+<div class="panel" id="prod-spf30">
+  <div class="prod-header">
+    <div class="prod-num">08</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Final AM Step · SPF30</div>
+      <h2>Lumina Brighten Serum SPF30</h2>
+      <div class="prod-tagline">Lightweight serum-SPF with a subtle brightening tint. The original Lumina — highest FAQ count on any Nyrah page (14 questions).</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€78.00 · 30ml</span>
+        <span class="prod-tag pt-step">AM Only · Last step</span>
+        <span class="prod-tag pt-frag">Contains Parfum — apricot, vanilla, citrus</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('spf30','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('spf30','science',this)">UV Science</button>
+    <button class="ctab" onclick="switchCtab('spf30','compare',this)">vs SPF50</button>
+    <button class="ctab" onclick="switchCtab('spf30','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="spf30-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Skincare-SPF hybrid with brightening tint</h3><p>Not a traditional sunscreen — a serum that delivers SPF30 alongside brightening, hydrating, and antioxidant benefits. A subtle mineral tint gives a "soft radiance" finish. Water-free and preservative-free formula — unusual for SPF products.</p></div>
+      <div class="info-card"><div class="info-label">Star ingredient</div><h3>Astaxanthin — 6,000× stronger than Vitamin C</h3><p>Derived from microalgae. The same pigment that gives flamingos and salmon their pink hue. Claims to be 6,000× more powerful than Vitamin C as an antioxidant. <em>Note: this is an ingredient property, not a product brightness claim — framing on page needs adjustment.</em></p></div>
+      <div class="info-card"><div class="info-label">UV filters named</div><h3>Hybrid chemical-mineral formula</h3><ul><li><strong>Tinosorb S</strong> — photostable, broad-spectrum</li><li><strong>Uvinul A+</strong> — UVA filter</li><li><strong>Uvinul T150</strong> — UVB filter</li><li><strong>Micronized Titanium Dioxide</strong> — mineral filter (minimises white cast)</li></ul></div>
+      <div class="info-card"><div class="info-label">How much to use</div><h3>Two-finger method</h3><p>Quarter teaspoon across index and middle fingers to cover face and neck. This specific application instruction is a strong AEO content hook — most SPF pages don't tell customers how much to use.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="spf30-science">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">UVA (aging rays)</div><h3>315–400 nm — 95% of UV at Earth's surface</h3><p>Long wavelength rays that penetrate deep into skin. Cause collagen breakdown, wrinkles, pigmentation, and indirect DNA damage. Present year-round, all weather, through glass. This is why daily SPF matters even in Ireland on cloudy days.</p></div>
+      <div class="info-card"><div class="info-label">UVB (burning rays)</div><h3>280–315 nm — strongest in summer/direct sun</h3><p>Shorter wavelength. Causes sunburn, surface cell damage, directly linked to DNA mutations and skin cancer. Strongest May–September in Ireland but present year-round.</p></div>
+      <div class="info-card"><div class="info-label">4-Star UVA rating</div><h3>Very high UVA protection</h3><p>The EU UVA star rating system goes from 1–5. 4-star is considered "very high protection." This is a verifiable, official rating — strong AEO signal as it can be cross-referenced by AI engines.</p></div>
+      <div class="info-card"><div class="info-label">Ireland context — from the page</div><h3>Health statistics cited</h3><ul><li>Skin cancer: most diagnosed cancer in Ireland — 11,000+ new cases/year</li><li>9 out of 10 cases caused by UV</li><li>Tanning beds before 35: increases melanoma risk ~60–75%</li><li>80% of facial ageing from UV exposure</li></ul><p style="margin-top:8px;font-size:12px;color:var(--warm-mid);">None have source links on the page — must be cited before content amplifies these.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="spf30-compare">
+    <table class="comp-table">
+      <tr><th>Attribute</th><th>Lumina Brighten SPF30</th><th>Lumina Shield SPF50</th></tr>
+      <tr><td>Protection level</td><td>SPF30 — blocks ~97% UVB</td><td>SPF50+ — maximum protection</td></tr>
+      <tr><td>Colour / tint</td><td>Yes — soft brightening mineral tint</td><td>No — completely colourless</td></tr>
+      <tr><td>Scent</td><td>Yes — apricot, vanilla, citrus (soft, natural)</td><td>No scent described on page</td></tr>
+      <tr><td>Primary benefit</td><td>Protection + brightening dull skin</td><td>Maximum protection only</td></tr>
+      <tr><td>Positioning</td><td>"Minimum required + glow"</td><td>"Maximum protection, no colour"</td></tr>
+      <tr><td>Price</td><td>€78.00 (USD storefront confirmed)</td><td>€54.95 (newer, lower price)</td></tr>
+      <tr><td>Formula</td><td>Water-free, preservative-free</td><td>Water-free, preservative-free</td></tr>
+      <tr><td>Relationship</td><td colspan="2" style="font-style:italic;color:var(--warm-mid);">"Complementary, not competing" — stated on Lumina Shield page</td></tr>
+    </table>
+    <div class="pro-tip" style="margin-top:12px;"><span class="pro-tip-label">For team</span><p>The standard recommendation: SPF30 for customers who want a brightening finish and minimum required protection. SPF50 for customers who want maximum protection with no tint, or for those with very sensitive or rosacea-prone skin (as SPF50 has no fragrance).</p></div>
+  </div>
+  <div class="cpanel" id="spf30-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Kosas competitor links in FAQ Q12:</strong> Contact email hyperlinked to kosas.com competitor site. Must be replaced with store@nyrahbeauty.com and @nyrahbeauty on all social links.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>URL contains stale working title "sunveil":</strong> /products/spf30-sunveil-lumina — "sunveil" appears nowhere in the current product name. Change to /products/lumina-brighten-serum-spf30 with 301 redirect.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Six product name variants across the site:</strong> "Lumina Brighten Serum SPF30" / "Lumina SPF30" / "Lumina" / "Lumina Brighten" etc. Standardise to one name everywhere.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Health statistics have no source links:</strong> Skin cancer statistics in the founder note are specific and impactful — but require citation before content can amplify them responsibly.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Astaxanthin 6,000×" claim framing:</strong> Page says "Lumina brightens skin 6,000× more than Vitamin C." This is an ingredient antioxidant property, not a product brightening claim. Framing must be corrected for regulatory accuracy.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ SPF50 ══════════════════════ -->
+<div class="panel" id="prod-spf50">
+  <div class="prod-header">
+    <div class="prod-num">09</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Final AM Step · SPF50+ · Newer product</div>
+      <h2>Lumina Shield Serum SPF50</h2>
+      <div class="prod-tagline">Maximum protection, completely colourless, no fragrance. Designed for maturing and sensitive skin.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€54.95 · 30ml</span>
+        <span class="prod-tag pt-step">AM Only · Last step</span>
+        <span class="prod-tag pt-ff">No fragrance described</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('spf50','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('spf50','claims',this)">Key claims</button>
+    <button class="ctab" onclick="switchCtab('spf50','aeo',this)">AEO notes</button>
+    <button class="ctab" onclick="switchCtab('spf50','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="spf50-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Maximum daily UV protection — skincare-first</h3><p>SPF50+ serum-format daily sunscreen. No tint, no white cast, completely colourless. Positioned as skincare-first — lightweight enough for daily use, not just beach or holiday. The newer sibling to Lumina Brighten SPF30.</p></div>
+      <div class="info-card"><div class="info-label">For who</div><h3>Four explicit audience segments</h3><ul><li><strong>Maturing women:</strong> over 40, hormonal skin changes, perimenopause, menopause</li><li><strong>Sensitive skin:</strong> reacts to standard SPF</li><li><strong>Busy women:</strong> fast-absorbing, no effort</li><li><strong>Conscious women:</strong> verified UVA/UVB, safety-focused</li></ul></div>
+      <div class="info-card"><div class="info-label">Durability claim</div><h3>Lasts up to 4 months</h3><p>One 30ml bottle lasts up to 4 months of daily use. This is a strong cost-per-use argument — at €54.95, that's approximately €14/month for daily SPF50 protection.</p></div>
+      <div class="info-card"><div class="info-label">AEO gap — ingredients in images</div><h3>All ingredient names are image-locked</h3><p>The "Ingredients Behind Lumina Shield SPF50+" section exists visually but <strong>all ingredient names are inside carousel images</strong> — not HTML text. No AI engine, crawler, or screen reader can read them. This is a significant AEO gap that must be fixed before content work begins.</p></div>
+    </div>
+  </div>
+  <div class="cpanel" id="spf50-claims">
+    <div class="claims-grid">
+      <div class="claim-item"><div class="claim-dot"></div>SPF50+ protection against UVA (aging) and UVB (burning) rays</div>
+      <div class="claim-item"><div class="claim-dot"></div>Water-resistant</div>
+      <div class="claim-item"><div class="claim-dot"></div>No white cast — "completely colourless formula"</div>
+      <div class="claim-item"><div class="claim-dot"></div>Satin finish, no heavy or greasy texture</div>
+      <div class="claim-item"><div class="claim-dot"></div>Sits under makeup without pilling</div>
+      <div class="claim-item"><div class="claim-dot"></div>Designed for hormonal and aging skin</div>
+      <div class="claim-item"><div class="claim-dot"></div>Safe during menopause and perimenopause — no hormone-active botanicals, no retinoids</div>
+      <div class="claim-item"><div class="claim-dot"></div>Pregnancy safe (in brand promise badge section)</div>
+      <div class="claim-item"><div class="claim-dot"></div>Lasts up to 4 months of daily use from 30ml</div>
+      <div class="claim-item"><div class="claim-dot"></div>Plant-based, gluten free, alcohol free, vegan and cruelty free</div>
+      <div class="claim-item"><div class="claim-dot"></div>Made in Ireland — founder Lorraine spent 18 months developing this formula</div>
+      <div class="claim-item"><div class="claim-dot"></div>National Library of Medicine citation for daily SPF recommendation (only external citation on the page)</div>
+    </div>
+  </div>
+  <div class="cpanel" id="spf50-aeo">
+    <div class="aeo-split">
+      <div class="aeo-box strong"><div class="aeo-label">AEO Strengths</div>
+        <div class="aeo-item">8-question FAQ with specific, direct answers — most AEO-ready content on this page</div>
+        <div class="aeo-item">External National Library of Medicine citation builds E-E-A-T signals</div>
+        <div class="aeo-item">SPF30 vs SPF50 comparison table — structured for AI engine extraction</div>
+        <div class="aeo-item">"Who this is for" section clearly defines 4 audience segments — matchable to user queries</div>
+      </div>
+      <div class="aeo-box gap"><div class="aeo-label">AEO Gaps</div>
+        <div class="aeo-item"><strong>All ingredient names in images</strong> — completely invisible to AI engines and crawlers. Must be converted to HTML text.</div>
+        <div class="aeo-item">Review count inconsistency (4.8 vs 4.9, 3,074 vs 3,000+) — AI engines pulling this data get conflicting signals</div>
+        <div class="aeo-item">No usage amount stated (how much to apply)</div>
+        <div class="aeo-item">No dermatologist name despite dermatologist reference in copy</div>
+      </div>
+    </div>
+  </div>
+  <div class="cpanel" id="spf50-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>All ingredient names are image-locked:</strong> The "Ingredients Behind Lumina Shield" section is entirely in carousel images. Google, all AI crawlers, and screen readers cannot read them. Add ingredient names and descriptions as actual HTML text alongside the visual carousel.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Review count inconsistency:</strong> Page states both "Rated 4.9 based on more than 3,000+ reviews" and "Trustpilot 4.8/5 based on 3,074 reviews" — two different figures on the same page.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Expired countdown timer:</strong> A promotional countdown timer has expired but is still visible on the page. Remove it.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ TONIC ══════════════════════ -->
+<div class="panel" id="prod-tonic">
+  <div class="prod-header">
+    <div class="prod-num">10</div>
+    <div class="prod-header-right">
+      <div class="prod-eyebrow">Step 5 · Hydrating Mist · Anytime Use</div>
+      <h2>Tonic / Elixir — Hyaluronic Cooling &amp; Brightening Mist</h2>
+      <div class="prod-tagline">Two separate Shopify listings for the same product. Tonic is canonical. Elixir should 301 redirect to Tonic.</div>
+      <div class="prod-meta-row">
+        <span class="prod-tag pt-price">€25.00 · 50ml</span>
+        <span class="prod-tag pt-step">AM + PM + Anytime</span>
+        <span class="prod-tag pt-frag">Contains Parfum</span>
+      </div>
+    </div>
+  </div>
+  <div class="ctab-bar">
+    <button class="ctab act" onclick="switchCtab('tonic','what',this)">What it is</button>
+    <button class="ctab" onclick="switchCtab('tonic','duplicate',this)">Tonic vs Elixir</button>
+    <button class="ctab" onclick="switchCtab('tonic','flags',this)">Flags</button>
+  </div>
+  <div class="cpanel active" id="tonic-what">
+    <div class="info-grid">
+      <div class="info-card"><div class="info-label">What it does</div><h3>Hydration companion and sensory ritual</h3><p>A hydrating facial mist for anytime use. Not an active treatment — a calming, refreshing complement to the routine. Adds a surface layer of Hyaluronic Acid, soothes redness from product application, and can be used as a midday refresh, makeup primer, or setting spray.</p></div>
+      <div class="info-card"><div class="info-label">Not the same as Infuse</div><h3>Different jobs</h3><p><strong>Infuse</strong> creates a structural moisture seal. <strong>Tonic</strong> soothes the surface and comforts. Infuse protects — Tonic refreshes. At night, Tonic's Chamomile and Aloe Vera help calm skin after Transform application.</p></div>
+      <div class="info-card"><div class="info-label">Routine position</div><h3>Three uses depending on context</h3><ul><li><strong>Before serums:</strong> Glisten directions say to mist Elixir before applying for enhanced absorption</li><li><strong>After moisturiser:</strong> AM/PM Routine page places it as Step 5, the final step</li><li><strong>Anytime:</strong> midday refresh, makeup primer, post-workout</li></ul></div>
+      <div class="info-card"><div class="info-label">Lowest price entry point</div><h3>€25 — accessible first purchase</h3><p>The lowest-priced standalone product in the core range. Natural gifting and trial product. <strong>However:</strong> the page is among the thinnest on the site — one image, no reviews, no FAQ (on the Elixir version). Not optimised as the first purchase it could be.</p></div>
+    </div>
+    <div class="analogy"><span class="analogy-icon">🪟</span><span class="analogy-text">Opening a window after you've locked the door. The seal is already in place from Infuse. This is pure comfort and freshness.</span></div>
+  </div>
+  <div class="cpanel" id="tonic-duplicate">
+    <table class="comp-table">
+      <tr><th>Attribute</th><th>Tonic (/defend-tonic...)</th><th>Elixir (/elixir)</th></tr>
+      <tr><td>Page type</td><td>Custom editorial (older template)</td><td>Basic Shopify accordion</td></tr>
+      <tr><td>Product name</td><td>Citrus Hyaluronic Acid Cooling Mist</td><td>Hyaluronic Cooling &amp; Brightening Mist</td></tr>
+      <tr><td>INCI list</td><td>❌ Absent — regulatory issue</td><td>✓ Present</td></tr>
+      <tr><td>FAQ</td><td>✓ 15 questions</td><td>❌ None</td></tr>
+      <tr><td>Reviews</td><td>✓ Customer quote present</td><td>❌ None</td></tr>
+      <tr><td>Trustpilot</td><td>✓ Widget (4.8 / 550+ — may be product-specific)</td><td>❌ Absent</td></tr>
+      <tr><td>Pregnancy-safe</td><td>✓ Explicitly stated</td><td>❌ Not stated</td></tr>
+      <tr><td>Recommendation</td><td>✓ <strong>Canonical URL — build from this</strong></td><td>Redirect to Tonic with 301</td></tr>
+    </table>
+    <div class="flag-list" style="margin-top:16px;">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Duplicate listing:</strong> Two separate Shopify product pages for the same product. Split SEO authority, duplicate content, customer confusion. Elixir must 301 redirect to Tonic once Tonic page is cleaned up.</span></div>
+    </div>
+  </div>
+  <div class="cpanel" id="tonic-flags">
+    <div class="flag-list">
+      <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Tonic page has no INCI list:</strong> EU Cosmetics Regulation 1223/2009 requires full INCI disclosure on all cosmetic product presentations including websites. This page contains Parfum — allergen declarations are legally required. Must be added before any content work.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Tonic FAQ Q9: "citrus scent enhances memory":</strong> Cognitive/physiological claims are outside the permitted scope for cosmetics under EU Cosmetics Regulation. Must be removed immediately.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Tonic: private video embed still live:</strong> Video is marked private and renders as blank to every visitor. Damages page credibility. Remove or fix the video.</span></div>
+      <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Fragrance allergens undisclosed on Elixir page:</strong> INCI lists Parfum but no individual allergens declared (Limonene, Linalool etc.). Leave-on facial mist with Parfum must declare allergens above EU threshold. Needs supplier fragrance safety data to verify.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Brightening" in name but no brightening actives:</strong> No Vitamin C, Niacinamide, or other recognised brightening agent in the INCI. Mismatch between product name and formula. Review the name.</span></div>
+      <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Tonic page: "Discover the essence of coastal Spain":</strong> Opens the product description. Nyrah is Irish, made in Co. Mayo. No Spanish connection is explained. Two lines below it says "Proudly made in Co. Mayo, Ireland." Directly undermines the brand's core identity.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">
+  <p>Ten products. One system. Each step builds on the last.</p>
+  <strong>Nyrah Beauty · Made in Ireland</strong>
+</div>
+
+</div><!-- end main -->
+
+<script>
+const PRODS=['undress','drench','glisten','transform','absorb','infuse','revive','spf30','spf50','tonic'];
+
+function switchProd(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.pg-btn').forEach(b=>b.classList.remove('act'));
+  const el=document.getElementById('prod-'+id);
+  if(el){el.classList.add('active');}
+  btn.classList.add('act');
+  // Reset ctabs for this product to first tab
+  const ctabs=el?.querySelectorAll('.ctab');
+  const cpanels=el?.querySelectorAll('.cpanel');
+  if(ctabs&&cpanels){
+    ctabs.forEach(c=>c.classList.remove('act'));
+    cpanels.forEach(c=>c.classList.remove('active'));
+    if(ctabs[0])ctabs[0].classList.add('act');
+    if(cpanels[0])cpanels[0].classList.add('active');
+  }
+}
+
+function switchCtab(prod,tab,btn){
+  const panel=document.getElementById('prod-'+prod);
+  if(!panel)return;
+  panel.querySelectorAll('.ctab').forEach(c=>c.classList.remove('act'));
+  panel.querySelectorAll('.cpanel').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('act');
+  const target=document.getElementById(prod+'-'+tab);
+  if(target)target.classList.add('active');
+}
+</script>
+</body>
+</html>
