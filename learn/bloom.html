@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom by Nyrah — Self-Tanning Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold-deep:#8B6914;--gold-mid:#C49A2A;--gold-light:#E8C96A;--gold-pale:#F7EDD0;--gold-faint:#FDF8EE;
+  --cream:#FFFDF6;--charcoal:#1C1810;--warm-dark:#2D2416;--warm-mid:#6B5A3A;--warm-light:#A89070;--warm-faint:#EDE5D4;
+  --white:#FFFFFF;
+  --tan:#B5895A;--tan-pale:#F9F0E6;--tan-mid:#D4A86A;--tan-faint:#FDF5EC;
+  --green:#2A5C3A;--green-pale:#E8F5EC;--green-mid:#4A8A5A;
+  --red-deep:#7A2A2A;--red-pale:#FBEAEA;--red-mid:#C45A5A;
+  --blue:#2D3A5A;--blue-pale:#EEF2F9;--blue-mid:#7B9EC8;
+  --card-r:18px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;overflow-x:hidden;}
+
+/* HERO — warm bronzed tone */
+.hero{background:linear-gradient(160deg,#2A1A08 0%,#3D2610 60%,#2D1E0A 100%);padding:52px 40px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;border:1px solid rgba(212,168,106,0.1);}
+.hero::after{content:'';position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:400px;height:400px;border-radius:50%;border:1px solid rgba(212,168,106,0.07);}
+.hero-ey{font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--tan-mid);margin-bottom:16px;position:relative;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,5vw,50px);color:var(--gold-pale);line-height:1.15;position:relative;margin-bottom:8px;}
+.hero h1 em{font-style:italic;color:var(--tan-mid);}
+.hero-sub{font-size:13px;font-weight:300;color:var(--warm-light);position:relative;margin-bottom:10px;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--tan-mid);position:relative;margin-bottom:28px;}
+
+/* SECTION SWITCHER */
+.tab-bar{display:flex;justify-content:center;gap:0;position:relative;z-index:2;border-top:1px solid rgba(212,168,106,0.15);}
+.tab-btn{flex:1;max-width:220px;padding:14px 12px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;transition:all .3s;color:var(--warm-light);border-bottom:2px solid transparent;}
+.tab-btn.act{color:var(--tan-mid);border-bottom:2px solid var(--tan-mid);}
+.tab-btn:hover:not(.act){color:var(--gold-pale);}
+
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:44px 24px 80px;}
+.panel{display:none;animation:fadeIn .3s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* SECTION HEAD */
+.sec-head{margin-bottom:28px;}
+.sec-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,4vw,32px);color:var(--charcoal);margin-bottom:6px;}
+.sec-head p{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.8;}
+
+/* GRID CARDS */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}}
+.card{background:var(--white);border:1px solid var(--warm-faint);border-radius:var(--card-r);padding:18px 20px;transition:border-color .3s;}
+.card:hover{border-color:var(--tan-mid);}
+.card.full{grid-column:1/-1;}
+.card.tan{background:var(--tan-faint);border-color:rgba(212,168,106,0.3);}
+.card-label{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--tan);margin-bottom:8px;}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--charcoal);margin-bottom:6px;}
+.card p{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.75;}
+.card p strong{color:var(--charcoal);font-weight:500;}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:6px;padding:0;}
+.card ul li{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.65;display:flex;gap:8px;align-items:flex-start;}
+.card ul li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--tan-mid);flex-shrink:0;margin-top:8px;}
+.card ul li strong{color:var(--charcoal);font-weight:500;}
+
+/* WHAT'S INCLUDED */
+.included{display:flex;flex-direction:column;gap:3px;margin-bottom:24px;}
+.inc{display:flex;gap:0;background:var(--white);border:1px solid var(--warm-faint);border-radius:14px;overflow:hidden;transition:border-color .3s;}
+.inc:hover{border-color:var(--tan-mid);}
+.inc-badge{width:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;background:var(--tan-faint);color:var(--tan);border-right:1px solid var(--warm-faint);}
+.inc-body{flex:1;padding:14px 18px;}
+.inc-name{font-size:13.5px;font-weight:500;color:var(--charcoal);margin-bottom:3px;}
+.inc-desc{font-size:12.5px;font-weight:300;color:var(--warm-mid);line-height:1.65;}
+.inc-tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.itag{font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;letter-spacing:.06em;}
+.itag-p{background:var(--tan-faint);color:var(--tan);border:1px solid rgba(181,137,90,0.3);}
+.itag-t{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.25);}
+.itag-body{background:var(--blue-pale);color:var(--blue);border:1px solid rgba(45,58,90,0.2);}
+.itag-face{background:var(--gold-faint);color:var(--gold-deep);border:1px solid rgba(139,105,20,0.2);}
+
+/* HOW TO USE STEPS */
+.steps{display:flex;flex-direction:column;gap:0;margin-bottom:24px;}
+.step{display:flex;gap:0;cursor:pointer;}
+.step-conn{display:flex;flex-direction:column;align-items:center;width:52px;flex-shrink:0;}
+.step-circ{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;background:var(--tan-faint);border:1.5px solid var(--tan-mid);color:var(--tan);transition:all .3s;z-index:1;}
+.step:hover .step-circ,.step.open .step-circ{background:var(--tan-mid);color:var(--white);border-color:var(--tan-mid);}
+.step-line{width:1px;flex:1;min-height:18px;background:var(--tan-faint);}
+.step:last-child .step-line{display:none;}
+.step-card{flex:1;margin-left:12px;margin-bottom:10px;background:var(--white);border:1px solid var(--warm-faint);border-radius:var(--card-r);overflow:hidden;transition:border-color .3s,box-shadow .3s;}
+.step:hover .step-card,.step.open .step-card{border-color:var(--tan-mid);box-shadow:0 4px 20px rgba(181,137,90,0.08);}
+.step-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;}
+.step-left{display:flex;gap:12px;align-items:center;}
+.step-tag{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--tan-faint);color:var(--tan);border:1px solid rgba(181,137,90,0.25);}
+.step-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--charcoal);}
+.step-sub{font-size:12px;font-weight:300;color:var(--warm-mid);margin-top:1px;}
+.step-chev{width:16px;height:16px;transition:transform .3s;flex-shrink:0;color:var(--warm-light);}
+.step.open .step-chev{transform:rotate(180deg);}
+.step-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.step.open .step-body{max-height:400px;}
+.step-body-inner{padding:0 18px 18px;border-top:1px solid var(--warm-faint);padding-top:16px;}
+.step-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+@media(max-width:480px){.step-grid{grid-template-columns:1fr;}}
+.step-box{border-radius:10px;padding:12px 14px;}
+.step-box.role{background:var(--tan-faint);}
+.step-box.why{background:var(--warm-faint);}
+.step-box-label{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-bottom:5px;}
+.step-box.why .step-box-label{color:var(--warm-mid);}
+.step-box p{font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.65;}
+.step-pills{display:flex;flex-wrap:wrap;gap:5px;}
+.spill{font-size:11px;font-weight:400;padding:3px 10px;border-radius:20px;border:1px solid rgba(181,137,90,0.3);color:var(--tan);background:var(--tan-faint);}
+
+/* DEVELOP TIMELINE */
+.dev-track{display:flex;gap:3px;margin-bottom:10px;flex-wrap:wrap;}
+.dev-item{flex:1;min-width:120px;background:var(--white);border:1px solid var(--warm-faint);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .3s,background .3s;}
+.dev-item:hover,.dev-item.act{border-color:var(--tan-mid);background:var(--tan-faint);}
+.dev-prod{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--tan);margin-bottom:4px;}
+.dev-time{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:var(--charcoal);line-height:1;margin-bottom:3px;}
+.dev-label{font-size:11px;font-weight:300;color:var(--warm-mid);}
+.dev-panels{margin-bottom:24px;}
+.dev-panel{display:none;}
+.dev-panel.active{display:block;animation:fadeIn .25s ease;}
+.dev-panel-inner{background:var(--tan-faint);border:1px solid rgba(212,168,106,0.35);border-radius:var(--card-r);padding:24px 28px;display:flex;gap:24px;align-items:flex-start;}
+@media(max-width:480px){.dev-panel-inner{flex-direction:column;gap:14px;padding:18px;}}
+.dev-num{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--tan-mid);line-height:1;flex-shrink:0;}
+.dev-content h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--charcoal);margin-bottom:8px;}
+.dev-content p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;}
+
+/* INGREDIENTS TABLE */
+.ing-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.ing-table th{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--tan);padding:8px 12px;border-bottom:1px solid rgba(212,168,106,0.4);background:var(--tan-faint);text-align:left;}
+.ing-table td{padding:10px 12px;border-bottom:1px solid var(--warm-faint);font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;vertical-align:top;}
+.ing-table tr:hover td{background:var(--tan-faint);}
+.ing-name{font-weight:500;color:var(--charcoal);}
+.ing-trade{font-size:10px;font-weight:500;color:var(--tan);display:block;margin-top:1px;}
+
+/* INCI */
+.inci-block{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-radius:12px;padding:14px 16px;font-size:11.5px;font-weight:300;color:var(--warm-mid);line-height:1.8;margin-bottom:14px;}
+.inci-label{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-mid);margin-bottom:6px;}
+.inci-note{font-size:12px;font-weight:300;color:var(--warm-mid);margin-top:8px;padding-top:8px;border-top:1px solid rgba(107,90,58,0.2);line-height:1.7;}
+.inci-note strong{color:var(--warm-dark);font-weight:500;}
+
+/* 4 PROBLEMS SECTION */
+.problems{display:flex;flex-direction:column;gap:3px;margin-bottom:24px;}
+.prob{display:flex;gap:0;background:var(--white);border:1px solid var(--warm-faint);border-radius:14px;overflow:hidden;transition:border-color .3s;}
+.prob:hover{border-color:var(--tan-mid);}
+.prob-num{width:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--tan);background:var(--tan-faint);border-right:1px solid var(--warm-faint);}
+.prob-body{flex:1;padding:16px 18px;}
+.prob-title{font-size:13.5px;font-weight:500;color:var(--charcoal);margin-bottom:4px;}
+.prob-problem{font-size:12.5px;font-weight:300;color:var(--warm-mid);line-height:1.65;margin-bottom:6px;}
+.prob-solution{font-size:12.5px;font-weight:300;color:var(--green);background:var(--green-pale);border-radius:8px;padding:6px 10px;line-height:1.6;}
+.prob-solution strong{font-weight:500;}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:3px;margin-bottom:24px;}
+.faq-item{background:var(--white);border:1px solid var(--warm-faint);border-radius:12px;overflow:hidden;transition:border-color .3s;}
+.faq-item:hover,.faq-item.open{border-color:var(--tan-mid);}
+.faq-trigger{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none;}
+.faq-qn{font-size:11px;font-weight:500;color:var(--tan);flex-shrink:0;min-width:22px;letter-spacing:.04em;}
+.faq-qt{font-size:13.5px;font-weight:400;color:var(--charcoal);flex:1;line-height:1.4;}
+.faq-tag{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:8px;flex-shrink:0;}
+.faq-tag.aeo{background:var(--tan-faint);color:var(--tan);border:1px solid rgba(181,137,90,0.3);}
+.faq-tag.flag{background:var(--red-pale);color:var(--red-mid);border:1px solid rgba(196,90,90,0.25);}
+.faq-tag.safety{background:var(--green-pale);color:var(--green);border:1px solid rgba(42,90,58,0.25);}
+.faq-chev{width:15px;height:15px;transition:transform .3s;flex-shrink:0;color:var(--warm-light);}
+.faq-item.open .faq-chev{transform:rotate(180deg);}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-item.open .faq-ans{max-height:200px;}
+.faq-ans-inner{padding:0 16px 14px 50px;border-top:1px solid var(--warm-faint);padding-top:12px;font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;}
+.faq-ans-inner strong{font-weight:500;color:var(--charcoal);}
+
+/* COMPARE TABLE */
+.comp-table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+.comp-table th{background:var(--tan-faint);padding:10px 14px;font-size:11px;font-weight:500;letter-spacing:.08em;text-align:left;color:var(--tan);border-bottom:1px solid rgba(212,168,106,0.4);}
+.comp-table td{padding:10px 14px;border-bottom:1px solid var(--warm-faint);font-size:13px;font-weight:300;color:var(--warm-dark);}
+.comp-table tr:hover td{background:var(--tan-faint);}
+.comp-table td:first-child{font-weight:500;color:var(--charcoal);}
+.check{color:var(--green);font-weight:500;}
+.cross{color:var(--red-mid);font-weight:500;}
+
+/* FLAGS */
+.flag-list{display:flex;flex-direction:column;gap:5px;margin-bottom:20px;}
+.flag-item{border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;}
+.flag-item.critical{background:var(--red-pale);border:1px solid rgba(196,90,90,0.25);border-left:3px solid var(--red-mid);}
+.flag-item.high{background:#FFF8EC;border:1px solid rgba(196,154,42,0.3);border-left:3px solid var(--gold-mid);}
+.flag-item.medium{background:var(--blue-pale);border:1px solid rgba(123,158,200,0.3);border-left:3px solid var(--blue-mid);}
+.flag-item.low{background:var(--warm-faint);border:1px solid rgba(107,90,58,0.2);border-left:3px solid var(--warm-light);}
+.flag-sev{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;margin-top:2px;min-width:52px;}
+.flag-item.critical .flag-sev{color:var(--red-mid);}
+.flag-item.high .flag-sev{color:var(--gold-deep);}
+.flag-item.medium .flag-sev{color:var(--blue);}
+.flag-item.low .flag-sev{color:var(--warm-mid);}
+.flag-text{font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.7;}
+.flag-text strong{font-weight:500;color:var(--charcoal);}
+
+/* AEO SPLIT */
+.aeo-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+@media(max-width:520px){.aeo-split{grid-template-columns:1fr;}}
+.aeo-box{border-radius:14px;padding:16px 18px;}
+.aeo-box.strong{background:var(--green-pale);border:1px solid rgba(42,90,58,0.2);}
+.aeo-box.gap{background:var(--red-pale);border:1px solid rgba(196,90,90,0.2);}
+.aeo-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;}
+.aeo-box.strong .aeo-label{color:var(--green);}
+.aeo-box.gap .aeo-label{color:var(--red-mid);}
+.aeo-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;}
+.aeo-item::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:8px;}
+.aeo-box.strong .aeo-item::before{background:var(--green-mid);}
+.aeo-box.gap .aeo-item::before{background:var(--red-mid);}
+
+/* SUMMARY */
+.summary-bar{border-radius:var(--card-r);padding:24px 28px;display:flex;align-items:flex-start;gap:16px;margin-top:28px;background:var(--tan-pale);border:1px solid rgba(212,168,106,0.4);}
+.summary-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.summary-text{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--tan);}
+
+/* PRO TIP */
+.pro-tip{margin-top:12px;border-radius:10px;padding:14px 18px;background:var(--warm-faint);border-left:3px solid var(--tan-mid);display:flex;gap:12px;}
+.pro-tip-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);flex-shrink:0;padding-top:1px;}
+.pro-tip p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.65;}
+
+/* CLAIMS LIST */
+.claims{display:flex;flex-direction:column;gap:3px;margin-bottom:16px;}
+.claim-row{display:flex;gap:12px;background:var(--white);border:1px solid var(--warm-faint);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:300;color:var(--warm-dark);}
+.cdot{width:6px;height:6px;border-radius:50%;background:var(--tan-mid);flex-shrink:0;margin-top:6px;}
+
+/* FOOTER */
+.footer-note{text-align:center;margin-top:56px;padding-top:36px;border-top:1px solid var(--warm-faint);}
+.footer-note p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--warm-light);}
+.footer-note strong{font-family:'Jost',sans-serif;font-style:normal;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;display:block;margin-top:8px;color:var(--tan-mid);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-ey">Nyrah Beauty · Second Product Line</div>
+  <h1>Bloom by Nyrah.<br><em>Self-Tanning Guide.</em></h1>
+  <p class="hero-sub">Nyrah's skin-first tanning system — engineered for mature, hormonal, and sensitive skin.</p>
+  <div class="hero-tagline">"The Irish-Made, Skin-First Tanning System"</div>
+  <div class="tab-bar">
+    <button class="tab-btn act" onclick="switchTab('overview')">The Range</button>
+    <button class="tab-btn" onclick="switchTab('howto')">How to Use</button>
+    <button class="tab-btn" onclick="switchTab('why')">Why Bloom Works</button>
+    <button class="tab-btn" onclick="switchTab('ingredients')">Ingredients</button>
+    <button class="tab-btn" onclick="switchTab('faq')">FAQ</button>
+    <button class="tab-btn" onclick="switchTab('flags')">Issues &amp; Flags</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════ OVERVIEW ══════════════ -->
+<div class="panel active" id="panel-overview">
+
+  <div class="sec-head">
+    <h2>What is Bloom by Nyrah?</h2>
+    <p>A separate product line — not an extension of the skincare range. A complete self-tanning system designed specifically for skin that has been let down by standard tanning products.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card tan">
+      <div class="card-label">The core positioning</div>
+      <h3>Skin-first tanning for mature, hormonal, sensitive skin</h3>
+      <p>Every product in the Bloom range exists to solve a problem standard tans create for maturing skin: patching, orange tones, irritation, and uneven fade. The Bloom range is the <strong>same audience as Nyrah skincare</strong> — just addressing a completely different consumer need.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Made in Ireland</div>
+      <h3>Small batches, Co. Mayo</h3>
+      <p>Explicitly stated as made in small batches in Co. Mayo, Ireland. EU-compliant. Designed specifically for <strong>Irish and UK complexions</strong> — one of the few brand statements on the site that calls out geography as a design factor.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">The complete gift set</div>
+      <h3>6 items — 3 products + 3 tools</h3>
+      <p>The flagship Bloom product is the Complete Self-Tanning Gift Set. Everything a customer needs for a full application system: prep, face, body, and the tools to apply it all. <strong>RRP €163 — sold at €78/€77</strong> depending on shade variant.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">Two variants</div>
+      <h3>Medium or Dark Mousse — only difference</h3>
+      <p>The entire set is identical between Medium and Dark variants except the shade of Tanning Mousse included. <strong>"If in doubt, choose Medium — it suits 90% of women and is buildable."</strong> — stated in FAQ Q11.</p>
+    </div>
+  </div>
+
+  <div class="sec-head" style="margin-top:32px;">
+    <h2>What's in the set</h2>
+    <p>Six items total. Three tanning products and three application tools. The tools are described as FREE with the set.</p>
+  </div>
+
+  <div class="included">
+    <div class="inc"><div class="inc-badge">01</div><div class="inc-body"><div class="inc-name">Bloom Body Bronzing Mousse — 150ml (Medium or Dark)</div><div class="inc-desc">Fast-drying mousse applied with the Velvet Mitt. Applied at night, rinsed off in the morning. Colour develops in 4–6 hours, deepens overnight. Lasts 5–7 days. Two shade variants determine which version of the whole set you receive.</div><div class="inc-tags"><span class="itag itag-body">Body</span><span class="itag itag-p">4–6 hrs develop</span><span class="itag itag-p">5–7 day tan</span></div></div></div>
+    <div class="inc"><div class="inc-badge">02</div><div class="inc-body"><div class="inc-name">Bloom Facial Glow Serum — 20ml</div><div class="inc-desc">Not applied directly to skin — mixed with your existing moisturiser. 2–7 drops for gradual facial glow. Non-comedogenic. No mitt required — applied with hands. Develops in 2–4 hours (page also says 12–24 hours in one section — inconsistency). Lasts 3–4 days.</div><div class="inc-tags"><span class="itag itag-face">Face</span><span class="itag itag-p">Mix with moisturiser</span><span class="itag itag-t">No mitt needed</span></div></div></div>
+    <div class="inc"><div class="inc-badge">03</div><div class="inc-body"><div class="inc-name">Bloom Radiance Crème — 200ml</div><div class="inc-desc">A tinted body moisturiser with a gradual self-tanning effect. Applied directly to skin like a regular moisturiser — not rinsed off. Builds colour gradually over days. Used for maintenance between Mousse applications. 1 day = soft colour, 2 days = warm glow, 3 days = sun-kissed. Lasts 24–48 hrs.</div><div class="inc-tags"><span class="itag itag-body">Body</span><span class="itag itag-p">Gradual build</span><span class="itag itag-p">24–48 hr tan</span></div></div></div>
+    <div class="inc"><div class="inc-badge">T1</div><div class="inc-body"><div class="inc-name">Deep Exfoliating Mitt — FREE</div><div class="inc-desc">Pre-tan prep. Used in the shower before applying any Bloom product. Removes old tan, dry skin, and buildup so DHA develops evenly without grabbing dry patches.</div><div class="inc-tags"><span class="itag itag-t">Pre-tan prep</span><span class="itag itag-t">Shower use</span></div></div></div>
+    <div class="inc"><div class="inc-badge">T2</div><div class="inc-body"><div class="inc-name">Luxury Velvet Tanning Mitt — FREE</div><div class="inc-desc">Body application tool. Used with the Tanning Mousse for smooth, even, streak-free coverage. The velvet texture prevents the mousse from soaking into palms.</div><div class="inc-tags"><span class="itag itag-body">Body application</span><span class="itag itag-t">Use with Mousse</span></div></div></div>
+    <div class="inc"><div class="inc-badge">T3</div><div class="inc-body"><div class="inc-name">Luxury Kabuki Blending Brush — FREE</div><div class="inc-desc">Precision tool for face, hands, feet, elbows, and knees — the awkward areas a mitt can't reach. Also recommended in FAQ for facial application of the Mousse when the Glow Serum is not available.</div><div class="inc-tags"><span class="itag itag-face">Face + extremities</span><span class="itag itag-t">Precision blending</span></div></div></div>
+  </div>
+
+  <div class="summary-bar"><span class="summary-icon">✦</span><span class="summary-text">Bloom is not a beauty product that happens to tan. It is a skin treatment that happens to give a glow. Every formula decision was made for the woman who has been let down by standard tanning products because her skin changed.</span></div>
+</div>
+
+<!-- ══════════════ HOW TO USE ══════════════ -->
+<div class="panel" id="panel-howto">
+
+  <div class="sec-head">
+    <h2>The application system — 5 steps</h2>
+    <p>Published exactly as numbered steps on the page. Tap each step to expand the detail.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-conn"><div class="step-circ">1</div><div class="step-line"></div></div>
+      <div class="step-card">
+        <div class="step-head"><div class="step-left"><span class="step-tag">Prep</span><div><div class="step-name">Exfoliate</div><div class="step-sub">Deep Exfoliating Mitt — in the shower, before everything</div></div></div><svg class="step-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="step-body"><div class="step-body-inner"><div class="step-grid"><div class="step-box role"><div class="step-box-label">Why it matters</div><p>DHA clings to dry skin and dead cells — creating the dark patches and uneven colour that makes self-tan look fake. Using the Exfoliating Mitt removes both so the tan has a fresh, even surface to develop on.</p></div><div class="step-box why"><div class="step-box-label">When to do it</div><p>In the shower, before any tan application. Also use it before every reapplication to remove old colour. Pat skin dry thoroughly after — damp skin dilutes DHA and affects development.</p></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-conn"><div class="step-circ">2</div><div class="step-line"></div></div>
+      <div class="step-card">
+        <div class="step-head"><div class="step-left"><span class="step-tag">Face</span><div><div class="step-name">Glow Serum</div><div class="step-sub">Mix 2–7 drops into moisturiser — apply to face, neck, décolletage</div></div></div><svg class="step-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="step-body"><div class="step-body-inner"><div class="step-grid"><div class="step-box role"><div class="step-box-label">Important — how to use correctly</div><p>Do <strong>not</strong> apply directly to skin. Mix into your regular moisturiser first. 2–4 drops for subtle radiance, 5–7 for deeper colour. Wash hands immediately after mixing.</p></div><div class="step-box why"><div class="step-box-label">No mitt required</div><p>Applied with hands. The blending with moisturiser dilutes the DHA enough for hand application to work without streaks. Use the Kabuki Brush for more precise blending at hairline and jawline.</p></div></div><div class="step-pills"><span class="spill">2–4 drops = subtle</span><span class="spill">5–7 drops = deeper glow</span><span class="spill">Develops 2–4 hours</span><span class="spill">Lasts 3–4 days</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-conn"><div class="step-circ">3</div><div class="step-line"></div></div>
+      <div class="step-card">
+        <div class="step-head"><div class="step-left"><span class="step-tag">Body — daily</span><div><div class="step-name">Radiance Crème</div><div class="step-sub">Massage into legs, arms, or chest for instant warmth and gradual build</div></div></div><svg class="step-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="step-body"><div class="step-body-inner"><div class="step-grid"><div class="step-box role"><div class="step-box-label">Gradual body glow — daily use</div><p>Acts like a tinted moisturiser that builds over days. Applied like a regular body lotion — not rinsed off. Provides immediate soft tint and builds deeper colour over 3 days of continued use.</p></div><div class="step-box why"><div class="step-box-label">Maintenance between Mousse applications</div><p>Used day-to-day to top up and maintain colour between deeper Mousse applications. Also works as a standalone product for customers who want a gradual, subtle result rather than a full tan.</p></div></div><div class="step-pills"><span class="spill">Day 1: soft natural colour</span><span class="spill">Day 2: warm glow</span><span class="spill">Day 3: sun-kissed</span><span class="spill">Lasts 24–48 hrs per application</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-conn"><div class="step-circ">4</div><div class="step-line"></div></div>
+      <div class="step-card">
+        <div class="step-head"><div class="step-left"><span class="step-tag">Body — deeper tan</span><div><div class="step-name">Tanning Mousse</div><div class="step-sub">Apply with Velvet Mitt in long sweeping motions — blend extremities with Kabuki Brush</div></div></div><svg class="step-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="step-body"><div class="step-body-inner"><div class="step-grid"><div class="step-box role"><div class="step-box-label">The deepest result — apply at night</div><p>Used with the Velvet Mitt in long sweeping motions. Apply at night — rinse off in the morning. Wear loose, dark clothing after applying. Deeper result than the Crème — this is the primary tanning product in the system.</p></div><div class="step-box why"><div class="step-box-label">Medium vs Dark — the difference</div><p><strong>Medium:</strong> warm, golden — suits light to olive tones. <strong>Dark:</strong> deeper bronze — for those who want more depth. If in doubt, choose Medium — "it suits 90% of women and is buildable" (FAQ Q11).</p></div></div><div class="step-pills"><span class="spill">Develops 4–6 hours</span><span class="spill">Overnight for deepest glow</span><span class="spill">Lasts 5–7 days</span><span class="spill">Use Kabuki Brush for hands, feet, elbows</span></div></div></div>
+      </div>
+    </div>
+
+    <div class="step" onclick="toggleStep(this)">
+      <div class="step-conn"><div class="step-circ">5</div><div class="step-line"></div></div>
+      <div class="step-card">
+        <div class="step-head"><div class="step-left"><span class="step-tag">Maintain</span><div><div class="step-name">Top Up and Repeat</div><div class="step-sub">Top up with Crème or Serum through the week. Exfoliate before next Mousse application.</div></div></div><svg class="step-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="step-body"><div class="step-body-inner"><div class="step-grid"><div class="step-box role"><div class="step-box-label">The maintenance rhythm</div><p>Crème or Glow Serum top up between Mousse applications keeps colour even and prevents patchy fade. When the tan begins to fade unevenly, use the Exfoliating Mitt to remove old colour before the next Mousse application.</p></div><div class="step-box why"><div class="step-box-label">Fade like skincare, not like traditional tan</div><p>Because Bloom uses hydrating emollients, the colour fades "soft, even, and gradual" rather than patchy — one of the core product claims. The maintenance step is what makes this true for mature skin.</p></div></div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-head" style="margin-top:32px;">
+    <h2>Development times — tap to explore</h2>
+  </div>
+
+  <div class="dev-track">
+    <div class="dev-item act" onclick="switchDev(this,0)"><div class="dev-prod">Mousse</div><div class="dev-time">4–6 hrs</div><div class="dev-label">Full colour</div></div>
+    <div class="dev-item" onclick="switchDev(this,1)"><div class="dev-prod">Glow Serum</div><div class="dev-time">2–4 hrs</div><div class="dev-label">Face glow</div></div>
+    <div class="dev-item" onclick="switchDev(this,2)"><div class="dev-prod">Radiance Crème</div><div class="dev-time">Day 1–3</div><div class="dev-label">Gradual build</div></div>
+  </div>
+
+  <div class="dev-panels">
+    <div class="dev-panel active" id="dev-0"><div class="dev-panel-inner"><div class="dev-num">4–6</div><div class="dev-content"><h3>Mousse develops in 4–6 hours — leave overnight for deepest result</h3><p>Apply in the evening, rinse off in the morning for the full result. Lasts 5–7 days with an even fade. Wear loose, dark clothing after applying — it can transfer until fully dry. Both Medium and Dark variants use the same timing — the depth of result depends on shade choice and how long you leave it before rinsing.</p></div></div></div>
+    <div class="dev-panel" id="dev-1"><div class="dev-panel-inner"><div class="dev-num">2–4</div><div class="dev-content"><h3>Glow Serum develops in 2–4 hours — building gradually with each use</h3><p>The FAQ on the same page also states 12–24 hours in a separate section — this is an inconsistency on the page that needs to be resolved. Lasts 3–4 days. Builds with each application — the more frequently used, the deeper the glow. 2–4 drops for subtle every day radiance, 5–7 drops for a deeper colour.</p></div></div></div>
+    <div class="dev-panel" id="dev-2"><div class="dev-panel-inner"><div class="dev-num">1→3</div><div class="dev-content"><h3>Radiance Crème builds gradually over three days of daily use</h3><p><strong>Day 1:</strong> Soft, natural colour — immediate tinted moisturiser effect. <strong>Day 2:</strong> Warm, radiant glow — colour has developed from previous application. <strong>Day 3:</strong> Deeper sun-kissed tone — maximum build from continued daily use. Each application lasts 24–48 hours. It is meant for daily use, not single application — think of it as a tinted moisturiser that accumulates.</p></div></div></div>
+  </div>
+
+  <div class="pro-tip"><span class="pro-tip-label">For team</span><p>The most common customer question about the Glow Serum is "how many drops do I use?" The answer on the page is 2–7, but the practical guidance is: start with 2–3 and build. More drops = more risk of uneven development if the customer doesn't have experience with facial tanning drops. Under-promise on the first use.</p></div>
+</div>
+
+<!-- ══════════════ WHY BLOOM WORKS ══════════════ -->
+<div class="panel" id="panel-why">
+
+  <div class="sec-head">
+    <h2>Why most tans don't work for maturing skin</h2>
+    <p>This section comes directly from the page — titled "Why Most Tans Don't Work For Maturing Skin… &amp; Why Bloom Does." It is the strongest AEO content on any Nyrah page and directly answers what mature women search for.</p>
+  </div>
+
+  <div class="problems">
+    <div class="prob"><div class="prob-num">01</div><div class="prob-body"><div class="prob-title">Mature skin dehydrates faster</div><div class="prob-problem">DHA clings to dryness and patches — causing uneven, dark areas around knees, elbows, and any area that loses moisture faster.</div><div class="prob-solution"><strong>Bloom's answer:</strong> Uses hydrating emollients and Vitamin E so colour develops evenly across the entire surface, not just where skin is driest.</div></div></div>
+    <div class="prob"><div class="prob-num">02</div><div class="prob-body"><div class="prob-title">Hormonal skin is reactive</div><div class="prob-problem">Traditional tans use cheap alcohols, heavy perfumes, and pore-blocking oils — exactly the ingredients that trigger reactions in perimenopause, menopause, and postpartum skin.</div><div class="prob-solution"><strong>Bloom's answer:</strong> Gentle, low-irritant DHA, softening botanical extracts, no heavy alcohols — formulated specifically for reactive skin.</div></div></div>
+    <div class="prob"><div class="prob-num">03</div><div class="prob-body"><div class="prob-title">Mature skin needs luminosity, not heaviness</div><div class="prob-problem">Flat matte tans visually age skin — the absence of light reflection emphasises texture, fine lines, and unevenness.</div><div class="prob-solution"><strong>Bloom's answer:</strong> Light-reflective extracts for a diffused radiance rather than a flat, opaque colour. Brightens rather than flattens.</div></div></div>
+    <div class="prob"><div class="prob-num">04</div><div class="prob-body"><div class="prob-title">Even fade matters more for women 40+</div><div class="prob-problem">Slower cell turnover and hormonal dryness cause patchy fade — tan disappears unevenly, creating an aged or dirty appearance as it fades.</div><div class="prob-solution"><strong>Bloom's answer:</strong> Formulated to fade gradually and evenly. The maintenance step (Crème + Serum top-ups) is specifically designed to keep the fade smooth as well as the initial application.</div></div></div>
+  </div>
+
+  <div class="sec-head" style="margin-top:32px;">
+    <h2>How Bloom compares to other tanning brands</h2>
+    <p>The page includes a direct comparison table — the only one published across any Nyrah page. Bloom vs "Other Brands."</p>
+  </div>
+
+  <table class="comp-table">
+    <tr><th>Attribute</th><th>Bloom by Nyrah</th><th>Other brands</th></tr>
+    <tr><td>Formulated for sensitive, hormonal skin</td><td class="check">✓ Made in Ireland — never white-labelled</td><td class="cross">✗ Standard formulations</td></tr>
+    <tr><td>Fade quality</td><td class="check">✓ Even, non-patchy — skincare-infused</td><td class="cross">✗ Standard fade</td></tr>
+    <tr><td>Audience</td><td class="check">✓ Suitable for mature skin, small batches</td><td class="cross">✗ Generic audience</td></tr>
+    <tr><td>Fragrance</td><td class="check">✓ Subtle Coconut and Blossom — no fake-tan smell</td><td class="cross">✗ Typical fake-tan biscuit scent</td></tr>
+    <tr><td>Finish</td><td class="check">✓ Fast-drying, non-sticky — no sheet transfer</td><td class="cross">✗ Sticky or transfer-prone</td></tr>
+    <tr><td>Peptides, ceramides, caffeine</td><td>⚠ Claimed in table — not in published INCI</td><td>—</td></tr>
+  </table>
+
+  <div class="flag-list">
+    <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>"4 clinically proven peptides, ceramides and caffeine" claim in the comparison table:</strong> None of these ingredients appear in any of the three published INCI lists. Peptides and ceramides at meaningful concentrations would appear in the INCI. This claim must be verified with the client. If it cannot be substantiated, it must be removed immediately. No content can amplify this claim until confirmed.</span></div>
+  </div>
+
+  <div class="sec-head" style="margin-top:24px;">
+    <h2>Who is Bloom designed for</h2>
+  </div>
+
+  <div class="grid">
+    <div class="card"><div class="card-label">Primary audience</div><h3>Mature skin (40+)</h3><p>Skin that patches, highlights wrinkles, or fades unevenly with standard tans. Women who have given up on self-tanning because the results never looked right after their skin changed.</p></div>
+    <div class="card"><div class="card-label">Hormonal context</div><h3>Perimenopause, menopause, postpartum</h3><p>Reactive to the alcohols, heavy perfumes, and pore-blocking oils common in other self-tanning products. Bloom addresses the exact ingredients that trigger reactions in this demographic.</p></div>
+    <div class="card"><div class="card-label">Skin types</div><h3>Sensitive, reactive, dry, rosacea-prone</h3><p>Including rosacea-prone skin. Also explicitly positioned for <strong>"tan beginners"</strong> — women who want a foolproof, natural result without drama or complexity.</p></div>
+    <div class="card"><div class="card-label">Gifting audience</div><h3>Daughters, sisters, mums</h3><p>The gifting audience is explicitly named on the page. The luxury hat box packaging, the complete system, and the approachable price point (€78 for the full set) position this strongly as a gift.</p></div>
+    <div class="card tan full"><div class="card-label">Geography</div><h3>Designed for Irish and UK complexions</h3><p>This is the only Nyrah product where geography is explicitly named as a design factor. "Made for Irish and UK complexions" is stated on the page. For AEO content targeting Irish and UK audiences — this is a strong, citable, specific claim.</p></div>
+  </div>
+</div>
+
+<!-- ══════════════ INGREDIENTS ══════════════ -->
+<div class="panel" id="panel-ingredients">
+
+  <div class="sec-head">
+    <h2>Key ingredients — explained in plain English</h2>
+    <p>The gift set page is the only Nyrah page that explains ingredients in consumer-friendly language before publishing the INCI. This is the best ingredient communication on the site.</p>
+  </div>
+
+  <table class="ing-table">
+    <tr><th>Ingredient</th><th>What it does in a self-tan context</th><th>In which product</th></tr>
+    <tr><td><span class="ing-name">DHA (Dihydroxyacetone)</span></td><td>The tanning active. Reacts with amino acids in the outer layer of skin to produce a gradual brown colour. Bloom uses it at a "balanced level" to avoid streaks and orange tones.</td><td>All three products</td></tr>
+    <tr><td><span class="ing-name">Vitamin E (Tocopherol)</span></td><td>Antioxidant. Prevents dryness as DHA develops — stops the colour from emphasising dry patches and cracked areas.</td><td>Mousse, Serum</td></tr>
+    <tr><td><span class="ing-name">Champagne &amp; Truffle Extract</span><span class="ing-trade">INCI: Wine Extract + Tuber Aestivum Extract</span></td><td>Antioxidants and amino acids. Brighten dull skin and create diffused radiance — the luminosity effect rather than a flat matte tan.</td><td>Mousse, Serum</td></tr>
+    <tr><td><span class="ing-name">Glycerin &amp; Trehalose</span></td><td>Humectants. Draw moisture into skin and keep it there — supports even, predictable DHA colour development.</td><td>Mousse, Serum</td></tr>
+    <tr><td><span class="ing-name">Sodium Hyaluronate</span><span class="ing-trade">Hyaluronic Acid</span></td><td>Hydrates the skin surface, preventing DHA from emphasising fine lines or skin texture as the colour develops.</td><td>Mousse, Serum</td></tr>
+    <tr><td><span class="ing-name">Aloe Vera</span></td><td>Calms, cools, and hydrates. Reduces redness for sensitive skin post-application.</td><td>Mousse, Serum (via Cocamidopropyl Betaine base — check INCI)</td></tr>
+    <tr><td><span class="ing-name">Apple Blossom &amp; Coconut Blossom</span><span class="ing-trade">INCI: Parfum, Alpha-Isomethyl Ionone, Benzyl Salicylate</span></td><td>The signature scent of the Bloom range. Described as neutralising the typical "biscuit-y" fake-tan smell. Lightweight enough for sensitive skin — though the fragrance allergens must be declared.</td><td>Mousse, Serum</td></tr>
+    <tr><td><span class="ing-name">Isopropyl Myristate, Dimethicone</span></td><td>Create the silky, glide-y texture of the Crème formula. Help the product spread evenly across the body without heaviness.</td><td>Radiance Crème only</td></tr>
+  </table>
+
+  <div class="sec-head" style="margin-top:28px;">
+    <h2>Full INCI lists — all three products</h2>
+  </div>
+
+  <div class="inci-block">
+    <div class="inci-label">Bloom Body Bronzing Mousse (Medium + Dark — same INCI)</div>
+    Aqua, Dihydroxyacetone, Glycerin, Butylene Glycol, Ethoxydiglycol, Propylene Glycol, Cocamidopropyl Betaine, Tocopherol, Wine Extract, Tuber Aestivum (Truffle) Extract, Sodium Chloride, Sodium Benzoate, Potassium Sorbate, Phenoxyethanol, Disodium EDTA, Citric Acid, Parfum (Fragrance), Alpha-Isomethyl Ionone, Benzyl Salicylate, CI 19140, CI 16035, CI 42090.
+    <div class="inci-note"><strong>Note:</strong> Single INCI for both Medium and Dark variants. If DHA concentration or colorant levels differ between shades, variant-specific INCIs may be required under EU Cosmetics Regulation. Needs client clarification.</div>
+  </div>
+
+  <div class="inci-block">
+    <div class="inci-label">Bloom Facial Glow Serum — IMPORTANT: identical formula to Mousse</div>
+    Aqua, Dihydroxyacetone, Glycerin, Butylene Glycol, Ethoxydiglycol, Propylene Glycol, Cocamidopropyl Betaine, Tocopherol, Wine Extract, Tuber Aestivum (Truffle) Extract, Sodium Chloride, Sodium Benzoate, Potassium Sorbate, Phenoxyethanol, Disodium EDTA, Citric Acid, Parfum (Fragrance), Alpha-Isomethyl Ionone, Benzyl Salicylate, CI 19140, CI 16035, CI 42090.
+    <div class="inci-note"><strong>Identical to Mousse INCI.</strong> Either these are genuinely the same formula in different textures/concentrations, or the Serum INCI is incorrect. The products are described very differently on the page (face drops vs body mousse) — if they are truly the same formula, that context should be explained to customers.</div>
+  </div>
+
+  <div class="inci-block">
+    <div class="inci-label">Bloom Radiance Crème — significantly different formula</div>
+    Aqua, Glycerin, Dihydroxyacetone (DHA), Isopropyl Myristate, Dimethicone, Cetearyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Cetyl Alcohol, Phenoxyethanol, PEG-20 Stearate, Parfum (Fragrance), Disodium EDTA, Citronellol, Geraniol, Hexyl Cinnamal, Hydroxycitronellal, Linalool, CI 19140, CI 16035, CI 42090.
+    <div class="inci-note"><strong>No Vitamin E, no Wine Extract, no Truffle Extract, no Aloe, no Hyaluronic Acid.</strong> Many of the skin-benefiting ingredients marketed for the set are present in the Mousse and Serum but not in the Crème. This is the correct formula for a body cream — different product, different texture — but the marketing copy that covers the "set" implies all three share the same skin-benefiting ingredients, which is not accurate for the Crème.</div>
+  </div>
+
+  <div class="flag-list">
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>"Champagne Extract" in marketing = "Wine Extract" in INCI:</strong> Not necessarily incorrect — Champagne is a wine. But the terminology difference between marketing copy and INCI will be noticed by ingredient-savvy consumers and regulators. Standardise the naming.</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Synthetic colorants (CI 19140, CI 16035, CI 42090) in all three INCIs:</strong> FD&C Yellow 5, Red 40, Blue 1. Give the products their characteristic tinted colour in the bottle. Never disclosed or explained in product copy. Some consumers specifically avoid synthetic colorants.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<div class="panel" id="panel-faq">
+
+  <div class="sec-head">
+    <h2>12 questions — the complete Bloom FAQ</h2>
+    <p>All questions from the gift set page. The most comprehensive FAQ of any Nyrah product page. Several are strong AEO assets — tagged below.</p>
+  </div>
+
+  <div class="faq-list">
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q1</span><span class="faq-qt">What exactly comes in the Bloom Radiance Gift Set?</span><span class="faq-tag aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Three tanning products (Mousse 150ml, Facial Glow Serum 20ml, Radiance Crème 200ml) plus three tools (Deep Exfoliating Mitt, Luxury Velvet Tanning Mitt, Luxury Kabuki Blending Brush), packaged in a luxury gift box. <strong>For team:</strong> The page doesn't list individual product sizes in the text — all in images. Always state sizes explicitly when discussing with customers.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q2</span><span class="faq-qt">Is this suitable for mature, sensitive, or hormonal skin?</span><span class="faq-tag aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Yes — this is the primary audience. Specifically engineered for skin that patches, fades unevenly, or reacts to traditional self-tanners. The four-problem framework (Why Bloom Works tab) explains this in detail. This is one of the highest-value AEO questions for the product.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q3</span><span class="faq-qt">Is this safe during pregnancy or breastfeeding?</span><span class="faq-tag safety">Safety</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">The page states: "Many of our customers use them throughout pregnancy with no issue, but we recommend patch testing first." This is an appropriately hedged answer — not a definitive pregnancy-safe claim. <strong>For team:</strong> Always direct pregnant customers to check with their GP. Do not make a firm safety statement beyond what the page says.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q4</span><span class="faq-qt">Is it vegan and cruelty-free?</span><span class="faq-tag flag">⚠ Error</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner"><strong>Live error on the page:</strong> The answer reads "Yes. Like every Nyrah product, <strong>Revive</strong> is vegan, cruelty-free..." — the word "Revive" is a copy-paste error from the Revive Eye Serum FAQ. The answer should refer to "Bloom" or the gift set. Must be corrected immediately.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q5</span><span class="faq-qt">Will the colour look natural, or will it be orange?</span><span class="faq-tag aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">No orange. DHA is used at a balanced concentration — the formulation is designed to produce a warm, golden result rather than the orange tone associated with high-DHA formulas. The hydrating emollients also prevent colour grabbing to dry patches, which is the main cause of unnatural-looking results on mature skin.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q6</span><span class="faq-qt">How long will my tan last?</span><span class="faq-tag aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Mousse: 5–7 days. Glow Serum: 3–4 days. Radiance Crème: 24–48 hours per application (builds with continued use). Maintain with Crème or Serum between Mousse applications for continuous colour.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q7</span><span class="faq-qt">Does it transfer onto sheets or clothing?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">No transfer once fully dry. Wear loose, dark clothing immediately after applying the Mousse until fully absorbed. The Crème and Serum dry down faster with less risk. <strong>For team:</strong> "No transfer" is a key claim — worth confirming with customers who have had bad experiences with other self-tanners staining their bedding.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q8</span><span class="faq-qt">How long until I see results?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Mousse: 4–6 hours. Glow Serum: 2–4 hours (page also states 12–24 hours elsewhere — inconsistency to fix). Radiance Crème: immediate soft tint, builds over 3 days. The Mousse gives the most visible, fastest result — use it for the first application and when a definite glow is needed by a specific time.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q9</span><span class="faq-qt">Do I need to buy anything else for perfect application?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">No — the set includes everything needed: exfoliating mitt for prep, velvet mitt for body application, kabuki brush for precision areas. The only thing not included is a moisturiser to mix the Glow Serum into — but this is assumed to be part of an existing skincare routine.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q10</span><span class="faq-qt">Should I exfoliate before using the products?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">Yes — every time. This is the most important preparation step for avoiding patchy tan, especially for mature skin where cell turnover is slower and dry patches are more common. The Deep Exfoliating Mitt is included in the set for exactly this purpose. Use it in the shower before every application.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q11</span><span class="faq-qt">How do I choose between Medium and Dark mousse?</span><span class="faq-tag aeo">AEO</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner"><strong>Medium</strong> — warm golden, suits light to olive tones. <strong>Dark</strong> — deeper bronze, for those wanting more depth. "If in doubt, choose Medium — it suits 90% of women and is buildable." This is the most useful, specific, actionable guidance on the page — a confident recommendation rather than a non-answer. Strong selling tool for team members when customers are unsure.</div></div></div>
+
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-trigger"><span class="faq-qn">Q12</span><span class="faq-qt">Will this clog pores or cause breakouts?</span><span class="faq-tag safety">Safety</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="faq-ans"><div class="faq-ans-inner">The Glow Serum is explicitly stated as non-comedogenic. The Mousse contains Cocamidopropyl Betaine which can be comedogenic for some skin types — the page does not address this directly. <strong>For team:</strong> If a customer has acne-prone skin and asks about Mousse specifically, the page does not carry a non-comedogenic claim for it. Direct towards the Glow Serum for face use.</div></div></div>
+
+  </div>
+</div>
+
+<!-- ══════════════ FLAGS ══════════════ -->
+<div class="panel" id="panel-flags">
+
+  <div class="sec-head">
+    <h2>Issues and flags — complete list</h2>
+    <p>Every live issue on the Bloom gift set page and the standalone Bloom product pages. Fix order: Critical → High → Medium.</p>
+  </div>
+
+  <div class="flag-list">
+    <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>FAQ Q4 references "Revive" instead of "Bloom":</strong> The vegan/cruelty-free FAQ answer says "Like every Nyrah product, Revive is vegan..." — direct copy-paste error from the Revive Eye Serum page. Live on the Bloom Gift Set page. Fix today.</span></div>
+    <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>All three standalone Bloom pages: Niacinamide in ingredient spotlight — absent from all three INCIs:</strong> Mousse, Glow Serum, and Bloom Crème pages all feature Niacinamide as a hero ingredient. It does not appear in any of the three published INCI lists. This is a false ingredient claim under EU Cosmetics Regulation. Client confirmation required before any content mentions Niacinamide in a Bloom context.</span></div>
+    <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>Glow Serum and Mousse standalone pages: "completely fragrance-free" in FAQ — INCI shows Parfum:</strong> FAQ Q8 states "completely fragrance-free — no perfume." The INCI lists Parfum plus declared fragrance allergens Alpha-Isomethyl Ionone and Benzyl Salicylate. Live regulatory violation under EU Cosmetics Regulation 1223/2009. Fix today.</span></div>
+    <div class="flag-item critical"><span class="flag-sev">Critical</span><span class="flag-text"><strong>"4 clinically proven peptides, ceramides and caffeine" in comparison table:</strong> None of these appear in any published Bloom INCI. If this claim cannot be substantiated it must be removed. No content can amplify this until confirmed with client.</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Isopropyl Myristate phantom ingredient on Glow Serum and Mousse pages:</strong> Named in ingredient spotlight as making the product "silky and fast-absorbing." Present in the Crème INCI but absent from the Mousse and Serum INCIs. False ingredient claim on both pages.</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Coconut Blossom phantom ingredient on Glow Serum page:</strong> Named in spotlight as a key ingredient. Not present in the INCI under any name. Third phantom ingredient on the Glow Serum standalone page (alongside Niacinamide and Isopropyl Myristate).</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Bloom Crème: "Champagne &amp; Truffle" and "Vitamin E" featured as key ingredients — both absent from Crème INCI:</strong> These are present in the Mousse/Serum formulas but not the Crème. The marketing copy applies set-wide ingredient claims to all three products regardless of formula.</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Stale Black Friday countdown still live:</strong> Bottom of gift set page shows expired "00:00:00:00" countdown timer and "Christmas exclusive set" language — in March 2026. Actively undermines premium positioning. Remove today.</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Bloom Crème: "WILL BE BACK IN STOCK LATE OCTOBER 2025":</strong> Stale out-of-stock notice five months past its stated date. Live on the standalone Crème page. Remove immediately.</span></div>
+    <div class="flag-item high"><span class="flag-sev">High</span><span class="flag-text"><strong>Free shipping badge states €55 across all Bloom pages:</strong> Should be €70 (Ireland). Ongoing sitewide error.</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Glow Serum development time inconsistency:</strong> Page states "2–4 hours" in one section and "12–24 hours" in the FAQ. Two different development times on the same page. Needs standardisation.</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Single INCI for Medium and Dark Mousse variants:</strong> If DHA concentration or colorant levels differ between shades, EU Cosmetics Regulation may require variant-specific INCIs. Verify with client.</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>"Champagne Extract" in marketing vs "Wine Extract" in INCI:</strong> Not necessarily incorrect but the naming difference will be noticed. Standardise marketing language to align with INCI (e.g. "Wine and Truffle Extract" or explain that Champagne is a type of wine).</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Scent name inconsistency on Bloom Crème page:</strong> Hero calls it "Coconut Blossom." Rest of page calls it "Apple Blossom." One is wrong — needs client clarification on the actual scent name for the Crème.</span></div>
+    <div class="flag-item medium"><span class="flag-sev">Medium</span><span class="flag-text"><strong>Crème formula missing key marketing ingredients:</strong> Crème INCI has no Vitamin E, Wine Extract, Truffle Extract, Aloe, or Hyaluronic Acid — all marketed as set-wide benefits. Marketing copy implies all three products share these ingredients. Not accurate for the Crème.</span></div>
+  </div>
+
+  <div class="aeo-split">
+    <div class="aeo-box strong"><div class="aeo-label">AEO Strengths — Bloom gift set page</div>
+      <div class="aeo-item"><strong>Strongest educational content on any Nyrah page:</strong> "Why Most Tans Don't Work for Maturing Skin" is directly citable by AI engines answering "why does fake tan look patchy on older skin" and "best self-tan for menopausal skin"</div>
+      <div class="aeo-item">12-question FAQ — most complete range of consumer concerns on the site</div>
+      <div class="aeo-item">Plain-English ingredient explanations before INCI — unique on the site</div>
+      <div class="aeo-item">Medium vs Dark guidance ("suits 90% of women") is specific, confident, and AEO-citable</div>
+      <div class="aeo-item">"Designed for Irish and UK complexions" is a specific, geographic AEO claim</div>
+    </div>
+    <div class="aeo-box gap"><div class="aeo-label">AEO Blockers — fix before content</div>
+      <div class="aeo-item"><strong>No content can reference Niacinamide, peptides, ceramides, or caffeine for any Bloom product until confirmed with client</strong></div>
+      <div class="aeo-item">Fragrance-free claims on standalone pages contradict INCI — no fragrance-free content for Bloom until fixed</div>
+      <div class="aeo-item">Three phantom ingredients on Glow Serum standalone page must be resolved</div>
+      <div class="aeo-item">Stale promotional content (Black Friday, October 2025 stock notice) actively undermines trust signals AI engines use</div>
+    </div>
+  </div>
+
+  <div class="summary-bar"><span class="summary-icon">✦</span><span class="summary-text">The Bloom content strategy is the most commercially straightforward on the site — once the phantom ingredient and fragrance-free issues are resolved. "Fragrance-free self-tan for hormonal skin" is a genuine market gap with real search demand. No competitor currently owns that query. Bloom should. But none of that can be built on pages with live regulatory errors.</span></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-note">
+  <p>A tan that works with your skin, not against it. That is the only Bloom promise that matters.</p>
+  <strong>Bloom by Nyrah · Made in Ireland · Co. Mayo</strong>
+</div>
+
+</div><!-- end main -->
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('act');
+}
+function toggleStep(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.step.open').forEach(s=>s.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+function toggleFaq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(f=>f.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+function switchDev(el,idx){
+  document.querySelectorAll('.dev-item').forEach(d=>d.classList.remove('act'));
+  document.querySelectorAll('.dev-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('act');
+  document.getElementById('dev-'+idx).classList.add('active');
+}
+</script>
+</body>
+</html>
