@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Trial Pack Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold-deep:#8B6914;--gold-mid:#C49A2A;--gold-light:#E8C96A;--gold-pale:#F7EDD0;--gold-faint:#FDF8EE;
+  --cream:#FFFDF6;--charcoal:#1C1810;--warm-dark:#2D2416;--warm-mid:#6B5A3A;--warm-light:#A89070;--warm-faint:#EDE5D4;
+  --white:#FFFFFF;
+  --green:#2A6A3A;--green-pale:#E8F5EC;--green-mid:#4A9A5A;
+  --blue-deep:#2D3A5A;--blue-mid:#7B9EC8;--blue-pale:#EEF2F9;
+  --red-deep:#7A2A2A;--red-pale:#FBEAEA;--red-mid:#C45A5A;
+  --card-radius:20px;
+}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;overflow-x:hidden;}
+
+/* ── HERO ── */
+.hero{background:var(--warm-dark);padding:56px 40px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(196,154,42,0.12);}
+.hero::after{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:350px;height:350px;border-radius:50%;border:1px solid rgba(196,154,42,0.08);}
+.hero-eyebrow{font-size:11px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);margin-bottom:16px;position:relative;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,5vw,50px);color:var(--gold-pale);line-height:1.15;position:relative;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:13px;font-weight:300;color:var(--warm-light);letter-spacing:.05em;position:relative;margin-bottom:10px;}
+.hero-price-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px;position:relative;}
+.price-now{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--gold-light);}
+.price-was{font-size:14px;color:var(--warm-light);text-decoration:line-through;}
+.price-save{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--gold-mid);color:var(--warm-dark);padding:4px 12px;border-radius:20px;}
+
+/* TAB BAR */
+.tab-bar{display:flex;justify-content:center;gap:0;position:relative;z-index:2;border-top:1px solid rgba(196,154,42,0.15);}
+.tab-btn{flex:1;max-width:200px;padding:14px 20px;font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;background:transparent;cursor:pointer;transition:all .3s;color:var(--warm-light);border-bottom:2px solid transparent;}
+.tab-btn.act{color:var(--gold-light);border-bottom:2px solid var(--gold-mid);}
+.tab-btn:hover:not(.act){color:var(--gold-pale);}
+
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:48px 24px 80px;}
+.panel{display:none;animation:fadeIn .35s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+/* SECTION TITLE */
+.section-head{margin-bottom:32px;}
+.section-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:var(--charcoal);margin-bottom:6px;}
+.section-head p{font-size:13px;font-weight:300;color:var(--warm-mid);}
+
+/* ── WHAT IS IT ── */
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;}
+@media(max-width:580px){.what-grid{grid-template-columns:1fr;}}
+.what-card{background:var(--white);border:1px solid var(--warm-faint);border-radius:var(--card-radius);padding:22px 24px;transition:border-color .3s,box-shadow .3s;}
+.what-card:hover{border-color:var(--gold-light);box-shadow:0 4px 20px rgba(139,105,20,0.07);}
+.what-card.full{grid-column:1/-1;}
+.what-label{font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px;}
+.what-card h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:var(--charcoal);margin-bottom:8px;}
+.what-card p{font-size:13px;font-weight:300;color:var(--warm-mid);line-height:1.7;}
+.what-card strong{color:var(--charcoal);font-weight:500;}
+.credit-badge{display:inline-flex;align-items:center;gap:8px;background:var(--gold-faint);border:1px solid var(--gold-light);border-radius:12px;padding:10px 16px;margin-top:12px;}
+.credit-badge-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--gold-deep);line-height:1;}
+.credit-badge-text{font-size:12px;font-weight:300;color:var(--warm-mid);line-height:1.4;}
+.credit-badge-text strong{display:block;font-weight:500;color:var(--gold-deep);}
+
+/* WHAT'S INCLUDED */
+.included-list{display:flex;flex-direction:column;gap:3px;margin-bottom:32px;}
+.included-item{display:flex;align-items:center;gap:16px;background:var(--white);border:1px solid var(--warm-faint);border-radius:14px;padding:14px 18px;cursor:pointer;transition:all .3s;}
+.included-item:hover,.included-item.open{border-color:var(--gold-light);background:var(--gold-faint);}
+.inc-num{width:32px;height:32px;border-radius:50%;background:var(--gold-pale);border:1.5px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--gold-deep);flex-shrink:0;transition:all .3s;}
+.included-item.open .inc-num,.included-item:hover .inc-num{background:var(--gold-mid);color:var(--white);border-color:var(--gold-mid);}
+.inc-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--charcoal);flex:1;}
+.inc-role{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:var(--gold-faint);color:var(--gold-deep);flex-shrink:0;}
+.inc-chev{width:16px;height:16px;transition:transform .3s;flex-shrink:0;color:var(--warm-light);}
+.included-item.open .inc-chev{transform:rotate(180deg);}
+.inc-expanded{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.included-item.open .inc-expanded{max-height:300px;}
+.inc-body{padding:12px 0 4px 48px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:500px){.inc-body{grid-template-columns:1fr;}}
+.inc-box{border-radius:10px;padding:12px 14px;}
+.inc-box.role{background:var(--gold-faint);}
+.inc-box.why{background:var(--warm-faint);}
+.inc-box-label{font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:5px;}
+.inc-box.why .inc-box-label{color:var(--warm-mid);}
+.inc-box p{font-size:12.5px;font-weight:300;color:var(--warm-dark);line-height:1.6;}
+.inc-pills{display:flex;flex-wrap:wrap;gap:5px;padding:8px 0 8px 48px;}
+.inc-pill{font-size:11px;font-weight:400;padding:3px 11px;border-radius:20px;border:1px solid var(--gold-light);color:var(--gold-deep);background:var(--gold-faint);}
+
+/* ── AUDIENCE ── */
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+@media(max-width:600px){.audience-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:400px){.audience-grid{grid-template-columns:1fr;}}
+.aud-card{background:var(--white);border:1px solid var(--warm-faint);border-radius:16px;padding:18px 16px;text-align:center;transition:border-color .3s,box-shadow .3s;}
+.aud-card:hover{border-color:var(--gold-light);box-shadow:0 4px 16px rgba(139,105,20,0.07);}
+.aud-icon{font-size:22px;margin-bottom:10px;}
+.aud-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--charcoal);margin-bottom:5px;}
+.aud-desc{font-size:12px;font-weight:300;color:var(--warm-mid);line-height:1.6;}
+.aud-card.highlight{background:var(--gold-faint);border-color:var(--gold-light);}
+
+/* PAIN POINTS */
+.pain-list{display:flex;flex-direction:column;gap:8px;margin-bottom:32px;}
+.pain-item{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--warm-faint);border-radius:14px;padding:16px 18px;transition:border-color .3s;}
+.pain-item:hover{border-color:var(--gold-light);}
+.pain-num{width:28px;height:28px;border-radius:50%;background:var(--gold-pale);border:1.5px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--gold-deep);flex-shrink:0;margin-top:1px;}
+.pain-content h4{font-size:13.5px;font-weight:500;color:var(--charcoal);margin-bottom:3px;}
+.pain-content p{font-size:12.5px;font-weight:300;color:var(--warm-mid);line-height:1.6;}
+
+/* ── RESULTS TIMELINE ── */
+.timeline-track{display:flex;gap:0;position:relative;margin-bottom:32px;}
+.timeline-track::before{content:'';position:absolute;top:22px;left:22px;right:22px;height:1px;background:var(--gold-pale);z-index:0;}
+.timeline-day{flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;cursor:pointer;position:relative;z-index:1;}
+.tl-circle{width:44px;height:44px;border-radius:50%;background:var(--gold-pale);border:2px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--gold-deep);transition:all .3s;flex-shrink:0;}
+.timeline-day.act .tl-circle{background:var(--gold-mid);border-color:var(--gold-mid);color:var(--white);}
+.tl-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--warm-mid);transition:color .3s;}
+.timeline-day.act .tl-label{color:var(--gold-deep);}
+.tl-panels{margin-bottom:32px;}
+.tl-panel{display:none;}
+.tl-panel.active{display:block;animation:fadeIn .3s ease;}
+.tl-panel-inner{background:var(--gold-faint);border:1px solid var(--gold-light);border-radius:var(--card-radius);padding:28px 32px;display:flex;gap:24px;align-items:flex-start;}
+@media(max-width:500px){.tl-panel-inner{flex-direction:column;gap:16px;padding:20px;}}
+.tl-day-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--gold-mid);line-height:1;flex-shrink:0;}
+.tl-panel-content h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);margin-bottom:8px;}
+.tl-panel-content p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:3px;margin-bottom:32px;}
+.faq-item{background:var(--white);border:1px solid var(--warm-faint);border-radius:14px;overflow:hidden;transition:border-color .3s;}
+.faq-item:hover,.faq-item.open{border-color:var(--gold-light);}
+.faq-trigger{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;user-select:none;}
+.faq-q-num{font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--gold-deep);flex-shrink:0;min-width:24px;}
+.faq-q-text{font-size:13.5px;font-weight:400;color:var(--charcoal);flex:1;line-height:1.4;}
+.faq-chev{width:15px;height:15px;transition:transform .3s;flex-shrink:0;color:var(--warm-light);}
+.faq-item.open .faq-chev{transform:rotate(180deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-item.open .faq-answer{max-height:200px;}
+.faq-answer-inner{padding:0 18px 16px 52px;font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.75;border-top:1px solid var(--warm-faint);padding-top:14px;}
+.faq-answer-inner strong{font-weight:500;color:var(--charcoal);}
+.faq-tag{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:10px;flex-shrink:0;margin-left:6px;}
+.tag-credit{background:var(--gold-faint);color:var(--gold-deep);}
+.tag-safety{background:var(--green-pale);color:var(--green);}
+.tag-flag{background:var(--red-pale);color:var(--red-deep);}
+
+/* ── WHAT FIXES WHAT ── */
+.fix-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:32px;}
+@media(max-width:580px){.fix-grid{grid-template-columns:1fr;}}
+.fix-card{background:var(--white);border:1px solid var(--warm-faint);border-radius:16px;padding:20px;transition:border-color .3s,box-shadow .3s;}
+.fix-card:hover{border-color:var(--gold-light);box-shadow:0 4px 16px rgba(139,105,20,0.07);}
+.fix-problem{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-mid);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.fix-problem::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--red-mid);flex-shrink:0;}
+.fix-title{font-size:14px;font-weight:400;color:var(--charcoal);margin-bottom:8px;line-height:1.3;}
+.fix-solution{font-size:12.5px;font-weight:300;color:var(--warm-mid);line-height:1.65;}
+.fix-without{font-size:11px;font-weight:500;color:var(--gold-deep);margin-top:10px;padding-top:10px;border-top:1px solid var(--warm-faint);}
+
+/* ── TRUST STRIP ── */
+.trust-strip{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap;}
+.trust-card{flex:1;min-width:150px;background:var(--gold-faint);border:1px solid var(--gold-light);border-radius:14px;padding:16px 18px;text-align:center;}
+.trust-card-icon{font-size:20px;margin-bottom:8px;}
+.trust-card-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px;}
+.trust-card-text{font-size:12px;font-weight:300;color:var(--warm-mid);line-height:1.5;}
+
+/* SUMMARY BAR */
+.summary-bar{margin-top:40px;border-radius:var(--card-radius);padding:26px 30px;background:var(--gold-pale);border:1px solid var(--gold-light);display:flex;align-items:flex-start;gap:18px;}
+.summary-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.summary-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;line-height:1.65;color:var(--gold-deep);}
+
+/* PRO TIP */
+.pro-tip{margin-top:14px;border-radius:12px;padding:16px 20px;background:var(--warm-faint);border-left:3px solid var(--gold-mid);display:flex;gap:12px;align-items:flex-start;}
+.pro-tip-label{font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-deep);flex-shrink:0;padding-top:2px;}
+.pro-tip p{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.65;}
+
+/* FLAG BOX */
+.flag-box{margin-bottom:32px;border-radius:14px;padding:18px 22px;background:var(--red-pale);border:1px solid var(--red-mid);border-left:3px solid var(--red-mid);display:flex;gap:14px;align-items:flex-start;}
+.flag-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--red-deep);flex-shrink:0;margin-top:2px;}
+.flag-body{font-size:13px;font-weight:300;color:var(--warm-dark);line-height:1.7;}
+.flag-body strong{color:var(--red-deep);font-weight:500;}
+
+/* FOOTER */
+.footer-note{text-align:center;margin-top:60px;padding-top:36px;border-top:1px solid var(--warm-faint);}
+.footer-note p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--warm-light);}
+.footer-note strong{font-family:'Jost',sans-serif;font-style:normal;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;display:block;margin-top:8px;color:var(--gold-mid);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Nyrah Beauty · Product Guide</div>
+  <h1>The Trial Pack.<br><em>Everything You Need to Know.</em></h1>
+  <p class="hero-sub">What it is, who it's for, what's in it, and why it works — for customers and the team.</p>
+  <div class="hero-price-row">
+    <span class="price-now">€24.95</span>
+    <span class="price-was">€44.95</span>
+    <span class="price-save">Save €20</span>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn act" onclick="switchTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="switchTab('whats-in-it')">What's Included</button>
+    <button class="tab-btn" onclick="switchTab('who')">Who It's For</button>
+    <button class="tab-btn" onclick="switchTab('results')">Results</button>
+    <button class="tab-btn" onclick="switchTab('faq')">FAQ</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ════════════════════════════════ OVERVIEW ════════════════════════════════ -->
+<div class="panel active" id="panel-overview">
+
+  <div class="section-head">
+    <h2>What is the Trial Pack?</h2>
+    <p>A guided 7-day starter routine — everything a new customer needs to experience Nyrah before committing to full sizes.</p>
+  </div>
+
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-label">The concept</div>
+      <h3>Try the full routine for 7 days</h3>
+      <p>The Trial Pack is Nyrah's entry point. It solves three objections in one product: the <strong>price objection</strong> (€24.95 vs €249+ for the full routine), the <strong>risk objection</strong> (€10 credit back), and the <strong>complexity objection</strong> (routine card + video — no guessing).</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">What's the claim</div>
+      <h3>"Feel Comfortable In Your Skin In 7 Days Or Less"</h3>
+      <p>Positioned as a <strong>2-minute morning + 2-minute night</strong> routine. The page explicitly frames this as solving the trial-and-error problem — no wrong layering order, no wasted money on products that don't suit.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">What's included beyond the products</div>
+      <h3>Physical routine card + follow-along video</h3>
+      <p>Every pack ships with a step-by-step AM/PM routine card. Customers also get access to a follow-along video — so they know exactly what to use when, and in what order. This is the differentiator vs buying individual products.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">The €10 credit mechanic — the retention engine</div>
+      <h3>€10 store credit with every pack</h3>
+      <p>Immediately available in the customer's Nyrah account upon account creation using the same email as the purchase. Redeemable on any full-size product or accessory.</p>
+      <div class="credit-badge">
+        <span class="credit-badge-num">€10</span>
+        <span class="credit-badge-text"><strong>Digital store credit</strong>Unlocked instantly after purchase</span>
+      </div>
+    </div>
+    <div class="what-card full">
+      <div class="what-label">Strategic importance</div>
+      <h3>The most important page on the Nyrah site</h3>
+      <p>The Trial Pack is the <strong>primary entry point into the Nyrah customer journey</strong>. Any content or ad driving cold traffic to Nyrah should route to this page first — not to individual product pages. It solves the price, risk, and complexity objections that stop new customers buying. The €10 credit is the pull-through mechanic to the full routine.</p>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <div class="trust-card"><div class="trust-card-icon">🇮🇪</div><div class="trust-card-title">Made in Ireland</div><div class="trust-card-text">Small batches, Co. Mayo</div></div>
+    <div class="trust-card"><div class="trust-card-icon">🌿</div><div class="trust-card-title">Plant-Based</div><div class="trust-card-text">Cruelty-free, gluten-free</div></div>
+    <div class="trust-card"><div class="trust-card-icon">⭐</div><div class="trust-card-title">4.8 / 5</div><div class="trust-card-text">3,074 Trustpilot reviews</div></div>
+    <div class="trust-card"><div class="trust-card-icon">👩</div><div class="trust-card-title">80,000+ Women</div><div class="trust-card-text">Ireland & the UK</div></div>
+    <div class="trust-card"><div class="trust-card-icon">🔒</div><div class="trust-card-title">Menopause Safe</div><div class="trust-card-text">No hormone-active botanicals, no retinoids</div></div>
+  </div>
+
+  <div class="summary-bar">
+    <span class="summary-icon">📦</span>
+    <span class="summary-text">Think of the Trial Pack as Nyrah's front door. It is not a miniature product — it is a guided experience designed to convert a hesitant first-time buyer into a confident full-routine customer.</span>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════ WHAT'S IN IT ════════════════════════════════ -->
+<div class="panel" id="panel-whats-in-it">
+
+  <div class="section-head">
+    <h2>What's in the pack</h2>
+    <p>Trial sizes of 5 core Nyrah products — one for each step of the AM/PM routine. Tap any product to learn its role.</p>
+  </div>
+
+  <div class="included-list">
+
+    <div class="included-item" onclick="toggleInc(this)">
+      <div class="inc-num">1</div>
+      <div class="inc-name">Undress <span style="font-size:13px;color:var(--warm-mid);">— Vitamin E+C Gel Cleanser</span></div>
+      <span class="inc-role">Cleanse</span>
+      <svg class="inc-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="inc-expanded">
+        <div class="inc-body">
+          <div class="inc-box role"><div class="inc-box-label">Step 1 — AM and PM</div><p>The cleanser that opens both routines. At night it removes makeup, SPF, and all-day pollution. In the morning it clears overnight oil and sweat so serums can actually reach the skin.</p></div>
+          <div class="inc-box why"><div class="inc-box-label">Why it matters</div><p>Nothing else in the routine works properly on unclean skin. Undress is not optional — it is the precondition for every other step being effective.</p></div>
+        </div>
+        <div class="inc-pills"><span class="inc-pill">Vitamin E</span><span class="inc-pill">Vitamin C</span><span class="inc-pill">Avocado Oil</span><span class="inc-pill">Sunflower Oil</span><span class="inc-pill">Papaya Extract</span></div>
+      </div>
+    </div>
+
+    <div class="included-item" onclick="toggleInc(this)">
+      <div class="inc-num">2</div>
+      <div class="inc-name">Drench <span style="font-size:13px;color:var(--warm-mid);">— Triple Molecular Hyaluronic Serum</span></div>
+      <span class="inc-role">Hydrate</span>
+      <svg class="inc-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="inc-expanded">
+        <div class="inc-body">
+          <div class="inc-box role"><div class="inc-box-label">Step 2 — AM and PM</div><p>Hyaluronic acid at three molecular weights — surface, mid, and deep skin. Applied on damp skin right after cleansing to pull in maximum moisture before everything else goes on.</p></div>
+          <div class="inc-box why"><div class="inc-box-label">Why it matters</div><p>The lightest product always goes first. Drench is almost watery — apply it before anything heavier or it can't penetrate. The hydration base it creates makes every following step work better.</p></div>
+        </div>
+        <div class="inc-pills"><span class="inc-pill">PrimalHyal™ 3K</span><span class="inc-pill">Hydrolyzed HA</span><span class="inc-pill">Glycerin</span><span class="inc-pill">Acacia Gum</span></div>
+      </div>
+    </div>
+
+    <div class="included-item" onclick="toggleInc(this)">
+      <div class="inc-num">3</div>
+      <div class="inc-name">Glisten <span style="font-size:13px;color:var(--warm-mid);">— Seaweed &amp; Avocado Peptide Serum</span></div>
+      <span class="inc-role">Nourish / Glow</span>
+      <svg class="inc-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="inc-expanded">
+        <div class="inc-body">
+          <div class="inc-box role"><div class="inc-box-label">Step 3 — AM and PM</div><p>Peptides, seaweed, and avocado extracts that signal collagen production, reduce redness, and protect against environmental damage. Doubles as a makeup primer in the AM.</p></div>
+          <div class="inc-box why"><div class="inc-box-label">Why it matters</div><p>Goes on after Drench while skin is still receptive. Thicker than Drench but lighter than the moisturiser — the middle layer in the routine. This is where the visible glow effect comes from.</p></div>
+        </div>
+        <div class="inc-pills"><span class="inc-pill">Effipulp™ (Avocado)</span><span class="inc-pill">Ambre Oceane™ (Algae)</span><span class="inc-pill">Detoskin™ (Peony)</span><span class="inc-pill">Aloe Vera</span></div>
+      </div>
+    </div>
+
+    <div class="included-item" onclick="toggleInc(this)">
+      <div class="inc-num">4</div>
+      <div class="inc-name">Infuse <span style="font-size:13px;color:var(--warm-mid);">— Oxygen Botanical Moisturiser (FF or Fragranced)</span></div>
+      <span class="inc-role">Seal</span>
+      <svg class="inc-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="inc-expanded">
+        <div class="inc-body">
+          <div class="inc-box role"><div class="inc-box-label">Step 4 — AM (and sometimes PM)</div><p>Seals in the hydration and nutrients from steps 2 and 3. The Oxylance™ botanical complex supports skin oxygenation. Niacinamide reduces redness. Used AM as the moisturiser, before SPF.</p></div>
+          <div class="inc-box why"><div class="inc-box-label">FF vs Fragranced — important</div><p>The Trial Pack ships one version. For rosacea-prone or fragrance-sensitive customers, the Fragrance-Free version is the correct choice. If the pack doesn't specify, ask which version before recommending.</p></div>
+        </div>
+        <div class="inc-pills"><span class="inc-pill">Oxylance™</span><span class="inc-pill">Niacinamide</span><span class="inc-pill">STAY-C® 50</span><span class="inc-pill">Squalane</span><span class="inc-pill">Shea Butter</span></div>
+      </div>
+    </div>
+
+    <div class="included-item" onclick="toggleInc(this)">
+      <div class="inc-num">5</div>
+      <div class="inc-name">Tonic <span style="font-size:13px;color:var(--warm-mid);">— Hyaluronic Cooling &amp; Brightening Mist</span></div>
+      <span class="inc-role">Set / Calm</span>
+      <svg class="inc-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="inc-expanded">
+        <div class="inc-body">
+          <div class="inc-box role"><div class="inc-box-label">Step 5 — AM and PM</div><p>Final step in both routines. A light mist that calms any surface redness from product application, adds a last surface layer of Hyaluronic Acid, and leaves skin feeling dewy. Can also be used as a midday refresh.</p></div>
+          <div class="inc-box why"><div class="inc-box-label">Why it matters</div><p>Different job from Infuse. Infuse locks in moisture structurally. Tonic soothes the surface and comforts. The Chamomile and Aloe particularly support skin post-Transform application at night.</p></div>
+        </div>
+        <div class="inc-pills"><span class="inc-pill">Hyaluronic Acid</span><span class="inc-pill">Chamomile</span><span class="inc-pill">Aloe Vera</span><span class="inc-pill">Green Tea</span><span class="inc-pill">Cucumber</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pro-tip">
+    <span class="pro-tip-label">Note for team</span>
+    <p>Product names and sizes are not listed in text anywhere on the Trial Pack product page — all product details are inside images only. This is an AEO gap on the page. When briefing customers verbally or in writing, always name the five products explicitly so they know what they're receiving.</p>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════ WHO IT'S FOR ════════════════════════════════ -->
+<div class="panel" id="panel-who">
+
+  <div class="section-head">
+    <h2>Who is it for</h2>
+    <p>The Trial Pack has the most explicitly defined audience of any Nyrah product. Use this to qualify customers quickly.</p>
+  </div>
+
+  <div class="audience-grid">
+    <div class="aud-card highlight">
+      <div class="aud-icon">👩</div>
+      <div class="aud-title">Women 35–90+</div>
+      <div class="aud-desc">The only Nyrah page with a specific age bracket. "Women over 35" appears three times in the body copy. "Every woman over 35 talking about it" is a section heading.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-icon">🌡</div>
+      <div class="aud-title">Hormonal skin changes</div>
+      <div class="aud-desc">Perimenopause, menopause, and postpartum explicitly referenced. Positioned as safe for all hormonal life stages — no hormone-active botanicals, no retinoids.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-icon">😩</div>
+      <div class="aud-title">Overwhelmed by skincare</div>
+      <div class="aud-desc">Women frustrated by trial and error, who don't know what order to apply products, or who have reacted badly to other brands. "2 minutes morning and night" is the solution.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-icon">💸</div>
+      <div class="aud-title">Price-hesitant first-timers</div>
+      <div class="aud-desc">The Trial Pack is specifically designed for the customer who likes Nyrah but is not ready to spend €249+ on the full routine. It removes the financial risk entirely.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-icon">🔴</div>
+      <div class="aud-title">Reactive / sensitive skin</div>
+      <div class="aud-desc">Women whose skin reacts to everything, stings, flares up, or burns. The page positions Nyrah as the brand that has already removed the problematic ingredients.</div>
+    </div>
+    <div class="aud-card">
+      <div class="aud-icon">✨</div>
+      <div class="aud-title">All skin types</div>
+      <div class="aud-desc">While the primary positioning is hormonal and mature skin, the FAQ explicitly states: designed for all skin types. It is a safe starting recommendation for any woman new to Nyrah.</div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:36px;">
+    <h2>The 5 problems it solves</h2>
+    <p>These are stated word for word on the page. Knowing them helps you have better conversations with customers.</p>
+  </div>
+
+  <div class="fix-grid">
+    <div class="fix-card">
+      <div class="fix-problem">Problem 1</div>
+      <div class="fix-title">Skin that reacts to everything</div>
+      <div class="fix-solution">Fragrance-free options, no harsh actives, no retinoids, no hormone-active botanicals. Formulated specifically for skin that has had reactions to other brands.</div>
+      <div class="fix-without">Without this: more failed products, more money wasted, more reactions.</div>
+    </div>
+    <div class="fix-card">
+      <div class="fix-problem">Problem 2</div>
+      <div class="fix-title">Redness, burning, tingling, flare-ups</div>
+      <div class="fix-solution">Niacinamide in Infuse, Aloe Vera and Chamomile in Tonic, anti-inflammatory actives in Glisten. The formulations are built around calming reactive skin, not ignoring it.</div>
+      <div class="fix-without">Without this: continuing to use products that make symptoms worse.</div>
+    </div>
+    <div class="fix-card">
+      <div class="fix-problem">Problem 3</div>
+      <div class="fix-title">Hormonal breakouts and congestion</div>
+      <div class="fix-solution">The routine is specifically built for hormonal skin. Non-comedogenic, no pore-blocking ingredients. The Trial Pack includes the same products as the Hormonal Breakout Bundle.</div>
+      <div class="fix-without">Without this: products that address one issue while worsening another.</div>
+    </div>
+    <div class="fix-card">
+      <div class="fix-problem">Problem 4</div>
+      <div class="fix-title">Dehydration, dullness, uneven tone</div>
+      <div class="fix-solution">Drench (triple molecular HA) addresses dehydration at three depths. Glisten (peptides + antioxidants) addresses dullness and tone. Together they are the visible result by Day 7.</div>
+      <div class="fix-without">Without this: dehydration continuing to compound as skin ages.</div>
+    </div>
+    <div class="fix-card">
+      <div class="fix-problem">Problem 5</div>
+      <div class="fix-title">Fine lines, tired-looking skin</div>
+      <div class="fix-solution">Glisten peptides signal collagen production. Drench plumps fine lines with hydration. The combination of five products working together creates the visible firmness and freshness response.</div>
+      <div class="fix-without">Without this: surface-level products that don't address the underlying cause.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════ RESULTS TIMELINE ════════════════════════════════ -->
+<div class="panel" id="panel-results">
+
+  <div class="section-head">
+    <h2>What customers experience</h2>
+    <p>The page publishes a day-by-day results timeline. These are the exact claims used in selling conversations and on the page.</p>
+  </div>
+
+  <div class="timeline-track">
+    <div class="timeline-day act" onclick="switchDay(this,0)">
+      <div class="tl-circle">1</div>
+      <div class="tl-label">Day 1</div>
+    </div>
+    <div class="timeline-day" onclick="switchDay(this,1)">
+      <div class="tl-circle">4</div>
+      <div class="tl-label">Day 4</div>
+    </div>
+    <div class="timeline-day" onclick="switchDay(this,2)">
+      <div class="tl-circle">7</div>
+      <div class="tl-label">Day 7</div>
+    </div>
+  </div>
+
+  <div class="tl-panels">
+    <div class="tl-panel active" id="tl-0">
+      <div class="tl-panel-inner">
+        <div class="tl-day-num">01</div>
+        <div class="tl-panel-content">
+          <h3>Skin deeply hydrated — a spa-like experience</h3>
+          <p>The first thing most customers notice is that their skin feels different after step one. Drench applied on damp skin creates an immediate sensation of deep hydration that is different from most serums. The Tonic mist finish adds a coolness and calm. By end of day one, skin feels softer and more comfortable than before — this is the experience that builds trust in the routine.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tl-panel" id="tl-1">
+      <div class="tl-panel-inner">
+        <div class="tl-day-num">04</div>
+        <div class="tl-panel-content">
+          <h3>Redness reducing, dry patches smoothing, makeup sits more evenly</h3>
+          <p>By day four, the cumulative effect of consistent use starts showing. Niacinamide in Infuse has had enough time to begin reducing visible redness. The Glisten peptides start signalling collagen — skin texture improves noticeably. Customers with dry patches report them smoothing. A common observation at this stage is that foundation sits better and requires less coverage.</p>
+        </div>
+      </div>
+    </div>
+    <div class="tl-panel" id="tl-2">
+      <div class="tl-panel-inner">
+        <div class="tl-day-num">07</div>
+        <div class="tl-panel-content">
+          <h3>Skin looks fresher, healthier, more balanced</h3>
+          <p>The full seven-day claim. At this point, the combined effect of hydration at three depths (Drench), collagen support (Glisten peptides), barrier repair (Infuse Oxylance™), and consistent anti-inflammatory input (Tonic) produces a visibly different complexion. This is the moment the Trial Pack converts into full-size purchase — and the €10 credit is the bridge that makes that purchase easy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:36px;">
+    <h2>The €10 credit journey</h2>
+    <p>This is the retention mechanic. Understanding it is essential for helping customers use it.</p>
+  </div>
+
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="what-label">Step 1</div>
+      <h3>Purchase the Trial Pack</h3>
+      <p>Customer buys at €24.95. During checkout or after, they create a Nyrah account using the <strong>same email address</strong> used for the purchase. This is essential — the credit links to the purchase email.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">Step 2</div>
+      <h3>Credit available instantly</h3>
+      <p>The €10 digital store credit appears in the customer's Nyrah account dashboard <strong>immediately</strong> upon account creation. No waiting, no delay, no separate process.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">Step 3</div>
+      <h3>Redeem on any full-size product</h3>
+      <p>The credit is redeemable on <strong>any full-size product or accessory</strong> in the Nyrah range. Customer logs in, copies the code from their dashboard, and applies it at checkout. Can also be gifted to someone else by contacting customer service.</p>
+    </div>
+    <div class="what-card">
+      <div class="what-label">If something goes wrong</div>
+      <h3>Credit not received</h3>
+      <p>Customer should contact <strong>store@nyrahbeauty.com</strong> or message via Instagram/Facebook <strong>@nyrahbeauty</strong>. The €10 credit FAQ covers three scenarios: never received, need advice, or want to gift the credit.</p>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <span class="summary-icon">🗓</span>
+    <span class="summary-text">The 7-day timeline is the promise. The €10 credit is the bridge to the full routine. By Day 7, a customer who has seen results is already primed to buy — the credit removes the last barrier to doing so.</span>
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════ FAQ ════════════════════════════════ -->
+<div class="panel" id="panel-faq">
+
+  <div class="section-head">
+    <h2>12 FAQ questions</h2>
+    <p>All 12 questions from the page — expanded with context for the team. Items marked with flags have live issues.</p>
+  </div>
+
+  <div class="flag-box">
+    <span class="flag-label">Live Issue</span>
+    <div class="flag-body"><strong>FAQ Q6 and Q7 contain links to Kosas — a US competitor brand.</strong> The "store@nyrahbeauty.com" email in Q6 is hyperlinked to kosas.com. The Instagram link in Q7 goes to @kosas. A customer clicking to contact support lands on a competitor's website. This is the single most urgent live error on the entire Nyrah site. Fix before driving any traffic to this page.</div>
+  </div>
+
+  <div class="faq-list">
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q1</span><span class="faq-q-text">How does the €10 credit work?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Digital coupon, redeemable on any full-size Nyrah product or accessory. Appears in the customer's account dashboard immediately upon account creation. <strong>Key point for team:</strong> Customer must use the same email for their account as for the purchase. If they use a different email, the credit won't link — direct them to customer service.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q2</span><span class="faq-q-text">Is it a physical coupon in the box?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">No — digital only. The credit is in their online Nyrah account, not in the physical pack. <strong>For team:</strong> Customers sometimes expect a physical voucher — clarify early to avoid confusion on arrival.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q3</span><span class="faq-q-text">What if I order multiple Trial Packs?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">One €10 credit per order. Separate orders each get their own credit. <strong>For team:</strong> A customer gifting multiple Trial Packs to different people should place separate orders — each will generate a separate credit for the ordering account.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q4</span><span class="faq-q-text">When does the credit become available?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Instantly, upon account creation with the same email as the purchase. No delay, no need to wait for delivery of the physical pack.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q5</span><span class="faq-q-text">How do I use my credit?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Log in to Nyrah account → find the credit code in the dashboard → copy it → apply at checkout on a full-size product or accessory.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q6</span><span class="faq-q-text">I never received my credit coupon — what do I do?</span><span class="faq-tag tag-flag">⚠ Live Error</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The answer correctly directs customers to <strong>store@nyrahbeauty.com</strong> or Instagram/Facebook. <strong>However</strong>: the email link in this FAQ is hyperlinked to the Kosas competitor website. The Instagram link goes to @kosas. Until this is fixed, any customer who actually clicks these links lands on a competitor brand. Direct customer service manually until this is corrected on the live page.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q7</span><span class="faq-q-text">What if I need advice on products?</span><span class="faq-tag tag-flag">⚠ Live Error</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Same issue as Q6 — the social media links in this answer point to Kosas competitor accounts. The Facebook link is correct (@nyrahbeautyofficial) but Instagram goes to @kosas. Until fixed: verbally direct customers to <strong>@nyrahbeauty</strong> on Instagram, not via the link on the page.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q8</span><span class="faq-q-text">Why should I buy the Trial Pack instead of individual products?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Three reasons on the page: the guided routine card removes the guessing, the soothing formulations remove the risk of reactions, and the €10 credit means "nothing to lose." <strong>For team selling context:</strong> The Trial Pack is also the cheapest possible introduction to the full Nyrah routine — €24.95 vs €249+ for all five full-size products.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q9</span><span class="faq-q-text">Can I gift my credit to someone else?</span><span class="faq-tag tag-credit">Credit</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — contact customer service to arrange this. <strong>For team:</strong> This is useful for customers who buy the Trial Pack as a gift and want the recipient to get the €10 credit rather than keeping it themselves.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q10</span><span class="faq-q-text">Is it vegan and cruelty free?</span><span class="faq-tag tag-safety">Safety</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — vegan, cruelty-free, free from harsh actives, plant-based, gluten-free. These certifications apply to the entire Nyrah core range, not just the Trial Pack.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q11</span><span class="faq-q-text">Is it safe during menopause or perimenopause?</span><span class="faq-tag tag-safety">Safety</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes — no hormone-active botanicals, no retinoids. Explicitly designed for women navigating hormonal skin changes. <strong>For team:</strong> This is one of the most common questions from the 35–60 age bracket — having the answer ready builds immediate trust.</div></div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-trigger"><span class="faq-q-num">Q12</span><span class="faq-q-text">What if I'm not sure it's right for me?</span><svg class="faq-chev" viewBox="0 0 18 18" fill="none"><path d="M4 6.5L9 11.5L14 6.5" stroke="#A89070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="faq-answer"><div class="faq-answer-inner">The page answer: "designed for all skin types — start here." <strong>For team:</strong> This is the default recommendation for any hesitant new customer regardless of skin type. The Trial Pack is the lowest-risk entry point into the range. If someone isn't sure where to start, this is always the right answer.</div></div>
+    </div>
+
+  </div>
+
+  <div class="pro-tip">
+    <span class="pro-tip-label">For team</span>
+    <p>The Trial Pack FAQ has numbering errors in the source code — some questions display as "8." or "12." instead of their correct numbers. This is a template error visible in the HTML. Raise it when flagging the Kosas link fix — both should be corrected in the same session.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer-note">
+  <p>The Trial Pack is not a sample. It is a complete 7-day guided routine — the front door to everything Nyrah is.</p>
+  <strong>Nyrah Beauty · Made in Ireland</strong>
+</div>
+
+</div><!-- end main -->
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('act');
+}
+function toggleInc(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.included-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+function toggleFaq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)el.classList.add('open');
+}
+function switchDay(el,idx){
+  document.querySelectorAll('.timeline-day').forEach(d=>d.classList.remove('act'));
+  document.querySelectorAll('.tl-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('act');
+  document.getElementById('tl-'+idx).classList.add('active');
+}
+</script>
+</body>
+</html>
