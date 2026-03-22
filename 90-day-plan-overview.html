@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — SEO/AEO Execution Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold-light: #F5D98B;
+    --gold: #C9A84C;
+    --gold-deep: #9A7530;
+    --gold-muted: #6B5020;
+    --bg: #0D0B07;
+    --bg-2: #131009;
+    --bg-card: #1A1710;
+    --bg-card-hover: #201E15;
+    --border: rgba(201,168,76,0.18);
+    --border-active: rgba(201,168,76,0.55);
+    --text-primary: #EDE8D9;
+    --text-secondary: #A89E84;
+    --text-muted: #6B6454;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --radius: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ── HEADER ── */
+  header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 64px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .brand-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-eyebrow::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 6vw, 62px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .header-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 20px;
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .meta-value { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--gold-light); }
+
+  /* ── NOTICE BANNER ── */
+  .notice {
+    background: linear-gradient(135deg, rgba(154,117,48,0.12), rgba(201,168,76,0.06));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .notice strong { color: var(--gold-light); font-weight: 500; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .section-number {
+    font-family: var(--serif);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 36px; }
+
+  /* ── STEPS ── */
+  .steps-grid { display: flex; flex-direction: column; gap: 4px; margin-bottom: 64px; }
+
+  .step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.25s, background 0.25s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .step-card:hover { border-color: var(--border-active); background: var(--bg-card-hover); }
+
+  .step-trigger {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+  .step-trigger::-webkit-details-marker { display: none; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .step-meta { display: flex; flex-direction: column; gap: 3px; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .step-subtitle { font-size: 12px; color: var(--text-muted); }
+
+  .step-chevron {
+    width: 18px;
+    height: 18px;
+    color: var(--gold-muted);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  details[open] .step-chevron { transform: rotate(180deg); }
+  details[open] .step-card { border-color: var(--border-active); background: var(--bg-card-hover); }
+
+  .step-body {
+    padding: 0 22px 22px 86px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .step-body p { margin-bottom: 14px; }
+  .step-body p:last-child { margin-bottom: 0; }
+
+  .step-body strong { color: var(--text-primary); font-weight: 500; }
+
+  .step-body ol, .step-body ul {
+    padding-left: 20px;
+    margin-bottom: 14px;
+  }
+  .step-body li { margin-bottom: 8px; }
+
+  .code-block {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--gold-light);
+    margin: 14px 0;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+  .tag-gold { background: rgba(201,168,76,0.12); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
+  .tag-muted { background: rgba(255,255,255,0.04); color: var(--text-secondary); border: 1px solid var(--border); }
+  .tag-red { background: rgba(180,60,60,0.12); color: #e89090; border: 1px solid rgba(180,60,60,0.25); }
+  .tag-green { background: rgba(60,140,90,0.12); color: #80d4a0; border: 1px solid rgba(60,140,90,0.25); }
+  .tag-blue { background: rgba(60,100,180,0.12); color: #90b4f0; border: 1px solid rgba(60,100,180,0.25); }
+
+  .step-body .highlight-box {
+    background: rgba(201,168,76,0.07);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .step-body .highlight-box strong { color: var(--gold-light); }
+
+  /* ── CALENDAR ── */
+  .calendar { margin-bottom: 64px; }
+
+  .phase-block { margin-bottom: 40px; }
+
+  .phase-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .phase-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .week-cards { display: flex; flex-direction: column; gap: 3px; }
+
+  .week-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+  .week-card:hover { border-color: var(--border-active); }
+
+  .week-trigger {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 22px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+  .week-trigger::-webkit-details-marker { display: none; }
+
+  .week-id {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .week-num {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .week-days { font-size: 10px; color: var(--text-muted); letter-spacing: 0.05em; }
+
+  .week-summary { font-size: 13px; color: var(--text-secondary); }
+  .week-summary strong { color: var(--text-primary); font-weight: 500; }
+
+  .week-chevron {
+    width: 16px; height: 16px;
+    color: var(--gold-muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  details[open] .week-chevron { transform: rotate(180deg); }
+  details[open] .week-card { border-color: var(--border-active); }
+
+  .week-body {
+    border-top: 1px solid var(--border);
+    padding: 18px 22px 18px 138px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .task-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .task-row strong { color: var(--text-primary); font-weight: 500; }
+  .task-tag {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+  .tt-audit   { background: rgba(180,60,60,0.15);  color: #e89090; border: 1px solid rgba(180,60,60,0.3); }
+  .tt-tech    { background: rgba(100,80,180,0.15); color: #b4a0f0; border: 1px solid rgba(100,80,180,0.3); }
+  .tt-page    { background: rgba(60,140,90,0.15);  color: #80d4a0; border: 1px solid rgba(60,140,90,0.3); }
+  .tt-blog    { background: rgba(60,100,180,0.15); color: #90b4f0; border: 1px solid rgba(60,100,180,0.3); }
+  .tt-kwd     { background: rgba(201,168,76,0.12); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.25); }
+  .tt-decision{ background: rgba(200,120,40,0.15); color: #f0b870; border: 1px solid rgba(200,120,40,0.3); }
+  .tt-product { background: rgba(180,60,120,0.15); color: #f0a0c0; border: 1px solid rgba(180,60,120,0.3); }
+
+  /* ── RULES SECTION ── */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 64px; }
+  @media(max-width:640px){ .rules-grid { grid-template-columns: 1fr; } }
+
+  .rule-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    transition: border-color 0.25s, background 0.25s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .rule-card:hover { border-color: var(--border-active); background: var(--bg-card-hover); }
+  .rule-card.full { grid-column: 1 / -1; }
+
+  .rule-icon {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rule-icon::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .rule-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .rule-body { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+  .rule-body strong { color: var(--text-primary); font-weight: 500; }
+
+  .rule-card.never {
+    border-left: 2px solid rgba(180,60,60,0.5);
+    background: rgba(180,60,60,0.04);
+  }
+  .rule-card.never .rule-icon { color: #e89090; }
+  .rule-card.never .rule-icon::before { background: #e89090; }
+  .rule-card.never .rule-title { color: #e89090; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  footer .brand { font-family: var(--serif); font-size: 20px; font-weight: 300; color: var(--gold); }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(13,11,7,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  .nav-brand { font-family: var(--serif); font-size: 16px; font-weight: 300; color: var(--gold-light); }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
+    z-index: 200;
+    transition: width 0.1s linear;
+    width: 0%;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── PILLAR BADGES ── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+    gap: 4px;
+    margin: 24px 0 40px;
+  }
+  .pillar-badge {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+    transition: border-color 0.25s, background 0.25s;
+    cursor: default;
+  }
+  .pillar-badge:hover { border-color: var(--border-active); background: var(--bg-card-hover); }
+  .pillar-badge-num { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .pillar-badge-label { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-muted); border-radius: 3px; }
+
+  @media(max-width:640px){
+    .week-body { padding: 16px 18px; }
+    .step-body { padding: 14px 18px; }
+    .week-trigger { grid-template-columns: 80px 1fr auto; }
+    .step-trigger { grid-template-columns: 36px 1fr auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<nav class="sticky-nav" id="sticky-nav">
+  <div class="nav-brand">Nyrah Beauty</div>
+  <div class="nav-links">
+    <a href="#semrush">Semrush</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#rules">Rules</a>
+  </div>
+</nav>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-eyebrow">Nyrah Beauty</div>
+    <h1>SEO / AEO<br><em>Execution Plan</em></h1>
+    <p class="header-sub">A 90-day, zero-shortcut content and technical strategy — built to earn trust from Google, AI answer engines, and the women Nyrah was made for.</p>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-label">Horizon</span><span class="meta-value">90 Days</span></div>
+      <div class="meta-item"><span class="meta-label">Pillars</span><span class="meta-value">5</span></div>
+      <div class="meta-item"><span class="meta-label">Blogs mapped</span><span class="meta-value">18</span></div>
+      <div class="meta-item"><span class="meta-label">Phase</span><span class="meta-value">From Zero</span></div>
+    </div>
+  </header>
+
+  <!-- NOTICE -->
+  <div class="notice fade-in">
+    <strong>Pre-condition enforced:</strong> Sections 1–3 (Technical Audit, Pages to Create, Product Page Briefs) must be completed before any content is published. If those sections are not yet generated, produce them before Week 1 begins. This plan assumes they exist and are being executed in parallel with the steps below.
+  </div>
+
+  <!-- PART 1: SEMRUSH -->
+  <section id="semrush">
+    <div class="section-header fade-in">
+      <span class="section-number">Part 01</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title fade-in">Semrush — Step by Step</h2>
+    <p class="section-desc fade-in">Execute these in exact order. Do not jump ahead. Each step feeds the next.</p>
+
+    <div class="steps-grid">
+
+      <!-- Step 1 -->
+      <details class="step-card" style="animation-delay:0.05s">
+        <summary class="step-trigger">
+          <span class="step-num">01</span>
+          <div class="step-meta">
+            <span class="step-title">Set up the Nyrah Beauty project</span>
+            <span class="step-subtitle">One-time setup — your persistent workspace</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Open Semrush → click <strong>Projects</strong> in the left sidebar → <strong>Create Project</strong> → enter Nyrah Beauty's domain → name it <strong>"Nyrah Beauty SEO"</strong> → click Create.</p>
+          <p>This creates a persistent workspace. Everything you research, audit, and track lives here across all sessions. Do not skip this step — running tools outside a project means you lose continuity.</p>
+        </div>
+      </details>
+
+      <!-- Step 2 -->
+      <details class="step-card" style="animation-delay:0.1s">
+        <summary class="step-trigger">
+          <span class="step-num">02</span>
+          <div class="step-meta">
+            <span class="step-title">Run a Site Audit immediately</span>
+            <span class="step-subtitle">This feeds the entire fix list — start it first</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Inside the project → <strong>Site Audit</strong> → configure: set crawl limit to all pages, enable all issue types, set user agent to <strong>Googlebot</strong> → Start Site Audit.</p>
+          <p>It takes 5–20 minutes. While it runs, move to keyword research. Come back when done.</p>
+          <div class="highlight-box">
+            <strong>When it finishes:</strong> Export the full issues report as CSV. Filter by Errors first → then Warnings → then Notices. Do not touch Notices until every Error and Warning is resolved. This report is your Week 1 fix list.
+          </div>
+        </div>
+      </details>
+
+      <!-- Step 3 -->
+      <details class="step-card" style="animation-delay:0.15s">
+        <summary class="step-trigger">
+          <span class="step-num">03</span>
+          <div class="step-meta">
+            <span class="step-title">Set up Position Tracking</span>
+            <span class="step-subtitle">Baseline before you publish a single word</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Inside the project → <strong>Position Tracking</strong> → set target country to <strong>Ireland</strong> → device: <strong>Desktop</strong> → add these seed keywords manually:</p>
+          <div class="code-block">hormonal skin<br>fragrance-free skincare<br>bakuchiol vs retinol<br>daily SPF Ireland<br>self-tan sensitive skin<br>perimenopausal skincare<br>rosacea skincare routine<br>hyaluronic acid serum</div>
+          <p>Click Start Tracking. You will get zero or near-zero rankings — that is expected. This is your baseline. Check it every two weeks to measure movement as content goes live.</p>
+        </div>
+      </details>
+
+      <!-- Step 4 -->
+      <details class="step-card" style="animation-delay:0.2s">
+        <summary class="step-trigger">
+          <span class="step-num">04</span>
+          <div class="step-meta">
+            <span class="step-title">Competitor benchmark</span>
+            <span class="step-subtitle">Find 2–3 comparable brands and steal their keyword gaps</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Go to <strong>Keyword Overview</strong> → enter the domain of a comparable brand (fragrance-free or hormonal skincare, Ireland/UK focus — e.g., Pestle &amp; Mortar, Skingredients, or a similar indie brand) → look at their <strong>Top Organic Keywords</strong> report.</p>
+          <p>Apply these filters:</p>
+          <div class="tag-row">
+            <span class="tag tag-gold">KD: 0–35</span>
+            <span class="tag tag-muted">Volume: 100–3,000</span>
+            <span class="tag tag-green">Country: Ireland + UK</span>
+          </div>
+          <p>Export this as CSV. Any keyword they rank for in this range is achievable for Nyrah. These become your validation list — if they rank for it, the domain authority threshold is reachable.</p>
+          <div class="highlight-box">Do this for 2–3 competitors separately. Do not merge — keep competitor data in separate tabs in your master sheet so you know where each keyword came from.</div>
+        </div>
+      </details>
+
+      <!-- Step 5 -->
+      <details class="step-card" style="animation-delay:0.25s">
+        <summary class="step-trigger">
+          <span class="step-num">05</span>
+          <div class="step-meta">
+            <span class="step-title">Keyword Magic Tool — Pillar by Pillar</span>
+            <span class="step-subtitle">The core research step — 5 pillars, run in sequence</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Go to <strong>Keyword Magic Tool</strong> in the left sidebar. Set country to <strong>Ireland</strong>. Apply these global filters before every single search:</p>
+          <div class="tag-row">
+            <span class="tag tag-gold">KD: 0–35</span>
+            <span class="tag tag-muted">Volume: 100–3,000</span>
+            <span class="tag tag-blue">Intent: Informational (first pass)</span>
+          </div>
+          <p>After your first pass on each pillar, run again with Intent set to <strong>Transactional</strong> to catch purchase-intent variants.</p>
+
+          <p><strong>For every seed keyword, follow this exact process:</strong></p>
+          <ol>
+            <li>Type the seed → Search</li>
+            <li>Look at <strong>Broad Match</strong> tab → scan and filter → export CSV</li>
+            <li>Switch to <strong>Questions</strong> tab — this is the AEO tab. Every question with volume 100+ and KD under 30 is a candidate blog topic. Export this separately.</li>
+            <li>In the SERP Features column: flag any keyword showing <strong>AI Overview</strong>, <strong>Featured Snippet</strong>, or <strong>People Also Ask</strong> → mark as AEO Priority: Y in your sheet</li>
+            <li>Label exports clearly: <code>P1_hormonal-skin_broad.csv</code> / <code>P1_hormonal-skin_questions.csv</code></li>
+          </ol>
+
+          <p style="margin-top:18px"><strong>Pillar 1 — Hormonal Skin</strong> (run each separately):</p>
+          <div class="code-block">hormonal skin → hormonal skin changes women → perimenopausal skin → perimenopause skincare → hormonal acne women over 30 → postpartum skin care → hormonal breakouts adults</div>
+
+          <p><strong>Pillar 2 — Fragrance-Free and Sensitive Skin:</strong></p>
+          <div class="code-block">fragrance-free skincare → fragrance free moisturiser sensitive skin → fragrance free vs unscented → skincare for rosacea → rosacea triggers skincare → rosacea skincare routine → sensitive skin routine Ireland</div>
+
+          <p><strong>Pillar 3 — Skincare Ingredients:</strong></p>
+          <div class="code-block">hyaluronic acid serum → triple molecular hyaluronic acid → bakuchiol retinol alternative → argireline peptide → niacinamide skin → astaxanthin skincare → ceramides skin barrier → bakuchiol pregnancy safe → bio-retinol skincare</div>
+          <p>Then search proprietary names separately — even if volume is zero:</p>
+          <div class="code-block">PrimalHyal 3K → Revinage skincare → Oxylance skincare → Argireline peptide</div>
+          <div class="highlight-box"><strong>Zero-volume proprietary terms:</strong> Do not skip these. Record them in a separate tab labeled "Proprietary Seeds — Zero Volume Now." Publishing content for these now means Nyrah ranks first the moment they gain search volume — and they will.</div>
+
+          <p><strong>Pillar 4 — SPF and Sun Protection:</strong></p>
+          <div class="code-block">daily SPF skincare → SPF 30 vs SPF 50 → best SPF for rosacea → SPF for sensitive skin Ireland → SPF under makeup → UVA UVB protection → astaxanthin SPF → mineral vs chemical sunscreen</div>
+          <p>Geographic variants — run these separately:</p>
+          <div class="code-block">SPF Ireland → sunscreen Ireland → daily sunscreen Ireland</div>
+
+          <p><strong>Pillar 5 — Self-Tanning:</strong></p>
+          <div class="code-block">self-tan sensitive skin → self-tanning drops face → how to apply self-tan without streaks → self-tan removal → DHA self-tan safe → fake tan for dry skin → self-tan pregnancy</div>
+        </div>
+      </details>
+
+      <!-- Step 6 -->
+      <details class="step-card" style="animation-delay:0.3s">
+        <summary class="step-trigger">
+          <span class="step-num">06</span>
+          <div class="step-meta">
+            <span class="step-title">Topic Research Tool — trend validation</span>
+            <span class="step-subtitle">Identify rising subtopics before competitors do</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>Go to <strong>Topic Research</strong> in the left sidebar. Search these topics one by one:</p>
+          <div class="code-block">hormonal skin → rosacea skincare → bakuchiol → SPF daily → self-tan sensitive skin</div>
+          <p>For each topic, look at two things:</p>
+          <ol>
+            <li><strong>Trending Subtopics</strong> (top right of each card) — any subtopic showing a rising trend in the past 6–12 months is a priority cluster blog. Rising demand + thin content supply = the ideal gap for a new domain.</li>
+            <li><strong>Questions tab</strong> inside each card — record every question with high engagement that does not have a strong existing answer. These are your highest-priority AEO blog topics across the entire plan.</li>
+          </ol>
+          <div class="highlight-box">A rising trend subtopic that also appears in the Questions tab with no strong existing answer is a <strong>Tier 1 priority</strong> — schedule it within the first 10 weeks regardless of where it falls in the original cluster sequence.</div>
+        </div>
+      </details>
+
+      <!-- Step 7 -->
+      <details class="step-card" style="animation-delay:0.35s">
+        <summary class="step-trigger">
+          <span class="step-num">07</span>
+          <div class="step-meta">
+            <span class="step-title">Compile the master keyword sheet</span>
+            <span class="step-subtitle">The single source of truth for every brief</span>
+          </div>
+          <svg class="step-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="step-body">
+          <p>At the end of all Pillar 1–5 research, your Google Sheet should contain approximately 80–150 keywords. Create these columns:</p>
+          <div class="code-block">Pillar | Cluster Blog # | Keyword | Monthly Volume (IE) | KD | Intent | SERP Features | AEO Priority (Y/N)</div>
+          <p>Then do this in order:</p>
+          <ol>
+            <li>Sort by AEO Priority: Y first</li>
+            <li>Within AEO Priority: Y, sort by KD ascending (lowest competition first)</li>
+            <li>Assign each keyword to its cluster blog (C1.1, C1.2, etc.)</li>
+            <li>Mark one <strong>primary keyword</strong> per blog (highest relevance + lowest KD)</li>
+            <li>Mark 3–5 <strong>secondary keywords</strong> per blog (related questions and variants)</li>
+          </ol>
+          <p>This sheet is the brief input for every blog going forward. No blog brief is written without a row in this sheet first.</p>
+          <div class="highlight-box"><strong>Final validation step:</strong> After shortlisting, go to Keyword Overview and check each primary keyword one at a time. Look at who is currently ranking — if page 1 is dominated by WebMD, Healthline, and Vogue, the KD score is lying and that keyword is harder than it appears. Find the variant with a weaker SERP.</div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- PART 2: CALENDAR -->
+  <section id="calendar">
+    <div class="section-header fade-in">
+      <span class="section-number">Part 02</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title fade-in">90-Day Execution Calendar</h2>
+    <p class="section-desc fade-in">Strict sequencing. The pre-condition is enforced: no blog goes live until Week 1 and Week 2 work is complete. Two blogs per week from Week 5. No orphan content — every piece connects to the pillar map.</p>
+
+    <div class="calendar fade-in">
+
+      <!-- Phase 1 -->
+      <div class="phase-block">
+        <div class="phase-label">Phase 1 — Foundation · Weeks 1–2 · No content published</div>
+        <div class="week-cards">
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 1</span><span class="week-days">Days 1–7</span></div>
+              <div class="week-summary">Audit, keyword research, position tracking baseline</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-audit">AUDIT</span><span>Run Semrush Site Audit — export all Errors and Warnings</span></div>
+              <div class="task-row"><span class="task-tag tt-audit">AUDIT</span><span>Manually review every product page URL, title tag, meta description, H1, and body copy uniqueness</span></div>
+              <div class="task-row"><span class="task-tag tt-audit">AUDIT</span><span>Check all product pages for missing or broken schema — Product, Review, FAQPage</span></div>
+              <div class="task-row"><span class="task-tag tt-audit">AUDIT</span><span>Catalogue all existing blog URLs — check for any backlinks via Semrush Backlink Audit before touching anything</span></div>
+              <div class="task-row"><span class="task-tag tt-audit">AUDIT</span><span>Document all 404s, redirect chains, thin pages, and duplicate content found</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Complete all Pillar 1–5 Keyword Magic Tool research → populate master keyword sheet (Steps 5a–5d)</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Run Topic Research for all 5 pillar topics → record trending subtopics (Step 6)</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Set up Position Tracking project with all 8 seed keywords (Step 3)</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 2</span><span class="week-days">Days 8–14</span></div>
+              <div class="week-summary">Fix all technical errors — nothing goes live on a broken foundation</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Fix all Semrush Errors: crawlability issues, broken links, missing meta tags, duplicate title tags</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Address Core Web Vitals failures — compress all product images, defer non-critical JS, use a CDN</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Implement or fix breadcrumb schema on all product pages and category pages</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Add Organization schema to homepage with sameAs links to all social profiles</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Confirm XML sitemap is correct and submitted to Google Search Console</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Confirm robots.txt is not blocking any product, category, or content page</span></div>
+              <div class="task-row"><span class="task-tag tt-decision">DECISION</span><span><strong>Blog redirect decision:</strong> For every existing blog URL — check backlinks in Semrush. If any backlinks exist: 301 redirect to the most relevant new pillar blog URL once it is live. If zero backlinks and zero GSC traffic: safe to delete. Document every URL decision in a spreadsheet: old URL → action → redirect destination. Do not delete anything until this spreadsheet is complete.</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Finalise master keyword sheet — assign primary + secondary keywords to every cluster blog. No brief written without a completed row first.</span></div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-block">
+        <div class="phase-label">Phase 2 — Page Creation · Week 3 · No blogs yet</div>
+        <div class="week-cards">
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 3</span><span class="week-days">Days 15–21</span></div>
+              <div class="week-summary">7 permanent pages created — the structural skeleton blogs will live inside</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/hormonal-skin</strong> — hub page for hormonal skin concern. Links to all relevant products + pillar blog (once live). FAQPage schema required.</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/fragrance-free-skincare</strong> — fragrance-free explainer page with curated product listings and FAQPage schema</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/ingredients</strong> — ingredient glossary page. One entry per named ingredient technology in Nyrah's range (PrimalHyal™ 3K, Revinage™, Argireline®, Astaxanthin, Bakuchiol, Niacinamide, Ceramides). This is an entity page — it must exist before ingredient blogs are published.</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/why-daily-spf-matters</strong> — SPF education page with FAQ schema. Referenced by all Lumina product pages and SPF blogs.</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/bloom-self-tanning-guide</strong> — Bloom product education page. Hub for all self-tanning cluster blogs.</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/about</strong> — Full rewrite. Brand story, founding mission, Ireland origin, formulation ethos, named founder if available. This is an E-E-A-T signal page — thin About pages hurt trust scoring.</span></div>
+              <div class="task-row"><span class="task-tag tt-page">PAGE</span><span><strong>/pages/skin-concerns</strong> — hub page listing all skin concerns Nyrah addresses: hormonal, rosacea, sensitive, maturing, self-tanning. Acts as the top-level internal linking anchor for all five content pillars.</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Add FAQPage schema to all newly created pages. Ensure all new pages are internally linked from homepage navigation or footer.</span></div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-block">
+        <div class="phase-label">Phase 3 — Product Page Optimization · Week 4</div>
+        <div class="week-cards">
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 4</span><span class="week-days">Days 22–28</span></div>
+              <div class="week-summary">Top-priority product pages rewritten before blogs send equity their way</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-product">PRODUCT PG</span><span>Rewrite top-priority product pages first: <strong>Drench, Infuse FF, Transform, Lumina Shield SPF50, Rosacea Relief Bundle</strong></span></div>
+              <div class="task-row"><span class="task-tag tt-product">PRODUCT PG</span><span>Each rewrite must include: unique benefit-led H1, keyword-rich meta title + meta description, ingredient table with named technologies, FAQ block (minimum 4 questions) with FAQPage schema, descriptive alt text on all product images</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Add Product schema with price, availability, brand, and aggregate rating to all product pages</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Add Review schema to all product pages that have existing customer reviews</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Internal link: every product page must link to its relevant skin concern hub page</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">TECH</span><span>Internal link: every product page must link to the ingredient glossary for any named technology (PrimalHyal™ 3K, Revinage™, Argireline®, Astaxanthin)</span></div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-block">
+        <div class="phase-label">Phase 4 — Content Begins · Weeks 5–10 · Two blogs per week</div>
+        <div class="week-cards">
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 5</span><span class="week-days">Days 29–35</span></div>
+              <div class="week-summary">Both pillar blogs published — Google learns what Nyrah is about</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 1</span><span><strong>Pillar 1:</strong> "What Is Hormonal Skin? A Complete Guide to Skin Changes During Perimenopause, Menopause, and Hormonal Shifts" — 2,800w — Primary KW: <em>hormonal skin changes</em> — AEO angle: "What is hormonal skin?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 2</span><span><strong>Pillar 2:</strong> "The Complete Guide to Fragrance-Free Skincare for Sensitive and Reactive Skin" — 2,600w — Primary KW: <em>fragrance-free skincare sensitive skin</em> — AEO angle: "What does fragrance-free mean in skincare?"</span></div>
+              <div class="task-row"><span class="task-tag tt-product">PRODUCT PG</span><span>Continue product page rewrites: Revive, Timeless Skin Bundle, Hormonal Breakout Bundle, Glisten, Lumina SPF30</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 6</span><span class="week-days">Days 36–42</span></div>
+              <div class="week-summary">First cluster blogs published — begin filling topical depth</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 3</span><span><strong>C1.1:</strong> "What Causes Hormonal Acne in Women Over 30" — 2,200w — Primary KW: <em>hormonal acne women over 30</em> — AEO angle: "Why do women over 30 get hormonal acne?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 4</span><span><strong>C2.1:</strong> "Rosacea and Fragrance: Which Skincare Ingredients Trigger Flare-Ups" — 2,000w — Primary KW: <em>rosacea fragrance skincare</em> — AEO angle: "Does fragrance cause rosacea flare-ups?"</span></div>
+              <div class="task-row"><span class="task-tag tt-product">PRODUCT PG</span><span>Finish remaining product page rewrites: Bloom Mousse, Bloom Glow Serum, Bloom Crème, Undress, and all bundles not yet rewritten</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>First Position Tracking check — note starting positions for all tracked keywords. Record in a separate "Tracking Log" tab.</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 7</span><span class="week-days">Days 43–49</span></div>
+              <div class="week-summary">Ingredient pillar + SPF pillar go live — two new topic clusters opened</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 5</span><span><strong>Pillar 3:</strong> "Key Skincare Ingredients Explained: Hyaluronic Acid, Peptides, and BioRetinol" — 3,200w — Primary KW: <em>skincare ingredients explained</em> — AEO angle: "What do skincare ingredients actually do?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 6</span><span><strong>Pillar 4:</strong> "Why You Need Daily SPF All Year Round — Especially If You Live in Ireland" — 2,400w — Primary KW: <em>daily SPF Ireland</em> — AEO angle: "Do I need SPF every day in Ireland?"</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 8</span><span class="week-days">Days 50–56</span></div>
+              <div class="week-summary">Proprietary ingredient cluster begins — PrimalHyal™ 3K and perimenopause</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 7</span><span><strong>C3.1:</strong> "What Is Hyaluronic Acid and What Does Triple Molecular Weight Mean?" — 1,800w — Primary KW: <em>triple molecular hyaluronic acid</em> — AEO angle: "What is PrimalHyal 3K?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 8</span><span><strong>C1.2:</strong> "How Perimenopause Changes Your Skin — And What to Do About It" — 2,600w — Primary KW: <em>perimenopausal skin care</em> — AEO angle: "How does perimenopause affect skin?"</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Run Site Audit again — verify all Errors from Week 1 are resolved. Address any new Warnings before proceeding.</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 9</span><span class="week-days">Days 57–63</span></div>
+              <div class="week-summary">Bakuchiol vs Retinol — highest-volume comparison blog in the plan</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 9</span><span><strong>C3.2:</strong> "Bakuchiol vs Retinol: The Complete Honest Comparison" — 2,400w — Primary KW: <em>bakuchiol vs retinol</em> — AEO angle: "Is bakuchiol as effective as retinol?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 10</span><span><strong>C2.2:</strong> "What Does Fragrance-Free Actually Mean on a Skincare Label?" — 1,600w — Primary KW: <em>fragrance-free skincare label meaning</em> — AEO angle: "Does fragrance-free mean no smell?"</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 10</span><span class="week-days">Days 64–70</span></div>
+              <div class="week-summary">SPF comparison + hormonal routine — first transactional-intent blogs</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 11</span><span><strong>C4.1:</strong> "SPF30 vs SPF50: Which Protection Factor Do You Actually Need?" — 1,800w — Primary KW: <em>spf30 vs spf50</em> — AEO angle: "Is SPF50 better than SPF30?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 12</span><span><strong>C1.3:</strong> "Best Skincare Routine for Hormonal Breakouts: Morning and Evening" — 2,200w — Primary KW: <em>skincare routine hormonal breakouts</em> — AEO angle: "What skincare routine is good for hormonal acne?"</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Second Position Tracking check — compare to Week 6 baseline. Note any movement on Pillar 1 and Pillar 2 blogs. Log results.</span></div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase-block">
+        <div class="phase-label">Phase 5 — Proprietary Authority + Self-Tan Pillar · Weeks 11–13</div>
+        <div class="week-cards">
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 11</span><span class="week-days">Days 71–77</span></div>
+              <div class="week-summary">Argireline® + Astaxanthin — making Nyrah the citable source for its own ingredients</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 13</span><span><strong>C3.3:</strong> "What Is Argireline® Peptide and Does It Actually Reduce Wrinkles?" — 1,800w — Primary KW: <em>argireline peptide skin</em> — AEO angle: "Does Argireline work on wrinkles?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 14</span><span><strong>C4.2 / C3.4:</strong> "What Is Astaxanthin and Why Is It Used in SPF?" — 1,600w — Primary KW: <em>astaxanthin skincare</em> — AEO angle: "What does astaxanthin do for skin?"</span></div>
+              <div class="task-row"><span class="task-tag tt-tech">INTERNAL LINKS</span><span>Full internal linking audit — check that every published blog correctly links up to its pillar and down to at least one product page. Fix any gaps before publishing Week 12 content.</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 12</span><span class="week-days">Days 78–84</span></div>
+              <div class="week-summary">Rosacea routine + Niacinamide — highest-specificity cluster blogs in Pillars 2 and 3</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 15</span><span><strong>C2.3:</strong> "How to Build a Skincare Routine for Rosacea-Prone Skin" — 2,400w — Primary KW: <em>skincare routine for rosacea</em> — AEO angle: "What skincare is safe for rosacea?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 16</span><span><strong>C3.5:</strong> "Niacinamide for Hormonal Skin: Benefits and How to Use It" — 1,800w — Primary KW: <em>niacinamide hormonal skin</em> — AEO angle: "Is niacinamide good for hormonal skin?"</span></div>
+            </div>
+          </details>
+
+          <details class="week-card">
+            <summary class="week-trigger">
+              <div class="week-id"><span class="week-num">Week 13</span><span class="week-days">Days 85–91</span></div>
+              <div class="week-summary">Self-tan pillar + Skincare after 40 — full 90-day review and Month 4 planning</div>
+              <svg class="week-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="week-body">
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 17</span><span><strong>Pillar 5:</strong> "Self-Tanning for Sensitive, Hormonal, and Reactive Skin" — 2,200w — Primary KW: <em>self-tanning sensitive skin</em> — AEO angle: "Can people with sensitive skin use self-tan?"</span></div>
+              <div class="task-row"><span class="task-tag tt-blog">BLOG 18</span><span><strong>C1.4:</strong> "Skin Care After 40: What Changes and What Your Routine Needs" — 2,600w — Primary KW: <em>skincare after 40</em> — AEO angle: "How should I change my skincare routine at 40?"</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Full 90-day audit: run Site Audit, check Position Tracking for all keywords, check Google Search Console for impressions and click data on all 18 published blogs</span></div>
+              <div class="task-row"><span class="task-tag tt-kwd">SEMRUSH</span><span>Identify which clusters are gaining impressions fastest → prioritise those pillars for Month 4 content expansion</span></div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PART 3: RULES -->
+  <section id="rules">
+    <div class="section-header fade-in">
+      <span class="section-number">Part 03</span>
+      <div class="section-line"></div>
+    </div>
+    <h2 class="section-title fade-in">Critical Execution Rules</h2>
+    <p class="section-desc fade-in">Non-negotiable. These govern every decision from Day 1 to Day 90.</p>
+
+    <div class="rules-grid">
+
+      <div class="rule-card fade-in">
+        <div class="rule-icon">Blog redirect process</div>
+        <div class="rule-title">Handle existing blogs with precision</div>
+        <div class="rule-body">Before deleting any existing blog, run the Semrush Backlink Audit on that URL. If any external backlink exists: <strong>301 redirect</strong> to the most relevant new pillar blog URL once it is live. If zero backlinks and zero GSC traffic: safe to delete. Document every URL decision before touching anything: old URL → action → redirect destination.</div>
+      </div>
+
+      <div class="rule-card fade-in">
+        <div class="rule-icon">Publishing pace</div>
+        <div class="rule-title">Two blogs per week — intentional, not slow</div>
+        <div class="rule-body">Publishing too fast on a new domain with no topical authority looks unnatural and delivers no compounding benefit. <strong>Two per week</strong> gives Google time to crawl, index, and begin associating the site with the topic cluster before the next layer arrives. This pace is disciplined, not conservative.</div>
+      </div>
+
+      <div class="rule-card fade-in">
+        <div class="rule-icon">Semrush rhythm</div>
+        <div class="rule-title">Check Position Tracking every two weeks</div>
+        <div class="rule-body">Run Position Tracking every two weeks minimum. Check Google Search Console <strong>impressions</strong> (not just clicks) every week — impressions appear before clicks. Rising impressions with zero clicks means the content is indexing and relevant, but the title or meta description needs refinement. Fix the meta before assuming the content is wrong.</div>
+      </div>
+
+      <div class="rule-card fade-in">
+        <div class="rule-icon">Product page timing</div>
+        <div class="rule-title">Rewrites run parallel to early content</div>
+        <div class="rule-body">Product page rewrites happen in Weeks 4–6 alongside early blog publishing. These are permanent pages — not blogs — and must be optimized before blogs start sending internal link equity their way. A blog linking to a product page with a thin description and no schema is wasted internal link equity.</div>
+      </div>
+
+      <div class="rule-card full fade-in never">
+        <div class="rule-icon">Absolute rule — no exceptions</div>
+        <div class="rule-title">Do not publish outside the pillar-cluster map</div>
+        <div class="rule-body">Do not add any new blog to the schedule that is not already in the pillar-cluster map until all 18 mapped blogs are live and all properly interlinked. <strong>Topical authority builds from completeness within a cluster</strong> — one orphan blog outside the map does zero work. One complete, fully-interlinked cluster is worth more than 30 disconnected blogs chasing random keywords. The map is the plan. The plan is the law.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="brand">Nyrah Beauty</div>
+    <div>SEO / AEO Execution Plan · 90 Days · From Zero</div>
+  </footer>
+
+</div>
+
+<script>
+  // Progress bar
+  const progress = document.getElementById('progress');
+  const nav = document.getElementById('sticky-nav');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (scrolled / total * 100) + '%';
+    if (scrolled > 120) nav.classList.add('visible');
+    else nav.classList.remove('visible');
+  });
+
+  // Intersection observer for fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger step cards
+  document.querySelectorAll('.step-card').forEach((card, i) => {
+    card.style.animationDelay = (0.05 * i) + 's';
+  });
+</script>
+
+</body>
+</html>
