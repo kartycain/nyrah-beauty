@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyrah Beauty — Blog Content Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold-50:#FDF8EC;--gold-100:#F5E9C0;--gold-200:#EDD58A;--gold-400:#C9A84C;--gold-600:#9A7530;--gold-800:#6B5020;--gold-900:#3D2D0E;
+  --bg:#0C0A06;--bg2:#121009;--card:#181510;--card-h:#1E1B12;
+  --bdr:rgba(201,168,76,0.15);--bdr-a:rgba(201,168,76,0.5);
+  --t1:#EDE8D9;--t2:#A89E84;--t3:#6B6454;--t4:#3D3830;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:10px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;z-index:0;}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold-600),var(--gold-200));z-index:300;transition:width .1s linear;width:0;}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,10,6,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);transform:translateY(-100%);transition:transform .3s ease;}
+#nav.show{transform:translateY(0);}
+.nav-brand{font-family:var(--serif);font-size:15px;font-weight:300;color:var(--gold-200);letter-spacing:0.04em;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--gold-400);}
+
+/* WRAPPER */
+.w{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:0 28px 100px;}
+
+/* HEADER */
+header{padding:80px 0 60px;border-bottom:1px solid var(--bdr);margin-bottom:70px;}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-400);margin-bottom:22px;display:flex;align-items:center;gap:14px;}
+.eyebrow::after{content:'';width:40px;height:1px;background:var(--gold-600);}
+h1{font-family:var(--serif);font-size:clamp(40px,6vw,68px);font-weight:300;line-height:1.08;color:var(--t1);}
+h1 em{font-style:italic;color:var(--gold-200);}
+.h-sub{font-size:14px;color:var(--t2);margin-top:22px;max-width:580px;line-height:1.85;}
+.h-stats{display:flex;gap:36px;margin-top:36px;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:4px;}
+.stat-l{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);}
+.stat-v{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--gold-200);}
+
+/* SECTION TITLES */
+.sec-head{margin-bottom:40px;}
+.sec-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-400);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--bdr);}
+.sec-title{font-family:var(--serif);font-size:clamp(26px,4vw,40px);font-weight:300;color:var(--t1);line-height:1.2;}
+.sec-desc{font-size:13px;color:var(--t2);margin-top:10px;max-width:640px;line-height:1.8;}
+
+/* LAYER CARDS */
+.layers{display:flex;flex-direction:column;gap:3px;margin-bottom:72px;}
+.layer-card{border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;background:var(--card);transition:border-color .25s,background .25s;}
+.layer-card:hover{border-color:var(--bdr-a);background:var(--card-h);}
+.layer-trigger{display:grid;grid-template-columns:56px 120px 1fr auto;align-items:center;gap:20px;padding:18px 24px;cursor:pointer;user-select:none;list-style:none;}
+.layer-trigger::-webkit-details-marker{display:none;}
+.layer-num{font-family:var(--serif);font-size:26px;font-weight:300;color:var(--gold-400);line-height:1;}
+.layer-badge{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;text-align:center;}
+.lb1{background:rgba(201,168,76,.1);color:var(--gold-200);border:1px solid rgba(201,168,76,.25);}
+.lb2{background:rgba(60,140,90,.1);color:#80d4a0;border:1px solid rgba(60,140,90,.25);}
+.lb3{background:rgba(60,100,200,.1);color:#90b4f0;border:1px solid rgba(60,100,200,.25);}
+.lb4{background:rgba(180,60,180,.1);color:#d890f0;border:1px solid rgba(180,60,180,.25);}
+.lb5{background:rgba(200,100,40,.1);color:#f0b070;border:1px solid rgba(200,100,40,.25);}
+.layer-meta{display:flex;flex-direction:column;gap:3px;}
+.layer-title{font-size:14px;font-weight:500;color:var(--t1);}
+.layer-sub{font-size:12px;color:var(--t3);}
+.lchev{width:18px;height:18px;color:var(--gold-800);transition:transform .3s;flex-shrink:0;}
+details[open] .lchev{transform:rotate(180deg);}
+details[open] .layer-card{border-color:var(--bdr-a);background:var(--card-h);}
+.layer-body{border-top:1px solid var(--bdr);padding:20px 24px 20px 220px;}
+.layer-body ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.layer-body li{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--t2);line-height:1.7;}
+.layer-body li::before{content:'';width:5px;height:5px;background:var(--gold-600);border-radius:50%;margin-top:8px;flex-shrink:0;}
+.layer-body li strong{color:var(--t1);font-weight:500;}
+@media(max-width:640px){
+  .layer-trigger{grid-template-columns:40px 90px 1fr auto;gap:12px;}
+  .layer-body{padding:18px 18px;}
+}
+
+/* PILLAR TABS */
+.pillar-section{margin-bottom:72px;}
+.pillar-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;}
+.ptab{font-size:11px;font-weight:500;padding:8px 16px;border-radius:6px 6px 0 0;cursor:pointer;background:var(--card);border:1px solid var(--bdr);border-bottom:none;color:var(--t3);transition:all .2s;letter-spacing:.04em;}
+.ptab:hover{color:var(--t2);}
+.ptab.active{background:var(--card-h);border-color:var(--bdr-a);color:var(--gold-200);}
+.pillar-panel{display:none;background:var(--card-h);border:1px solid var(--bdr-a);border-radius:0 var(--r) var(--r) var(--r);padding:28px;}
+.pillar-panel.active{display:block;}
+.pp-top{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--bdr);}
+.pp-title{font-family:var(--serif);font-size:22px;font-weight:300;color:var(--t1);line-height:1.3;margin-bottom:8px;}
+.pp-kw{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-400);}
+.pp-url{font-size:11px;font-family:monospace;color:var(--t3);background:rgba(0,0,0,.3);padding:4px 10px;border-radius:4px;border:1px solid var(--bdr);white-space:nowrap;}
+.clusters{display:flex;flex-direction:column;gap:4px;}
+.cluster{background:rgba(0,0,0,.25);border:1px solid var(--bdr);border-radius:8px;overflow:hidden;}
+.cluster-trigger{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:16px;padding:14px 18px;cursor:pointer;list-style:none;}
+.cluster-trigger::-webkit-details-marker{display:none;}
+.cluster-id{font-family:var(--serif);font-size:14px;font-weight:400;color:var(--gold-600);line-height:1;}
+.cluster-title{font-size:13px;font-weight:500;color:var(--t1);}
+.cchev{width:15px;height:15px;color:var(--t4);transition:transform .3s;flex-shrink:0;}
+details[open] .cchev{transform:rotate(180deg);}
+details[open] .cluster{border-color:var(--bdr-a);}
+.cluster-body{border-top:1px solid var(--bdr);padding:14px 18px 14px 72px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cb-group{display:flex;flex-direction:column;gap:5px;}
+.cb-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:4px;}
+.cb-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.ctag{font-size:11px;padding:2px 9px;border-radius:4px;background:rgba(201,168,76,.08);color:var(--gold-200);border:1px solid rgba(201,168,76,.18);}
+.ctag-blue{background:rgba(60,100,200,.08);color:#90b4f0;border:1px solid rgba(60,100,200,.2);}
+@media(max-width:640px){
+  .cluster-body{grid-template-columns:1fr;padding:14px 18px;}
+}
+
+/* PUBLISHING SCHEDULE */
+.schedule{margin-bottom:72px;}
+.phase-head{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-400);margin:32px 0 10px;display:flex;align-items:center;gap:14px;}
+.phase-head::after{content:'';flex:1;height:1px;background:var(--bdr);}
+.blog-cards{display:flex;flex-direction:column;gap:3px;}
+.blog-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;transition:border-color .25s,background .25s;}
+.blog-card:hover{border-color:var(--bdr-a);background:var(--card-h);}
+.blog-trigger{display:grid;grid-template-columns:64px 80px 1fr auto;align-items:center;gap:18px;padding:16px 22px;cursor:pointer;list-style:none;}
+.blog-trigger::-webkit-details-marker{display:none;}
+.blog-wk{display:flex;flex-direction:column;gap:2px;}
+.blog-wk-n{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--gold-400);line-height:1;}
+.blog-wk-d{font-size:10px;color:var(--t3);}
+.blog-num{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;background:rgba(201,168,76,.1);color:var(--gold-200);border:1px solid rgba(201,168,76,.22);white-space:nowrap;text-align:center;}
+.blog-preview{display:flex;flex-direction:column;gap:3px;}
+.blog-preview-title{font-size:13.5px;font-weight:500;color:var(--t1);line-height:1.3;}
+.blog-preview-kw{font-size:11px;color:var(--t3);}
+.bchev{width:16px;height:16px;color:var(--t4);transition:transform .3s;flex-shrink:0;}
+details[open] .bchev{transform:rotate(180deg);}
+details[open] .blog-card{border-color:var(--bdr-a);background:var(--card-h);}
+.blog-body{border-top:1px solid var(--bdr);padding:18px 22px;display:grid;grid-template-columns:repeat(3,1fr) 1fr;gap:16px;}
+.bb-group{display:flex;flex-direction:column;gap:6px;}
+.bb-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);}
+.bb-val{font-size:12.5px;color:var(--t2);line-height:1.6;}
+.bb-val strong{color:var(--t1);font-weight:500;}
+.intent-i{color:#90b4f0;}.intent-c{color:#d890f0;}.intent-t{color:#80d4a0;}
+.aeo-box{background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:10px 14px;font-size:12px;color:var(--gold-200);font-style:italic;line-height:1.6;grid-column:4;}
+.tag-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.stag{font-size:10px;padding:2px 7px;border-radius:3px;}
+.stag-p{background:rgba(201,168,76,.1);color:var(--gold-200);border:1px solid rgba(201,168,76,.2);}
+.stag-b{background:rgba(60,100,200,.08);color:#90b4f0;border:1px solid rgba(60,100,200,.2);}
+.wc-badge{display:inline-block;font-size:11px;font-weight:500;color:var(--gold-600);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.18);border-radius:4px;padding:2px 8px;}
+@media(max-width:700px){
+  .blog-trigger{grid-template-columns:50px 70px 1fr auto;gap:10px;}
+  .blog-body{grid-template-columns:1fr 1fr;gap:12px;}
+  .aeo-box{grid-column:1/-1;}
+}
+
+/* OVERVIEW TABLE */
+.overview-table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:72px;}
+.overview-table th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-400);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--bdr-a);text-align:left;}
+.overview-table td{padding:10px 12px;border-bottom:1px solid var(--bdr);color:var(--t2);vertical-align:top;}
+.overview-table tr:hover td{background:var(--card-h);}
+.overview-table td:first-child{color:var(--gold-200);font-family:var(--serif);font-size:14px;}
+.overview-table td strong{color:var(--t1);font-weight:500;}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+.fi.vis{opacity:1;transform:none;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold-800);border-radius:3px;}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav id="nav">
+  <div class="nav-brand">Nyrah Beauty</div>
+  <div class="nav-links">
+    <a href="#layers">Authority Layers</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#overview">Overview</a>
+  </div>
+</nav>
+
+<div class="w">
+
+<!-- HEADER -->
+<header class="fi">
+  <div class="eyebrow">Nyrah Beauty</div>
+  <h1>Blog Content<br><em>Plan — 90 Days</em></h1>
+  <p class="h-sub">Every blog mapped. Every keyword assigned. Every internal link documented. From teaching Google what Nyrah is — to owning the comparison and proprietary technology queries no competitor can match.</p>
+  <div class="h-stats">
+    <div class="stat"><span class="stat-l">Total blogs</span><span class="stat-v">18</span></div>
+    <div class="stat"><span class="stat-l">Pillars</span><span class="stat-v">5</span></div>
+    <div class="stat"><span class="stat-l">Authority layers</span><span class="stat-v">5</span></div>
+    <div class="stat"><span class="stat-l">Publishing weeks</span><span class="stat-v">10</span></div>
+    <div class="stat"><span class="stat-l">Pre-content weeks</span><span class="stat-v">2</span></div>
+  </div>
+</header>
+
+<!-- SECTION 1: TOPICAL AUTHORITY LAYERS -->
+<section id="layers">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Section 01</div>
+    <h2 class="sec-title">Topical Authority Path</h2>
+    <p class="sec-desc">Five layers published in sequence. Each layer must be established before the next is opened. This is not a complexity ladder — it is a coverage sequence. You are teaching Google what knowledge domain Nyrah owns.</p>
+  </div>
+
+  <div class="layers fi">
+
+    <details class="layer-card">
+      <summary class="layer-trigger">
+        <span class="layer-num">01</span>
+        <span class="layer-badge lb1">Weeks 1–3</span>
+        <div class="layer-meta">
+          <span class="layer-title">Establish the primary entity</span>
+          <span class="layer-sub">Teach Google what Nyrah is — before anything else</span>
+        </div>
+        <svg class="lchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="layer-body">
+        <ul>
+          <li><span>What is hormonal skin change? — <strong>Defines the primary problem domain.</strong> Google reads this first to understand what Nyrah is about. Without this, every subsequent blog on hormonal topics has no authority anchor.</span></li>
+          <li><span>How does a skincare routine work for sensitive skin? — <strong>Defines the solution domain.</strong> Establishes that Nyrah occupies the skincare-for-sensitive-skin knowledge space.</span></li>
+          <li><span>What does fragrance-free mean in skincare? — <strong>Defines Nyrah's primary product attribute.</strong> This is the foundational claim that every fragrance-free product on the site depends on being credible.</span></li>
+          <li><span>What is the skin barrier and why does it matter? — <strong>Defines the functional frame for all Nyrah products.</strong> Every product in the range addresses the skin barrier in some way. This blog is the semantic root.</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer-card">
+      <summary class="layer-trigger">
+        <span class="layer-num">02</span>
+        <span class="layer-badge lb2">Weeks 3–5</span>
+        <div class="layer-meta">
+          <span class="layer-title">Establish the primary ingredient entities</span>
+          <span class="layer-sub">Associate Nyrah with its proprietary ingredient technologies</span>
+        </div>
+        <svg class="lchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="layer-body">
+        <ul>
+          <li><span>What is hyaluronic acid and what do different molecular weights do? — <strong>Establishes Drench / PrimalHyal™ 3K authority.</strong> Generic HA content exists everywhere. Nyrah's claim is triple molecular weight — that specificity is the differentiator.</span></li>
+          <li><span>What is Bakuchiol and how does it compare to retinol? — <strong>Establishes Transform authority.</strong> One of the highest-volume ingredient queries in skincare 2024–2026. This blog must be published before the comparison blog — foundational before specific.</span></li>
+          <li><span>What is Niacinamide and why is it in moisturisers for hormonal skin? — <strong>Establishes Infuse authority.</strong> The intersection of niacinamide + hormonal skin is Nyrah's specific angle — not the generic niacinamide explainer that already exists on every beauty site.</span></li>
+          <li><span>What is Astaxanthin and why is it used in SPF? — <strong>Establishes Lumina SPF30 authority.</strong> Astaxanthin is an underexplained ingredient in SPF products. Nyrah's 6,000× antioxidant claim needs a content anchor before it can be cited.</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer-card">
+      <summary class="layer-trigger">
+        <span class="layer-num">03</span>
+        <span class="layer-badge lb3">Weeks 5–8</span>
+        <div class="layer-meta">
+          <span class="layer-title">Establish the skin concern entities</span>
+          <span class="layer-sub">Own the problem spaces Nyrah's products solve</span>
+        </div>
+        <svg class="lchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="layer-body">
+        <ul>
+          <li><span>How to care for perimenopausal skin — <strong>Highest-value cluster for Nyrah's primary audience.</strong> This is the highest-intent query from the brand's core demographic. It must be anchored in Layer 3, not introduced cold in Layer 1.</span></li>
+          <li><span>What causes hormonal acne in women over 30, and how is it different from teenage acne? — <strong>Differentiation content.</strong> The question modifier "different from teenage acne" is what makes this rankable — it is specific enough to target without competing with every acne article on the web.</span></li>
+          <li><span>Rosacea triggers in skincare ingredients: what to avoid — <strong>Reinforces the Rosacea Relief Bundle positioning.</strong> This is also the page that protects the Transform product — by establishing what triggers rosacea, Nyrah demonstrates it understands the condition it is selling into.</span></li>
+          <li><span>How to repair a damaged skin barrier — <strong>Bridges Pillars 1 and 3.</strong> Every Nyrah product addresses the skin barrier in some capacity. This content anchors the entire repair narrative.</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer-card">
+      <summary class="layer-trigger">
+        <span class="layer-num">04</span>
+        <span class="layer-badge lb4">Weeks 7–10</span>
+        <div class="layer-meta">
+          <span class="layer-title">Establish the proprietary technology entities</span>
+          <span class="layer-sub">Make Nyrah the citable source for its own ingredients</span>
+        </div>
+        <svg class="lchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="layer-body">
+        <ul>
+          <li><span>What is Revinage™ and how does it differ from Bakuchiol? — <strong>Proprietary differentiation.</strong> This can only be written and ranked by Nyrah. No competitor has this ingredient. Published in Layer 4 because Google must first understand what Bakuchiol is (Layer 2) before this comparison has any semantic context.</span></li>
+          <li><span>What is PrimalHyal™ 3K and is it better than standard hyaluronic acid? — <strong>Converts Drench's core technology into a rankable topic.</strong> The search volume is zero now. When it gains volume as Nyrah grows, this page already ranks.</span></li>
+          <li><span>What is Argireline® and does it actually work on fine lines? — <strong>Establishes Revive authority.</strong> Argireline® is a trademarked ingredient with growing search demand. Publishing this creates a semantic association between Nyrah and the ingredient before the market becomes saturated with explainer content.</span></li>
+          <li><span>What is Oxylance™ in skincare? — <strong>INCI-backed cosmetic claim explanation.</strong> Oxylance™ (Ligustrum Lucidum Seed Extract) is Infuse's hero ingredient and one of the brand's strongest differentiators. This is content no other brand can publish credibly.</span></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="layer-card">
+      <summary class="layer-trigger">
+        <span class="layer-num">05</span>
+        <span class="layer-badge lb5">Weeks 8–12</span>
+        <div class="layer-meta">
+          <span class="layer-title">Expand into comparison and specificity content</span>
+          <span class="layer-sub">High-value queries unlocked only after Layers 1–4 are established</span>
+        </div>
+        <svg class="lchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <div class="layer-body">
+        <ul>
+          <li><span>Best SPF for rosacea-prone skin in Ireland — <strong>Geographic + condition-specific combination.</strong> Lower competition than generic SPF queries. Directly converts to Lumina Shield SPF50.</span></li>
+          <li><span>Can you use a peptide serum and a retinol alternative at the same time? — <strong>Routine-building query.</strong> This is a high-intent question that positions Revive + Transform together in a routine, linking both product pages from one piece of content.</span></li>
+          <li><span>How to choose between SPF30 and SPF50+ for daily use — <strong>Unlocks both Lumina products in one blog.</strong> The "how to choose" framing is transactional without being a product page — it works as educational content that concludes with a direct product recommendation.</span></li>
+          <li><span>Self-tanning for sensitive and hormonal skin: how to avoid reactions — <strong>Bridges Pillars 1 and 5.</strong> The "avoid reactions" modifier is the specific angle that makes this rankable for Nyrah's exact audience. It cannot be written before Layer 3 establishes what "hormonal skin" means on this domain.</span></li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- SECTION 2: PILLAR-CLUSTER MAP -->
+<section id="pillars">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Section 02</div>
+    <h2 class="sec-title">Pillar — Cluster Map</h2>
+    <p class="sec-desc">Five pillars. Every blog maps to one. No orphans. Every cluster links up to its pillar and down to at least one product page. Click a pillar to explore its cluster blogs.</p>
+  </div>
+
+  <div class="pillar-section fi">
+    <div class="pillar-tabs">
+      <div class="ptab active" onclick="switchPillar(0,this)">P1 · Hormonal Skin</div>
+      <div class="ptab" onclick="switchPillar(1,this)">P2 · Fragrance-Free</div>
+      <div class="ptab" onclick="switchPillar(2,this)">P3 · Ingredients</div>
+      <div class="ptab" onclick="switchPillar(3,this)">P4 · SPF</div>
+      <div class="ptab" onclick="switchPillar(4,this)">P5 · Self-Tanning</div>
+    </div>
+
+    <!-- PILLAR 1 -->
+    <div class="pillar-panel active" id="pp0">
+      <div class="pp-top">
+        <div>
+          <div class="pp-title">"What Is Hormonal Skin? A Complete Guide to Skin Changes During Perimenopause, Menopause, and Hormonal Shifts"</div>
+          <div class="pp-kw">Primary keyword: hormonal skin changes</div>
+        </div>
+        <div class="pp-url">/blogs/skincare/what-is-hormonal-skin</div>
+      </div>
+      <div class="clusters">
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C1.1</span><span class="cluster-title">What Causes Hormonal Acne in Women Over 30</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Hormonal Breakout Bundle</span><span class="ctag">Glisten</span><span class="ctag">Infuse FF</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 1 ↑</span><span class="ctag-blue">C1.3 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C1.2</span><span class="cluster-title">How Perimenopause Changes Your Skin — And What You Can Do About It</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Timeless Skin Bundle</span><span class="ctag">Infuse</span><span class="ctag">Revive</span><span class="ctag">Trial Pack</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 1 ↑</span><span class="ctag-blue">C1.4 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C1.3</span><span class="cluster-title">Best Skincare Routine for Hormonal Breakouts: Morning and Evening</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Hormonal Breakout Bundle</span><span class="ctag">Undress</span><span class="ctag">Drench</span><span class="ctag">Glisten</span><span class="ctag">Infuse FF</span><span class="ctag">Lumina SPF50</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 1 ↑</span><span class="ctag-blue">C1.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C1.4</span><span class="cluster-title">Skin Care After 40: What Changes and What Your Skin Needs</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Timeless Skin Bundle</span><span class="ctag">Transform</span><span class="ctag">Revive Gift Set</span><span class="ctag">Trial Pack</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 1 ↑</span><span class="ctag-blue">C1.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C1.5</span><span class="cluster-title">Postpartum Skin: Why It Changes and How to Rebuild Your Routine</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Infuse FF</span><span class="ctag">Undress</span><span class="ctag">Drench</span><span class="ctag">Glisten</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 1 ↑</span><span class="ctag-blue">C1.2 ↔</span></div></div></div></details>
+      </div>
+    </div>
+
+    <!-- PILLAR 2 -->
+    <div class="pillar-panel" id="pp1">
+      <div class="pp-top">
+        <div>
+          <div class="pp-title">"The Complete Guide to Fragrance-Free Skincare for Sensitive and Reactive Skin"</div>
+          <div class="pp-kw">Primary keyword: fragrance-free skincare sensitive skin</div>
+        </div>
+        <div class="pp-url">/blogs/skincare/fragrance-free-skincare-guide</div>
+      </div>
+      <div class="clusters">
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C2.1</span><span class="cluster-title">Rosacea and Fragrance: Which Skincare Ingredients Trigger Flare-Ups</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Rosacea Relief Bundle</span><span class="ctag">Infuse FF</span><span class="ctag">Lumina Shield SPF50</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 2 ↑</span><span class="ctag-blue">C2.3 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C2.2</span><span class="cluster-title">What Does Fragrance-Free Actually Mean on a Skincare Label?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Infuse FF</span><span class="ctag">Drench</span><span class="ctag">Glisten</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 2 ↑</span><span class="ctag-blue">C2.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C2.3</span><span class="cluster-title">How to Build a Skincare Routine for Rosacea-Prone Skin</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Rosacea Relief Bundle</span><span class="ctag">Undress</span><span class="ctag">Drench</span><span class="ctag">Infuse FF</span><span class="ctag">Lumina Shield SPF50</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 2 ↑</span><span class="ctag-blue">C2.1 ↔</span><span class="ctag-blue">C2.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C2.4</span><span class="cluster-title">Essential Oils in Skincare: Which Are Safe and Which to Avoid</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Transform (with caveat)</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 2 ↑</span><span class="ctag-blue">C2.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C2.5</span><span class="cluster-title">The Difference Between Fragrance-Free and Unscented Skincare</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Infuse FF</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 2 ↑</span><span class="ctag-blue">C2.2 ↔</span></div></div></div></details>
+      </div>
+    </div>
+
+    <!-- PILLAR 3 -->
+    <div class="pillar-panel" id="pp2">
+      <div class="pp-top">
+        <div>
+          <div class="pp-title">"Key Skincare Ingredients Explained: From Hyaluronic Acid to Peptides and Retinol Alternatives"</div>
+          <div class="pp-kw">Primary keyword: skincare ingredients explained</div>
+        </div>
+        <div class="pp-url">/blogs/skincare/skincare-ingredients-guide</div>
+      </div>
+      <div class="clusters">
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.1</span><span class="cluster-title">What Is Hyaluronic Acid and What Does Triple Molecular Weight Mean?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Drench</span><span class="ctag">Revive</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.2</span><span class="cluster-title">Bakuchiol vs Retinol: The Honest Comparison</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Transform</span><span class="ctag">Glow & Nourish Collection</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.3 ↔</span><span class="ctag-blue">C3.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.3</span><span class="cluster-title">What Is Argireline® Peptide and Does It Work on Fine Lines?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Revive</span><span class="ctag">Revive Gift Set</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.4</span><span class="cluster-title">What Is Astaxanthin in Skincare and Why Is It in SPF?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina SPF30</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.5 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.5</span><span class="cluster-title">Niacinamide for Hormonal Skin: Benefits and How to Use It</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Infuse</span><span class="ctag">Revive</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.1 ↔</span><span class="ctag-blue">Pillar 1 ↗</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.6</span><span class="cluster-title">What Are Ceramides and Why Do They Matter for the Skin Barrier?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Revive</span><span class="ctag">Infuse</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C3.7</span><span class="cluster-title">What Is Bakuchiol Made From and Is It Safe for Sensitive Skin?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Transform</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 3 ↑</span><span class="ctag-blue">C3.2 ↔</span></div></div></div></details>
+      </div>
+    </div>
+
+    <!-- PILLAR 4 -->
+    <div class="pillar-panel" id="pp3">
+      <div class="pp-top">
+        <div>
+          <div class="pp-title">"Why You Need Daily SPF All Year Round — Especially If You Live in Ireland or the UK"</div>
+          <div class="pp-kw">Primary keyword: daily SPF skincare routine</div>
+        </div>
+        <div class="pp-url">/blogs/skincare/daily-spf-guide-ireland</div>
+      </div>
+      <div class="clusters">
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C4.1</span><span class="cluster-title">SPF30 vs SPF50: Which Sun Protection Factor Do You Actually Need?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina SPF30</span><span class="ctag">Lumina Shield SPF50</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 4 ↑</span><span class="ctag-blue">C4.2 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C4.2</span><span class="cluster-title">What Is UVA Protection and Why Does the UVA Star Rating Matter?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina SPF30 (4-star)</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 4 ↑</span><span class="ctag-blue">C4.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C4.3</span><span class="cluster-title">Best SPF for Rosacea-Prone Skin: What to Look For</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina Shield SPF50</span><span class="ctag">Infuse FF</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 4 ↑</span><span class="ctag-blue">C4.1 ↔</span><span class="ctag-blue">Pillar 2 ↗</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C4.4</span><span class="cluster-title">How to Layer SPF Into Your Skincare Routine Without Pilling</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina Shield SPF50</span><span class="ctag">Lumina SPF30</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 4 ↑</span><span class="ctag-blue">C4.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C4.5</span><span class="cluster-title">What Is Astaxanthin and Why Is It in This SPF Serum?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Lumina SPF30</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 4 ↑</span><span class="ctag-blue">C3.4 ↗ (cross-pillar)</span></div></div></div></details>
+      </div>
+    </div>
+
+    <!-- PILLAR 5 -->
+    <div class="pillar-panel" id="pp4">
+      <div class="pp-top">
+        <div>
+          <div class="pp-title">"Self-Tanning for Sensitive, Hormonal, and Reactive Skin: What You Need to Know"</div>
+          <div class="pp-kw">Primary keyword: self-tanning sensitive skin</div>
+        </div>
+        <div class="pp-url">/blogs/skincare/self-tanning-sensitive-skin-guide</div>
+      </div>
+      <div class="clusters">
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C5.1</span><span class="cluster-title">How to Apply Self-Tan Without Streaks: Step-by-Step Guide</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Bloom Mousse</span><span class="ctag">Velvet Tanning Mitt</span><span class="ctag">Exfoliating Mitt</span><span class="ctag">Kabuki Brush</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 5 ↑</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C5.2</span><span class="cluster-title">Self-Tan for Your Face: How Tanning Drops Work vs Mousse</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Bloom Glow Serum</span><span class="ctag">Bloom Mousse</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 5 ↑</span><span class="ctag-blue">C5.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C5.3</span><span class="cluster-title">How to Remove Old Self-Tan Before Your Next Application</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Exfoliating Mitt</span><span class="ctag">Bloom Mousse</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 5 ↑</span><span class="ctag-blue">C5.1 ↔</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C5.4</span><span class="cluster-title">Is Self-Tan Safe During Pregnancy? What You Need to Know</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Bloom Glow Serum</span><span class="ctag">Bloom Mousse (with GP caveat)</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 5 ↑</span><span class="ctag-blue">Pillar 1 ↗</span></div></div></div></details>
+        <details class="cluster"><summary class="cluster-trigger"><span class="cluster-id">C5.5</span><span class="cluster-title">What Is DHA in Self-Tan and Is It Safe for Sensitive Skin?</span><svg class="cchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg></summary><div class="cluster-body"><div class="cb-group"><div class="cb-label">Product links</div><div class="cb-tags"><span class="ctag">Bloom Mousse</span><span class="ctag">Bloom Glow Serum</span><span class="ctag">Bloom Crème</span></div></div><div class="cb-group"><div class="cb-label">Blog links</div><div class="cb-tags"><span class="ctag-blue">Pillar 5 ↑</span><span class="ctag-blue">C5.2 ↔</span></div></div></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PUBLISHING SCHEDULE -->
+<section id="schedule">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Section 03</div>
+    <h2 class="sec-title">Blog Publishing Schedule</h2>
+    <p class="sec-desc">18 blogs across 10 publishing weeks. Pre-condition: no blog goes live until Week 1 audit fixes and Week 2 page creation are complete. Two blogs per week from Week 3 onwards.</p>
+  </div>
+
+  <div class="schedule fi">
+
+    <div class="phase-head">Layer 1 — Primary entity establishment · Weeks 3–4</div>
+    <div class="blog-cards">
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 3</span><span class="blog-wk-d">Blog 1</span></div>
+          <span class="blog-num">Pillar 1</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Is Hormonal Skin? A Complete Guide to Skin Changes During Perimenopause, Menopause, and Hormonal Shifts</span><span class="blog-preview-kw">hormonal skin changes</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,800w</span></div></div>
+          <div class="aeo-box">"What is hormonal skin?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Hormonal Breakout Bundle</span><span class="stag stag-p">Trial Pack</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">None yet — first published</span></div></div>
+          <div class="bb-group"><div class="bb-label">Layer purpose</div><div class="bb-val">Teaches Google what Nyrah's primary problem domain is. Every subsequent hormonal skin blog depends on this anchor existing first.</div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 3</span><span class="blog-wk-d">Blog 2</span></div>
+          <span class="blog-num">Pillar 2</span>
+          <div class="blog-preview"><span class="blog-preview-title">The Complete Guide to Fragrance-Free Skincare for Sensitive and Reactive Skin</span><span class="blog-preview-kw">fragrance-free skincare sensitive skin</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Guide + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,600w</span></div></div>
+          <div class="aeo-box">"What does fragrance-free mean in skincare?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Drench</span><span class="stag stag-p">Glisten</span><span class="stag stag-p">Rosacea Bundle</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↗ cross-link</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 4</span><span class="blog-wk-d">Blog 3</span></div>
+          <span class="blog-num">C1.1</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Causes Hormonal Acne in Women Over 30</span><span class="blog-preview-kw">hormonal acne women over 30</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,200w</span></div></div>
+          <div class="aeo-box">"Why do women over 30 get hormonal acne?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Hormonal Breakout Bundle</span><span class="stag stag-p">Glisten</span><span class="stag stag-p">Infuse FF</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↑</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 4</span><span class="blog-wk-d">Blog 4</span></div>
+          <span class="blog-num">C2.1</span>
+          <div class="blog-preview"><span class="blog-preview-title">Rosacea and Fragrance: Which Skincare Ingredients Trigger Flare-Ups</span><span class="blog-preview-kw">rosacea fragrance skincare</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">FAQ + List</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,000w</span></div></div>
+          <div class="aeo-box">"Does fragrance cause rosacea flare-ups?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Rosacea Bundle</span><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Lumina Shield SPF50</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 2 ↑</span><span class="stag stag-b">C2.2 ↔</span></div></div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="phase-head">Layer 2 — Ingredient entities · Weeks 5–6</div>
+    <div class="blog-cards">
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 5</span><span class="blog-wk-d">Blog 5</span></div>
+          <span class="blog-num">Pillar 3</span>
+          <div class="blog-preview"><span class="blog-preview-title">Key Skincare Ingredients Explained: HA, Peptides, and BioRetinol</span><span class="blog-preview-kw">skincare ingredients explained</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">3,200w</span></div></div>
+          <div class="aeo-box">"What do skincare ingredients actually do?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Drench</span><span class="stag stag-p">Glisten</span><span class="stag stag-p">Transform</span><span class="stag stag-p">Revive</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↗</span><span class="stag stag-b">Pillar 2 ↗</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 5</span><span class="blog-wk-d">Blog 6</span></div>
+          <span class="blog-num">Pillar 4</span>
+          <div class="blog-preview"><span class="blog-preview-title">Why You Need Daily SPF All Year Round — Especially in Ireland</span><span class="blog-preview-kw">daily SPF Ireland</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Guide + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,400w</span></div></div>
+          <div class="aeo-box">"Do I need SPF every day in Ireland?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Lumina Shield SPF50</span><span class="stag stag-p">Lumina SPF30</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 3 ↗</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 6</span><span class="blog-wk-d">Blog 7</span></div>
+          <span class="blog-num">C3.1</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Is Hyaluronic Acid and What Does Triple Molecular Weight Mean?</span><span class="blog-preview-kw">triple molecular hyaluronic acid</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,800w</span></div></div>
+          <div class="aeo-box">"What is PrimalHyal 3K?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Drench</span><span class="stag stag-p">Revive</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 3 ↑</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 6</span><span class="blog-wk-d">Blog 8</span></div>
+          <span class="blog-num">C1.2</span>
+          <div class="blog-preview"><span class="blog-preview-title">How Perimenopause Changes Your Skin — And What to Do About It</span><span class="blog-preview-kw">perimenopausal skin care</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Guide + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,600w</span></div></div>
+          <div class="aeo-box">"How does perimenopause affect skin?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Timeless Skin Bundle</span><span class="stag stag-p">Infuse</span><span class="stag stag-p">Revive</span><span class="stag stag-p">Trial Pack</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↑</span><span class="stag stag-b">C1.1 ↔</span></div></div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="phase-head">Layer 3 — Skin concern entities · Weeks 7–8</div>
+    <div class="blog-cards">
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 7</span><span class="blog-wk-d">Blog 9</span></div>
+          <span class="blog-num">C3.2</span>
+          <div class="blog-preview"><span class="blog-preview-title">Bakuchiol vs Retinol: The Complete Honest Comparison</span><span class="blog-preview-kw">bakuchiol vs retinol</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Comparison + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-c">Informational / Comparison</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,400w</span></div></div>
+          <div class="aeo-box">"Is bakuchiol as effective as retinol?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Transform</span><span class="stag stag-p">Glow & Nourish</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">C3.1 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 7</span><span class="blog-wk-d">Blog 10</span></div>
+          <span class="blog-num">C2.2</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Does Fragrance-Free Actually Mean on a Skincare Label?</span><span class="blog-preview-kw">fragrance-free skincare label meaning</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,600w</span></div></div>
+          <div class="aeo-box">"Does fragrance-free mean no smell?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Drench</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 2 ↑</span><span class="stag stag-b">C2.1 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 8</span><span class="blog-wk-d">Blog 11</span></div>
+          <span class="blog-num">C4.1</span>
+          <div class="blog-preview"><span class="blog-preview-title">SPF30 vs SPF50: Which Protection Factor Do You Actually Need?</span><span class="blog-preview-kw">spf30 vs spf50</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Comparison + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-c">Informational / Comparison</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,800w</span></div></div>
+          <div class="aeo-box">"Is SPF50 better than SPF30?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Lumina SPF30</span><span class="stag stag-p">Lumina Shield SPF50</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 4 ↑</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 8</span><span class="blog-wk-d">Blog 12</span></div>
+          <span class="blog-num">C1.3</span>
+          <div class="blog-preview"><span class="blog-preview-title">Best Skincare Routine for Hormonal Breakouts: Morning and Evening</span><span class="blog-preview-kw">skincare routine hormonal breakouts</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">How-To + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-t">Transactional</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,200w</span></div></div>
+          <div class="aeo-box">"What skincare routine is good for hormonal acne?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Hormonal Breakout Bundle</span><span class="stag stag-p">Undress</span><span class="stag stag-p">Drench</span><span class="stag stag-p">Infuse FF</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↑</span><span class="stag stag-b">C1.1 ↔</span></div></div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="phase-head">Layer 4 — Proprietary technology entities · Weeks 9–10</div>
+    <div class="blog-cards">
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 9</span><span class="blog-wk-d">Blog 13</span></div>
+          <span class="blog-num">C3.3</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Is Argireline® Peptide and Does It Actually Reduce Wrinkles?</span><span class="blog-preview-kw">argireline peptide skin</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,800w</span></div></div>
+          <div class="aeo-box">"Does Argireline work on wrinkles?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Revive</span><span class="stag stag-p">Revive Gift Set</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 3 ↑</span><span class="stag stag-b">C3.2 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 9</span><span class="blog-wk-d">Blog 14</span></div>
+          <span class="blog-num">C3.4/C4.2</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Is Astaxanthin and Why Is It Used in SPF?</span><span class="blog-preview-kw">astaxanthin skincare</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,600w</span></div></div>
+          <div class="aeo-box">"What does astaxanthin do for skin?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Lumina SPF30</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 4 ↑</span><span class="stag stag-b">C4.1 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 10</span><span class="blog-wk-d">Blog 15</span></div>
+          <span class="blog-num">C2.3</span>
+          <div class="blog-preview"><span class="blog-preview-title">How to Care for Rosacea-Prone Skin: A Complete Routine Guide</span><span class="blog-preview-kw">skincare routine for rosacea</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">How-To + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-t">Transactional</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,400w</span></div></div>
+          <div class="aeo-box">"What skincare is safe for rosacea?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Rosacea Relief Bundle</span><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Drench</span><span class="stag stag-p">Glisten</span><span class="stag stag-p">Lumina Shield</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 2 ↑</span><span class="stag stag-b">C2.1 ↔</span><span class="stag stag-b">C2.2 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 10</span><span class="blog-wk-d">Blog 16</span></div>
+          <span class="blog-num">C3.5</span>
+          <div class="blog-preview"><span class="blog-preview-title">Niacinamide for Hormonal Skin: Benefits and How to Use It</span><span class="blog-preview-kw">niacinamide hormonal skin</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,800w</span></div></div>
+          <div class="aeo-box">"Is niacinamide good for hormonal skin?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Infuse</span><span class="stag stag-p">Revive</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 3 ↑</span><span class="stag stag-b">Pillar 1 ↗</span></div></div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="phase-head">Layer 5 — Comparison, specificity and new pillars · Weeks 11–12</div>
+    <div class="blog-cards">
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 11</span><span class="blog-wk-d">Blog 17</span></div>
+          <span class="blog-num">Pillar 5</span>
+          <div class="blog-preview"><span class="blog-preview-title">Self-Tanning for Sensitive, Hormonal, and Reactive Skin</span><span class="blog-preview-kw">self-tanning sensitive skin</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Guide + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,200w</span></div></div>
+          <div class="aeo-box">"Can people with sensitive skin use self-tan?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Bloom Mousse</span><span class="stag stag-p">Bloom Glow Serum</span><span class="stag stag-p">Bloom Crème</span><span class="stag stag-p">Exfoliating Mitt</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">New pillar — no prior blogs yet</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 11</span><span class="blog-wk-d">Blog 18</span></div>
+          <span class="blog-num">C1.4</span>
+          <div class="blog-preview"><span class="blog-preview-title">Skin Care After 40: What Changes and What Your Routine Needs</span><span class="blog-preview-kw">skincare after 40</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Guide + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,600w</span></div></div>
+          <div class="aeo-box">"How should I change my skincare routine at 40?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Timeless Bundle</span><span class="stag stag-p">Transform</span><span class="stag stag-p">Revive Gift Set</span><span class="stag stag-p">Trial Pack</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↑</span><span class="stag stag-b">C1.2 ↔</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 12</span><span class="blog-wk-d">Blog 19</span></div>
+          <span class="blog-num">C5.1</span>
+          <div class="blog-preview"><span class="blog-preview-title">How to Apply Self-Tan Without Streaks: Step by Step</span><span class="blog-preview-kw">how to apply self-tan without streaks</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">How-To</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-t">Transactional</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">1,800w</span></div></div>
+          <div class="aeo-box">"How do I get an even self-tan?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Bloom Mousse</span><span class="stag stag-p">Velvet Tanning Mitt</span><span class="stag stag-p">Exfoliating Mitt</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 5 ↑</span></div></div>
+        </div>
+      </details>
+
+      <details class="blog-card">
+        <summary class="blog-trigger">
+          <div class="blog-wk"><span class="blog-wk-n">Wk 12</span><span class="blog-wk-d">Blog 20</span></div>
+          <span class="blog-num">P1/P3</span>
+          <div class="blog-preview"><span class="blog-preview-title">What Is the Skin Barrier and Why Does It Keep Getting Damaged?</span><span class="blog-preview-kw">skin barrier damage</span></div>
+          <svg class="bchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="blog-body">
+          <div class="bb-group"><div class="bb-label">Format</div><div class="bb-val">Explainer + FAQ</div></div>
+          <div class="bb-group"><div class="bb-label">Intent</div><div class="bb-val"><span class="intent-i">Informational</span></div></div>
+          <div class="bb-group"><div class="bb-label">Word count</div><div class="bb-val"><span class="wc-badge">2,000w</span></div></div>
+          <div class="aeo-box">"What does it mean to damage your skin barrier?"</div>
+          <div class="bb-group"><div class="bb-label">Product links</div><div class="tag-row"><span class="stag stag-p">Drench</span><span class="stag stag-p">Infuse FF</span><span class="stag stag-p">Undress</span></div></div>
+          <div class="bb-group"><div class="bb-label">Blog links</div><div class="tag-row"><span class="stag stag-b">Pillar 1 ↑</span><span class="stag stag-b">C3.6 ↔</span></div></div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: OVERVIEW TABLE -->
+<section id="overview">
+  <div class="sec-head fi">
+    <div class="sec-eyebrow">Section 04</div>
+    <h2 class="sec-title">Quick Reference — All 20 Blogs</h2>
+    <p class="sec-desc">Full schedule at a glance. Sorted by publishing week.</p>
+  </div>
+
+  <div class="fi" style="overflow-x:auto;margin-bottom:72px;">
+    <table class="overview-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Blog</th>
+          <th>Title</th>
+          <th>Primary Keyword</th>
+          <th>Intent</th>
+          <th>Words</th>
+          <th>AEO Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3</td><td><strong>Pillar 1</strong></td><td>What Is Hormonal Skin? A Complete Guide</td><td>hormonal skin changes</td><td><span class="intent-i">Info</span></td><td>2,800</td><td>"What is hormonal skin?"</td></tr>
+        <tr><td>3</td><td><strong>Pillar 2</strong></td><td>Complete Guide to Fragrance-Free Skincare</td><td>fragrance-free skincare sensitive skin</td><td><span class="intent-i">Info</span></td><td>2,600</td><td>"What does fragrance-free mean?"</td></tr>
+        <tr><td>4</td><td><strong>C1.1</strong></td><td>What Causes Hormonal Acne in Women Over 30</td><td>hormonal acne women over 30</td><td><span class="intent-i">Info</span></td><td>2,200</td><td>"Why do women over 30 get hormonal acne?"</td></tr>
+        <tr><td>4</td><td><strong>C2.1</strong></td><td>Rosacea and Fragrance: Trigger Ingredients</td><td>rosacea fragrance skincare</td><td><span class="intent-i">Info</span></td><td>2,000</td><td>"Does fragrance cause rosacea flare-ups?"</td></tr>
+        <tr><td>5</td><td><strong>Pillar 3</strong></td><td>Key Skincare Ingredients Explained</td><td>skincare ingredients explained</td><td><span class="intent-i">Info</span></td><td>3,200</td><td>"What do skincare ingredients actually do?"</td></tr>
+        <tr><td>5</td><td><strong>Pillar 4</strong></td><td>Why You Need Daily SPF in Ireland</td><td>daily SPF Ireland</td><td><span class="intent-i">Info</span></td><td>2,400</td><td>"Do I need SPF every day in Ireland?"</td></tr>
+        <tr><td>6</td><td><strong>C3.1</strong></td><td>Hyaluronic Acid and Triple Molecular Weight</td><td>triple molecular hyaluronic acid</td><td><span class="intent-i">Info</span></td><td>1,800</td><td>"What is PrimalHyal 3K?"</td></tr>
+        <tr><td>6</td><td><strong>C1.2</strong></td><td>How Perimenopause Changes Your Skin</td><td>perimenopausal skin care</td><td><span class="intent-i">Info</span></td><td>2,600</td><td>"How does perimenopause affect skin?"</td></tr>
+        <tr><td>7</td><td><strong>C3.2</strong></td><td>Bakuchiol vs Retinol: Honest Comparison</td><td>bakuchiol vs retinol</td><td><span class="intent-c">Comparison</span></td><td>2,400</td><td>"Is bakuchiol as effective as retinol?"</td></tr>
+        <tr><td>7</td><td><strong>C2.2</strong></td><td>What Does Fragrance-Free Actually Mean?</td><td>fragrance-free skincare label meaning</td><td><span class="intent-i">Info</span></td><td>1,600</td><td>"Does fragrance-free mean no smell?"</td></tr>
+        <tr><td>8</td><td><strong>C4.1</strong></td><td>SPF30 vs SPF50: Which Do You Need?</td><td>spf30 vs spf50</td><td><span class="intent-c">Comparison</span></td><td>1,800</td><td>"Is SPF50 better than SPF30?"</td></tr>
+        <tr><td>8</td><td><strong>C1.3</strong></td><td>Skincare Routine for Hormonal Breakouts</td><td>skincare routine hormonal breakouts</td><td><span class="intent-t">Transactional</span></td><td>2,200</td><td>"What routine is good for hormonal acne?"</td></tr>
+        <tr><td>9</td><td><strong>C3.3</strong></td><td>What Is Argireline® Peptide?</td><td>argireline peptide skin</td><td><span class="intent-i">Info</span></td><td>1,800</td><td>"Does Argireline work on wrinkles?"</td></tr>
+        <tr><td>9</td><td><strong>C3.4</strong></td><td>What Is Astaxanthin in SPF?</td><td>astaxanthin skincare</td><td><span class="intent-i">Info</span></td><td>1,600</td><td>"What does astaxanthin do for skin?"</td></tr>
+        <tr><td>10</td><td><strong>C2.3</strong></td><td>Skincare Routine for Rosacea-Prone Skin</td><td>skincare routine for rosacea</td><td><span class="intent-t">Transactional</span></td><td>2,400</td><td>"What skincare is safe for rosacea?"</td></tr>
+        <tr><td>10</td><td><strong>C3.5</strong></td><td>Niacinamide for Hormonal Skin</td><td>niacinamide hormonal skin</td><td><span class="intent-i">Info</span></td><td>1,800</td><td>"Is niacinamide good for hormonal skin?"</td></tr>
+        <tr><td>11</td><td><strong>Pillar 5</strong></td><td>Self-Tanning for Sensitive Skin</td><td>self-tanning sensitive skin</td><td><span class="intent-i">Info</span></td><td>2,200</td><td>"Can sensitive skin use self-tan?"</td></tr>
+        <tr><td>11</td><td><strong>C1.4</strong></td><td>Skin Care After 40</td><td>skincare after 40</td><td><span class="intent-i">Info</span></td><td>2,600</td><td>"How to change routine at 40?"</td></tr>
+        <tr><td>12</td><td><strong>C5.1</strong></td><td>How to Apply Self-Tan Without Streaks</td><td>how to apply self-tan without streaks</td><td><span class="intent-t">Transactional</span></td><td>1,800</td><td>"How do I get an even self-tan?"</td></tr>
+        <tr><td>12</td><td><strong>P1/P3</strong></td><td>What Is the Skin Barrier?</td><td>skin barrier damage</td><td><span class="intent-i">Info</span></td><td>2,000</td><td>"What does it mean to damage your skin barrier?"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--bdr);padding-top:36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--t3);">
+  <div style="font-family:var(--serif);font-size:18px;font-weight:300;color:var(--gold-400);">Nyrah Beauty</div>
+  <div>Blog Content Plan · 90 Days · 20 Blogs · 5 Pillars</div>
+</footer>
+
+</div>
+
+<script>
+// Progress + nav
+const prog=document.getElementById('prog'),nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY,t=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(s/t*100)+'%';
+  s>100?nav.classList.add('show'):nav.classList.remove('show');
+});
+
+// Pillar tabs
+function switchPillar(i,el){
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.pillar-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pp'+i).classList.add('active');
+}
+
+// Fade in on scroll
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
+},{threshold:0.06});
+document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
