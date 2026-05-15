@@ -207,63 +207,63 @@
   }
 
   /* ── RESULTS FEATURE ── */
-  #results {
-    background: var(--grad-dark);
-    position: relative; overflow: hidden;
-  }
-  #results .hero-grain { opacity: 0.05; }
-  #results .section-title { color: var(--white); }
-  #results .section-eyebrow { color: var(--gold-light); }
-
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
-    max-width: 1200px; margin: 0 auto;
-  }
-  .result-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(212,160,23,0.15);
-    padding: 48px 40px;
-    position: relative; overflow: hidden;
-    transition: all 0.35s;
-    cursor: default;
-  }
-  .result-card::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(212,160,23,0.08), transparent);
-    opacity: 0; transition: opacity 0.35s;
-  }
-  .result-card:hover { border-color: rgba(212,160,23,0.5); transform: translateY(-4px); }
-  .result-card:hover::before { opacity: 1; }
-  .result-card-company {
-    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold-mid); font-weight: 500; margin-bottom: 28px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .result-card-company::before {
-    content: ''; display: inline-block;
-    width: 24px; height: 1px; background: var(--gold-mid);
-  }
-  .result-big-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4.5rem; line-height: 1;
-    color: var(--gold-light);
-    letter-spacing: 0.02em;
-  }
-  .result-big-label {
-    font-size: 0.85rem; color: rgba(255,255,255,0.6);
-    margin-top: 8px; line-height: 1.5;
-  }
-  .result-sub-items { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
-  .result-sub-item {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 14px; border-bottom: 1px solid rgba(212,160,23,0.1);
-  }
-  .result-sub-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .result-sub-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
-  .result-sub-val { font-size: 0.95rem; font-weight: 500; color: var(--gold-pale); }
-
+<!-- RESULTS -->
+<section id="results">
+  <div class="hero-grain"></div>
+  <div class="section-header reveal">
+    <p class="section-eyebrow">The only metric that matters</p>
+    <h2 class="section-title">Results That Speak<br>in Revenue</h2>
+    <span class="section-rule"></span>
+  </div>
+ 
+  <div class="results-grid reveal">
+    <!-- Wishup -->
+    <div class="result-card">
+      <div class="result-card-company">Wishup.co &nbsp;·&nbsp; India</div>
+      <div class="result-big-num">$34,900</div>
+      <div class="result-big-label">Revenue attributed in first month<br>(conversion value only)</div>
+      <div class="result-sub-items">
+        <div class="result-sub-item"><span class="result-sub-label">Blog Leads (1 Year)</span><span class="result-sub-val">182</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">Conversions Attributed</span><span class="result-sub-val">29</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">ROI on Salary</span><span class="result-sub-val">260%</span></div>
+      </div>
+    </div>
+ 
+    <!-- Nexconz -->
+    <div class="result-card">
+      <div class="result-card-company">Nexconz Inc &nbsp;·&nbsp; Singapore</div>
+      <div class="result-big-num">13,000%</div>
+      <div class="result-big-label">ROI on Instagram ad — ₹300 spent,<br>₹40,000 lead converted</div>
+      <div class="result-sub-items">
+        <div class="result-sub-item"><span class="result-sub-label">VC Funding Secured</span><span class="result-sub-val">$50,000</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">SEO Leads (3 Months)</span><span class="result-sub-val">12</span></div>
+      </div>
+    </div>
+ 
+    <!-- Osiz -->
+    <div class="result-card">
+      <div class="result-card-company">Osiz Technologies &nbsp;·&nbsp; India</div>
+      <div class="result-big-num">$195K+</div>
+      <div class="result-big-label">Combined revenue across brands<br>in under 3 months</div>
+      <div class="result-sub-items">
+        <div class="result-sub-item"><span class="result-sub-label">Koinbazar Revenue (Cold Email)</span><span class="result-sub-val">$50,000+</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">GamesdApp — 1 Month</span><span class="result-sub-val">$75,000</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">Fit4Bond — 2 Months</span><span class="result-sub-val">$70,000</span></div>
+      </div>
+    </div>
+ 
+    <!-- Softura -->
+    <div class="result-card">
+      <div class="result-card-company">Softura Inc &nbsp;·&nbsp; Michigan, USA</div>
+      <div class="result-big-num">319</div>
+      <div class="result-big-label">Marketing Qualified Leads<br>over 13-month tenure</div>
+      <div class="result-sub-items">
+        <div class="result-sub-item"><span class="result-sub-label">Sales Accepted Leads</span><span class="result-sub-val">43</span></div>
+        <div class="result-sub-item"><span class="result-sub-label">Pipeline (Pending)</span><span class="result-sub-val">35</span></div>
+      </div>
+    </div>
+  </div>
+  
   /* ROI Table */
   .roi-table-wrap {
     max-width: 900px; margin: 64px auto 0;
